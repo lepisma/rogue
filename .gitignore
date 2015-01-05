@@ -1,0 +1,13 @@
+/auto-save-list
+/project-persist
+/.python-environments
+.graphene-geometry
+*.dat
+ido.last
+*.elc
+*.eld
+*~
+/.cask
+/projectile.cache
+/eshell
+smex-items
