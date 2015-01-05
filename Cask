@@ -3,6 +3,7 @@
 
 (depends-on "ac-cider")
 (depends-on "cider")
+(depends-on "cmake-mode")
 (depends-on "elpy")
 (depends-on "graphene")
 (depends-on "helm")
