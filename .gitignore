@@ -11,3 +11,5 @@ ido.last
 /projectile.cache
 /eshell
 smex-items
+.emacs.desktop*
+.mc-lists.el

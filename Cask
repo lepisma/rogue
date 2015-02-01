@@ -11,6 +11,7 @@
 (depends-on "let-alist")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "multiple-cursors")
 (depends-on "org")
 (depends-on "pallet")
 (depends-on "powerline")

@@ -44,6 +44,14 @@
    sr-speedbar-max-width 40
    sr-speedbar-delete-windows t)
 
+;; Multiple cursors
+(require 'multiple-cursors)
+
+(global-set-key (kbd "C-c C-q") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 ;; Packages config section
 ;; -----------------------
 (projectile-global-mode)
