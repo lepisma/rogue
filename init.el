@@ -28,6 +28,8 @@
 (set-face-attribute 'mode-line nil
                     :box nil
                     :family "consolas")
+;; Set cursor to bar
+(setq-default cursor-type 'bar)
 
 ;; Rainbow delimiters
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
