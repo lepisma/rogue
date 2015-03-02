@@ -65,4 +65,11 @@
 (add-hook 'clojure-mode-hook (lambda ()
                                (cider-mode 1)
                                ))
+
+;; LaTeX preview pane
+(latex-preview-pane-enable)
+
+;; org mode special-symbol-mode
+(setq-default org-pretty-entities 1)
+
 ;;; init.el ends here

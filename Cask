@@ -8,6 +8,7 @@
 (depends-on "graphene")
 (depends-on "helm")
 (depends-on "julia-mode")
+(depends-on "latex-preview-pane")
 (depends-on "let-alist")
 (depends-on "magit")
 (depends-on "markdown-mode")
