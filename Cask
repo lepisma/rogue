@@ -10,6 +10,7 @@
 (depends-on "julia-mode")
 (depends-on "latex-preview-pane")
 (depends-on "let-alist")
+(depends-on "lua-mode")
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "multiple-cursors")
