@@ -37,6 +37,34 @@
 ;; Desktop save
 (desktop-save-mode 1)
 
+;; Tabbar
+;; (setq tabbar-ruler-global-tabbar t)
+;; (setq tabbar-ruler-global-ruler t)
+;; (require 'tabbar-ruler) 
+
+;; (require 'tabbar)
+;; (tabbar-mode t)
+;; (defun tabbar-buffer-groups ()
+;;   (list
+;;    (cond
+;;     ((string-equal "*" (substring (buffer-name) 0 1))
+;;      "Emacs Buffer"
+;;      )
+;;     ((eq major-mode 'dired-mode)
+;;      "Dired"
+;;      )
+;;     (t
+;;      "User Buffer"
+;;      )
+;;     )))
+
+;; (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
+
+;; (global-set-key [M-left] 'tabbar-backward)
+;; (global-set-key [M-right] 'tabbar-forward)
+
+;;(setq tabbar-use-images nil)
+
 ;; Sr Speedbar stuff
 (require 'sr-speedbar)
   (setq 
@@ -58,6 +86,11 @@
 ;; -----------------------
 (projectile-global-mode)
 (yas-global-mode 1)
+
+;; Hex colors in CSS
+(add-hook 'css-mode-hook (lambda ()
+                           (rainbow-mode 1)
+                           ))
 ;; ELPY for python
 (elpy-enable)
 (elpy-use-ipython)
@@ -68,6 +101,14 @@
 
 ;; org mode special-symbol-mode
 (setq-default org-pretty-entities 1)
+
+;; trigger flypell in latex mode
+(add-hook 'latex-mode-hook (lambda ()
+                             (flyspell-mode 1)
+                             ))
+
+;; Using aspell instead of ispell
+(setq ispell-list-command "--list")
 
 ;;; init.el ends here
 (custom-set-variables

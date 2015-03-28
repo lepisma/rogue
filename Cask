@@ -22,4 +22,6 @@
 (depends-on "projectile")
 (depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")
+(depends-on "tabbar")
+(depends-on "tabbar-ruler")
 (depends-on "yasnippet")
