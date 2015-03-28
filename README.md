@@ -16,7 +16,7 @@ Useful additions include [Elpy](https://github.com/jorgenschaefer/elpy), [Cider]
 Install [cask](https://github.com/cask/cask)
 
 ```sh
-$ git clone git@github.com:lepisma/rogue ~./emacs.d
+$ git clone https://github.com/lepisma/rogue.git ~./emacs.d
 $ cd ~./emacs.d
 $ cask install
 ```
