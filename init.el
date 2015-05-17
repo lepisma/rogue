@@ -22,7 +22,7 @@
 ;; Graphene does the basic setup
 (require 'graphene)
 ;; Tweaks
-(load-theme 'gotham)
+(load-theme 'gotham t)
 ;; Disable menu bar
 (menu-bar-mode -1)
 ;; CUA Mode
