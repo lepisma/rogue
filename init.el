@@ -37,6 +37,7 @@
                     :family "consolas")
 ;; Set cursor to bar
 (setq-default cursor-type 'bar)
+(setq ring-bell-function 'ignore)
 
 ;; Rainbow delimiters
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
