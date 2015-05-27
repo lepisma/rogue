@@ -27,6 +27,8 @@
 (menu-bar-mode -1)
 ;; CUA Mode
 (cua-mode 1)
+;; Linum mode
+(global-linum-mode 1)
 ;; Highlight current linex
 (global-hl-line-mode 1)
 ;; Powerline for better mode line
@@ -147,4 +149,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ ))
