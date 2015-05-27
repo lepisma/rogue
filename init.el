@@ -39,9 +39,6 @@
 (setq-default cursor-type 'bar)
 (setq ring-bell-function 'ignore)
 
-;; Rainbow delimiters
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
 ;; Desktop save
 (desktop-save-mode 1)
 
@@ -61,12 +58,35 @@
 
 ;; Sr Speedbar stuff
 (require 'sr-speedbar)
-  (setq 
-   sr-speedbar-right-side nil
-   sr-speedbar-width-x 40
-   sr-speedbar-width-console 40
-   sr-speedbar-max-width 40
-   sr-speedbar-delete-windows t)
+(setq speedbar-frame-parameters
+      '((minibuffer)
+        (width . 40)
+        (border-width . 0)
+        (menu-bar-lines . 0)
+        (tool-bar-lines . 0)
+        (unsplittable . t)
+        (left-fringe . 0)))
+(setq speedbar-hide-button-brackets-flag t)
+(setq speedbar-show-unknown-files t)
+(setq speedbar-smart-directory-expand-flag t)
+(setq speedbar-use-images nil)
+(setq sr-speedbar-auto-refresh t)
+(setq sr-speedbar-max-width 70)
+(setq sr-speedbar-right-side nil)
+(setq sr-speedbar-width-console 40)
+ 
+(when window-system
+  (defadvice sr-speedbar-open (after sr-speedbar-open-resize-frame activate)
+    (set-frame-width (selected-frame)
+                     (+ (frame-width) sr-speedbar-width)))
+  (ad-enable-advice 'sr-speedbar-open 'after 'sr-speedbar-open-resize-frame)
+ 
+  (defadvice sr-speedbar-close (after sr-speedbar-close-resize-frame activate)
+    (sr-speedbar-recalculate-width)
+    (set-frame-width (selected-frame)
+                     (- (frame-width) sr-speedbar-width)))
+  (ad-enable-advice 'sr-speedbar-close 'after 'sr-speedbar-close-resize-frame))
+
 
 ;; Multiple cursors
 (require 'multiple-cursors)
@@ -100,6 +120,15 @@
 (add-hook 'latex-mode-hook (lambda ()
                              (flyspell-mode 1)
                              ))
+(add-hook 'org-mode-hook (lambda ()
+                           (flyspell-mode 1)
+                           ))
+
+;; Rainbow delimiters
+(add-hook 'prog-mode-hook (lambda ()
+                            (rainbow-delimiters-mode 1)
+                            ))
+
 
 ;; Using aspell instead of ispell
 (setq ispell-list-command "--list")
@@ -113,9 +142,6 @@
  '(custom-safe-themes
    (quote
     ("2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "c158c2a9f1c5fcf27598d313eec9f9dceadf131ccd10abc6448004b14984767c" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "86201c0dccf07a21ce323e124ee9c89d04bbe4f5067446e6492b6ea82265b2d6" "85ef1f4095ad38ed2744577c00e5f1f8dc0000d5015024d50943a1808495f56c" "4695c919c56c1d81fb62d1a7c1cc40d0b365d766f053be2a25df08565bdbd793" "bfa3d52c7e3bbf528760bdbb8b59a69beda8d8b257d60a1b3ac26c1e5bc190bb" default)))
- '(package-selected-packages
-   (quote
-    (green-phosphor-theme phoenix-dark-mono-theme ample-theme tabbar-ruler scss-mode rainbow-mode rainbow-delimiters projectile processing-mode powerline pallet multiple-cursors matlab-mode markdown-mode magit lua-mode julia-mode helm graphene elpy cmake-mode auctex ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
