@@ -1,7 +1,7 @@
 rogue
 =====
 
-Clutter free emacs configuration using [cask](https://github.com/cask/cask) and [pallet](https://github.com/rdallasgray/pallet).
+Clutter free emacs configuration.
 
 ##Setup
 
