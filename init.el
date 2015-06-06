@@ -131,6 +131,21 @@
                             (rainbow-delimiters-mode 1)
                             ))
 
+;; Irony mode
+(setq w32-pipe-read-delay 0)
+
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+(defun custom-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'custom-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
 
 ;; Using aspell instead of ispell
 (setq ispell-list-command "--list")
@@ -144,9 +159,13 @@
  '(custom-safe-themes
    (quote
     ("2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "c158c2a9f1c5fcf27598d313eec9f9dceadf131ccd10abc6448004b14984767c" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "86201c0dccf07a21ce323e124ee9c89d04bbe4f5067446e6492b6ea82265b2d6" "85ef1f4095ad38ed2744577c00e5f1f8dc0000d5015024d50943a1808495f56c" "4695c919c56c1d81fb62d1a7c1cc40d0b365d766f053be2a25df08565bdbd793" "bfa3d52c7e3bbf528760bdbb8b59a69beda8d8b257d60a1b3ac26c1e5bc190bb" default)))
+ '(nil nil t)
+ '(package-selected-packages
+   (quote
+    (irony ecb zenburn-theme tabbar-ruler soothe-theme soft-morning-theme soft-charcoal-theme scss-mode rainbow-mode rainbow-delimiters projectile processing-mode powerline phoenix-dark-pink-theme phoenix-dark-mono-theme pallet multiple-cursors matlab-mode markdown-mode magit lua-mode julia-mode jazz-theme helm green-phosphor-theme graphene gotham-theme elpy define-word cmake-mode auctex ample-theme ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ))
+ )

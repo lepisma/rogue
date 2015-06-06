@@ -8,6 +8,7 @@
 (depends-on "elpy")
 (depends-on "gotham-theme")
 (depends-on "graphene")
+(depends-on "irony")
 (depends-on "julia-mode")
 (depends-on "let-alist")
 (depends-on "lua-mode")
