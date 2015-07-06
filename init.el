@@ -126,4 +126,19 @@
 ;; Twitter
 (setq twittering-icon-mode t)
 
+;; Sublimity
+(require 'sublimity)
+(require 'sublimity-scroll)
+(require 'sublimity-attractive)
+
+(sublimity-mode 1)
+(setq sublimity-scroll-weight 10
+      sublimity-scroll-drift-length 5)
+
+(setq sublimity-attractive-centering-width nil)
+
+(sublimity-attractive-hide-bars)
+(sublimity-attractive-hide-vertical-border)
+(sublimity-attractive-hide-fringes)
+
 ;;; init.el ends here
