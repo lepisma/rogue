@@ -141,4 +141,7 @@
 (sublimity-attractive-hide-vertical-border)
 (sublimity-attractive-hide-fringes)
 
+;; Time in modeline
+(display-time-mode 1)
+
 ;;; init.el ends here
