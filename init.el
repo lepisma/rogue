@@ -22,7 +22,7 @@
 ;; Graphene does the basic setup
 (require 'graphene)
 ;; Tweaks
-(load-theme 'gotham t)
+(load-theme 'ample t)
 ;; Disable menu bar
 (menu-bar-mode -1)
 ;; CUA Mode
@@ -58,37 +58,9 @@
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-;; Sr Speedbar stuff
-(require 'sr-speedbar)
-(setq speedbar-frame-parameters
-      '((minibuffer)
-        (width . 40)
-        (border-width . 0)
-        (menu-bar-lines . 0)
-        (tool-bar-lines . 0)
-        (unsplittable . t)
-        (left-fringe . 0)))
-(setq speedbar-hide-button-brackets-flag t)
-(setq speedbar-show-unknown-files t)
-(setq speedbar-smart-directory-expand-flag t)
-(setq speedbar-use-images nil)
-(setq sr-speedbar-auto-refresh t)
-(setq sr-speedbar-max-width 70)
-(setq sr-speedbar-right-side nil)
-(setq sr-speedbar-width-console 40)
- 
-(when window-system
-  (defadvice sr-speedbar-open (after sr-speedbar-open-resize-frame activate)
-    (set-frame-width (selected-frame)
-                     (+ (frame-width) sr-speedbar-width)))
-  (ad-enable-advice 'sr-speedbar-open 'after 'sr-speedbar-open-resize-frame)
- 
-  (defadvice sr-speedbar-close (after sr-speedbar-close-resize-frame activate)
-    (sr-speedbar-recalculate-width)
-    (set-frame-width (selected-frame)
-                     (- (frame-width) sr-speedbar-width)))
-  (ad-enable-advice 'sr-speedbar-close 'after 'sr-speedbar-close-resize-frame))
-
+;; Neotree stuff
+(require 'neotree)
+(setq neo-window-width 28)
 
 ;; Multiple cursors
 (require 'multiple-cursors)
@@ -107,6 +79,7 @@
 (add-hook 'css-mode-hook (lambda ()
                            (rainbow-mode 1)
                            ))
+
 ;; ELPY for python
 (elpy-enable)
 (elpy-use-ipython)
@@ -150,19 +123,24 @@
 ;; Using aspell instead of ispell
 (setq ispell-list-command "--list")
 
+;; Twitter
+(setq twittering-icon-mode t)
+
 ;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bongo-enabled-backends (quote (mplayer)))
  '(custom-safe-themes
    (quote
-    ("2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "c158c2a9f1c5fcf27598d313eec9f9dceadf131ccd10abc6448004b14984767c" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "86201c0dccf07a21ce323e124ee9c89d04bbe4f5067446e6492b6ea82265b2d6" "85ef1f4095ad38ed2744577c00e5f1f8dc0000d5015024d50943a1808495f56c" "4695c919c56c1d81fb62d1a7c1cc40d0b365d766f053be2a25df08565bdbd793" "bfa3d52c7e3bbf528760bdbb8b59a69beda8d8b257d60a1b3ac26c1e5bc190bb" default)))
+    ("96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "889a93331bc657c0f05a04b8665b78b3c94a12ca76771342cee27d6605abcd0e" "6a9606327ecca6e772fba6ef46137d129e6d1888dcfc65d0b9b27a7a00a4af20" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "ebd976c3d91de7c6858db3ba07c52238d545a106c8fbf05192913f6d42421621" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "c158c2a9f1c5fcf27598d313eec9f9dceadf131ccd10abc6448004b14984767c" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "86201c0dccf07a21ce323e124ee9c89d04bbe4f5067446e6492b6ea82265b2d6" "85ef1f4095ad38ed2744577c00e5f1f8dc0000d5015024d50943a1808495f56c" "4695c919c56c1d81fb62d1a7c1cc40d0b365d766f053be2a25df08565bdbd793" "bfa3d52c7e3bbf528760bdbb8b59a69beda8d8b257d60a1b3ac26c1e5bc190bb" default)))
  '(nil nil t)
  '(package-selected-packages
    (quote
-    (irony ecb zenburn-theme tabbar-ruler soothe-theme soft-morning-theme soft-charcoal-theme scss-mode rainbow-mode rainbow-delimiters projectile processing-mode powerline phoenix-dark-pink-theme phoenix-dark-mono-theme pallet multiple-cursors matlab-mode markdown-mode magit lua-mode julia-mode jazz-theme helm green-phosphor-theme graphene gotham-theme elpy define-word cmake-mode auctex ample-theme ac-cider))))
+    (rust-mode bongo emms twittering-mode xkcd symon switch-window direx sublimity neotree wc-mode irony ecb scss-mode rainbow-mode rainbow-delimiters projectile processing-mode powerline pallet multiple-cursors matlab-mode markdown-mode magit lua-mode julia-mode helm graphene elpy define-word cmake-mode auctex ample-theme ac-cider)))
+ '(sublimity-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

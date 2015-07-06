@@ -13,3 +13,6 @@ ido.last
 smex-items
 .emacs.desktop*
 .mc-lists.el
+/emms
+/url
+/xkcd
