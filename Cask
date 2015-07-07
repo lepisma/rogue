@@ -2,6 +2,7 @@
 (source melpa)
 
 (depends-on "ac-cider")
+(depends-on "ample-theme")
 (depends-on "auctex")
 (depends-on "bongo")
 (depends-on "cider")
