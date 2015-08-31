@@ -1,21 +1,33 @@
-rogue
-=====
+# Rogue
 
-Clutter free emacs configuration.
+<img src="img/spacemacs.png" align="right">
 
-##Setup
+*Personal emacs config*
 
-Install [cask](https://github.com/cask/cask)
+**Rogue is now a custom layer for [spacemacs](https://github.com/syl20bnr/spacemacs/)**
 
-```sh
-$ git clone https://github.com/lepisma/rogue.git ~./emacs.d
-$ cd ~./emacs.d
-$ cask install
+## Setting up
+
+#### 1. Clone spacemacs
+
 ```
----
+git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+```
 
-**Notes**
+#### 2. Add layer
 
-- For `cider-jack-in` install [cider-nrepl](https://github.com/clojure-emacs/cider-nrepl).
-- Get [Aspell](http://aspell.net/) for `flyspell-mode`.
-- For effective Elpy, install `rope` and `flake8` via pip.
+```
+cd ~/.emacs.d/private
+
+git clone https://github.com/lepisma/rogue
+```
+
+#### 3. Move `.spacemacs` to home
+
+```
+mv .spacemacs ~/
+```
+
+## Notes
+
+- Rogue uses **Hack** font. Get it [here](https://github.com/chrissimpkins/Hack).
