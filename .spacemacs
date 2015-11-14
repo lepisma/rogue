@@ -24,15 +24,11 @@
      (colors :variables
              colors-enable-rainbow-identifiers t)
      git
-     ;;github
      markdown
      org
      games
      xkcd
-     clojure
      c-c++
-     emacs-lisp
-     ;;extra-langs
      ess
      html
      ipython-notebook
@@ -42,7 +38,6 @@
      syntax-checking
      version-control
      windows-scripts
-     ;;search-engine
      rogue
      )
    ;; List of additional packages that will be installed without being
@@ -82,12 +77,12 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(monokai
                          solarized-dark
+                         spacemacs-dark
                          solarized-light
                          spacemacs-light
                          leuven
-                         monokai
                          zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
