@@ -8,24 +8,18 @@
 
 ## Setting up
 
-#### 1. Clone spacemacs
-
-```
-git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
-```
+#### 1. Install spacemacs
 
 #### 2. Add layer
 
 ```
-cd ~/.emacs.d/private
-
-git clone https://github.com/lepisma/rogue
+git clone https://github.com/lepisma/rogue ~/.emacs.d/private/rogue
 ```
 
 #### 3. Move `.spacemacs` to home
 
 ```
-mv .spacemacs ~/
+mv ~/.emacs.d/private/rogue/.spacemacs ~/
 ```
 
 ## Notes
