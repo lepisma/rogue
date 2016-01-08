@@ -25,3 +25,4 @@ mv ~/.emacs.d/private/rogue/.spacemacs ~/
 ## Notes
 
 - Rogue uses **Hack** font. Get it [here](https://github.com/chrissimpkins/Hack).
+- Set `NOTES_DIR` for [deft](https://github.com/jrblevin/deft)

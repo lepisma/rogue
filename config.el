@@ -1,14 +1,10 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
-;; Custom spacemacs layer
-;; - Abhinav Tushar
-
-
 ;; Re enable CUA
 (cua-mode 1)
 
 ;; Add line numbers
-(global-linum-mode 1)
+(global-linum-mode t)
 
 ;; Switch to bar
 (setq-default cursor-type 'bar)
@@ -21,5 +17,19 @@
                            (rainbow-mode 1)
                            ))
 
+;; Spell check
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Set notes directory for deft
+(setq deft-directory (getenv "NOTES_DIR"))
+(setq deft-recursive t)
+
 ;; Display time in modeline
 (display-time-mode 1)
+
+;; Org mode symbols
+(setq org-bullets-bullet-list '("■" "●" "○" "▬"))
+
+;; Neotree theme
+(setq neo-theme 'nerd)
