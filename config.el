@@ -3,8 +3,8 @@
 ;; Re enable CUA
 (cua-mode 1)
 
-;; Add line numbers
-(global-linum-mode t)
+;; Add line numbers in prog mode
+(add-hook 'prog-mode-hook 'linum-mode)
 
 ;; Switch to bar
 (setq-default cursor-type 'bar)
