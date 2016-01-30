@@ -22,8 +22,6 @@
                       auto-completion-enable-help-tooltip t)
      better-defaults
      emacs-lisp
-     (colors :variables
-             colors-enable-rainbow-identifiers t)
      git
      markdown
      org
@@ -42,7 +40,6 @@
      syntax-checking
      windows-scripts
      rogue
-     rust
      deft
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
