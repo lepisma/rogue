@@ -4,11 +4,9 @@
 
 *Personal emacs config*
 
-**Rogue is now a custom layer for [spacemacs](https://github.com/syl20bnr/spacemacs/)**
-
 ## Setting up
 
-#### 1. Install spacemacs
+#### 1. Install [spacemacs](https://github.com/syl20bnr/spacemacs)
 
 #### 2. Add layer
 
@@ -24,5 +22,6 @@ mv ~/.emacs.d/private/rogue/.spacemacs ~/
 
 ## Notes
 
-- Rogue uses **Hack** font. Get it [here](https://github.com/chrissimpkins/Hack).
+- Rogue uses **Source Code Pro**. Get it [here](https://github.com/adobe-fonts/source-code-pro).
 - Set `NOTES_DIR` for [deft](https://github.com/jrblevin/deft)
+- `org-screenshot` uses `convert` tool from [imagemagick](http://www.imagemagick.org)

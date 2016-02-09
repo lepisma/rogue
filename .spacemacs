@@ -20,6 +20,7 @@
      ;; ----------------------------------------------------------------
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t)
+     colors
      better-defaults
      emacs-lisp
      git
@@ -42,8 +43,7 @@
      rogue
      deft
      (ibuffer :variables
-              ibuffer-group-buffers-by 'projects)
-     )
+              ibuffer-group-buffers-by 'projects))
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
@@ -92,8 +92,8 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hack"
-                               :size 11
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
