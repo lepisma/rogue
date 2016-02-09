@@ -33,3 +33,8 @@
 
 ;; Neotree theme
 (setq neo-theme 'nerd)
+
+;; Hide vertical border (improves few themes)
+(set-face-attribute 'vertical-border
+                    nil
+                    :foreground (face-attribute 'default :background))
