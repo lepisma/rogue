@@ -24,6 +24,7 @@
      better-defaults
      emacs-lisp
      git
+     github
      markdown
      org
      xkcd
@@ -42,6 +43,10 @@
      windows-scripts
      rogue
      deft
+     restclient
+     autohotkey
+     yaml
+     typescript
      themes-megapack
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects))
@@ -96,7 +101,7 @@ before layers configuration."
                                :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
-   ;; The leader key accessible in `emacs state' and `insert state'
+   ;; The leader mkey accessible in `emacs state' and `insert state'
    dotspacemacs-emacs-leader-key "M-m"
    ;; Major mode leader key is a shortcut key which is the equivalent of
    ;; pressing `<leader> m`. Set it to `nil` to disable it.
@@ -173,6 +178,3 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.

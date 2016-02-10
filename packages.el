@@ -2,17 +2,12 @@
 
 (setq rogue-packages
       '(multiple-cursors
-        restclient
         request-deferred
         svg-clock))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
-    :defer t))
-
-(defun rogue/init-restclient ()
-  (use-package restclient
     :defer t))
 
 (defun rogue/init-request-deferred ()
