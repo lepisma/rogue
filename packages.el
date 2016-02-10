@@ -1,24 +1,24 @@
 ;;; packages.el --- rogue Layer packages File for Spacemacs
 
 (setq rogue-packages
-      '(
-        multiple-cursors
+      '(multiple-cursors
         restclient
         request-deferred
-        ))
-
-;; List of packages to exclude.
-(setq rogue-excluded-packages '())
+        svg-clock))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
-  (require 'multiple-cursors)
-  )
+  (use-package multiple-cursors
+    :defer t))
 
 (defun rogue/init-restclient ()
-  (require 'restclient)
-  )
+  (use-package restclient
+    :defer t))
 
 (defun rogue/init-request-deferred ()
-  (require 'request-deferred)
-)
+  (use-package request-deferred
+    :defer t))
+
+(defun rogue/init-svg-clock ()
+  (use-package svg-clock
+    :defer t))
