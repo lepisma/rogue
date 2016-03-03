@@ -3,7 +3,8 @@
 (setq rogue-packages
       '(multiple-cursors
         request-deferred
-        svg-clock))
+        svg-clock
+        csv-mode))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -16,4 +17,8 @@
 
 (defun rogue/init-svg-clock ()
   (use-package svg-clock
+    :defer t))
+
+(defun rogue/init-csv-mode ()
+  (use-package csv-mode
     :defer t))
