@@ -12,6 +12,9 @@
 ;; Save desktop
 (desktop-save-mode 1)
 
+;; Disable horizontal scroll bar (appears sometimes)
+(horizontal-scroll-bar-mode -1)
+
 ;; Add rainbow mode to css and scss
 (add-hook 'css-mode-hook (lambda ()
                            (rainbow-mode 1)
