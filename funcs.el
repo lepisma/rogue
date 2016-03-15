@@ -13,7 +13,9 @@
   (interactive)
   (if (eq system-type 'windows-nt)
       (shell-command "explorer .")
-    (message "Only on Windows")))
+    (if (eq system-type 'gnu/linux)
+        (shell-command "xdg-open .")
+      (message "System not supported"))))
 
 (defun org-screenshot ()
   "Insert image from the clipboard into the org buffer."
