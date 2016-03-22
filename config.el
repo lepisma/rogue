@@ -43,3 +43,6 @@
 (set-face-attribute 'vertical-border
                     nil
                     :foreground (face-attribute 'default :background))
+
+;; Org idle time
+(setq org-clock-idle-time 5)
