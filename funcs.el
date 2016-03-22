@@ -33,3 +33,19 @@
   (if (file-exists-p filepath)
       (insert (concat "[[" (concat "./" (buffer-name) "_images/" filename ) "]]")))
   (org-display-inline-images))
+
+(defun org-insert-org ()
+  "Create another org buffer with title, author template and add an org link
+in current buffer. Asks for filename and title."
+  (interactive)
+  (let ((filename (concat (read-string "Enter filename (without `.org'): ") ".org"))
+        (title (read-string "Enter title: "))
+        (author user-full-name))
+    (org-insert-link nil (concat "./" filename) title) ; Insert link in current file
+    (find-file filename) ; Open buffer with filename
+    (if (file-exists-p filename)
+        (message "File already exists")
+      (progn
+        (message "Inserting template")
+        (insert (concat "#+TITLE: " title "\n"))
+        (insert (concat "#+AUTHOR: " author "\n\n"))))))
