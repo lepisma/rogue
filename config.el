@@ -1,6 +1,6 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
-;; Re enable CUA
+;; Enable the usuals
 (cua-mode 1)
 
 ;; Add line numbers in prog mode
@@ -17,12 +17,14 @@
 
 ;; Add rainbow mode to css and scss
 (add-hook 'css-mode-hook (lambda ()
-                           (rainbow-mode 1)
-                           ))
+                           (rainbow-mode 1)))
 
 ;; Spell check
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Line breaks in text-ish files
+(add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; Set notes directory for deft
 (setq deft-directory (getenv "NOTES_DIR"))

@@ -15,7 +15,7 @@
       (shell-command "explorer .")
     (if (eq system-type 'gnu/linux)
         (shell-command "xdg-open .")
-      (message "System not supported"))))
+      (message "System Not supported"))))
 
 (defun org-screenshot ()
   "Insert image from the clipboard into the org buffer."
