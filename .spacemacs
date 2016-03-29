@@ -43,6 +43,9 @@
      rogue
      deft
      restclient
+     shell
+     shell-scripts
+     windows-scripts
      yaml
      themes-megapack
      (ibuffer :variables
