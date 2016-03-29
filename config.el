@@ -15,6 +15,9 @@
 ;; Disable horizontal scroll bar (appears sometimes)
 (horizontal-scroll-bar-mode -1)
 
+;; No crappy symbols
+(setq dotspacemacs-mode-line-unicode-symbols nil)
+
 ;; Add rainbow mode to css and scss
 (add-hook 'css-mode-hook (lambda ()
                            (rainbow-mode 1)))
