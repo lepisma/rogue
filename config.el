@@ -36,9 +36,6 @@
 ;; Display time in modeline
 (display-time-mode 1)
 
-;; Org mode symbols
-(setq org-bullets-bullet-list '("◉" "○"))
-
 ;; Neotree theme
 (setq neo-theme 'nerd)
 
@@ -47,5 +44,47 @@
                     nil
                     :foreground (face-attribute 'default :background))
 
-;; Org idle time
-(setq org-clock-idle-time 5)
+;; Set custom region color (for monokai)
+(set-face-attribute 'region
+                    nil
+                    :foreground "white"
+                    :background "dark cyan")
+
+(eval-after-load "org"
+  '(progn
+     ;; Org idle time
+     (setq org-clock-idle-time 5)
+
+     ;; Org mode symbols
+     (setq org-bullets-bullet-list '("◉" "○"))
+
+     ;; Custom org mode faces
+     (customize-set-variable 'org-n-level-faces 4)
+     (set-face-attribute 'org-default
+                         nil
+                         :inherit nil
+                         :slant 'italic)
+     (set-face-attribute 'org-level-1
+                         nil
+                         :inherit 'default
+                         :height 1.0
+                         :weight 'bold
+                         :foreground "magenta")
+     (set-face-attribute 'org-level-2
+                         nil
+                         :inherit 'default
+                         :height 1.0
+                         :weight 'bold
+                         :foreground "deep sky blue")
+     (set-face-attribute 'org-level-3
+                         nil
+                         :inherit 'default
+                         :height 1.0
+                         :weight 'bold
+                         :foreground "goldenrod3")
+     (set-face-attribute 'org-level-4
+                         nil
+                         :inherit 'default
+                         :height 1.0
+                         :weight 'bold
+                         :foreground "chartreuse3")))
