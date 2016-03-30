@@ -279,23 +279,23 @@ you should place you code here."
                       :height 1.0
                       :weight 'bold
                       :foreground "magenta")
-  (set-face-attribute 'org-level-2
-                      nil
-                      :inherit 'default
-                      :height 1.0
-                      :weight 'bold
-                      :foreground "goldenrod3")
   (set-face-attribute 'org-level-3
                       nil
                       :inherit 'default
                       :height 1.0
                       :weight 'bold
-                      :foreground "chartreuse3")
+                      :foreground "goldenrod3")
   (set-face-attribute 'org-level-4
                       nil
                       :inherit 'default
                       :height 1.0
                       :weight 'bold
-                      :foreground "purple3")
+                      :foreground "chartreuse3")
+  (set-face-attribute 'org-level-2
+                      nil
+                      :inherit 'default
+                      :height 1.0
+                      :weight 'bold
+                      :foreground "deep sky blue")
   )
 
