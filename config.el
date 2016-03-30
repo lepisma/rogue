@@ -37,7 +37,7 @@
 (display-time-mode 1)
 
 ;; Org mode symbols
-(setq org-bullets-bullet-list '("■" "●" "○" "▬"))
+(setq org-bullets-bullet-list '("◉" "○"))
 
 ;; Neotree theme
 (setq neo-theme 'nerd)

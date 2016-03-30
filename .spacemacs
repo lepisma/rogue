@@ -125,7 +125,7 @@ values."
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
                                :size 12
-                               :weight normal
+                               :weight regular
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -266,7 +266,36 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+  ;; Custom org mode faces
+  (customize-set-variable 'org-n-level-faces 4)
+  (set-face-attribute 'org-default
+                      nil
+                      :inherit nil
+                      :slant 'italic)
+  (set-face-attribute 'org-level-1
+                      nil
+                      :inherit 'default
+                      :height 1.0
+                      :weight 'bold
+                      :foreground "magenta")
+  (set-face-attribute 'org-level-2
+                      nil
+                      :inherit 'default
+                      :height 1.0
+                      :weight 'bold
+                      :foreground "goldenrod3")
+  (set-face-attribute 'org-level-3
+                      nil
+                      :inherit 'default
+                      :height 1.0
+                      :weight 'bold
+                      :foreground "chartreuse3")
+  (set-face-attribute 'org-level-4
+                      nil
+                      :inherit 'default
+                      :height 1.0
+                      :weight 'bold
+                      :foreground "purple3")
   )
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
