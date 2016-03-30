@@ -58,6 +58,13 @@
      ;; Org mode symbols
      (setq org-bullets-bullet-list '("◉" "○"))
 
+     ;; Modules
+     (customize-set-variable 'org-modules '(org-bibtex
+                                            org-docview
+                                            org-habit
+                                            org-info
+                                            org-w3m))
+
      ;; Custom org mode faces
      (customize-set-variable 'org-n-level-faces 4)
      (set-face-attribute 'org-default
