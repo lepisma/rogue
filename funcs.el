@@ -5,8 +5,7 @@
   "Kill all other buffers."
   (interactive)
   (mapc 'kill-buffer
-        (delq (current-buffer)
-              (remove-if-not 'buffer-file-name (buffer-list)))))
+        (delq (current-buffer) (buffer-list))))
 
 (defun explore-here ()
   "Open file manager in current buffer's directory."
