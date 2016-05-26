@@ -4,7 +4,8 @@
       '(multiple-cursors
         request-deferred
         svg-clock
-        csv-mode))
+        csv-mode
+        (blackbird :location local)))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -22,3 +23,7 @@
 (defun rogue/init-csv-mode ()
   (use-package csv-mode
     :defer t))
+
+(defun rogue/init-blackbird ()
+  (use-package blackbird
+    :commands (blackbird-read-lyrics)))
