@@ -39,7 +39,7 @@
   (setq major-mode 'blackbird-lyrics-mode)
   (setq mode-name "Lyrics")
   (setq buffer-read-only t)
-  (run-hooks 'blacbird-lyrics-mode-hook))
+  (run-hooks 'blackbird-lyrics-mode-hook))
 
 (defun blackbird-lyrics-url (artist title)
   (concat
