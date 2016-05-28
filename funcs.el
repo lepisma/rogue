@@ -48,3 +48,30 @@ in current buffer. Asks for filename and title."
         (message "Inserting template")
         (insert (concat "#+TITLE: " title "\n"))
         (insert (concat "#+AUTHOR: " author "\n\n"))))))
+
+(defun org-get-scheduled-or-deadline ()
+  "Return scheduled or deadline time from current point in order of priority"
+
+  (let ((time (org-get-scheduled-time (point))))
+    (if (not time)
+        (setq time (org-get-deadline-time (point))))
+    (if time
+        (format-time-string "%Y-%m-%d-%H:%M" time)
+      (nill))))
+
+(defun org-set-kalarm ()
+  "Set an alarm for current org entry (schedule/deadline) in kalarm"
+  (interactive)
+
+  (let ((time (org-get-scheduled-or-deadline))
+        (message (substring-no-properties (org-get-heading t t)))
+        (audio-file (expand-file-name "~/.emacs.d/private/rogue/data/alarm.ogg")))
+    (if (and time message)
+        (if (eq 0 (call-process "kalarm"
+                                nil nil nil
+                                "-t" time
+                                "-p" audio-file
+                                message))
+            (message (concat "Alarm set for : " message))
+          (message "Error in setting alarm"))
+      (message "Error in parsing entry"))))
