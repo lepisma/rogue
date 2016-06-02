@@ -42,7 +42,9 @@
 ;; Hide vertical border (improves few themes)
 (set-face-attribute 'vertical-border
                     nil
-                    :foreground (face-attribute 'default :background))
+                    :foreground (face-attribute
+                                 'default
+                                 :background))
 
 ;; Set custom region color (for monokai)
 (set-face-attribute 'region
@@ -50,13 +52,16 @@
                     :foreground "white"
                     :background "dark cyan")
 
+(add-hook 'org-mode-hook (lambda ()
+                           (setq line-spacing 0.3)))
+
 (eval-after-load "org"
   '(progn
      ;; Org idle time
      (setq org-clock-idle-time 5)
 
      ;; Org mode symbols
-     (setq org-bullets-bullet-list '("◉" "○"))
+     (setq org-bullets-bullet-list '("•"))
 
      ;; Modules
      (customize-set-variable 'org-modules '(org-bibtex
@@ -67,31 +72,45 @@
 
      ;; Custom org mode faces
      (customize-set-variable 'org-n-level-faces 4)
-     (set-face-attribute 'org-default
+
+     (set-face-attribute 'org-document-title
                          nil
-                         :inherit nil
-                         :slant 'italic)
+                         :inherit 'variable-pitch
+                         :height 1.5
+                         :weight 'bold)
+
+     (set-face-attribute 'org-date
+                         nil
+                         :underline nil)
+
      (set-face-attribute 'org-level-1
                          nil
-                         :inherit 'default
-                         :height 1.0
-                         :weight 'bold
-                         :foreground "magenta")
+                         :inherit 'variable-pitch
+                         :height 1.1
+                         :weight 'normal
+                         :slant 'normal
+                         :foreground "turquoise1")
+
      (set-face-attribute 'org-level-2
                          nil
-                         :inherit 'default
+                         :inherit 'variable-pitch
                          :height 1.0
-                         :weight 'bold
-                         :foreground "deep sky blue")
+                         :weight 'normal
+                         :slant 'normal
+                         :foreground "orchid")
+
      (set-face-attribute 'org-level-3
                          nil
-                         :inherit 'default
+                         :inherit 'variable-pitch
                          :height 1.0
-                         :weight 'bold
-                         :foreground "goldenrod3")
+                         :weight 'normal
+                         :slant 'normal
+                         :foreground "salmon")
+
      (set-face-attribute 'org-level-4
                          nil
-                         :inherit 'default
+                         :inherit 'variable-pitch
                          :height 1.0
-                         :weight 'bold
-                         :foreground "chartreuse3")))
+                         :weight 'normal
+                         :slant 'normal
+                         :foreground "yellow green")))

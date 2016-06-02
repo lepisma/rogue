@@ -5,7 +5,8 @@
         request-deferred
         svg-clock
         csv-mode
-        (blackbird :location local)))
+        (blackbird :location local)
+        cricbuzz))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -27,3 +28,7 @@
 (defun rogue/init-blackbird ()
   (use-package blackbird
     :commands (blackbird-read-lyrics)))
+
+(defun rogue/init-cricbuzz ()
+  (use-package cricbuzz
+    :defer t))
