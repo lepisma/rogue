@@ -89,7 +89,7 @@
                          :height 1.1
                          :weight 'normal
                          :slant 'normal
-                         :foreground "turquoise1")
+                         :foreground "turquoise")
 
      (set-face-attribute 'org-level-2
                          nil
