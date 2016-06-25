@@ -29,9 +29,12 @@
 ;; Line breaks in text-ish files
 (add-hook 'text-mode-hook 'auto-fill-mode)
 
-;; Set notes directory for deft
+;; Notes etc.
 (setq deft-directory (getenv "NOTES_DIR"))
-(setq deft-recursive t)
+(setq deft-recursive nil)
+
+(setq org-journal-dir (concat (getenv "NOTES_DIR") "Diary/"))
+(setq org-journal-enable-encryption t)
 
 ;; Display time in modeline
 (display-time-mode 1)

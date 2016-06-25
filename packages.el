@@ -6,7 +6,8 @@
         svg-clock
         csv-mode
         (blackbird :location local)
-        cricbuzz))
+        cricbuzz
+        org-journal))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -31,4 +32,8 @@
 
 (defun rogue/init-cricbuzz ()
   (use-package cricbuzz
+    :defer t))
+
+(defun rogue/init-org-journal ()
+  (use-package org-journal
     :defer t))
