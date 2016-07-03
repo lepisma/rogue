@@ -49,6 +49,9 @@
                                  'default
                                  :background))
 
+;; Processing mode setup
+(setq processing-location (expand-file-name "~/tools/processing/processing-java"))
+
 ;; Set custom region color (for monokai)
 (set-face-attribute 'region
                     nil

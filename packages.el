@@ -7,7 +7,8 @@
         csv-mode
         (blackbird :location local)
         cricbuzz
-        org-journal))
+        org-journal
+        processing-mode))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -36,4 +37,8 @@
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
+    :defer t))
+
+(defun rogue/init-processing-mode ()
+  (use-package processing-mode
     :defer t))
