@@ -52,6 +52,9 @@
 ;; Processing mode setup
 (setq processing-location (expand-file-name "~/tools/processing/processing-java"))
 
+;; Clojure symbols
+(setq clojure-enable-fancify-symbols t)
+
 ;; Set custom region color (for monokai)
 (set-face-attribute 'region
                     nil

@@ -52,6 +52,8 @@ values."
      shell-scripts
      windows-scripts
      yaml
+     rust
+     clojure
      themes-megapack
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
