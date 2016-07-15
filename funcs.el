@@ -75,3 +75,17 @@ in current buffer. Asks for filename and title."
             (message (concat "Alarm set for : " message))
           (message "Error in setting alarm"))
       (message "Error in parsing entry"))))
+
+(defun to-fish-find-file (candidate)
+  "Run find file for given bookmark"
+  (ido-find-file-in-dir (concat (file-name-as-directory "~/.tofish") candidate)))
+
+(defun to-fish-jump ()
+  "Jump to to-fish bookmarks"
+  (interactive)
+  (helm :sources (helm-build-sync-source "bookmarks"
+                   :candidates (lambda ()
+                                 (directory-files "~/.tofish"))
+                   :action '(("Jump to bookmark" . to-fish-find-file)))
+        :buffer "*helm tofish jump*"
+        :prompt "Jump to : "))
