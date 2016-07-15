@@ -35,29 +35,29 @@ values."
      xkcd
      c-c++
      ess
+     rust
+     go
+     clojure
      extra-langs
      pandoc
      html
+     javascript
      ipython-notebook
      (python :variables
              python-enable-yapf-format-on-save t)
-     javascript
      (latex :variables
             latex-enable-folding t)
      syntax-checking
-     rogue
      deft
      restclient
      shell
      shell-scripts
      windows-scripts
      yaml
-     rust
-     clojure
      themes-megapack
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
-     )
+     rogue)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -163,7 +163,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -249,8 +249,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
-   ))
+   dotspacemacs-whitespace-cleanup nil))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -259,7 +258,12 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  )
+
+  ;; CUA
+  (cua-mode 1)
+
+  ;; Save desktop
+  (desktop-save-mode 1))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -268,5 +272,122 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
-  )
 
+  ;; Switch to bar
+  (setq-default cursor-type 'bar)
+
+  ;; Add line numbers in prog mode
+  (add-hook 'prog-mode-hook 'linum-mode)
+
+  ;; Disable horizontal scroll bar (appears sometimes)
+  (horizontal-scroll-bar-mode -1)
+
+  ;; No crappy symbols
+  (setq dotspacemacs-mode-line-unicode-symbols nil)
+
+  ;; Add rainbow mode to css and scss
+  (add-hook 'css-mode-hook (lambda ()
+                             (rainbow-mode 1)))
+
+  ;; Spell check
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+  ;; Line breaks in text-ish files
+  (add-hook 'text-mode-hook 'auto-fill-mode)
+
+  ;; Display time in modeline
+  (display-time-mode 1)
+
+  ;; Neotree theme
+  (setq neo-theme 'nerd)
+
+  ;; Hide vertical border (improves few themes)
+  (set-face-attribute 'vertical-border
+                      nil
+                      :foreground (face-attribute
+                                   'default
+                                   :background))
+
+  ;; Rust racer
+  (setq-default rust-enable-racer t)
+
+  ;; Clojure symbols
+  (setq clojure-enable-fancify-symbols t)
+
+  ;; Notes etc.
+  (setq notes-dir (getenv "NOTES_DIR"))
+  (setq deft-directory notes-dir)
+  (setq deft-recursive nil)
+  (setq org-journal-dir (concat notes-dir "Diary/"))
+  (setq org-journal-enable-encryption t)
+
+  ;; Set custom region color (for monokai)
+  (set-face-attribute 'region
+                      nil
+                      :foreground "white"
+                      :background "dark cyan")
+
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq line-spacing 0.3)))
+
+
+  (eval-after-load "org"
+    '(progn
+       ;; Org idle time
+       (setq org-clock-idle-time 5)
+
+       ;; Org mode symbols
+       (setq org-bullets-bullet-list '("•"))
+
+       ;; Modules
+       (customize-set-variable 'org-modules '(org-bibtex
+                                              org-docview
+                                              org-habit
+                                              org-info
+                                              org-w3m))
+
+       ;; Custom org mode faces
+       (customize-set-variable 'org-n-level-faces 4)
+
+       (set-face-attribute 'org-document-title
+                           nil
+                           :inherit 'variable-pitch
+                           :height 1.5
+                           :weight 'bold)
+
+       (set-face-attribute 'org-date
+                           nil
+                           :underline nil)
+
+       (set-face-attribute 'org-level-1
+                           nil
+                           :inherit 'variable-pitch
+                           :height 1.1
+                           :weight 'normal
+                           :slant 'normal
+                           :foreground "turquoise")
+
+       (set-face-attribute 'org-level-2
+                           nil
+                           :inherit 'variable-pitch
+                           :height 1.0
+                           :weight 'normal
+                           :slant 'normal
+                           :foreground "orchid")
+
+       (set-face-attribute 'org-level-3
+                           nil
+                           :inherit 'variable-pitch
+                           :height 1.0
+                           :weight 'normal
+                           :slant 'normal
+                           :foreground "salmon")
+
+       (set-face-attribute 'org-level-4
+                           nil
+                           :inherit 'variable-pitch
+                           :height 1.0
+                           :weight 'normal
+                           :slant 'normal
+                           :foreground "yellow green"))))
