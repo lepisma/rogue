@@ -263,7 +263,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (cua-mode 1)
 
   ;; Save desktop
-  (desktop-save-mode 1))
+  (desktop-save-mode 1)
+
+  ;; Org mode line spacing
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq line-spacing 0.3))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -327,10 +331,6 @@ you should place you code here."
                       nil
                       :foreground "white"
                       :background "dark cyan")
-
-  (add-hook 'org-mode-hook (lambda ()
-                             (setq line-spacing 0.3)))
-
 
   (eval-after-load "org"
     '(progn
