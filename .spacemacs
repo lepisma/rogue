@@ -37,6 +37,8 @@ values."
      ess
      rust
      go
+     nim
+     haskell
      clojure
      extra-langs
      pandoc
