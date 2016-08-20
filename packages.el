@@ -8,7 +8,8 @@
         (blackbird :location local)
         cricbuzz
         org-journal
-        processing-mode))
+        processing-mode
+        vue-mode))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -41,4 +42,8 @@
 
 (defun rogue/init-processing-mode ()
   (use-package processing-mode
+    :defer t))
+
+(defun rogue/init-vue-mode ()
+  (use-package vue-mode
     :defer t))

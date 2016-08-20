@@ -24,8 +24,11 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
-                      auto-completion-enable-help-tooltip t)
-     colors
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-sort-by-usage t)
+     (colors :variables
+             colors-enable-rainbow-identifiers t)
      better-defaults
      emacs-lisp
      git
@@ -51,6 +54,8 @@ values."
             latex-enable-folding t)
      syntax-checking
      deft
+     mu4e
+     elfeed
      restclient
      shell
      shell-scripts
@@ -119,8 +124,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
-                         leuven
+   dotspacemacs-themes '(molokai-tuned
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -269,7 +273,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; Org mode line spacing
   (add-hook 'org-mode-hook (lambda ()
-                             (setq line-spacing 0.3))))
+                             (setq line-spacing 0.5)))
+
+  ;; Custom theme
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/rogue/themes"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -281,11 +288,13 @@ you should place you code here."
 
   ;; Switch to bar
   (setq-default cursor-type 'bar)
+  (blink-cursor-mode t)
+  (setq-default cursor-in-non-selected-windows nil)
 
   ;; Add line numbers in prog mode
   (add-hook 'prog-mode-hook 'linum-mode)
 
-  ;; Disable horizontal scroll bar (appears sometimes)
+  ;; Disable horizontal scroll bar
   (horizontal-scroll-bar-mode -1)
 
   ;; No crappy symbols
@@ -295,9 +304,9 @@ you should place you code here."
   (add-hook 'css-mode-hook (lambda ()
                              (rainbow-mode 1)))
 
-  ;; Spell check
-  (add-hook 'text-mode-hook 'flyspell-mode)
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  ;; Set rainbow
+  (setq rainbow-identifiers-cie-l*a*b*-saturation 70)
+  (setq rainbow-identifiers-cie-l*a*b*-lightness 70) 
 
   ;; Line breaks in text-ish files
   (add-hook 'text-mode-hook 'auto-fill-mode)
@@ -308,15 +317,12 @@ you should place you code here."
   ;; Neotree theme
   (setq neo-theme 'nerd)
 
-  ;; Hide vertical border (improves few themes)
-  (set-face-attribute 'vertical-border
-                      nil
-                      :foreground (face-attribute
-                                   'default
-                                   :background))
-
   ;; Rust racer
   (setq-default rust-enable-racer t)
+
+  ;; Javascript
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
 
   ;; Clojure symbols
   (setq clojure-enable-fancify-symbols t)
@@ -327,12 +333,6 @@ you should place you code here."
   (setq deft-recursive nil)
   (setq org-journal-dir (concat notes-dir "Diary/"))
   (setq org-journal-enable-encryption t)
-
-  ;; Set custom region color (for monokai)
-  (set-face-attribute 'region
-                      nil
-                      :foreground "white"
-                      :background "dark cyan")
 
   (eval-after-load "org"
     '(progn
@@ -350,46 +350,4 @@ you should place you code here."
                                               org-w3m))
 
        ;; Custom org mode faces
-       (customize-set-variable 'org-n-level-faces 4)
-
-       (set-face-attribute 'org-document-title
-                           nil
-                           :inherit 'variable-pitch
-                           :height 1.5
-                           :weight 'bold)
-
-       (set-face-attribute 'org-date
-                           nil
-                           :underline nil)
-
-       (set-face-attribute 'org-level-1
-                           nil
-                           :inherit 'variable-pitch
-                           :height 1.1
-                           :weight 'normal
-                           :slant 'normal
-                           :foreground "turquoise")
-
-       (set-face-attribute 'org-level-2
-                           nil
-                           :inherit 'variable-pitch
-                           :height 1.0
-                           :weight 'normal
-                           :slant 'normal
-                           :foreground "orchid")
-
-       (set-face-attribute 'org-level-3
-                           nil
-                           :inherit 'variable-pitch
-                           :height 1.0
-                           :weight 'normal
-                           :slant 'normal
-                           :foreground "salmon")
-
-       (set-face-attribute 'org-level-4
-                           nil
-                           :inherit 'variable-pitch
-                           :height 1.0
-                           :weight 'normal
-                           :slant 'normal
-                           :foreground "yellow green"))))
+       (customize-set-variable 'org-n-level-faces 2))))

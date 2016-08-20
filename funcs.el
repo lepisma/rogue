@@ -1,6 +1,5 @@
 ;;; funcs.el --- rogue Layer utility functions
 
-
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
