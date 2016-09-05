@@ -9,7 +9,9 @@
         cricbuzz
         org-journal
         processing-mode
-        vue-mode))
+        vue-mode
+        ledger-mode
+        flycheck-ledger))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -46,4 +48,12 @@
 
 (defun rogue/init-vue-mode ()
   (use-package vue-mode
+    :defer t))
+
+(defun rogue/init-ledger-mode ()
+  (use-package ledger-mode
+    :defer t))
+
+(defun rogue/init-flycheck-ledger ()
+  (use-package flycheck-ledger
     :defer t))
