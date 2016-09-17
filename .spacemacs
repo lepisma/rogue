@@ -43,6 +43,7 @@ values."
      nim
      haskell
      clojure
+     java
      extra-langs
      pandoc
      html
@@ -120,13 +121,12 @@ values."
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-scratch-mode 'org-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(molokai-tuned
-                         spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(solarized-light
+                         molokai-tuned)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -275,8 +275,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'org-mode-hook (lambda ()
                              (setq line-spacing 0.5)))
 
-  ;; Custom theme
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/rogue/themes"))
+  ;; Custom themes
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/rogue/themes")
+
+  ;; Solarized settings
+  (setq x-underline-at-descent-line t)
+  (setq solarized-high-contrast-mode-line t)
+  (setq solarized-use-more-italic t)
+  (setq solarized-scale-org-headlines nil))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -306,7 +312,7 @@ you should place you code here."
 
   ;; Set rainbow
   (setq rainbow-identifiers-cie-l*a*b*-saturation 70)
-  (setq rainbow-identifiers-cie-l*a*b*-lightness 70) 
+  (setq rainbow-identifiers-cie-l*a*b*-lightness 70)
 
   ;; Line breaks in text-ish files
   (add-hook 'text-mode-hook 'auto-fill-mode)
@@ -350,4 +356,8 @@ you should place you code here."
                                               org-w3m))
 
        ;; Custom org mode faces
-       (customize-set-variable 'org-n-level-faces 2))))
+       (customize-set-variable 'org-n-level-faces 4)
+
+       ;; Remove underlines that don't mix well with large line height
+       (set-face-attribute 'org-link nil :underline nil)
+       (set-face-attribute 'org-date nil :underline nil))))

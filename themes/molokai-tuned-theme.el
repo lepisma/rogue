@@ -119,6 +119,8 @@
  '(company-preview-common ((t (:background "#101A1B" :foreground "white"))))
  '(org-level-1 ((t (:height 1.0 :weight normal :slant normal :foreground "turquoise3" :inherit (variable-pitch)))))
  '(org-level-2 ((t (:height 1.0 :weight normal :slant normal :foreground "mediumseagreen" :inherit (variable-pitch)))))
+ '(org-level-3 ((t (:height 1.0 :weight normal :slant normal :foreground "turquoise3" :inherit (variable-pitch)))))
+ '(org-level-4 ((t (:height 1.0 :weight normal :slant normal :foreground "mediumseagreen" :inherit (variable-pitch)))))
  '(org-done ((t (:foreground "lime green" :weight bold))))
  '(org-todo ((t (:foreground "deep pink" :weight bold))))
  '(org-special-keyword ((t (:foreground "dark cyan" :height 0.9))))
