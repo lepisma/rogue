@@ -54,6 +54,7 @@ values."
      (latex :variables
             latex-enable-folding t)
      syntax-checking
+     chrome
      deft
      mu4e
      elfeed
