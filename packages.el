@@ -4,14 +4,11 @@
       '(multiple-cursors
         request-deferred
         svg-clock
-        csv-mode
         (blackbird :location local)
         cricbuzz
         org-journal
         processing-mode
         vue-mode
-        ledger-mode
-        flycheck-ledger
         solarized-theme))
 
 ;; Initialize packages
@@ -25,10 +22,6 @@
 
 (defun rogue/init-svg-clock ()
   (use-package svg-clock
-    :defer t))
-
-(defun rogue/init-csv-mode ()
-  (use-package csv-mode
     :defer t))
 
 (defun rogue/init-blackbird ()
@@ -49,14 +42,6 @@
 
 (defun rogue/init-vue-mode ()
   (use-package vue-mode
-    :defer t))
-
-(defun rogue/init-ledger-mode ()
-  (use-package ledger-mode
-    :defer t))
-
-(defun rogue/init-flycheck-ledger ()
-  (use-package flycheck-ledger
     :defer t))
 
 (defun rogue/solarized-theme ()

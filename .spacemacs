@@ -18,55 +18,77 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     (auto-completion :variables
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-sort-by-usage t)
-     (colors :variables
-             colors-enable-rainbow-identifiers t)
-     better-defaults
-     emacs-lisp
-     git
-     github
-     markdown
-     org
-     xkcd
+                                        ; Pure languages
      c-c++
-     ess
-     rust
-     go
-     nim
-     haskell
      clojure
-     java
+     emacs-lisp
+     ess
      extra-langs
-     pandoc
+     go
+     haskell
      html
+     java
      javascript
-     ipython-notebook
+     nim
      (python :variables
-             python-enable-yapf-format-on-save t)
+             python-test-runner 'pytest
+             python-enable-yapf-format-on-save t
+             python-sort-imports-on-save t)
+     rust
+                                        ; Other languages / assists
+     bibtex
+     csv
+     ipython-notebook
      (latex :variables
-            latex-enable-folding t)
-     syntax-checking
-     chrome
-     deft
-     mu4e
-     elfeed
-     restclient
+            latex-enable-folding t
+            latex-enable-auto-fill t)
+     (markdown :variables
+               markdown-live-preview-engine 'vmd)
+     (org :variables
+          org-enable-github-support t
+          org-enable-reveal-js-support t)
+     semantic
      shell
      shell-scripts
      windows-scripts
      yaml
-     themes-megapack
+                                        ; Everything else
+     (auto-completion :variables
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-sort-by-usage t)
+     better-defaults
+     chrome
+     (colors :variables
+             colors-colorize-identifiers 'variables
+             colors-enable-nyan-cat-progress-bar (display-graphic-p))
+     deft
+     elfeed
+     games
+     git
+     github
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
-     rogue)
+     imenu-list
+     mu4e
+     pandoc
+     pdf-tools
+     restclient
+     rogue
+     search-engine
+     selectric
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil
+                     enable-flyspell-auto-completion t)
+     spotify
+     syntax-checking
+     systemd
+     theming
+     themes-megapack
+     twitter
+     (typography :variables
+                 typography-enable-typographic-editing t)
+     xkcd)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -272,12 +294,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Save desktop
   (desktop-save-mode 1)
 
+  ;; Custom themes
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/rogue/themes")
+
   ;; Org mode line spacing
   (add-hook 'org-mode-hook (lambda ()
                              (setq line-spacing 0.5)))
-
-  ;; Custom themes
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/rogue/themes")
 
   ;; Solarized settings
   (setq x-underline-at-descent-line t)
@@ -292,6 +314,19 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+  ;; BibTex stuff
+  (setq bib-library "~/library.bib")
+
+  (setq reftex-default-bibliography '(bib-library)
+        org-ref-default-bibliography '(bib-library)
+        bibtex-completion-bibliography bib-library)
+
+  (setq org-latex-pdf-process
+        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+          "bibtex %b"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
   ;; Switch to bar
   (setq-default cursor-type 'bar)
@@ -337,28 +372,29 @@ you should place you code here."
   ;; Notes etc.
   (setq notes-dir (getenv "NOTES_DIR"))
   (setq deft-directory notes-dir)
-  (setq deft-recursive nil)
-  (setq org-journal-dir (concat notes-dir "Diary/"))
+  (setq deft-extensions '("org"))
+  (setq deft-recursive t)
+  (setq org-journal-dir (concat notes-dir "diary/"))
   (setq org-journal-enable-encryption t)
 
-  (eval-after-load "org"
-    '(progn
-       ;; Org idle time
-       (setq org-clock-idle-time 5)
+  (with-eval-after-load 'org
 
-       ;; Org mode symbols
-       (setq org-bullets-bullet-list '("•"))
+    ;; Indent
+    (setq org-startup-indented t)
 
-       ;; Modules
-       (customize-set-variable 'org-modules '(org-bibtex
-                                              org-docview
-                                              org-habit
-                                              org-info
-                                              org-w3m))
+    ;; Org idle time
+    (setq org-clock-idle-time 5)
 
-       ;; Custom org mode faces
-       (customize-set-variable 'org-n-level-faces 4)
+    ;; Org mode symbols
+    (setq org-bullets-bullet-list '("•"))
 
-       ;; Remove underlines that don't mix well with large line height
-       (set-face-attribute 'org-link nil :underline nil)
-       (set-face-attribute 'org-date nil :underline nil))))
+    ;; Modules
+    (customize-set-variable 'org-modules '(org-bibtex
+                                           org-docview
+                                           org-habit
+                                           org-info
+                                           org-w3m))
+
+    ;; Remove underlines that don't mix well with large line height
+    (set-face-attribute 'org-link nil :underline nil :slant 'italic)
+    (set-face-attribute 'org-date nil :underline nil)))
