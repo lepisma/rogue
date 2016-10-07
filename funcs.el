@@ -71,7 +71,10 @@
 
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
-  (ido-find-file-in-dir (concat (file-name-as-directory "~/.tofish") candidate)))
+  (helm-find-files-1 (concat
+                      (file-name-as-directory (expand-file-name "~/.tofish"))
+                      candidate
+                      "/")))
 
 (defun to-fish-jump ()
   "Jump to to-fish bookmarks"
