@@ -3,21 +3,24 @@
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
+
   (mapc 'kill-buffer
         (delq (current-buffer) (buffer-list))))
 
 (defun explore-here ()
   "Open file manager in current buffer's directory."
   (interactive)
+
   (if (eq system-type 'windows-nt)
       (shell-command "explorer .")
     (if (eq system-type 'gnu/linux)
         (shell-command "xdg-open .")
-      (message "System Not supported"))))
+      (display-warning :error "System Not supported"))))
 
 (defun org-screenshot ()
   "Insert image from the clipboard into the org buffer."
   (interactive)
+
   ; Set image directory
   (setq imagedir (concat (buffer-file-name) "_images/"))
   (if (not (file-exists-p imagedir))
@@ -40,7 +43,7 @@
     (insert (concat "#+INCLUDE: \"./" filename "\""))
     (find-file filename) ; Open buffer with filename
     (if (file-exists-p filename)
-        (message "File already exists"))))
+        (display-warning :warning "File already exists"))))
 
 (defun org-get-scheduled-or-deadline ()
   "Return scheduled or deadline time from current point in order of priority"
@@ -66,11 +69,12 @@
                                 "-p" audio-file
                                 message))
             (message (concat "Alarm set for : " message))
-          (message "Error in setting alarm"))
-      (message "Error in parsing entry"))))
+          (display-warning :error "Error in setting alarm"))
+      (display-warning :error "Error in parsing entry"))))
 
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
+
   (helm-find-files-1 (concat
                       (file-name-as-directory (expand-file-name "~/.tofish"))
                       candidate
@@ -79,9 +83,26 @@
 (defun to-fish-jump ()
   "Jump to to-fish bookmarks"
   (interactive)
+
   (helm :sources (helm-build-sync-source "bookmarks"
                    :candidates (lambda ()
                                  (directory-files "~/.tofish"))
                    :action '(("Jump to bookmark" . to-fish-find-file)))
         :buffer "*helm tofish jump*"
         :prompt "Jump to : "))
+
+(defun git-archive ()
+  "Archive current repository"
+  (interactive)
+
+  (let ((repo-root (magit-toplevel)))
+    (if repo-root
+        (let ((output-file (read-file-name "Output file: ")))
+          (if (eq 0 (call-process "git"
+                                  nil nil nil
+                                  "archive"
+                                  "-o" output-file
+                                  "HEAD"))
+              (message "git-archive finished")
+            (display-warning :error "Error in archiving")))
+      (display-warning :error "Not in a git repository"))))
