@@ -14,3 +14,6 @@
 
 ;; To-fish jump
 (global-set-key (kbd "C-c j") 'to-fish-jump)
+
+;; Neotree refresh
+(global-set-key (kbd "C-c n") 'neotree-refresh)

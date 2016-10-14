@@ -35,6 +35,7 @@ values."
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
      rust
+     racket
                                         ; Other languages / assists
      bibtex
      csv
