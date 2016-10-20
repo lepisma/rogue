@@ -39,6 +39,6 @@
   (use-package vue-mode
     :defer t))
 
-(defun rogue/solarized-theme ()
+(defun rogue/init-solarized-theme ()
   (use-package solarized-theme
     :defer t))
