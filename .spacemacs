@@ -76,6 +76,9 @@ values."
      syntax-checking
      (typography :variables
                  typography-enable-typographic-editing t)
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl
+                      version-control-global-margin t)
      xkcd)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
