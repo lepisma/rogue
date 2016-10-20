@@ -7,7 +7,6 @@
         (blackbird :location local)
         cricbuzz
         org-journal
-        processing-mode
         vue-mode
         solarized-theme))
 
@@ -34,10 +33,6 @@
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
-    :defer t))
-
-(defun rogue/init-processing-mode ()
-  (use-package processing-mode
     :defer t))
 
 (defun rogue/init-vue-mode ()

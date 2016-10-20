@@ -20,11 +20,9 @@ values."
    '(
                                         ; Pure languages
      c-c++
-     clojure
      emacs-lisp
      ess
      extra-langs
-     go
      haskell
      html
      java
@@ -34,7 +32,6 @@ values."
              python-test-runner 'pytest
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
-     rust
      racket
                                         ; Other languages / assists
      bibtex
@@ -51,7 +48,6 @@ values."
      semantic
      shell
      shell-scripts
-     windows-scripts
      yaml
                                         ; Everything else
      (auto-completion :variables
@@ -61,17 +57,13 @@ values."
      better-defaults
      chrome
      (colors :variables
-             colors-colorize-identifiers 'variables
-             colors-enable-nyan-cat-progress-bar (display-graphic-p))
+             colors-colorize-identifiers 'variables)
      deft
-     elfeed
-     games
      git
      github
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
      imenu-list
-     mu4e
      pandoc
      pdf-tools
      restclient
@@ -79,14 +71,9 @@ values."
      search-engine
      selectric
      (spell-checking :variables
-                     spell-checking-enable-by-default nil
-                     enable-flyspell-auto-completion t)
+                     spell-checking-enable-by-default nil)
      spotify
      syntax-checking
-     systemd
-     theming
-     themes-megapack
-     twitter
      (typography :variables
                  typography-enable-typographic-editing t)
      xkcd)
@@ -360,15 +347,9 @@ you should place you code here."
   ;; Neotree theme
   (setq neo-theme 'nerd)
 
-  ;; Rust racer
-  (setq-default rust-enable-racer t)
-
   ;; Javascript
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
-
-  ;; Clojure symbols
-  (setq clojure-enable-fancify-symbols t)
 
   ;; Notes etc.
   (setq notes-dir (getenv "NOTES_DIR"))
