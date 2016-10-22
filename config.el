@@ -79,11 +79,11 @@
                  (org-level-1
                   :height 1.2
                   :weight bold
-                  :foreground "#dddddd"
+                  :foreground "#eeeeee"
                   :inherit (variable-pitch))
                  (org-level-2
                   :height 1.1
-                  :foreground "#bbbbbb"
+                  :foreground "#dddddd"
                   :inherit (variable-pitch))
                  (org-level-3
                   :height 1.0
