@@ -10,7 +10,8 @@
         vue-mode
         solarized-theme
         molokai-theme
-        all-the-icons))
+        all-the-icons
+        org-sync))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -51,4 +52,8 @@
 
 (defun rogue/init-all-the-icons ()
   (use-package all-the-icons
+    :defer t))
+
+(defun rogue/init-org-sync ()
+  (use-package org-sync
     :defer t))
