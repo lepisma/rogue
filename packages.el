@@ -57,3 +57,6 @@
 (defun rogue/init-org-sync ()
   (use-package org-sync
     :defer t))
+
+(defun rogue/post-init-org-sync ()
+  (use-package org-sync-github))
