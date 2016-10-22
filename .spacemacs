@@ -74,6 +74,7 @@ values."
                      spell-checking-enable-by-default nil)
      spotify
      syntax-checking
+     theming
      (typography :variables
                  typography-enable-typographic-editing t)
      (version-control :variables
@@ -140,7 +141,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(solarized-light
-                         molokai-tuned)
+                         molokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -285,9 +286,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Save desktop
   (desktop-save-mode 1)
 
-  ;; Custom themes
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/rogue/themes")
-
   ;; Org mode line spacing
   (add-hook 'org-mode-hook (lambda ()
                              (setq line-spacing 0.5)))
@@ -348,7 +346,7 @@ you should place you code here."
   (display-time-mode 1)
 
   ;; Neotree theme
-  (setq neo-theme 'nerd)
+  (setq neo-theme (if window-system 'icons 'arrow))
 
   ;; Javascript
   (setq-default js2-basic-offset 2)
@@ -378,8 +376,4 @@ you should place you code here."
                                            org-docview
                                            org-habit
                                            org-info
-                                           org-w3m))
-
-    ;; Remove underlines that don't mix well with large line height
-    (set-face-attribute 'org-link nil :underline nil :slant 'italic)
-    (set-face-attribute 'org-date nil :underline nil)))
+                                           org-w3m))))

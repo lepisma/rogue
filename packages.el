@@ -8,7 +8,9 @@
         cricbuzz
         org-journal
         vue-mode
-        solarized-theme))
+        solarized-theme
+        molokai-theme
+        all-the-icons))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -41,4 +43,12 @@
 
 (defun rogue/init-solarized-theme ()
   (use-package solarized-theme
+    :defer t))
+
+(defun rogue/init-molokai-theme ()
+  (use-package molokai-theme
+    :defer t))
+
+(defun rogue/init-all-the-icons ()
+  (use-package all-the-icons
     :defer t))
