@@ -82,7 +82,7 @@
                   :foreground "#dddddd"
                   :inherit (variable-pitch))
                  (org-level-2
-                  :height 1.2
+                  :height 1.1
                   :foreground "#bbbbbb"
                   :inherit (variable-pitch))
                  (org-level-3
