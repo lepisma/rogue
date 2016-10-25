@@ -36,6 +36,12 @@
                  (company-preview-common
                   :background "#101A1B"
                   :foreground "white")
+                 (company-tooltip-common
+                  :inherit company-tooltip
+                  :weight bold)
+                 (company-tooltip-common-selection
+                  :inherit company-tooltip-selection
+                  :weight bold)
                  (vertical-border
                   :background "#1B1D1E"
                   :foreground "#1B1D1E")
