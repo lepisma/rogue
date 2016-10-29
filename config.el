@@ -129,4 +129,6 @@
                           :slant italic
                           :underline nil)
                          (org-date
-                          :underline nil))))
+                          :underline nil)
+                         (mmm-default-submode-face
+                          :background "#fdf6e3"))))
