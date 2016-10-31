@@ -11,7 +11,8 @@
         solarized-theme
         molokai-theme
         all-the-icons
-        org-sync))
+        org-sync
+        enlive))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -60,3 +61,8 @@
 
 (defun rogue/post-init-org-sync ()
   (use-package org-sync-github))
+
+
+(defun rogue/init-enlive ()
+  (use-package enlive
+    :defer t))
