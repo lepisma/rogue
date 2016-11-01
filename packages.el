@@ -64,5 +64,4 @@
 
 
 (defun rogue/init-enlive ()
-  (use-package enlive
-    :defer t))
+  (use-package enlive))

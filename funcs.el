@@ -88,3 +88,34 @@
               (message "git-archive finished")
             (display-warning :error "Error in archiving")))
       (display-warning :error "Not in a git repository"))))
+
+
+(defun show-weather-in-buffer (pairs location)
+  "Display weather data in a new buffer"
+
+  (let ((buffer (get-buffer-create "*Weather*")))
+    (set-buffer buffer)
+    (setq buffer-read-only nil)
+    (erase-buffer)
+    (org-mode)
+    (insert "\n#+TITLE: ")
+    (insert location)
+    (insert "\n\n")
+    (mapc (lambda (pair)
+            (insert (concat "+ " (first pair) " :: " (second pair) "\n")))
+          (butlast pairs))
+    (switch-to-buffer buffer)
+    (setq buffer-read-only t)
+    (goto-char (point-min))))
+
+(defun weather-amherst ()
+  "Get local weather information for Amherst from CS station"
+  (interactive)
+
+  (let* ((rss-url "http://weather.cs.umass.edu/RSS/weewx_rss.xml")
+         (location "Amherst, MA (USA)")
+         (node (first (enlive-get-elements-by-tag-name
+                       (enlive-fetch rss-url) 'encoded)))
+         (items (split-string (enlive-text node) "\n" t)))
+    (show-weather-in-buffer (mapcar (lambda (item)
+              (mapcar 'string-trim (split-string item ": "))) items) location)))
