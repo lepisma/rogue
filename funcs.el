@@ -116,7 +116,7 @@
     (setq buffer-read-only nil)
     (erase-buffer)
     (org-mode)
-    (insert "\n#+TITLE: ")
+    (insert "#+TITLE: ")
     (insert location)
     (insert "\n\n")
     (mapc (lambda (pair)
