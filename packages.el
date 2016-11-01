@@ -12,7 +12,8 @@
         molokai-theme
         all-the-icons
         org-sync
-        enlive))
+        enlive
+        vlf))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -65,3 +66,6 @@
 
 (defun rogue/init-enlive ()
   (use-package enlive))
+
+(defun rogue/init-vlf ()
+  (use-package vlf))
