@@ -83,44 +83,35 @@
                  (widget-field
                   :background "#1f2d2c")
                  (org-level-1
-                  :height 1.2
-                  :weight bold
-                  :foreground "#eeeeee"
+                  :foreground "#FF3AA3"
                   :inherit (variable-pitch))
                  (org-level-2
-                  :height 1.1
-                  :foreground "#dddddd"
+                  :foreground "#65F7DC"
                   :inherit (variable-pitch))
                  (org-level-3
-                  :height 1.0
-                  :weight bold
-                  :foreground "#bbbbbb"
+                  :foreground "#FF7797"
                   :inherit (variable-pitch))
                  (org-level-4
-                  :height 1.0
-                  :foreground "#bbbbbb"
+                  :foreground "#EEE"
                   :inherit (variable-pitch))
                  (org-done
                   :foreground "lime green"
                   :weight bold)
                  (org-todo
-                  :foreground "deep pink"
+                  :foreground "#EDEA57"
                   :weight bold)
                  (org-special-keyword
                   :foreground "dark cyan"
-                  :weight bold
-                  :height 0.9)
+                  :weight bold)
                  (org-date
-                  :foreground "gold"
-                  :underline nil
-                  :height 0.9)
+                  :foreground "#EDC27D"
+                  :underline nil)
                  (org-link
                   :foreground "light sky blue"
-                  :underline nil
-                  :height 0.9)
+                  :underline nil)
                  (org-document-title
                   :inherit (variable-pitch)
-                  :height 2.0)
+                  :height 1.3)
                  (org-priority
                   :foreground "gold"))
         (solarized-light (highlight
