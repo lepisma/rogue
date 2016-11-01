@@ -368,6 +368,9 @@ you should place you code here."
     ;; Org idle time
     (setq org-clock-idle-time 5)
 
+    ;; Pretty symbols
+    (setq org-pretty-entities t)
+
     ;; Org mode symbols
     (setq org-bullets-bullet-list '("•"))
 
