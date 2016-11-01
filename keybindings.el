@@ -17,3 +17,9 @@
 
 ;; Neotree refresh
 (global-set-key (kbd "C-c n") 'neotree-refresh)
+
+;; World time
+(global-set-key (kbd "C-c t") 'helm-world-time)
+
+;; Weather
+(global-set-key (kbd "C-c w") 'weather-amherst)
