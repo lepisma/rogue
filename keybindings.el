@@ -23,3 +23,7 @@
 
 ;; Weather
 (global-set-key (kbd "C-c w") 'weather-amherst)
+
+;; Hackernews
+(global-set-key (kbd "C-c h") 'hackernews)
+

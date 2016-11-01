@@ -13,7 +13,8 @@
         all-the-icons
         org-sync
         enlive
-        vlf))
+        vlf
+        hackernews))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -68,4 +69,9 @@
   (use-package enlive))
 
 (defun rogue/init-vlf ()
-  (use-package vlf))
+  (use-package vlf
+    :defer t))
+
+(defun rogue/init-hackernews ()
+  (use-package hackernews
+    :defer t))
