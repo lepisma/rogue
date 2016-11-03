@@ -360,6 +360,24 @@ you should place you code here."
   (setq org-journal-dir (concat notes-dir "diary/"))
   (setq org-journal-enable-encryption t)
 
+  ;; Babel
+  (setq org-confirm-babel-evaluate nil
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t)
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((R . t)
+     (emacs-lisp . t)
+     (python . t)
+     (sh . t)
+     (js . t)
+     (latex . t)
+     (gnuplot . t)
+     (C . t)
+     ;;    (julia . t)
+     (sql . t)))
+
   (with-eval-after-load 'org
 
     ;; Indent
