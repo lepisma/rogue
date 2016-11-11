@@ -14,7 +14,8 @@
         org-sync
         enlive
         vlf
-        hackernews))
+        hackernews
+        swiper))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -64,7 +65,6 @@
 (defun rogue/post-init-org-sync ()
   (use-package org-sync-github))
 
-
 (defun rogue/init-enlive ()
   (use-package enlive))
 
@@ -74,4 +74,8 @@
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
+    :defer t))
+
+(defun rogue/init-swiper ()
+  (use-package swiper
     :defer t))

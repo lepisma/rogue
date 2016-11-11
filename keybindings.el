@@ -27,3 +27,9 @@
 ;; Hackernews
 (global-set-key (kbd "C-c h") 'hackernews)
 
+;; Swiper
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-r") 'swiper)
+
+;; Avy
+(global-set-key (kbd "C-'") 'avy-goto-char)
