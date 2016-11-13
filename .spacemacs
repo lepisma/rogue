@@ -331,6 +331,10 @@ you should place you code here."
   ;; No crappy symbols
   (setq dotspacemacs-mode-line-unicode-symbols nil)
 
+  ;; ibuffer
+  (setq ibuffer-expert t)
+  (setq ibuffer-show-empty-filter-groups nil)
+
   ;; Add rainbow mode to css and scss
   (add-hook 'css-mode-hook (lambda ()
                              (rainbow-mode 1)))
