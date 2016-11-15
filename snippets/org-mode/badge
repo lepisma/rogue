@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name : badge
+# key : badge
+# --
+[[https://github.com/lepisma/${1:repo}][https://img.shields.io/badge/${2:repository-github-blue.png}]]$0

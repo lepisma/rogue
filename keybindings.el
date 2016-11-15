@@ -33,3 +33,6 @@
 
 ;; Avy
 (global-set-key (kbd "C-'") 'avy-goto-char)
+
+;; Emmet
+(global-set-key (kbd "C-c e") 'emmet-expand-line)
