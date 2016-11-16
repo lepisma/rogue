@@ -3,7 +3,8 @@
 ;; Custom theming
 (setq theming-modifications
       '((molokai (helm-selection
-                  :background "dark slate gray")
+                  :background "gray9"
+                  :weight bold)
                  (helm-source-header
                   :foreground "white"
                   :weight bold
@@ -18,7 +19,7 @@
                   :background "yellow"
                   :foreground "black")
                  (helm-match
-                  :foreground "light sea green"
+                  :foreground "white"
                   :weight bold)
                  (mode-line-highlight
                   :foreground "gray")
