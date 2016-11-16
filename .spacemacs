@@ -75,8 +75,7 @@ values."
      spotify
      syntax-checking
      theming
-     (typography :variables
-                 typography-enable-typographic-editing t)
+     typography
      (version-control :variables
                       version-control-diff-tool 'diff-hl
                       version-control-global-margin t)
