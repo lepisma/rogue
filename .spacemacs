@@ -29,7 +29,6 @@ values."
      javascript
      nim
      (python :variables
-             python-test-runner 'pytest
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
      racket
@@ -51,9 +50,10 @@ values."
      yaml
                                         ; Everything else
      (auto-completion :variables
-                      auto-completion-enable-help-tooltip 'manual
+                      auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      chrome
      (colors :variables
@@ -304,6 +304,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+  ;;; Global company
+  (global-company-mode)
+
   ;; BibTex stuff
   (setq bib-library "~/library.bib")
 
@@ -316,9 +319,6 @@ you should place you code here."
           "bibtex %b"
           "pdflatex -interaction nonstopmode -output-directory %o %f"
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
-
-  ;; Snippets directory
-  (add-to-list 'yas-snippet-dirs "~/.emacs.d/private/rogue/snippets")
 
   ;; Switch to bar
   (setq-default cursor-type 'bar)
