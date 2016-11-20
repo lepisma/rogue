@@ -4,7 +4,9 @@
       '(multiple-cursors
         request-deferred
         svg-clock
-        (blackbird :location local)
+        (blackbird :location (recipe
+                              :fetcher github
+                              :repo "lepisma/blackbird.el"))
         cricbuzz
         org-journal
         vue-mode
@@ -16,7 +18,10 @@
         vlf
         hackernews
         swiper
-        paredit))
+        paredit
+        (markup :location (recipe
+                           :fetcher github
+                           :repo "lepisma/markup.el"))))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -83,4 +88,8 @@
 
 (defun rogue/init-paredit ()
   (use-package paredit
+    :defer t))
+
+(defun rogue/init-markup ()
+  (use-package markup
     :defer t))
