@@ -15,7 +15,8 @@
         enlive
         vlf
         hackernews
-        swiper))
+        swiper
+        paredit))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -78,4 +79,8 @@
 
 (defun rogue/init-swiper ()
   (use-package swiper
+    :defer t))
+
+(defun rogue/init-paredit ()
+  (use-package paredit
     :defer t))
