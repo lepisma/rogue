@@ -21,7 +21,10 @@
         paredit
         (markup :location (recipe
                            :fetcher github
-                           :repo "lepisma/markup.el"))))
+                           :repo "lepisma/markup.el"))
+        (ob-q :location (recipe
+                         :fetch github
+                         :repo "lepisma/ob-q.el"))))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -92,4 +95,8 @@
 
 (defun rogue/init-markup ()
   (use-package markup
+    :defer t))
+
+(defun rogue/init-ob-q ()
+  (use-package ob-q
     :defer t))
