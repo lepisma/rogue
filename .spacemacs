@@ -378,6 +378,7 @@ you should place you code here."
      (python . t)
      (sh . t)
      (js . t)
+     (q . t)
      (latex . t)
      (gnuplot . t)
      (C . t)
