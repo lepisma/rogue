@@ -23,7 +23,7 @@
                            :fetcher github
                            :repo "lepisma/markup.el"))
         (ob-q :location (recipe
-                         :fetch github
+                         :fetcher github
                          :repo "lepisma/ob-q.el"))))
 
 ;; Initialize packages
