@@ -24,7 +24,11 @@
                            :repo "lepisma/markup.el"))
         (ob-q :location (recipe
                          :fetcher github
-                         :repo "lepisma/ob-q.el"))))
+                         :repo "lepisma/ob-q.el"))
+        (u :location (recipe
+                      :fetcher github
+                      :repo "lepisma/u"
+                      :branch "elisp"))))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -99,4 +103,8 @@
 
 (defun rogue/init-ob-q ()
   (use-package ob-q
+    :defer t))
+
+(defun rogue/init-u ()
+  (use-package u
     :defer t))
