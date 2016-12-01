@@ -383,7 +383,8 @@ you should place you code here."
      (gnuplot . t)
      (C . t)
      ;;    (julia . t)
-     (sql . t)))
+     (sql . t)
+     (sqlite . t)))
 
   (with-eval-after-load 'org
 
