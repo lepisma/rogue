@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name : print
-# key : print
+# key : pr
 # --
-System.out.println(${1:var});$0
+System.out.println("${1:var}");$0
