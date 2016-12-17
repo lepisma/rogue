@@ -28,7 +28,9 @@
         (u :location (recipe
                       :fetcher github
                       :repo "lepisma/u"
-                      :branch "elisp"))))
+                      :branch "elisp"))
+        writegood-mode
+        writeroom-mode))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -107,4 +109,12 @@
 
 (defun rogue/init-u ()
   (use-package u
+    :defer t))
+
+(defun rogue/init-writegood-mode ()
+  (use-package writegood-mode
+    :defer t))
+
+(defun rogue/init-writeroom-mode ()
+  (use-package writeroom-mode
     :defer t))
