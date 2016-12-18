@@ -30,7 +30,8 @@
                       :repo "lepisma/u"
                       :branch "elisp"))
         writegood-mode
-        writeroom-mode))
+        writeroom-mode
+        snakemake-mode))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -117,4 +118,8 @@
 
 (defun rogue/init-writeroom-mode ()
   (use-package writeroom-mode
+    :defer t))
+
+(defun rogue/init-snakemake-mode ()
+  (use-package snakemake-mode
     :defer t))
