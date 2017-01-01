@@ -490,6 +490,11 @@ you should place you code here."
   (setq eclim-eclipse-dirs "~/tools/eclipse"
         eclim-executable "~/tools/eclipse/eclim")
 
+  ;; Web mode
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+
   ;; Javascript
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
