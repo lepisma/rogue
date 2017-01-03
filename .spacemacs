@@ -52,8 +52,7 @@ values."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
-     (colors :variables
-             colors-colorize-identifiers 'variables)
+     colors
      deft
      git
      github
@@ -177,7 +176,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -272,18 +271,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
-  ;; CUA
-  (cua-mode 1)
-
-  ;; Save desktop
-  (desktop-save-mode 1)
-
-  ;; Solarized settings
-  (setq x-underline-at-descent-line t)
-  (setq solarized-high-contrast-mode-line t)
-  (setq solarized-use-more-italic t)
-  (setq solarized-scale-org-headlines nil))
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -292,6 +280,16 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+  ;; CUA
+  (cua-mode)
+
+  ;; Solarized settings
+  (setq x-underline-at-descent-line t)
+  (setq solarized-high-contrast-mode-line t)
+  (setq solarized-use-more-italic t)
+  (setq solarized-emphasize-indicators t)
+  (setq solarized-scale-org-headlines nil)
 
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
@@ -461,10 +459,6 @@ you should place you code here."
   ;; Add rainbow mode to css and scss
   (add-hook 'css-mode-hook (lambda ()
                              (rainbow-mode 1)))
-
-  ;; Set rainbow
-  (setq rainbow-identifiers-cie-l*a*b*-saturation 70)
-  (setq rainbow-identifiers-cie-l*a*b*-lightness 70)
 
   ;; Line breaks in text-ish files
   (add-hook 'text-mode-hook 'auto-fill-mode)
