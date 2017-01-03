@@ -17,14 +17,11 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(
-     sql
-                                        ; Pure languages
+   '(                                    ; Pure languages
      c-c++
      emacs-lisp
      ess
      extra-langs
-     haskell
      html
      java
      javascript
@@ -32,11 +29,9 @@ values."
      (python :variables
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
-     racket
                                         ; Other languages / assists
      bibtex
      csv
-     ipython-notebook
      (latex :variables
             latex-enable-folding t
             latex-enable-auto-fill t)
@@ -48,6 +43,7 @@ values."
      semantic
      shell
      shell-scripts
+     sql
      yaml
                                         ; Everything else
      (auto-completion :variables
@@ -56,7 +52,6 @@ values."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
-     chrome
      (colors :variables
              colors-colorize-identifiers 'variables)
      deft
@@ -67,9 +62,7 @@ values."
      imenu-list
      pandoc
      pdf-tools
-     restclient
      rogue
-     search-engine
      selectric
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
@@ -486,14 +479,11 @@ you should place you code here."
   ;; Neotree theme
   (setq neo-theme (if window-system 'icons 'arrow))
 
-  ;; Java
-  (setq eclim-eclipse-dirs "~/tools/eclipse"
-        eclim-executable "~/tools/eclipse/eclim")
-
   ;; Web mode
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
+  (setq-default web-mode-markup-indent-offset 2)
+  (setq-default web-mode-css-indent-offset 2)
+  (setq-default web-mode-code-indent-offset 2)
+  (setq-default css-indent-offset 2)
 
   ;; Javascript
   (setq-default js2-basic-offset 2)
@@ -517,7 +507,6 @@ you should place you code here."
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
-     ;; (R . t)
      (emacs-lisp . t)
      (q . t)
      (python . t)
@@ -526,7 +515,6 @@ you should place you code here."
      (latex . t)
      (gnuplot . t)
      (C . t)
-     ;; (julia . t)
      (sqlite . t)))
 
   (with-eval-after-load 'org

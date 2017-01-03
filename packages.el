@@ -3,8 +3,6 @@
 
 (setq rogue-packages
       '(multiple-cursors
-        request-deferred
-        svg-clock
         (blackbird :location (recipe
                               :fetcher github
                               :repo "lepisma/blackbird.el"))
@@ -14,15 +12,11 @@
         solarized-theme
         molokai-theme
         all-the-icons
-        org-sync
         enlive
         vlf
         hackernews
         swiper
         paredit
-        (markup :location (recipe
-                           :fetcher github
-                           :repo "lepisma/markup.el"))
         (ob-q :location (recipe
                          :fetcher github
                          :repo "lepisma/ob-q.el"))
@@ -34,8 +28,7 @@
         writeroom-mode
         snakemake-mode
         bm
-        helm-bm
-        helm-pass))
+        helm-bm))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -43,14 +36,6 @@
     :defer t
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this))))
-
-(defun rogue/init-request-deferred ()
-  (use-package request-deferred
-    :defer t))
-
-(defun rogue/init-svg-clock ()
-  (use-package svg-clock
-    :defer t))
 
 (defun rogue/init-blackbird ()
   (use-package blackbird
@@ -80,13 +65,6 @@
   (use-package all-the-icons
     :defer t))
 
-(defun rogue/init-org-sync ()
-  (use-package org-sync
-    :defer t))
-
-(defun rogue/post-init-org-sync ()
-  (use-package org-sync-github))
-
 (defun rogue/init-enlive ()
   (use-package enlive))
 
@@ -107,10 +85,6 @@
 
 (defun rogue/init-paredit ()
   (use-package paredit
-    :defer t))
-
-(defun rogue/init-markup ()
-  (use-package markup
     :defer t))
 
 (defun rogue/init-ob-q ()
@@ -191,8 +165,3 @@
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
     :defer t))
-
-(defun rogue/init-helm-pass ()
-  (use-package helm-pass
-    :ensure t
-    :commands (helm-pass)))
