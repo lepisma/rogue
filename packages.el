@@ -34,7 +34,8 @@
         writeroom-mode
         snakemake-mode
         bm
-        helm-bm))
+        helm-bm
+        pass))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -189,4 +190,8 @@
 
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
+    :defer t))
+
+(defun rogue/init-pass ()
+  (use-package pass
     :defer t))
