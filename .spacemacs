@@ -279,10 +279,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Save desktop
   (desktop-save-mode 1)
 
-  ;; Org mode line spacing
-  (add-hook 'org-mode-hook (lambda ()
-                             (setq line-spacing 0.5)))
-
   ;; Solarized settings
   (setq x-underline-at-descent-line t)
   (setq solarized-high-contrast-mode-line t)
@@ -472,6 +468,10 @@ you should place you code here."
 
   ;; Line breaks in text-ish files
   (add-hook 'text-mode-hook 'auto-fill-mode)
+
+  ;; Org mode line spacing
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq line-spacing 0.5)))
 
   ;; Display time in modeline
   (display-time-mode 1)
