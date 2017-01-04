@@ -28,7 +28,8 @@
         writeroom-mode
         snakemake-mode
         bm
-        helm-bm))
+        helm-bm
+        tide))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -164,4 +165,8 @@
 
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
+    :defer t))
+
+(defun rogue/init-tide ()
+  (use-package tide
     :defer t))
