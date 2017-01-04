@@ -511,6 +511,9 @@ you should place you code here."
      (C . t)
      (sqlite . t)))
 
+  ;; Clock
+  (setq spaceline-org-clock-p t)
+
   (with-eval-after-load 'org
 
     ;; Indent
