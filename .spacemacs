@@ -484,6 +484,7 @@ you should place you code here."
   (setq-default js-indent-level 2)
   (setq-default js2-strict-missing-semi-warning nil)
   (setq-default js2-missing-semi-one-line-override nil)
+  (setq-default typescript-indent-level 2)
 
   ;; Notes etc.
   (setq notes-dir (getenv "NOTES_DIR"))
