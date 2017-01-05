@@ -61,6 +61,7 @@ values."
      imenu-list
      pandoc
      pdf-tools
+     restclient
      rogue
      selectric
      (spell-checking :variables
