@@ -289,10 +289,6 @@ you should place you code here."
   ;; System monitor
   (symon-mode)
 
-  ;; God mode
-  (setq god-exempt-major-modes nil)
-  (setq god-exempt-predicates nil)
-
   ;; Set default cursor
   (set-cursor-color "#839496")
 
@@ -303,7 +299,7 @@ you should place you code here."
 
   (add-hook 'god-mode-enabled-hook 'god-update-cursor)
   (add-hook 'god-mode-disabled-hook 'god-update-cursor)
-  
+
   ;; Solarized settings
   (setq x-underline-at-descent-line t)
   (setq solarized-high-contrast-mode-line t)
