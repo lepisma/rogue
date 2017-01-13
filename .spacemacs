@@ -70,6 +70,7 @@ values."
      syntax-checking
      theming
      typography
+     twitter
      (version-control :variables
                       version-control-diff-tool 'diff-hl
                       version-control-global-margin t)
@@ -284,6 +285,9 @@ you should place you code here."
 
   ;; CUA
   (cua-mode)
+
+  ;; System monitor
+  (symon-mode)
 
   ;; Solarized settings
   (setq x-underline-at-descent-line t)

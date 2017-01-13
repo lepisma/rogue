@@ -29,7 +29,9 @@
         snakemake-mode
         bm
         helm-bm
-        tide))
+        tide
+        symon
+        god-mode))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -170,3 +172,20 @@
 (defun rogue/init-tide ()
   (use-package tide
     :defer t))
+
+(defun rogue/init-symon ()
+  (use-package symon
+    :defer t))
+
+(defun rogue/init-god-mode ()
+  (use-package god-mode
+    :defer t
+    :bind ("<escape>" 'god-mode-all)))
+
+;; (defun rogue/init-spaceline-all-the-icons ()
+;;   (progn
+;;     (use-package spaceline-all-the-icons
+;;       :after spaceline)
+;;     (use-package spaceline
+;;       :after powerline
+;;       :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
