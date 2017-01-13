@@ -300,6 +300,9 @@ you should place you code here."
   (add-hook 'god-mode-enabled-hook 'god-update-cursor)
   (add-hook 'god-mode-disabled-hook 'god-update-cursor)
 
+  ;; God mode insert
+  (define-key god-local-mode-map (kbd "i") 'god-mode-all)
+
   ;; Solarized settings
   (setq x-underline-at-descent-line t)
   (setq solarized-high-contrast-mode-line t)
