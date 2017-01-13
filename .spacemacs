@@ -293,6 +293,17 @@ you should place you code here."
   (setq god-exempt-major-modes nil)
   (setq god-exempt-predicates nil)
 
+  ;; Set default cursor
+  (set-cursor-color "#839496")
+
+  (defun god-update-cursor ()
+    (set-cursor-color (if (or god-local-mode buffer-read-only)
+                          "orange"
+                        "#839496")))
+
+  (add-hook 'god-mode-enabled-hook 'god-update-cursor)
+  (add-hook 'god-mode-disabled-hook 'god-update-cursor)
+  
   ;; Solarized settings
   (setq x-underline-at-descent-line t)
   (setq solarized-high-contrast-mode-line t)
