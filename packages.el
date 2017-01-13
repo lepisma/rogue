@@ -181,7 +181,11 @@
 (defun rogue/init-god-mode ()
   (use-package god-mode
     :defer t
-    :bind ("<escape>" . god-mode-all)))
+    :bind (("<escape>" . god-local-mode)
+           ("C-x C-1" . delete-other-windows)
+           ("C-x C-2" . split-window-below)
+           ("C-x C-3" . split-window-right)
+           ("C-x C-0" . delete-window))))
 
 ;; (defun rogue/init-spaceline-all-the-icons ()
 ;;   (progn
