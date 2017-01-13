@@ -1,4 +1,5 @@
 
+
 ;;; packages.el --- rogue Layer packages File for Spacemacs
 
 (setq rogue-packages
@@ -180,7 +181,7 @@
 (defun rogue/init-god-mode ()
   (use-package god-mode
     :defer t
-    :bind ("<escape>" 'god-mode-all)))
+    :bind ("<escape>" . god-mode-all)))
 
 ;; (defun rogue/init-spaceline-all-the-icons ()
 ;;   (progn
