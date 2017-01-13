@@ -289,6 +289,10 @@ you should place you code here."
   ;; System monitor
   (symon-mode)
 
+  ;; God mode
+  (setq god-exempt-major-modes nil)
+  (setq god-exempt-predicates nil)
+
   ;; Solarized settings
   (setq x-underline-at-descent-line t)
   (setq solarized-high-contrast-mode-line t)
