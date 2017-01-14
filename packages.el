@@ -1,5 +1,3 @@
-
-
 ;;; packages.el --- rogue Layer packages File for Spacemacs
 
 (setq rogue-packages
@@ -32,7 +30,9 @@
         helm-bm
         tide
         symon
-        god-mode))
+        god-mode
+        tldr
+        (spaceline-all-the-icons :location local)))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -188,6 +188,10 @@
            ("C-x C-0" . delete-window)
            :map god-local-mode-map
            ("i" . god-mode-all))))
+
+(defun rogue/init-tldr ()
+  (use-package tldr
+    :defer t))
 
 ;; (defun rogue/init-spaceline-all-the-icons ()
 ;;   (progn
