@@ -185,7 +185,9 @@
            ("C-x C-1" . delete-other-windows)
            ("C-x C-2" . split-window-below)
            ("C-x C-3" . split-window-right)
-           ("C-x C-0" . delete-window))))
+           ("C-x C-0" . delete-window)
+           :map god-local-mode-map
+           ("i" . god-mode-all))))
 
 ;; (defun rogue/init-spaceline-all-the-icons ()
 ;;   (progn
