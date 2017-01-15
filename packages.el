@@ -32,7 +32,9 @@
         symon
         god-mode
         tldr
-        (spaceline-all-the-icons :location local)))
+        (spaceline-all-the-icons :location local)
+        ox-ioslide
+        wttrin))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -191,6 +193,14 @@
 
 (defun rogue/init-tldr ()
   (use-package tldr
+    :defer t))
+
+(defun rogue/init-ox-ioslide ()
+  (use-package ox-ioslide
+    :defer t))
+
+(defun rogue/init-ox-ioslide ()
+  (use-package wttrin
     :defer t))
 
 ;; (defun rogue/init-spaceline-all-the-icons ()

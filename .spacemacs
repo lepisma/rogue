@@ -307,6 +307,9 @@ you should place you code here."
   (setq solarized-emphasize-indicators t)
   (setq solarized-scale-org-headlines nil)
 
+  ;; Weather in metric
+  (setq wttrin-default-cities '("Amherst?m" "Varanasi?m"))
+
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
