@@ -126,6 +126,28 @@
     (setq buffer-read-only t)
     (goto-char (point-min))))
 
+(defun mpc-send-message (channel message)
+  "Send message to mpc"
+
+  (if (eq 0 (call-process "mpc"
+                          nil nil nil
+                          "sendmessage"
+                          channel message))
+      (message "Done")
+    (display-warning :error "Error in sending message to mpc")))
+
+(defun mpdas-love ()
+  "Love song on scrobbler service"
+  (interactive)
+
+  (mpc-send-message "mpdas" "love"))
+
+(defun mpdas-unlove ()
+  "Unlove currently playing song"
+  (interactive)
+
+  (mpc-send-message "mpdas" "unlove"))
+
 (defun weather-amherst ()
   "Get local weather information for Amherst from CS station"
   (interactive)
