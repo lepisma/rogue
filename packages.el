@@ -199,7 +199,7 @@
   (use-package ox-ioslide
     :defer t))
 
-(defun rogue/init-ox-ioslide ()
+(defun rogue/init-wttrin ()
   (use-package wttrin
     :defer t))
 
