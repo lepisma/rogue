@@ -34,7 +34,8 @@
         tldr
         (spaceline-all-the-icons :location local)
         ox-ioslide
-        wttrin))
+        wttrin
+        wolfram))
 
 ;; Initialize packages
 (defun rogue/init-multiple-cursors ()
@@ -61,7 +62,14 @@
 
 (defun rogue/init-solarized-theme ()
   (use-package solarized-theme
-    :defer t))
+    :defer t
+    :init
+    (progn
+      (setq x-underline-at-descent-line t)
+      (setq solarized-high-contrast-mode-line t)
+      (setq solarized-use-more-italic t)
+      (setq solarized-emphasize-indicators t)
+      (setq solarized-scale-org-headlines nil))))
 
 (defun rogue/init-molokai-theme ()
   (use-package molokai-theme
@@ -189,7 +197,16 @@
            ("C-x C-3" . split-window-right)
            ("C-x C-0" . delete-window)
            :map god-local-mode-map
-           ("i" . god-mode-all))))
+           ("i" . god-mode-all))
+    :config
+    (progn
+      (defun god-update-cursor ()
+        (set-cursor-color (if (or god-local-mode buffer-read-only)
+                              "orange"
+                            "#839496")))
+
+      (add-hook 'god-mode-enabled-hook 'god-update-cursor)
+      (add-hook 'god-mode-disabled-hook 'god-update-cursor))))
 
 (defun rogue/init-tldr ()
   (use-package tldr
@@ -201,7 +218,20 @@
 
 (defun rogue/init-wttrin ()
   (use-package wttrin
-    :defer t))
+    :defer t
+    :config
+    (setq wttrin-default-cities '("Amherst?m" "Varanasi?m"))))
+
+(defun rogue/init-wolfram ()
+  (use-package wolfram
+    :defer t
+    :config
+    (progn
+      (require 'json)
+      (let* ((json-object-type 'hash-table)
+             (secrets (json-read-file user-secrets-path)))
+        (setq wolfram-alpha-app-id
+              (gethash "wolfram-alpha-app-id" secrets))))))
 
 ;; (defun rogue/init-spaceline-all-the-icons ()
 ;;   (progn

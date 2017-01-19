@@ -273,7 +273,9 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  )
+
+  ;; Secrets
+  (defconst user-secrets-path "~/.emacs.d/private/rogue/secrets.json"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -291,24 +293,6 @@ you should place you code here."
 
   ;; Set default cursor
   (set-cursor-color "#839496")
-
-  (defun god-update-cursor ()
-    (set-cursor-color (if (or god-local-mode buffer-read-only)
-                          "orange"
-                        "#839496")))
-
-  (add-hook 'god-mode-enabled-hook 'god-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'god-update-cursor)
-
-  ;; Solarized settings
-  (setq x-underline-at-descent-line t)
-  (setq solarized-high-contrast-mode-line t)
-  (setq solarized-use-more-italic t)
-  (setq solarized-emphasize-indicators t)
-  (setq solarized-scale-org-headlines nil)
-
-  ;; Weather in metric
-  (setq wttrin-default-cities '("Amherst?m" "Varanasi?m"))
 
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
@@ -488,6 +472,8 @@ you should place you code here."
 
   ;; Display time in modeline
   (display-time-mode 1)
+
+  (setq powerline-default-separator 'slant)
 
   ;; Neotree theme
   (setq neo-theme (if window-system 'icons 'arrow))
