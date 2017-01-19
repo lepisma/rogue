@@ -290,6 +290,7 @@ you should place you code here."
 
   ;; System monitor
   (symon-mode)
+  (fancy-battery-mode)
 
   ;; Set default cursor
   (set-cursor-color "#839496")
