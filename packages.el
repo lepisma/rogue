@@ -186,7 +186,9 @@
 
 (defun rogue/init-symon ()
   (use-package symon
-    :defer t))
+    :defer t
+    :config
+    (setq symon-sparkline-type 'plain)))
 
 (defun rogue/init-god-mode ()
   (use-package god-mode
