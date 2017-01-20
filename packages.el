@@ -2,9 +2,9 @@
 
 (setq rogue-packages
       '(multiple-cursors
-        (blackbird :location (recipe
-                              :fetcher github
-                              :repo "lepisma/blackbird.el"))
+        (read-lyrics :location (recipe
+                                :fetcher github
+                                :repo "lepisma/read-lyrics.el"))
         cricbuzz
         org-journal
         vue-mode
@@ -44,9 +44,9 @@
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this))))
 
-(defun rogue/init-blackbird ()
-  (use-package blackbird
-    :commands (blackbird-read-lyrics)))
+(defun rogue/init-read-lyrics ()
+  (use-package read-lyrics
+    :commands (read-lyrics-read-lyrics)))
 
 (defun rogue/init-cricbuzz ()
   (use-package cricbuzz
