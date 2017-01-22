@@ -23,3 +23,6 @@
 
 ;; Emmet
 (global-set-key (kbd "C-c e") 'emmet-expand-line)
+
+;; Don't kill my words
+(global-set-key (kbd "C-<backspace>") 'backward-delete-word)

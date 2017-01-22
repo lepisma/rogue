@@ -3,14 +3,12 @@
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
-
   (mapc 'kill-buffer
         (delq (current-buffer) (buffer-list))))
 
 (defun explore-here ()
   "Open file manager in current buffer's directory."
   (interactive)
-
   (if (eq system-type 'windows-nt)
       (shell-command "explorer .")
     (if (eq system-type 'gnu/linux)
@@ -20,7 +18,6 @@
 (defun org-insert-org ()
   "Create another org buffer and 'include' it in current. Ask for filename."
   (interactive)
-
   (let ((filename (concat (read-string "Enter filename (without `.org'): ") ".org")))
     (insert (concat "#+INCLUDE: \"./" filename "\""))
     (find-file filename) ; Open buffer with filename
@@ -29,7 +26,6 @@
 
 (defun org-get-scheduled-or-deadline ()
   "Return scheduled or deadline time from current point in order of priority"
-
   (let ((time (org-get-scheduled-time (point))))
     (if (not time)
         (setq time (org-get-deadline-time (point))))
@@ -40,7 +36,6 @@
 (defun org-set-kalarm ()
   "Set an alarm for current org entry (schedule/deadline) in kalarm"
   (interactive)
-
   (let ((time (org-get-scheduled-or-deadline))
         (message (substring-no-properties (org-get-heading t t)))
         (audio-file (expand-file-name "~/.emacs.d/private/rogue/data/alarm.ogg")))
@@ -56,7 +51,6 @@
 
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
-
   (helm-find-files-1 (concat
                       (file-name-as-directory (expand-file-name "~/.tofish"))
                       candidate
@@ -65,7 +59,6 @@
 (defun to-fish-jump ()
   "Jump to to-fish bookmarks"
   (interactive)
-
   (helm :sources (helm-build-sync-source "bookmarks"
                    :candidates (lambda ()
                                  (directory-files "~/.tofish"))
@@ -76,7 +69,6 @@
 (defun git-archive ()
   "Archive current repository"
   (interactive)
-
   (let ((repo-root (magit-toplevel)))
     (if repo-root
         (let ((output-file (read-file-name "Output file: ")))
@@ -91,12 +83,10 @@
 
 (defun fahrenheit-to-celcius (f)
   "Convert F to C"
-
   (/ (- f 32) 1.8))
 
 (defun transform-pair-units (pairs)
   "Transform unit pairs to SI. Just temp for now."
-
   (mapcar (lambda (pair)
             (let ((split (split-string (second pair) "°")))
               (if (string-equal (second split) "F")
@@ -110,7 +100,6 @@
 
 (defun show-weather-in-buffer (pairs location)
   "Display weather data in a new buffer"
-
   (let ((buffer (get-buffer-create "*Weather*")))
     (set-buffer buffer)
     (setq buffer-read-only nil)
@@ -128,7 +117,6 @@
 
 (defun mpc-send-message (channel message)
   "Send message to mpc"
-
   (if (eq 0 (call-process "mpc"
                           nil nil nil
                           "sendmessage"
@@ -139,19 +127,16 @@
 (defun mpdas-love ()
   "Love song on scrobbler service"
   (interactive)
-
   (mpc-send-message "mpdas" "love"))
 
 (defun mpdas-unlove ()
   "Unlove currently playing song"
   (interactive)
-
   (mpc-send-message "mpdas" "unlove"))
 
 (defun weather-amherst ()
   "Get local weather information for Amherst from CS station"
   (interactive)
-
   (let* ((rss-url "http://weather.cs.umass.edu/RSS/weewx_rss.xml")
          (location "Amherst, MA (USA)")
          (node (first (enlive-get-elements-by-tag-name
@@ -160,3 +145,15 @@
     (show-weather-in-buffer
      (mapcar (lambda (item)
                (mapcar 'string-trim (split-string item ": "))) items) location)))
+
+(defun delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With argument, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
+
+(defun backward-delete-word (arg)
+  "Delete characters backward until encountering the end of a word.
+With argument, do this that many times."
+  (interactive "p")
+  (delete-word (- arg)))
