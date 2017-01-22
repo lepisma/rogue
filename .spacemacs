@@ -274,8 +274,9 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  ;; Secrets
-  (defconst user-secrets-path "~/.emacs.d/private/rogue/secrets.json"))
+  ;; Directories
+  (defconst user-layer-path "~/.emacs.d/private/rogue/")
+  (defconst user-secrets-path (concat user-layer-path "secrets.json")))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
