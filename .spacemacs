@@ -293,6 +293,9 @@ you should place you code here."
   ;; Set default cursor
   (set-cursor-color "#839496")
 
+  ;; Wdired
+  (setq wdired-allow-to-change-permissions t)
+
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
