@@ -508,10 +508,10 @@ you should place you code here."
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '(
-     (emacs-lisp . t)
+   '((emacs-lisp . t)
      (q . t)
      (python . t)
+     (ditaa . t)
      (sh . t)
      (js . t)
      (latex . t)
