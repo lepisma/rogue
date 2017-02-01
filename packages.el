@@ -29,11 +29,8 @@
         bm
         helm-bm
         tide
-        symon
-        god-mode
         tldr
-        (spaceline-all-the-icons :location local)
-        ox-ioslide
+        ;; (spaceline-all-the-icons :location local)
         wttrin
         wolfram))
 
@@ -58,7 +55,7 @@
 
 (defun rogue/init-vue-mode ()
   (use-package vue-mode
-    :defer t))
+    :mode ("\\.vue\\'" . vue-mode)))
 
 (defun rogue/init-solarized-theme ()
   (use-package solarized-theme
@@ -184,38 +181,8 @@
   (use-package tide
     :defer t))
 
-(defun rogue/init-symon ()
-  (use-package symon
-    :defer t
-    :config
-    (setq symon-sparkline-type 'plain)))
-
-(defun rogue/init-god-mode ()
-  (use-package god-mode
-    :defer t
-    :bind (("<escape>" . god-mode-all)
-           ("C-x C-1" . delete-other-windows)
-           ("C-x C-2" . split-window-below)
-           ("C-x C-3" . split-window-right)
-           ("C-x C-0" . delete-window)
-           :map god-local-mode-map
-           ("i" . god-mode-all))
-    :config
-    (progn
-      (defun god-update-cursor ()
-        (set-cursor-color (if (or god-local-mode buffer-read-only)
-                              "orange"
-                            "#839496")))
-
-      (add-hook 'god-mode-enabled-hook 'god-update-cursor)
-      (add-hook 'god-mode-disabled-hook 'god-update-cursor))))
-
 (defun rogue/init-tldr ()
   (use-package tldr
-    :defer t))
-
-(defun rogue/init-ox-ioslide ()
-  (use-package ox-ioslide
     :defer t))
 
 (defun rogue/init-wttrin ()

@@ -112,7 +112,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'emacs
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -287,11 +287,10 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
   ;; System monitor
-  (symon-mode)
   (fancy-battery-mode)
 
   ;; Set default cursor
-  (set-cursor-color "#839496")
+  (setq cursor-type 'bar)
 
   ;; Wdired
   (setq wdired-allow-to-change-permissions t)
@@ -474,8 +473,6 @@ you should place you code here."
 
   ;; Display time in modeline
   (display-time-mode 1)
-
-  (setq powerline-default-separator 'slant)
 
   ;; Neotree theme
   (setq neo-theme (if window-system 'icons 'arrow))
