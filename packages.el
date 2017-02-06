@@ -19,10 +19,6 @@
         (ob-q :location (recipe
                          :fetcher github
                          :repo "lepisma/ob-q.el"))
-        (u :location (recipe
-                      :fetcher github
-                      :repo "lepisma/u"
-                      :branch "elisp"))
         writegood-mode
         writeroom-mode
         snakemake-mode
@@ -100,10 +96,6 @@
 
 (defun rogue/init-ob-q ()
   (use-package ob-q
-    :defer t))
-
-(defun rogue/init-u ()
-  (use-package u
     :defer t))
 
 (defun rogue/init-writegood-mode ()
