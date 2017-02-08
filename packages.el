@@ -1,113 +1,40 @@
 ;;; packages.el --- rogue Layer packages File for Spacemacs
 
 (setq rogue-packages
-      '(multiple-cursors
-        (read-lyrics :location (recipe
-                                :fetcher github
-                                :repo "lepisma/read-lyrics.el"))
+      '(all-the-icons
+        bm
+        browse-at-remote
         cricbuzz
-        org-journal
-        vue-mode
-        solarized-theme
-        molokai-theme
-        all-the-icons
         enlive
-        vlf
         hackernews
-        swiper
-        paredit
+        helm-bm
+        molokai-theme
+        multiple-cursors
         (ob-q :location (recipe
                          :fetcher github
                          :repo "lepisma/ob-q.el"))
-        writegood-mode
-        writeroom-mode
+        org-journal
+        paredit
+        (read-lyrics :location (recipe
+                                :fetcher github
+                                :repo "lepisma/read-lyrics.el"))
         snakemake-mode
-        bm
-        helm-bm
+        solarized-theme
+        ;; (spaceline-all-the-icons :location local)
+        swiper
         tide
         tldr
-        ;; (spaceline-all-the-icons :location local)
-        wttrin
-        wolfram))
+        vlf
+        vue-mode
+        wolfram
+        writegood-mode
+        writeroom-mode
+        wttrin))
 
 ;; Initialize packages
-(defun rogue/init-multiple-cursors ()
-  (use-package multiple-cursors
-    :defer t
-    :bind (("C->" . mc/mark-next-like-this)
-           ("C-<" . mc/mark-previous-like-this))))
-
-(defun rogue/init-read-lyrics ()
-  (use-package read-lyrics
-    :commands (read-lyrics-read-lyrics)))
-
-(defun rogue/init-cricbuzz ()
-  (use-package cricbuzz
-    :defer t))
-
-(defun rogue/init-org-journal ()
-  (use-package org-journal
-    :defer t))
-
-(defun rogue/init-vue-mode ()
-  (use-package vue-mode
-    :mode ("\\.vue\\'" . vue-mode)))
-
-(defun rogue/init-solarized-theme ()
-  (use-package solarized-theme
-    :defer t
-    :init
-    (progn
-      (setq x-underline-at-descent-line t)
-      (setq solarized-high-contrast-mode-line t)
-      (setq solarized-use-more-italic t)
-      (setq solarized-emphasize-indicators t)
-      (setq solarized-scale-org-headlines nil))))
-
-(defun rogue/init-molokai-theme ()
-  (use-package molokai-theme
-    :defer t))
 
 (defun rogue/init-all-the-icons ()
   (use-package all-the-icons
-    :defer t))
-
-(defun rogue/init-enlive ()
-  (use-package enlive))
-
-(defun rogue/init-vlf ()
-  (use-package vlf
-    :defer t))
-
-(defun rogue/init-hackernews ()
-  (use-package hackernews
-    :defer t
-    :bind ("C-c h" . hackernews)))
-
-(defun rogue/init-swiper ()
-  (use-package swiper
-    :defer t
-    :bind (("C-s" . swiper)
-           ("C-r" . swiper))))
-
-(defun rogue/init-paredit ()
-  (use-package paredit
-    :defer t))
-
-(defun rogue/init-ob-q ()
-  (use-package ob-q
-    :defer t))
-
-(defun rogue/init-writegood-mode ()
-  (use-package writegood-mode
-    :defer t))
-
-(defun rogue/init-writeroom-mode ()
-  (use-package writeroom-mode
-    :defer t))
-
-(defun rogue/init-snakemake-mode ()
-  (use-package snakemake-mode
     :defer t))
 
 (defun rogue/init-bm ()
@@ -165,9 +92,80 @@
 
     :bind ("C-c b" . bm-toggle)))
 
+(defun rogue/init-browse-at-remote ()
+  (use-package browse-at-remote
+    :defer t))
+
+(defun rogue/init-cricbuzz ()
+  (use-package cricbuzz
+    :defer t))
+
+(defun rogue/init-enlive ()
+  (use-package enlive))
+
+(defun rogue/init-hackernews ()
+  (use-package hackernews
+    :defer t
+    :bind ("C-c h" . hackernews)))
+
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
     :defer t))
+
+(defun rogue/init-molokai-theme ()
+  (use-package molokai-theme
+    :defer t))
+
+(defun rogue/init-multiple-cursors ()
+  (use-package multiple-cursors
+    :defer t
+    :bind (("C->" . mc/mark-next-like-this)
+           ("C-<" . mc/mark-previous-like-this))))
+
+(defun rogue/init-ob-q ()
+  (use-package ob-q
+    :defer t))
+
+(defun rogue/init-org-journal ()
+  (use-package org-journal
+    :defer t))
+
+(defun rogue/init-paredit ()
+  (use-package paredit
+    :defer t))
+
+(defun rogue/init-read-lyrics ()
+  (use-package read-lyrics
+    :commands (read-lyrics-read-lyrics)))
+
+(defun rogue/init-snakemake-mode ()
+  (use-package snakemake-mode
+    :defer t))
+
+(defun rogue/init-solarized-theme ()
+  (use-package solarized-theme
+    :defer t
+    :init
+    (progn
+      (setq x-underline-at-descent-line t)
+      (setq solarized-high-contrast-mode-line t)
+      (setq solarized-use-more-italic t)
+      (setq solarized-emphasize-indicators t)
+      (setq solarized-scale-org-headlines nil))))
+
+;; (defun rogue/init-spaceline-all-the-icons ()
+;;   (progn
+;;     (use-package spaceline-all-the-icons
+;;       :after spaceline)
+;;     (use-package spaceline
+;;       :after powerline
+;;       :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
+
+(defun rogue/init-swiper ()
+  (use-package swiper
+    :defer t
+    :bind (("C-s" . swiper)
+           ("C-r" . swiper))))
 
 (defun rogue/init-tide ()
   (use-package tide
@@ -177,11 +175,13 @@
   (use-package tldr
     :defer t))
 
-(defun rogue/init-wttrin ()
-  (use-package wttrin
-    :defer t
-    :config
-    (setq wttrin-default-cities '("Amherst?m" "Varanasi?m"))))
+(defun rogue/init-vlf ()
+  (use-package vlf
+    :defer t))
+
+(defun rogue/init-vue-mode ()
+  (use-package vue-mode
+    :mode ("\\.vue\\'" . vue-mode)))
 
 (defun rogue/init-wolfram ()
   (use-package wolfram
@@ -194,10 +194,17 @@
         (setq wolfram-alpha-app-id
               (gethash "wolfram-alpha-app-id" secrets))))))
 
-;; (defun rogue/init-spaceline-all-the-icons ()
-;;   (progn
-;;     (use-package spaceline-all-the-icons
-;;       :after spaceline)
-;;     (use-package spaceline
-;;       :after powerline
-;;       :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
+
+(defun rogue/init-writegood-mode ()
+  (use-package writegood-mode
+    :defer t))
+
+(defun rogue/init-writeroom-mode ()
+  (use-package writeroom-mode
+    :defer t))
+
+(defun rogue/init-wttrin ()
+  (use-package wttrin
+    :defer t
+    :config
+    (setq wttrin-default-cities '("Amherst?m" "Varanasi?m"))))
