@@ -28,5 +28,5 @@
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
 ;; Move lines
-(global-set-key (kbd "M-<up>") 'move-line-up)
-(global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-<up>") 'move-text-line-up)
+(global-set-key (kbd "M-<down>") 'move-text-line-down)
