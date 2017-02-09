@@ -6,6 +6,10 @@
         browse-at-remote
         cricbuzz
         enlive
+        (flycheck-coala :location (recipe
+                                   :fetcher github
+                                   :repo "coala/coala-emacs"))
+        flycheck-mypy
         hackernews
         helm-bm
         molokai-theme
@@ -102,6 +106,12 @@
 
 (defun rogue/init-enlive ()
   (use-package enlive))
+
+(defun rogue/init-flycheck-coala ()
+  (use-package flycheck-coala))
+
+(defun rogue/init-flycheck-mypy ()
+  (use-package flycheck-mypy))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
