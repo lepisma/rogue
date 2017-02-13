@@ -12,6 +12,7 @@
         flycheck-mypy
         hackernews
         helm-bm
+        magithub
         molokai-theme
         multiple-cursors
         (ob-q :location (recipe
@@ -121,6 +122,11 @@
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
     :defer t))
+
+(defun rogue/init-magithub ()
+  (use-package magithub
+    :after magit
+    :config (magithub-feature-autoinject t)))
 
 (defun rogue/init-molokai-theme ()
   (use-package molokai-theme
