@@ -502,15 +502,16 @@ you should place you code here."
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((emacs-lisp . t)
-     (q . t)
-     (python . t)
+   '((C . t)
      (ditaa . t)
-     (sh . t)
+     (dot . t)
+     (emacs-lisp . t)
+     (gnuplot . t)
      (js . t)
      (latex . t)
-     (gnuplot . t)
-     (C . t)
+     (python . t)
+     (q . t)
+     (sh . t)
      (sqlite . t)))
 
   ;; Clock
