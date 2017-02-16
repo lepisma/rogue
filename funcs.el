@@ -144,7 +144,16 @@
          (items (split-string (enlive-text node) "\n" t)))
     (show-weather-in-buffer
      (mapcar (lambda (item)
-               (mapcar 'string-trim (split-string item ": "))) items) location)))
+               (mapcar 'string-trim (split-string item ": "))) items) location)
+    (weather-amherst-mode)))
+
+(defvar weather-amherst-mode-map (make-sparse-keymap))
+(define-key weather-amherst-mode-map (kbd "q") 'kill-this-buffer)
+
+(define-minor-mode weather-amherst-mode
+  "Minor mode for adding keybindings"
+  nil nil
+  weather-amherst-mode-map)
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
