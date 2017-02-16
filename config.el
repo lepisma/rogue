@@ -3,7 +3,15 @@
 (defface cursive
   '((t :family "Lora"
        :slant italic))
-  "Cursive for org")
+  "Cursive for org in light mode")
+
+;; TODO: Create a common palette
+;; (setq palette-dark
+;;       '((white . "#fff")
+;;         (org-1 . "#fff")
+;;         (org-2 . "#0ee")
+;;         (org-3 . "#8470ff")
+;;         (org-2 . "#0ee")))
 
 ;; Custom theming
 (setq theming-modifications
@@ -90,22 +98,23 @@
          (widget-field
           :background "#1f2d2c")
          (org-document-title
-          :inherit (cursive)
+          :inherit (variable-pitch)
           :height 1.5)
          (org-level-1
-          :inherit (cursive)
-          :height 1.3)
-         (org-level-2
-          :foreground "#65F7DC"
-          :inherit (cursive)
+          :foreground "#fff"
+          :inherit (variable-pitch)
           :height 1.2)
+         (org-level-2
+          :foreground "#0ee"
+          :inherit (variable-pitch)
+          :height 1.1)
          (org-level-3
-          :foreground "#FF7797"
-          :inherit (cursive)
+          :foreground "#8470ff"
+          :inherit (variable-pitch)
           :height 1.1)
          (org-level-4
-          :foreground "#EEE"
-          :inherit (cursive)
+          :foreground "#0ee"
+          :inherit (variable-pitch)
           :height 1.1)
          (org-done
           :foreground "lime green"
