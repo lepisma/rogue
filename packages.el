@@ -15,6 +15,9 @@
         magithub
         molokai-theme
         multiple-cursors
+        (ob-async :location (recipe
+                             :fetcher github
+                             :repo "astahlman/ob-async"))
         (ob-q :location (recipe
                          :fetcher github
                          :repo "lepisma/ob-q.el"))
@@ -137,6 +140,12 @@
     :defer t
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this))))
+
+(defun rogue/init-ob-async ()
+  (use-package ob-async
+    :config (add-to-list
+             'org-ctrl-c-ctrl-c-hook
+             'org-babel-execute-src-block:async)))
 
 (defun rogue/init-ob-q ()
   (use-package ob-q
