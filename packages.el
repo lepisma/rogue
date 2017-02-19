@@ -2,6 +2,7 @@
 
 (setq rogue-packages
       '(all-the-icons
+        all-the-icons-dired
         bm
         browse-at-remote
         cricbuzz
@@ -44,6 +45,11 @@
 (defun rogue/init-all-the-icons ()
   (use-package all-the-icons
     :defer t))
+
+(defun rogue/init-all-the-icons-dired ()
+  (use-package all-the-icons-dired
+    :defer t
+    :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)))
 
 (defun rogue/init-bm ()
   (use-package bm
