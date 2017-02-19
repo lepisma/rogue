@@ -495,6 +495,13 @@ you should place you code here."
   (setq org-journal-dir (concat notes-dir "diary/"))
   (setq org-journal-enable-encryption t)
 
+  ;; Eshell stuff
+  (use-package em-tramp
+    :config
+    (setq eshell-prefer-lisp-functions t)
+    (setq password-cache t)
+    (setq password-cache-expiry 3600))
+
   ;; Babel
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
@@ -514,23 +521,18 @@ you should place you code here."
      (sh . t)
      (sqlite . t)))
 
-  ;; Clock
+  ;; Org clock
   (setq spaceline-org-clock-p t)
 
   (with-eval-after-load 'org
-
     ;; Indent
     (setq org-startup-indented t)
-
     ;; Org idle time
     (setq org-clock-idle-time 5)
-
     ;; Org mode symbols
     (setq org-bullets-bullet-list '("•"))
-
     ;; Pretty symbols
     (setq org-pretty-entities t)
-
     ;; Modules
     (customize-set-variable 'org-modules
                             '(org-bibtex
