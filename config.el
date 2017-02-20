@@ -103,19 +103,19 @@
          (org-level-1
           :foreground "#fff"
           :inherit (variable-pitch)
-          :height 1.2)
+          :height 1.0)
          (org-level-2
           :foreground "#0ee"
           :inherit (variable-pitch)
-          :height 1.1)
+          :height 1.0)
          (org-level-3
           :foreground "#8470ff"
           :inherit (variable-pitch)
-          :height 1.1)
+          :height 1.0)
          (org-level-4
           :foreground "#0ee"
           :inherit (variable-pitch)
-          :height 1.1)
+          :height 1.0)
          (org-done
           :foreground "lime green"
           :weight bold)
