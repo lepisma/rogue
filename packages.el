@@ -7,9 +7,6 @@
         browse-at-remote
         cricbuzz
         enlive
-        ;; (flycheck-coala :location (recipe
-        ;;                            :fetcher github
-        ;;                            :repo "coala/coala-emacs"))
         flycheck-mypy
         hackernews
         helm-bm
@@ -23,13 +20,13 @@
                          :fetcher github
                          :repo "lepisma/ob-q.el"))
         org-journal
-        paredit
+        pretty-mode
         (read-lyrics :location (recipe
                                 :fetcher github
                                 :repo "lepisma/read-lyrics.el"))
         snakemake-mode
         solarized-theme
-        ;; (spaceline-all-the-icons :location local)
+        (spaceline-all-the-icons :location local)
         swiper
         tide
         tldr
@@ -43,41 +40,31 @@
 ;; Initialize packages
 
 (defun rogue/init-all-the-icons ()
-  (use-package all-the-icons
-    :defer t))
+  (use-package all-the-icons))
 
 (defun rogue/init-all-the-icons-dired ()
   (use-package all-the-icons-dired
-    :defer t
-    :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)))
+    :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)))
 
 (defun rogue/init-bm ()
   (use-package bm
     :defer t
-
     :init
     ;; restore on load (even before you require bm)
     (setq bm-restore-repository-on-load t)
-
     :config
     ;; Allow cross-buffer 'next'
     (setq bm-cycle-all-buffers t)
-
     ;; where to store persistant files
     (setq bm-repository-file "~/.emacs.d/bm-repository")
-
     ;; save bookmarks
     (setq-default bm-buffer-persistence t)
-
     ;; Loading the repository from file when on start up.
     (add-hook' after-init-hook 'bm-repository-load)
-
     ;; Restoring bookmarks when on file find.
     (add-hook 'find-file-hooks 'bm-buffer-restore)
-
     ;; Saving bookmarks
     (add-hook 'kill-buffer-hook #'bm-buffer-save)
-
     ;; Saving the repository to file when on exit.
     ;; kill-buffer-hook is not called when Emacs is killed, so we
     ;; must save all bookmarks first.
@@ -89,11 +76,9 @@
     ;; but it makes the bookmark data in repository more in sync with the file
     ;; state.
     (add-hook 'after-save-hook #'bm-buffer-save)
-
     ;; Restoring bookmarks
     (add-hook 'find-file-hooks   #'bm-buffer-restore)
     (add-hook 'after-revert-hook #'bm-buffer-restore)
-
     ;; The `after-revert-hook' is not necessary to use to achieve persistence,
     ;; but it makes the bookmark data in repository more in sync with the file
     ;; state. This hook might cause trouble when using packages
@@ -103,7 +88,6 @@
     ;; Then new bookmarks can be saved before the buffer is reverted.
     ;; Make sure bookmarks is saved before check-in (and revert-buffer)
     (add-hook 'vc-before-checkin-hook #'bm-buffer-save)
-
     :bind ("C-c b" . bm-toggle)))
 
 (defun rogue/init-browse-at-remote ()
@@ -117,15 +101,11 @@
 (defun rogue/init-enlive ()
   (use-package enlive))
 
-;; (defun rogue/init-flycheck-coala ()
-;;   (use-package flycheck-coala))
-
 (defun rogue/init-flycheck-mypy ()
   (use-package flycheck-mypy))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
-    :defer t
     :bind ("C-c h" . hackernews)))
 
 (defun rogue/init-helm-bm ()
@@ -138,12 +118,10 @@
     :config (magithub-feature-autoinject t)))
 
 (defun rogue/init-molokai-theme ()
-  (use-package molokai-theme
-    :defer t))
+  (use-package molokai-theme))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
-    :defer t
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this))))
 
@@ -161,9 +139,47 @@
   (use-package org-journal
     :defer t))
 
-(defun rogue/init-paredit ()
-  (use-package paredit
-    :defer t))
+(defun rogue/init-pretty-mode ()
+  (use-package pretty-mode
+    :config
+    
+    (add-hook
+     'python-mode-hook
+     (lambda ()
+       (mapc (lambda (pair) (push pair prettify-symbols-alist))
+             '(;; Syntax
+               ("def" .      #x2131)
+               ("not" .      #x2757)
+               ("in" .       #x2208)
+               ("not in" .   #x2209)
+               ("return" .   #x27fc)
+               ("yield" .    #x27fb)
+               ("for" .      #x2200)
+               ;; Base Types
+               ("int" .      #x2124)
+               ("float" .    #x211d)
+               ("str" .      #x1d54a)
+               ("True" .     #x1d54b)
+               ("False" .    #x1d53d)
+               ;; Mypy
+               ("Dict" .     #x1d507)
+               ("List" .     #x2112)
+               ("Tuple" .    #x2a02)
+               ("Set" .      #x2126)
+               ("Iterable" . #x1d50a)
+               ("Any" .      #x2754)
+               ("Union" .    #x22c3)))))
+
+    (global-pretty-mode t)
+    (global-prettify-symbols-mode 1)
+
+    (pretty-deactivate-groups
+     '(:equality :ordering :ordering-double :ordering-triple
+                 :arrows :arrows-twoheaded :punctuation
+                 :logic :sets))
+
+    (pretty-activate-groups
+     '(:sub-and-superscripts :greek :arithmetic-nary))))
 
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
@@ -175,26 +191,23 @@
 
 (defun rogue/init-solarized-theme ()
   (use-package solarized-theme
-    :defer t
     :init
-    (progn
-      (setq x-underline-at-descent-line t)
-      (setq solarized-high-contrast-mode-line t)
-      (setq solarized-use-more-italic t)
-      (setq solarized-emphasize-indicators t)
-      (setq solarized-scale-org-headlines nil))))
+    (setq x-underline-at-descent-line t)
+    (setq solarized-high-contrast-mode-line t)
+    (setq solarized-use-more-italic t)
+    (setq solarized-emphasize-indicators t)
+    (setq solarized-scale-org-headlines nil)))
 
-;; (defun rogue/init-spaceline-all-the-icons ()
-;;   (progn
-;;     (use-package spaceline-all-the-icons
-;;       :after spaceline)
-;;     (use-package spaceline
-;;       :after powerline
-;;       :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
+(defun rogue/init-spaceline-all-the-icons ()
+  (progn
+    (use-package spaceline-all-the-icons
+      :after spaceline)
+    (use-package spaceline
+      :after powerline
+      :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
 
 (defun rogue/init-swiper ()
   (use-package swiper
-    :defer t
     :bind (("C-s" . swiper)
            ("C-r" . swiper))))
 
@@ -218,13 +231,11 @@
   (use-package wolfram
     :defer t
     :config
-    (progn
-      (require 'json)
-      (let* ((json-object-type 'hash-table)
-             (secrets (json-read-file user-secrets-path)))
-        (setq wolfram-alpha-app-id
-              (gethash "wolfram-alpha-app-id" secrets))))))
-
+    (require 'json)
+    (let* ((json-object-type 'hash-table)
+           (secrets (json-read-file user-secrets-path)))
+      (setq wolfram-alpha-app-id
+            (gethash "wolfram-alpha-app-id" secrets)))))
 
 (defun rogue/init-writegood-mode ()
   (use-package writegood-mode

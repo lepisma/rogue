@@ -51,8 +51,6 @@
 (spaceline-define-segment
     ati-projectile "An `all-the-icons' segment for current `projectile' project"
     (concat
-     (propertize "|" 'face '(:height 1.1 :inherit))
-     " "
      (if (and (fboundp 'projectile-project-name)
               (projectile-project-name))
          (propertize (format "%s" (concat (projectile-project-name) ))
@@ -212,46 +210,6 @@
 ;;---------------------;;
 ;; Right First Segment ;;
 ;;---------------------;;
-(defun spaceline--get-temp ()
-  "Function to return the Temperature formatted for ATI Spacline."
-  (let ((temp (yahoo-weather-info-format yahoo-weather-info "%(temperature)")))
-    (unless (string= "" temp) (format "%s°C" (round (string-to-number temp))))))
-
-(spaceline-define-segment
-    ati-weather "Weather"
-    (let* ((weather (yahoo-weather-info-format yahoo-weather-info "%(weather)"))
-           (temp (spaceline--get-temp))
-           (help (concat "Weather is '" weather "' and the temperature is " temp))
-           (icon (all-the-icons-icon-for-weather (downcase weather))))
-      (concat
-       (if (> (length icon) 1)
-           (propertize icon 'help-echo help 'face `(:height 0.9 :inherit) 'display '(raise 0.1))
-           (propertize icon
-                    'help-echo help
-                    'face `(:height 0.9 :family ,(all-the-icons-wicon-family) :inherit)
-                    'display '(raise 0.0)))
-       (propertize " " 'help-echo help)
-       (propertize (spaceline--get-temp) 'face '(:height 0.9 :inherit) 'help-echo help)))
-    :when (and active (boundp 'yahoo-weather-info) yahoo-weather-mode)
-    :enabled nil
-    :tight t)
-
-(spaceline-define-segment
-    ati-suntime "Suntime"
-    (let ((help (yahoo-weather-info-format yahoo-weather-info "Sunrise at %(sunrise-time), Sunset at %(sunset-time)")))
-      (concat
-       (propertize (yahoo-weather-info-format yahoo-weather-info "%(sunrise-time) ")
-                   'face '(:height 0.9 :inherit) 'display '(raise 0.1) 'help-echo help)
-       (propertize (format "%s" (all-the-icons-wicon "sunrise" :v-adjust 0.1))
-                   'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit) 'help-echo help)
-       (propertize " · " 'help-echo help)
-       (propertize (yahoo-weather-info-format yahoo-weather-info "%(sunset-time) ")
-                   'face '(:height 0.9 :inherit) 'display '(raise 0.1) 'help-echo help)
-       (propertize (format "%s" (all-the-icons-wicon "sunset" :v-adjust 0.1))
-                   'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit) 'help-echo help)))
-    :when (and active (boundp 'yahoo-weather-info) yahoo-weather-mode)
-    :enabled nil
-    :tight t )
 
 (spaceline-define-segment
     ati-time "Time"
@@ -308,6 +266,29 @@
          )))
     :global-override fancy-battery-mode-line :when (and active (fboundp 'fancy-battery-mode) fancy-battery-mode))
 
+(defvar spaceline-org-clock-format-function
+  'org-clock-get-clock-string
+  "The function called by the `org-clock' segment to determine what to show.")
+
+(spaceline-define-segment ati-org-clock
+  "Show information about the current org clock task.  Configure
+`spaceline-org-clock-format-function' to configure. Requires a currently running
+org clock.
+This segment overrides the modeline functionality of `org-mode-line-string'."
+  (when (and (fboundp 'org-clocking-p)
+             (org-clocking-p))
+    (propertize (substring-no-properties (funcall spaceline-org-clock-format-function))
+                'face '(:height 0.9 :inherit) 'display '(raise 0.2)))
+  :global-override org-mode-line-string)
+
+(spaceline-define-segment ati-org-pomodoro
+  "Shows the current pomodoro.  Requires `org-pomodoro' to be active.
+This segment overrides the modeline functionality of `org-pomodoro' itself."
+  (when (and (fboundp 'org-pomodoro-active-p)
+             (org-pomodoro-active-p))
+    (nth 1 org-pomodoro-mode-line))
+  :global-override org-pomodoro-mode-line)
+
 (defun spaceline--direction (dir)
   "Inverts DIR from right to left & vice versa."
   (if spaceline-invert-direction (if (equal dir "right") "left" "right") dir))
@@ -342,9 +323,9 @@ the directions of the separator."
 (define-separator "left-inactive" "right" 'powerline-inactive1 'powerline-inactive2 t)
 (define-separator "right-inactive" "left" 'powerline-inactive2 'mode-line-inactive t)
 
-(define-separator "left-1" "right" 'spaceline-highlight-face 'powerline-active1)
-(define-separator "left-2" "right" 'powerline-active1 'spaceline-highlight-face)
-(define-separator "left-3" "right" 'spaceline-highlight-face 'mode-line)
+(define-separator "left-1" "right" highlight-face 'powerline-active1)
+(define-separator "left-2" "right" 'powerline-active1 highlight-face)
+(define-separator "left-3" "right" highlight-face 'mode-line)
 (define-separator "left-4" "right" 'mode-line 'powerline-active2)
 
 (define-separator "right-1" "left" 'powerline-active2 'powerline-active1)
@@ -361,20 +342,20 @@ the directions of the separator."
    ((ati-process ati-position ati-region-info) :face highlight-face :separator " | ")
    ati-left-3-separator
    ati-left-inactive-separator
-   ((ati-vc-icon ati-flycheck-status ati-package-updates purpose) :separator " · " :face other-face)
+   ((ati-vc-icon
+     ati-flycheck-status
+     ati-package-updates
+     purpose) :separator " · " :face other-face)
+   (((ati-org-clock :when active)
+     (ati-org-pomodoro :when active))
+    :separator " · " :face other-face)
    ati-left-4-separator)
 
  '(ati-right-1-separator
-   ((ati-suntime ati-weather) :separator " · " :face other-face)
    ati-right-2-separator
    ati-right-inactive-separator
    ((ati-battery-status ati-time) :separator " | " :face other-face)
    ))
 
-;; (setq mode-line-format '("%e" (:eval (spaceline-ml-main))))
-
 (provide 'spaceline-all-the-icons)
 ;;; spaceline-all-the-icons.el ends here
-;; Local Variables:
-;; indent-tabs-mode: nil
-;; End:
