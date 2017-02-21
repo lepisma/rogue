@@ -475,8 +475,8 @@ you should place you code here."
   (setq powerline-default-separator 'slant)
 
   ;; Colors
-  (set-face-attribute 'spacemacs-normal-face nil :background "VioletRed1")
-  (set-face-attribute 'spacemacs-hybrid-face nil :background "LightSeaGreen")
+  (set-face-attribute 'spacemacs-normal-face nil :background "black" :foreground "white")
+  (set-face-attribute 'spacemacs-hybrid-face nil :background "DodgerBlue2" :foreground "white")
 
   ;; Disable horizontal scroll bar
   (horizontal-scroll-bar-mode -1)
