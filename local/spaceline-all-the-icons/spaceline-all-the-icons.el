@@ -281,9 +281,9 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
   (when (and (fboundp 'org-clocking-p)
              (org-clocking-p))
     (concat
-     (propertize (all-the-icons-octicon "clock")
-                 'face `(:family ,(all-the-icons-octicon-family) :height 0.8 :inherit)
-                 'display '(raise 0.1))
+     (propertize (all-the-icons-faicon "hourglass-half")
+                 'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
+                 'display '(raise 0.2))
      " "
      (propertize (s-truncate
                   40 (substring-no-properties (funcall spaceline-org-clock-format-function)))
