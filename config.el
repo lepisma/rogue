@@ -5,14 +5,6 @@
        :slant italic))
   "Cursive for org in light mode")
 
-;; TODO: Create a common palette
-;; (setq palette-dark
-;;       '((white . "#fff")
-;;         (org-1 . "#fff")
-;;         (org-2 . "#0ee")
-;;         (org-3 . "#8470ff")
-;;         (org-2 . "#0ee")))
-
 ;; Custom theming
 (setq theming-modifications
       '((molokai
