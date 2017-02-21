@@ -22,9 +22,10 @@
 
 ;;; Code:
 
+(require 'all-the-icons)
+(require 's)
 (require 'spaceline)
 (require 'spaceline-config)
-(require 'all-the-icons)
 
 ;;---------------;;
 ;; First Segment ;;
@@ -131,7 +132,9 @@
   "Function to return the Spaceline formatted GIT Version Control text."
   (let ((branch (mapconcat 'concat (cdr (split-string vc-mode "[:-]")) "-")))
     (concat
-     (propertize (all-the-icons-alltheicon "git") 'face '(:height 1.1 :inherit) 'display '(raise 0.1))
+     (propertize (format "%s" (all-the-icons-faicon "git"))
+                 'face `(:family ,(all-the-icons-faicon-family) :height 1.0 :inherit)
+                 'display '(raise 0.2))
      (propertize " · ")
      (propertize (format "%s" (all-the-icons-octicon "git-branch"))
                  'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :inherit)
@@ -200,7 +203,7 @@
         (propertize (format "%s" (all-the-icons-octicon "package"))
                     'face `(:family ,(all-the-icons-octicon-family) :height 1.1 :inherit)
                     'display '(raise 0.1))
-        (propertize (format " %d updates " num) 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))
+        (propertize (format " %d updates" num) 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))
        'help-echo "Open Packages Menu"
        'mouse-face '(:box 1)
        'local-map (make-mode-line-mouse-map
@@ -217,7 +220,7 @@
            (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.0)))
       (concat
        (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.1))
-       (propertize (format "%s" icon)
+       (propertize (format "%s " icon)
                    'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
                    'display '(raise 0.1))))
     :tight t)
@@ -277,8 +280,14 @@ org clock.
 This segment overrides the modeline functionality of `org-mode-line-string'."
   (when (and (fboundp 'org-clocking-p)
              (org-clocking-p))
-    (propertize (substring-no-properties (funcall spaceline-org-clock-format-function))
-                'face '(:height 0.9 :inherit) 'display '(raise 0.2)))
+    (concat
+     (propertize (all-the-icons-octicon "clock")
+                 'face `(:family ,(all-the-icons-octicon-family) :height 0.8 :inherit)
+                 'display '(raise 0.1))
+     " "
+     (propertize (s-truncate
+                  40 (substring-no-properties (funcall spaceline-org-clock-format-function)))
+                 'face '(:height 0.9 :inherit) 'display '(raise 0.2))))
   :global-override org-mode-line-string)
 
 (spaceline-define-segment ati-org-pomodoro
@@ -286,7 +295,8 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 This segment overrides the modeline functionality of `org-pomodoro' itself."
   (when (and (fboundp 'org-pomodoro-active-p)
              (org-pomodoro-active-p))
-    (nth 1 org-pomodoro-mode-line))
+    (propertize (nth 1 org-pomodoro-mode-line)
+                'face '(:height 0.9 :inherit) 'display '(raise 0.2)))
   :global-override org-pomodoro-mode-line)
 
 (defun spaceline--direction (dir)
@@ -307,7 +317,7 @@ the directions of the separator."
          ,(intern (format "ati-%s-separator" name))
        (let ((dir (if spaceline-invert-direction (spaceline--direction ,dir) ,dir))
              (sep (spaceline--separator-type)))
-         (propertize (all-the-icons-alltheicon (format "%s-%s" sep dir) :v-adjust 0.0)
+         (propertize (all-the-icons-alltheicon (format "%s-%s" sep dir) :v-adjust -0.0)
                      'face `(:height 1.5
                              :family
                              ,(all-the-icons-alltheicon-family)
@@ -330,12 +340,12 @@ the directions of the separator."
 
 (define-separator "right-1" "left" 'powerline-active2 'powerline-active1)
 (define-separator "right-2" "left" 'powerline-active1 'mode-line)
+(define-separator "right-4" "right" 'powerline-active2 'mode-line)
 
 (spaceline-compile
  "ati"
  '(
    ((ati-modified ati-window-numbering ati-buffer-size) :face highlight-face :skip-alternate t)
-   ;; left-active-3
    ati-left-1-separator
    ((ati-projectile ati-mode-icon ati-buffer-id) :face default-face)
    ati-left-2-separator
@@ -344,18 +354,16 @@ the directions of the separator."
    ati-left-inactive-separator
    ((ati-vc-icon
      ati-flycheck-status
-     ati-package-updates
-     purpose) :separator " · " :face other-face)
-   (((ati-org-clock :when active)
-     (ati-org-pomodoro :when active))
-    :separator " · " :face other-face)
+     purpose
+     (ati-org-clock :when active)
+     (ati-org-pomodoro :when active)) :separator " · " :face other-face)
    ati-left-4-separator)
 
- '(ati-right-1-separator
-   ati-right-2-separator
+ '(ati-right-4-separator
    ati-right-inactive-separator
-   ((ati-battery-status ati-time) :separator " | " :face other-face)
-   ))
+   ((ati-battery-status
+     ati-package-updates
+     ati-time) :separator " · " :face other-face)))
 
 (provide 'spaceline-all-the-icons)
 ;;; spaceline-all-the-icons.el ends here

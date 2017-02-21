@@ -17,7 +17,7 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(                                    ; Pure languages
+   '(;; Pure languages
      c-c++
      emacs-lisp
      ess
@@ -29,7 +29,7 @@ values."
      (python :variables
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
-                                        ; Other languages / assists
+     ;; Other languages / assists
      bibtex
      csv
      (latex :variables
@@ -45,7 +45,7 @@ values."
      shell-scripts
      sql
      yaml
-                                        ; Everything else
+     ;; Everything else
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
@@ -112,7 +112,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -135,7 +135,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(molokai
-                         solarized-light)
+                         ;;solarized-light
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -144,7 +145,7 @@ values."
                                :size 12
                                :weight regular
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -286,9 +287,6 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
-  ;; Set default cursor
-  (setq cursor-type 'bar)
-
   ;; Wdired
   (setq wdired-allow-to-change-permissions t)
 
@@ -413,7 +411,6 @@ you should place you code here."
               ("[^<]\\(~~\\)"                #Xe168)
               ("\\(~~>\\)"                   #Xe169)
               ("\\(%%\\)"                    #Xe16a)
-              ;; ("\\(x\\)"                     #Xe16b)
               ("[^:=]\\(:\\)[^:=]"           #Xe16c)
               ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
               ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
@@ -423,6 +420,33 @@ you should place you code here."
 
   (add-hook 'prog-mode-hook
             'add-fira-code-symbol-keywords)
+
+  (add-hook
+   'python-mode-hook
+   (lambda ()
+     (mapc (lambda (pair) (push pair prettify-symbols-alist))
+           '(;; Syntax
+             ("def" .      #x2131)
+             ("not" .      #x2757)
+             ("in" .       #x2208)
+             ("not in" .   #x2209)
+             ("return" .   #x27fc)
+             ("yield" .    #x27fb)
+             ("for" .      #x2200)
+             ;; Base Types
+             ("int" .      #x2124)
+             ("float" .    #x211d)
+             ("str" .      #x1d54a)
+             ("True" .     #x1d54b)
+             ("False" .    #x1d53d)
+             ;; Mypy
+             ("Dict" .     #x1d507)
+             ("List" .     #x2112)
+             ("Tuple" .    #x2a02)
+             ("Set" .      #x2126)
+             ("Iterable" . #x1d50a)
+             ("Any" .      #x2754)
+             ("Union" .    #x22c3)))))
 
   ;; Global company
   (global-company-mode)
@@ -446,6 +470,13 @@ you should place you code here."
 
   ;; Add line numbers in prog mode
   (add-hook 'prog-mode-hook 'linum-mode)
+
+  ;; Separators
+  (setq powerline-default-separator 'slant)
+
+  ;; Colors
+  (set-face-attribute 'spacemacs-normal-face nil :background "VioletRed1")
+  (set-face-attribute 'spacemacs-hybrid-face nil :background "LightSeaGreen")
 
   ;; Disable horizontal scroll bar
   (horizontal-scroll-bar-mode -1)
