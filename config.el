@@ -125,6 +125,11 @@
          (org-special-keyword
           :foreground "dark cyan"
           :weight bold)
+         (org-scheduled-previously
+          :foreground "#0ee")
+         (org-scheduled-today
+          :foreground "MediumSpringGreen"
+          :weight bold)
          (org-date
           :foreground "#EDC27D"
           :underline nil)
