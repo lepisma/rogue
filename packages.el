@@ -57,6 +57,7 @@
     (setq bm-cycle-all-buffers t)
     ;; where to store persistant files
     (setq bm-repository-file "~/.emacs.d/bm-repository")
+    (set-face-attribute 'bm-persistent-face nil :background "DarkCyan" :foreground "white")
     ;; save bookmarks
     (setq-default bm-buffer-persistence t)
     ;; Loading the repository from file when on start up.

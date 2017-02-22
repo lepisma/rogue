@@ -476,7 +476,7 @@ you should place you code here."
 
   ;; Colors
   (set-face-attribute 'spacemacs-normal-face nil :background "black" :foreground "white")
-  (set-face-attribute 'spacemacs-hybrid-face nil :background "DodgerBlue1" :foreground "white")
+  (set-face-attribute 'spacemacs-hybrid-face nil :background "DarkCyan" :foreground "white")
   (set-face-attribute 'bm-persistent-face nil :background "DarkCyan" :foreground "white")
 
   ;; Disable horizontal scroll bar
