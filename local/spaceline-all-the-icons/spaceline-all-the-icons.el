@@ -34,8 +34,8 @@
 (spaceline-define-segment
     ati-modified "An `all-the-icons' modified segment"
     (let* ((config-alist
-            '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :height 1.2 :v-adjust -0.0)
-              ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :height 1.2 :v-adjust -0.0)
+            '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :height 1.2 :v-adjust 0.0)
+              ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :height 1.2 :v-adjust 0.0)
               ("%" all-the-icons-octicon-family all-the-icons-octicon "lock" :height 1.2 :v-adjust 0.1)))
            (result (cdr (assoc (format-mode-line "%*") config-alist))))
 
@@ -62,7 +62,7 @@
                                  'mouse-1 (lambda () (interactive) (projectile-switch-project))))
        (propertize "×" 'face '(:height 0.8 :inherit)))
      " "
-     (propertize "|" 'face '(:height 1.1 :inherit)))
+     (propertize "|" 'face '(:height 0.9 :inherit) 'display '(raise 0.2)))
     :tight t)
 
 (spaceline-define-segment
@@ -71,8 +71,8 @@
       (unless (symbolp icon) ;; This implies it's the major mode
         (propertize icon
                     'help-echo (format "Major-mode: `%s`" major-mode)
-                    'display '(raise 0.0)
-                    'face `(:height 1.0 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
+                    'display '(raise 0.1)
+                    'face `(:height 0.9 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
 
 (spaceline-define-segment
     ati-buffer-id "An `all-the-icons' segment for the current buffer id"
@@ -106,7 +106,7 @@
 
 (spaceline-define-segment
     ati-position "An `all-the-icons' segment for the Row and Column of the current point"
-    (propertize (format-mode-line "%l:%c") 'face `(:height 0.9 :inherit) 'display '(raise 0.1)))
+    (propertize (format-mode-line "%l:%c") 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))
 
 (spaceline-define-segment
     ati-region-info "An `all-the-icons' segment for the currently marked region"
@@ -115,9 +115,11 @@
             (chars (count-words (region-end) (region-beginning))))
         (concat
          (propertize (format "%s " (all-the-icons-octicon "pencil") words chars)
-                     'face `(:family ,(all-the-icons-octicon-family) :inherit) 'display '(raise 0.1))
+                     'face `(:family ,(all-the-icons-octicon-family) :height 0.9 :inherit)
+                     'display '(raise 0.2))
          (propertize (format "(%s, %s)" words chars)
-                     'face `(:height 0.9 :inherit))))))
+                     'face `(:height 0.9 :inherit)
+                     'display '(raise 0.2))))))
 
 (spaceline-define-segment
     ati-color-control "An `all-the-icons' segment for the currently marked region" "")
@@ -132,11 +134,11 @@
   (let ((branch (mapconcat 'concat (cdr (split-string vc-mode "[:-]")) "-")))
     (concat
      (propertize (format "%s" (all-the-icons-faicon "git"))
-                 'face `(:family ,(all-the-icons-faicon-family) :height 1.0 :inherit)
+                 'face `(:family ,(all-the-icons-faicon-family) :height 0.9 :inherit)
                  'display '(raise 0.2))
      (propertize " · ")
      (propertize (format "%s" (all-the-icons-octicon "git-branch"))
-                 'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :inherit)
+                 'face `(:family ,(all-the-icons-octicon-family) :height 0.9 :inherit)
                  'display '(raise 0.2))
      (propertize (format " %s" branch) 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))))
 
@@ -217,7 +219,7 @@
            (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.0)))
       (concat
        (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.1))
-       (propertize (format "%s " icon)
+       (propertize (format "%s  " icon)
                    'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
                    'display '(raise 0.1))))
     :tight t)
@@ -374,7 +376,7 @@ the directions of the separator."
    ati-left-1-separator
    ((ati-projectile ati-mode-icon ati-buffer-id) :face default-face)
    ati-left-2-separator
-   ((ati-process ati-position ati-region-info) :face highlight-face :separator " | ")
+   ((ati-process ati-position ati-region-info) :face highlight-face :separator " · ")
    ati-left-3-separator
    ati-left-inactive-separator
    ((ati-vc-icon
