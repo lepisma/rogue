@@ -58,7 +58,6 @@
                      'face '(:height 0.8 :inherit)
                      'display '(raise 0.2)
                      'help-echo "Switch Project"
-                     'mouse-face '(:box 1)
                      'local-map (make-mode-line-mouse-map
                                  'mouse-1 (lambda () (interactive) (projectile-switch-project))))
        (propertize "×" 'face '(:height 0.8 :inherit)))
@@ -181,7 +180,6 @@
                   'face f
                   'help-echo "Show Flycheck Errors"
                   'display '(raise 0.2)
-                  'mouse-face '(:box 1)
                   'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (flycheck-list-errors)))))
     :when active :tight t )
 
@@ -205,7 +203,6 @@
                     'display '(raise 0.1))
         (propertize (format " %d updates" num) 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))
        'help-echo "Open Packages Menu"
-       'mouse-face '(:box 1)
        'local-map (make-mode-line-mouse-map
                    'mouse-1 (lambda () (interactive) (package-list-packages)))))
     :when (and active (> (or spaceline--upgrades (spaceline--count-upgrades)) 0)))
@@ -268,6 +265,34 @@
            (propertize time 'face '(:height 0.9 :inherit)))
          )))
     :global-override fancy-battery-mode-line :when (and active (fboundp 'fancy-battery-mode) fancy-battery-mode))
+
+(spaceline-define-segment ati-buffer-position
+  "The current approximate buffer position, in percent."
+  (concat
+   (propertize (all-the-icons-faicon "location-arrow")
+               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
+               'display '(raise 0.2))
+   " "
+   (propertize (format-mode-line "%p ")
+               'face '(:height 0.9 :inherit) 'display '(raise 0.1))))
+
+(spaceline-define-segment ati-music
+  "Music player controls"
+  (concat
+   (propertize (all-the-icons-faicon "chevron-left")
+               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
+               'display '(raise 0.2)
+               'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (spotify-previous))))
+   " "
+   (propertize (all-the-icons-faicon "play-circle")
+               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
+               'display '(raise 0.2)
+               'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (spotify-playpause))))
+   " "
+   (propertize (all-the-icons-faicon "chevron-right")
+               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
+               'display '(raise 0.2)
+               'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (spotify-next))))))
 
 (defvar spaceline-org-clock-format-function
   'org-clock-get-clock-string
@@ -361,7 +386,9 @@ the directions of the separator."
 
  '(ati-right-4-separator
    ati-right-inactive-separator
-   ((ati-battery-status
+   ((ati-buffer-position
+     ati-battery-status
+     ati-music
      ati-package-updates
      ati-time) :separator " · " :face other-face)))
 
