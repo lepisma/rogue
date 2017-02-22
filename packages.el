@@ -88,7 +88,9 @@
     ;; Then new bookmarks can be saved before the buffer is reverted.
     ;; Make sure bookmarks is saved before check-in (and revert-buffer)
     (add-hook 'vc-before-checkin-hook #'bm-buffer-save)
-    :bind ("C-c b" . bm-toggle)))
+    :bind (("C-c b" . bm-toggle)
+           ("C-c /" . bm-next)
+           ("C-c '" . bm-previous))))
 
 (defun rogue/init-browse-at-remote ()
   (use-package browse-at-remote
