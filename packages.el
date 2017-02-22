@@ -54,7 +54,6 @@
     ;; restore on load (even before you require bm)
     (setq bm-restore-repository-on-load t)
     :config
-    (set-face-attribute 'bm-persistent-face nil :background "DarkCyan" :foreground "white")
     ;; Allow cross-buffer 'next'
     (setq bm-cycle-all-buffers t)
     ;; where to store persistant files

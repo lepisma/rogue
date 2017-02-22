@@ -115,7 +115,7 @@
           :foreground "#EDEA57"
           :weight bold)
          (org-special-keyword
-          :foreground "dark cyan"
+          :foreground "DarkCyan"
           :weight bold)
          (org-scheduled-previously
           :foreground "#0ee")
@@ -129,9 +129,31 @@
           :foreground "light sky blue"
           :underline nil)
          (org-priority
-          :foreground "gold"))
+          :foreground "gold")
+         (spacemacs-normal-face
+          :background "black"
+          :foreground "white")
+         (spacemacs-hybrid-face
+          :background "DarkCyan"
+          :foreground "white")
+         (bm-persistent-face
+          :background "DarkCyan"
+          :foreground "white"
+          :overline nil))
         ;; Light theme
         (solarized-light
+         (spacemacs-normal-face
+          :background "#586e75"
+          :foreground "white")
+         (spacemacs-hybrid-face
+          :background "#268bd2"
+          :foreground "white")
+         (bm-persistent-face
+          :background "#268bd2"
+          :foreground "white"
+          :overline nil)
+         (all-the-icons-dired-dir-face
+          :foreground "#586e75")
          (highlight
           :background "#fdf6e3")
          (org-link
