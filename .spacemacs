@@ -27,8 +27,7 @@ values."
      javascript
      nim
      (python :variables
-             python-enable-yapf-format-on-save t
-             python-sort-imports-on-save t)
+             python-enable-yapf-format-on-save t)
      ;; Other languages / assists
      bibtex
      csv
