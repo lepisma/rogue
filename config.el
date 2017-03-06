@@ -91,7 +91,7 @@
           :background "#1f2d2c")
          (org-document-title
           :inherit (variable-pitch)
-          :height 1.5)
+          :height 1.2)
          (org-level-1
           :foreground "#fff"
           :inherit (variable-pitch)
