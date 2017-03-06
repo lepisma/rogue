@@ -105,7 +105,9 @@
   (use-package enlive))
 
 (defun rogue/init-flycheck-mypy ()
-  (use-package flycheck-mypy))
+  (use-package flycheck-mypy
+    :init
+    (add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-mypy)))))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
