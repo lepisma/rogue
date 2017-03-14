@@ -274,8 +274,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; Directories
-  (defconst user-layer-path "~/.emacs.d/private/rogue/")
-  (defconst user-secrets-path (concat user-layer-path "secrets.json")))
+  (defconst user-layer-path "~/.emacs.d/private/rogue")
+  (defconst user-secrets-path (concat user-layer-path "/secrets.json"))
+  (defconst user-journal-dir (getenv "JOURNAL_DIR"))
+  (defconst user-diary-dir (concat user-journal-dir "/diary"))
+  (defconst user-project-dir (getenv "PROJECTS_DIR"))
+  (defconst user-project-files
+    `(,(concat user-journal-dir "/projects.org")
+      ,(concat user-project-dir "/dev/index.org"))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -506,11 +512,10 @@ you should place you code here."
   (setq-default typescript-indent-level 2)
 
   ;; Notes etc.
-  (setq notes-dir (getenv "NOTES_DIR"))
-  (setq deft-directory notes-dir)
+  (setq deft-directory user-journal-dir)
   (setq deft-extensions '("org"))
   (setq deft-recursive t)
-  (setq org-journal-dir (concat notes-dir "diary/"))
+  (setq org-journal-dir user-diary-dir)
   (setq org-journal-enable-encryption t)
 
   ;; Eshell stuff
@@ -557,4 +562,32 @@ you should place you code here."
                               org-docview
                               org-habit
                               org-info
-                              org-w3m))))
+                              org-w3m))
+    ;; Define stuck projects
+    (setq org-stuck-projects
+          '("+LEVEL=1/-DONE" ("*") ("active" "old") ""))
+
+    ;; Agenda stuff
+    (setq org-agenda-custom-commands
+          '(("n" "Main agenda with micro tasks"
+             ((tags "micro"
+                    ((org-agenda-overriding-header "Micro tasks")))
+              (agenda "")))
+            ("p" "Projects to work on"
+             ((todo "TODO"
+                    ((org-agenda-files user-project-files)
+                     (org-agenda-overriding-header "Tasks")))
+              (tags "active"
+                    ((org-agenda-files user-project-files)
+                     (org-agenda-overriding-header "Active projects")))
+              (stuck ""
+                     ((org-agenda-files user-project-files)
+                      (org-agenda-overriding-header "Needs action")))
+              (tags "old"
+                    ((org-agenda-files user-project-files)
+                     (org-agenda-overriding-header "Too old")))))
+            ("d" "Upcoming deadlines"
+             (agenda ""
+                     ((org-agenda-entry-types '(:deadline))
+                      (org-deadline-warning-days 30)
+                      (org-agenda-time-grid nil))))))))
