@@ -590,8 +590,8 @@ you should place you code here."
               (tags "old"
                     ((org-agenda-files user-project-files)
                      (org-agenda-overriding-header "Too old")))))
-            ("d" "Upcoming deadlines"
-             (agenda ""
-                     ((org-agenda-entry-types '(:deadline))
-                      (org-deadline-warning-days 30)
-                      (org-agenda-time-grid nil))))))))
+            ("d" "Upcoming deadlines" agenda ""
+             ((org-agenda-entry-types '(:deadline))
+              (org-deadline-warning-days 30)
+              (org-agenda-time-grid nil)
+              (org-agenda-overriding-header "Upcoming deadlines")))))))
