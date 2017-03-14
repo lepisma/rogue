@@ -277,7 +277,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-layer-path "~/.emacs.d/private/rogue")
   (defconst user-secrets-path (concat user-layer-path "/secrets.json"))
   (defconst user-journal-dir (getenv "JOURNAL_DIR"))
-  (defconst user-diary-dir (concat user-journal-dir "/diary"))
+  (defconst user-diary-dir (concat user-journal-dir "/diary/"))
   (defconst user-project-dir (getenv "PROJECTS_DIR"))
   (defconst user-project-files
     `(,(concat user-journal-dir "/projects.org")
