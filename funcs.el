@@ -38,7 +38,7 @@
   (interactive)
   (let ((time (org-get-scheduled-or-deadline))
         (message (substring-no-properties (org-get-heading t t)))
-        (audio-file (expand-file-name (concat user-layer-path "data/alarm.ogg"))))
+        (audio-file (expand-file-name (concat user-layer-path "/data/alarm.ogg"))))
     (if (and time message)
         (if (eq 0 (call-process "kalarm"
                                 nil nil nil
