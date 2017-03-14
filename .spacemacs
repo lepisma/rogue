@@ -565,7 +565,7 @@ you should place you code here."
                               org-w3m))
     ;; Define stuck projects
     (setq org-stuck-projects
-          '("+LEVEL=1/-DONE" ("*") ("active" "old") ""))
+          '("+LEVEL=1/-DONE" ("*") ("active" "micro" "old") ""))
 
     ;; Agenda stuff
     (setq org-agenda-custom-commands
@@ -574,7 +574,10 @@ you should place you code here."
                     ((org-agenda-overriding-header "Micro tasks")))
               (agenda "")))
             ("p" "Projects to work on"
-             ((todo "TODO"
+             ((tags "micro"
+                    ((org-agenda-files user-project-files)
+                     (org-agenda-overriding-header "Micro tasks")))
+              (todo "TODO"
                     ((org-agenda-files user-project-files)
                      (org-agenda-overriding-header "Tasks")))
               (tags "active"
