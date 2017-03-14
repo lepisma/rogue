@@ -563,10 +563,11 @@ you should place you code here."
                               org-habit
                               org-info
                               org-w3m))
+    ;; Avoid duplicating micro
+    (setq org-tags-exclude-from-inheritance '("micro"))
     ;; Define stuck projects
     (setq org-stuck-projects
           '("+LEVEL=1/-DONE" ("*") ("active" "micro" "old") ""))
-
     ;; Agenda stuff
     (setq org-agenda-custom-commands
           '(("n" "Main agenda with micro tasks"
