@@ -52,6 +52,7 @@ values."
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      colors
+     dash
      deft
      git
      github
