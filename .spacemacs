@@ -22,6 +22,7 @@ values."
      emacs-lisp
      ess
      extra-langs
+     haskell
      html
      java
      javascript
