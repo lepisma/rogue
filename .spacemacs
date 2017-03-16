@@ -527,6 +527,10 @@ you should place you code here."
     (setq password-cache t)
     (setq password-cache-expiry 3600))
 
+  ;; Comint
+  (setq comint-scroll-show-maximum-output nil)
+  (setq comint-input-ignoredups t)
+
   ;; Babel
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
