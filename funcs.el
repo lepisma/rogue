@@ -166,3 +166,8 @@ With argument, do this that many times."
 With argument, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
+
+(defun insect-calc ()
+  "Run insect calculator."
+  (interactive)
+  (shell-command (format "insect \"%s\"" (read-string "insect: "))))

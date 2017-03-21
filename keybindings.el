@@ -24,6 +24,9 @@
 ;; Emmet
 (global-set-key (kbd "C-c e") 'emmet-expand-line)
 
+;; Insect
+(global-set-key (kbd "C-c i") 'insect-calc)
+
 ;; Don't kill my words
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
