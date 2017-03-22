@@ -19,6 +19,7 @@ values."
    dotspacemacs-configuration-layers
    '(;; Pure languages
      c-c++
+     common-lisp
      emacs-lisp
      ess
      extra-langs
