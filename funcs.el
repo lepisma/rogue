@@ -15,40 +15,6 @@
         (shell-command "xdg-open .")
       (display-warning :error "System Not supported"))))
 
-(defun org-insert-org ()
-  "Create another org buffer and 'include' it in current. Ask for filename."
-  (interactive)
-  (let ((filename (concat (read-string "Enter filename (without `.org'): ") ".org")))
-    (insert (concat "#+INCLUDE: \"./" filename "\""))
-    (find-file filename) ; Open buffer with filename
-    (if (file-exists-p filename)
-        (display-warning :warning "File already exists"))))
-
-(defun org-get-scheduled-or-deadline ()
-  "Return scheduled or deadline time from current point in order of priority"
-  (let ((time (org-get-scheduled-time (point))))
-    (if (not time)
-        (setq time (org-get-deadline-time (point))))
-    (if time
-        (format-time-string "%Y-%m-%d-%H:%M" time)
-      (nill))))
-
-(defun org-set-kalarm ()
-  "Set an alarm for current org entry (schedule/deadline) in kalarm"
-  (interactive)
-  (let ((time (org-get-scheduled-or-deadline))
-        (message (substring-no-properties (org-get-heading t t)))
-        (audio-file (expand-file-name (concat user-layer-path "/data/alarm.ogg"))))
-    (if (and time message)
-        (if (eq 0 (call-process "kalarm"
-                                nil nil nil
-                                "-t" time
-                                "-p" audio-file
-                                message))
-            (message (concat "Alarm set for : " message))
-          (display-warning :error "Error in setting alarm"))
-      (display-warning :error "Error in parsing entry"))))
-
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
   (helm-find-files-1 (concat
