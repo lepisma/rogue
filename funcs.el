@@ -171,3 +171,16 @@ With argument, do this that many times."
   "Run insect calculator."
   (interactive)
   (shell-command (format "insect \"%s\"" (read-string "insect: "))))
+
+(defun org-random-sort ()
+  "Shuffle org-entries randomly"
+  (random 1000))
+
+(defun org-shuffle-projects ()
+  "Shuffle first level items in project files"
+  (interactive)
+  (dolist (project-file user-project-files)
+    (find-file project-file)
+    (goto-char (point-min))
+    (org-sort-entries nil ?f 'org-random-sort)
+    (save-buffer)))
