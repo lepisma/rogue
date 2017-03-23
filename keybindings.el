@@ -3,9 +3,6 @@
 ;; Hide Show
 (global-set-key (kbd "C-c <down>") 'hs-toggle-hiding)
 
-;; Org Kalarm
-(global-set-key (kbd "C-c k") 'org-set-kalarm)
-
 ;; To-fish jump
 (global-set-key (kbd "C-c j") 'to-fish-jump)
 

@@ -10,6 +10,9 @@
         flycheck-mypy
         hackernews
         helm-bm
+        (kde :location (recipe
+                        :fetcher github
+                        :repo "lepisma/kde.el"))
         magithub
         molokai-theme
         multiple-cursors
@@ -116,6 +119,12 @@
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
     :defer t))
+
+(defun rogue/init-kde ()
+  (use-package kde
+    :bind (("C-c k" . 'kde-kalarm-set-org)
+           ("C-c s" . 'kde-kmail-send-default)
+           ("C-c x" . 'kde-explore))))
 
 (defun rogue/init-magithub ()
   (use-package magithub
