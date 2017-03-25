@@ -532,6 +532,16 @@ you should place you code here."
   (setq comint-scroll-show-maximum-output nil)
   (setq comint-input-ignoredups t)
 
+  ;; Slime
+  (setq inferior-lisp-program "ros -Q run")
+  (slime-setup '(slime-asdf
+                 slime-company
+                 slime-fancy
+                 slime-indentation
+                 slime-sbcl-exts
+                 slime-scratch
+                 slime-tramp))
+
   ;; Babel
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
