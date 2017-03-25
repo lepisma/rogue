@@ -31,6 +31,7 @@
         solarized-theme
         (spaceline-all-the-icons :location local)
         swiper
+        sx
         tide
         tldr
         vlf
@@ -196,6 +197,10 @@
   (use-package swiper
     :bind (("C-s" . swiper)
            ("C-r" . swiper))))
+
+(defun rogue/init-sx ()
+  (use-package sx
+    :defer t))
 
 (defun rogue/init-tide ()
   (use-package tide
