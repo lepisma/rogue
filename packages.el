@@ -10,6 +10,7 @@
         flycheck-mypy
         hackernews
         helm-bm
+        helm-org-rifle
         (kde :location (recipe
                         :fetcher github
                         :repo "lepisma/kde.el"))
@@ -120,6 +121,10 @@
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
     :defer t))
+
+(defun rogue/init-helm-org-rifle ()
+  (use-package helm-org-rifle
+    :bind ("C-c r" . helm-org-rifle)))
 
 (defun rogue/init-kde ()
   (use-package kde
