@@ -124,7 +124,7 @@
 
 (defun rogue/init-helm-org-rifle ()
   (use-package helm-org-rifle
-    :bind ("C-c r" . helm-org-rifle)))
+    :bind ("C-c r" . helm-org-rifle-agenda-files)))
 
 (defun rogue/init-kde ()
   (use-package kde
