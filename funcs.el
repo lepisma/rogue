@@ -133,6 +133,15 @@ With argument, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
 
+(defun duplicate-line ()
+  "Duplicate a line."
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (newline)
+  (yank))
+
 (defun insect-calc ()
   "Run insect calculator."
   (interactive)
