@@ -33,3 +33,6 @@
 ;; Move lines
 (global-set-key (kbd "M-<up>") 'move-text-line-up)
 (global-set-key (kbd "M-<down>") 'move-text-line-down)
+
+;; Projectile ag
+(global-set-key (kbd "C-c g") 'helm-projectile-ag)
