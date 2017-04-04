@@ -8,6 +8,7 @@
         cricbuzz
         enlive
         flycheck-mypy
+        graphviz-dot-mode
         hackernews
         helm-bm
         helm-org-rifle
@@ -113,6 +114,11 @@
   (use-package flycheck-mypy
     :init
     (add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-mypy)))))
+
+(defun rogue/init-graphviz-dot-mode ()
+  (use-package graphviz-dot-mode
+    :config
+    (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
