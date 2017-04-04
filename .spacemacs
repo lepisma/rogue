@@ -561,6 +561,8 @@ you should place you code here."
      (sh . t)
      (sqlite . t)))
 
+  (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
+
   ;; Org clock
   (setq spaceline-org-clock-p t)
 

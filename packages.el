@@ -117,8 +117,7 @@
 
 (defun rogue/init-graphviz-dot-mode ()
   (use-package graphviz-dot-mode
-    :config
-    (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))))
+    :defer t))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
