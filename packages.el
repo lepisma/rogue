@@ -2,41 +2,33 @@
 
 (setq rogue-packages
       '(all-the-icons
-        all-the-icons-dired
         bm
         browse-at-remote
         cricbuzz
+        doom-themes
         enlive
         flycheck-mypy
         graphviz-dot-mode
         hackernews
         helm-bm
         helm-org-rifle
-        (kde :location (recipe
-                        :fetcher github
-                        :repo "lepisma/kde.el"))
+        (kde :location
+             (recipe :fetcher github :repo "lepisma/kde.el"))
         magithub
-        molokai-theme
         multiple-cursors
-        (ob-async :location (recipe
-                             :fetcher github
-                             :repo "astahlman/ob-async"))
-        (ob-q :location (recipe
-                         :fetcher github
-                         :repo "lepisma/ob-q.el"))
+        nlinum
+        ob-async
         org-journal
+        powerline
         pretty-mode
-        (read-lyrics :location (recipe
-                                :fetcher github
-                                :repo "lepisma/read-lyrics.el"))
+        (read-lyrics :location
+                     (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
         snakemake-mode
-        solarized-theme
         (spaceline-all-the-icons :location local)
         swiper
         sx
         tide
         tldr
-        vlf
         vue-mode
         wolfram
         writegood-mode
@@ -44,47 +36,41 @@
         wttrin))
 
 ;; Initialize packages
-
 (defun rogue/init-all-the-icons ()
   (use-package all-the-icons))
-
-(defun rogue/init-all-the-icons-dired ()
-  (use-package all-the-icons-dired
-    :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)))
 
 (defun rogue/init-bm ()
   (use-package bm
     :ensure t
     :demand t
     :init
-    ;; restore on load (even before you require bm)
     (setq bm-restore-repository-on-load t)
+    (setq bm-repository-file "~/.emacs.d/.cache/bm-repository")
     :config
     ;; Allow cross-buffer 'next'
     (setq bm-cycle-all-buffers t)
     ;; where to store persistant files
-    (setq bm-repository-file "~/.emacs.d/.cache/bm-repository")
     ;; save bookmarks
     (setq-default bm-buffer-persistence t)
     ;; Loading the repository from file when on start up.
     (add-hook 'after-init-hook 'bm-repository-load)
     ;; Restoring bookmarks when on file find.
-    (add-hook 'find-file-hooks 'bm-buffer-restore)
+    (add-hook 'find-file-hook 'bm-buffer-restore)
     ;; Saving bookmarks
     (add-hook 'kill-buffer-hook 'bm-buffer-save)
     ;; Saving the repository to file when on exit.
     ;; kill-buffer-hook is not called when Emacs is killed, so we
     ;; must save all bookmarks first.
-    (add-hook 'kill-emacs-hook #'(lambda nil
-                                   (bm-buffer-save-all)
-                                   (bm-repository-save)))
+    (add-hook 'kill-emacs-hook (lambda ()
+                                 (bm-buffer-save-all)
+                                 (bm-repository-save)))
 
     ;; The `after-save-hook' is not necessary to use to achieve persistence,
     ;; but it makes the bookmark data in repository more in sync with the file
     ;; state.
     (add-hook 'after-save-hook 'bm-buffer-save)
     ;; Restoring bookmarks
-    (add-hook 'find-file-hooks   'bm-buffer-restore)
+    (add-hook 'find-file-hook   'bm-buffer-restore)
     (add-hook 'after-revert-hook 'bm-buffer-restore)
     ;; The `after-revert-hook' is not necessary to use to achieve persistence,
     ;; but it makes the bookmark data in repository more in sync with the file
@@ -107,6 +93,25 @@
   (use-package cricbuzz
     :defer t))
 
+(defun rogue/init-doom-themes ()
+  (use-package doom-themes
+    :after nlinum
+    :config
+    (setq doom-neotree-enable-variable-pitch t
+          doom-neotree-file-icons 'simple
+          doom-neotree-line-spacing 4)
+    (setq doom-enable-bold t
+          doom-enable-italic t)
+    (setq org-fontify-whole-heading-line t
+          org-fontify-done-headline t
+          org-fontify-quote-and-verse-blocks t)
+    (add-hook 'find-file-hook 'doom-buffer-mode-maybe)
+    (add-hook 'after-revert-hook 'doom-buffer-mode-maybe)
+    (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
+    (require 'doom-neotree)
+    (require 'doom-nlinum)
+    ))
+
 (defun rogue/init-enlive ()
   (use-package enlive))
 
@@ -117,7 +122,9 @@
 
 (defun rogue/init-graphviz-dot-mode ()
   (use-package graphviz-dot-mode
-    :defer t))
+    :after org-babel
+    :config
+    (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
@@ -142,28 +149,29 @@
     :after magit
     :config (magithub-feature-autoinject t)))
 
-(defun rogue/init-molokai-theme ()
-  (use-package molokai-theme))
-
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this)
            ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
 
+(defun rogue/init-nlinum ()
+  (use-package nlinum
+    :demand t))
+
 (defun rogue/init-ob-async ()
   (use-package ob-async
-    :config (add-to-list
-             'org-ctrl-c-ctrl-c-hook
-             'org-babel-execute-src-block:async)))
-
-(defun rogue/init-ob-q ()
-  (use-package ob-q
-    :defer t))
+    :config
+    (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block)))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
-    :defer t))
+    :config
+    (setq org-journal-dir user-diary-dir)
+    (setq org-journal-enable-encryption t)))
+
+(defun rogue/init-powerline ()
+  (use-package powerline))
 
 (defun rogue/init-pretty-mode ()
   (use-package pretty-mode
@@ -186,15 +194,6 @@
 (defun rogue/init-snakemake-mode ()
   (use-package snakemake-mode
     :defer t))
-
-(defun rogue/init-solarized-theme ()
-  (use-package solarized-theme
-    :init
-    (setq x-underline-at-descent-line t)
-    (setq solarized-high-contrast-mode-line t)
-    (setq solarized-use-more-italic t)
-    (setq solarized-emphasize-indicators t)
-    (setq solarized-scale-org-headlines nil)))
 
 (defun rogue/init-spaceline-all-the-icons ()
   (progn
@@ -219,10 +218,6 @@
 
 (defun rogue/init-tldr ()
   (use-package tldr
-    :defer t))
-
-(defun rogue/init-vlf ()
-  (use-package vlf
     :defer t))
 
 (defun rogue/init-vue-mode ()

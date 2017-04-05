@@ -1,8 +1,10 @@
 ;;; spaceline-all-the-icons.el --- Custom install for all the icons Spaceline
 
 ;; Copyright (C) 2016  Dominic Charlesworth <dgc336@gmail.com>
+;; Copyright (C) 2017  Abhinav Tushar <abhinav.tushar.vs@gmail.com>
 
 ;; Author: Dominic Charlesworth <dgc336@gmail.com>
+;;         Abhinav Tushar <abhinav.tushar.vs@gmail.com>
 ;; Keywords: lisp
 
 ;; This program is free software; you can redistribute it and/or
@@ -27,27 +29,21 @@
 (require 'spaceline)
 (require 'spaceline-config)
 
-;;---------------;;
-;; First Segment ;;
-;;---------------;;
-
 (spaceline-define-segment
     ati-modified "An `all-the-icons' modified segment"
     (let* ((config-alist
-            '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :height 1.2 :v-adjust 0.1)
-              ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :height 1.2 :v-adjust 0.1)
-              ("%" all-the-icons-octicon-family all-the-icons-octicon "lock" :height 1.2 :v-adjust 0.1)))
+            '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :height 1.3 :v-adjust 0.2)
+              ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :height 1.3 :v-adjust 0.2)
+              ("%" all-the-icons-octicon-family all-the-icons-octicon "lock" :height 1.3 :v-adjust 0.2)))
            (result (cdr (assoc (format-mode-line "%*") config-alist))))
 
       (propertize (format "%s" (apply (cadr result) (cddr result))) 'face `(:family ,(funcall (car result)) :inherit )))
     :tight t)
 
 (spaceline-define-segment
-    ati-window-numbering "An `all-the-icons' window numbering segment"
-    (propertize (format "%c" (+ 9311 (window-numbering-get-number)))
-                'face `(:height 1.3 :inherit)
-                'display '(raise -0.0))
-    :tight t :when (fboundp 'window-numbering-mode))
+    ati-buffer-size "Buffer Size"
+    (propertize (format-mode-line "%I") 'face `(:height 0.8 :inherit) 'display '(raise 0.3))
+    :tight t)
 
 (spaceline-define-segment
     ati-projectile "An `all-the-icons' segment for current `projectile' project"
@@ -56,13 +52,13 @@
               (projectile-project-name))
          (propertize (format "%s" (concat (projectile-project-name) ))
                      'face '(:height 0.8 :inherit)
-                     'display '(raise 0.2)
+                     'display '(raise 0.3)
                      'help-echo "Switch Project"
                      'local-map (make-mode-line-mouse-map
                                  'mouse-1 (lambda () (interactive) (projectile-switch-project))))
        (propertize "×" 'face '(:height 0.8 :inherit)))
      " "
-     (propertize "|" 'face '(:height 0.9 :inherit) 'display '(raise 0.2)))
+     (propertize "|" 'face '(:height 0.9 :inherit) 'display '(raise 0.3)))
     :tight t)
 
 (spaceline-define-segment
@@ -71,7 +67,7 @@
       (unless (symbolp icon) ;; This implies it's the major mode
         (propertize icon
                     'help-echo (format "Major-mode: `%s`" major-mode)
-                    'display '(raise 0.1)
+                    'display '(raise 0.2)
                     'face `(:height 0.9 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
 
 (spaceline-define-segment
@@ -85,28 +81,14 @@
                        (format-mode-line "%b"))))
           (propertize (format "%s" name)
                       'face `(:height 0.8 :inherit)
-                      'display '(raise 0.2)
+                      'display '(raise 0.3)
                       'help-echo (format "Major-mode: `%s`" major-mode)))
-      (propertize (format-mode-line "%b ") 'face '(:height 0.8 :inherit) 'display '(raise 0.1)))
-    :tight t)
-
-;;----------------;;
-;; Second Segment ;;
-;;----------------;;
-
-(spaceline-define-segment
-    ati-process "An `all-the-icons' segment for the current process"
-    (let ((icon (all-the-icons-icon-for-buffer)))
-      (concat
-       (when (or (symbolp icon) mode-line-process)
-         (propertize (format-mode-line "%m") 'face `(:height 0.8 :inherit) 'display '(raise 0.2)))
-       (when mode-line-process
-         (propertize (format-mode-line mode-line-process) 'face '(:height 0.7 :inherit) 'display '(raise 0.2)))))
+      (propertize (format-mode-line "%b ") 'face '(:height 0.8 :inherit) 'display '(raise 0.2)))
     :tight t)
 
 (spaceline-define-segment
     ati-position "An `all-the-icons' segment for the Row and Column of the current point"
-    (propertize (format-mode-line "%l:%c") 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))
+    (propertize (format-mode-line "%l:%c") 'face `(:height 0.8 :inherit) 'display '(raise 0.3)))
 
 (spaceline-define-segment
     ati-region-info "An `all-the-icons' segment for the currently marked region"
@@ -115,46 +97,25 @@
             (chars (count-words (region-end) (region-beginning))))
         (concat
          (propertize (format "%s " (all-the-icons-octicon "pencil") words chars)
-                     'face `(:family ,(all-the-icons-octicon-family) :height 0.9 :inherit)
-                     'display '(raise 0.2))
+                     'face `(:family ,(all-the-icons-octicon-family) :height 0.8 :inherit)
+                     'display '(raise 0.3))
          (propertize (format "(%s, %s)" words chars)
-                     'face `(:height 0.9 :inherit)
-                     'display '(raise 0.2))))))
-
-(spaceline-define-segment
-    ati-color-control "An `all-the-icons' segment for the currently marked region" "")
-
-
-;;----------------;;
-;; Third Segement ;;
-;;----------------;;
+                     'face `(:height 0.8 :inherit)
+                     'display '(raise 0.3))))))
 
 (defun spaceline---github-vc ()
   "Function to return the Spaceline formatted GIT Version Control text."
   (let ((branch (mapconcat 'concat (cdr (split-string vc-mode "[:-]")) "-")))
     (concat
-     (propertize (format "%s" (all-the-icons-faicon "git"))
-                 'face `(:family ,(all-the-icons-faicon-family) :height 0.9 :inherit)
-                 'display '(raise 0.2))
-     (propertize " · ")
      (propertize (format "%s" (all-the-icons-octicon "git-branch"))
                  'face `(:family ,(all-the-icons-octicon-family) :height 0.9 :inherit)
-                 'display '(raise 0.2))
-     (propertize (format " %s" branch) 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))))
-
-(defun spaceline---svn-vc ()
-  "Function to return the Spaceline formatted SVN Version Control text."
-  (let ((revision (cadr (split-string vc-mode "-"))))
-    (concat
-     (propertize (format " %s" (all-the-icons-faicon "cloud")) 'face `(:height 1.2) 'display '(raise -0.1))
-     (propertize (format " · %s" revision) 'face `(:height 0.9)))))
-
+                 'display '(raise 0.4))
+     (propertize (format " %s" branch) 'face `(:height 0.9 :inherit) 'display '(raise 0.3)))))
 
 (spaceline-define-segment
     ati-vc-icon "An `all-the-icons' segment for the current Version Control icon"
     (when vc-mode
       (cond ((string-match "Git[:-]" vc-mode) (spaceline---github-vc))
-            ((string-match "SVN-" vc-mode) (spaceline---svn-vc))
             (t (propertize (format "%s" vc-mode)))))
     :when active)
 
@@ -165,63 +126,35 @@
               (`finished (if flycheck-current-errors
                              (let ((count (let-alist (flycheck-count-errors flycheck-current-errors)
                                             (+ (or .warning 0) (or .error 0)))))
-                               (format "✖ %s Issue%s" count (if (eq 1 count) "" "s")))
-                           "✔ No Issues"))
-              (`running     "↻ Running")
-              (`no-checker  "⚠ No Checker")
-              (`not-checked "✖ Disabled")
-              (`errored     "⚠ Error")
-              (`interrupted "⛔ Interrupted")
+                               (format "✖ %s issue%s" count (if (eq 1 count) "" "s")))
+                           "✔ no issues"))
+              (`running     "↻ running")
+              (`no-checker  "! no checker")
+              (`not-checked "disabled")
+              (`errored     "! error")
+              (`interrupted "! interrupted")
               (`suspicious  "")))
            (f (cond
-               ((string-match "⚠" text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-warning :foreground)))
-               ((string-match "✖ [0-9]" text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-error :foreground)))
-               ((string-match "✖ Disabled" text) `(:height 0.9 :foreground ,(face-attribute 'font-lock-comment-face :foreground)))
+               ((string-match "! " text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-warning :background)))
+               ((string-match "✖ [0-9]" text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-error :background)))
+               ((string-match "disabled" text) `(:height 0.9 :foreground ,(face-attribute 'font-lock-comment-face :foreground)))
                (t '(:height 0.9 :inherit)))))
       (propertize (format "%s" text)
                   'face f
                   'help-echo "Show Flycheck Errors"
-                  'display '(raise 0.2)
+                  'display '(raise 0.3)
                   'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (flycheck-list-errors)))))
     :when active :tight t )
-
-(defvar spaceline--upgrades nil)
-(defun spaceline--count-upgrades ()
-  "Function to count the number of package upgrades needed."
-  (let ((buf (current-buffer)))
-    (package-list-packages-no-fetch)
-    (with-current-buffer "*Packages*"
-      (setq spaceline--upgrades (length (package-menu--find-upgrades))))
-    (switch-to-buffer buf)))
-(advice-add 'package-menu-execute :after 'spaceline--count-upgrades)
-
-(spaceline-define-segment
-    ati-package-updates "An `all-the-icons' spaceline segment to indicate number of package updates needed"
-    (let ((num (or spaceline--upgrades (spaceline--count-upgrades))))
-      (propertize
-       (concat
-        (propertize (format "%s" (all-the-icons-octicon "package"))
-                    'face `(:family ,(all-the-icons-octicon-family) :height 1.1 :inherit)
-                    'display '(raise 0.1))
-        (propertize (format " %d" num) 'face `(:height 0.9 :inherit) 'display '(raise 0.2)))
-       'help-echo "Open Packages Menu"
-       'local-map (make-mode-line-mouse-map
-                   'mouse-1 (lambda () (interactive) (package-list-packages)))))
-    :when (and active (> (or spaceline--upgrades (spaceline--count-upgrades)) 0)))
-
-;;---------------------;;
-;; Right First Segment ;;
-;;---------------------;;
 
 (spaceline-define-segment
     ati-time "Time"
     (let* ((hour (string-to-number (format-time-string "%I")))
            (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.0)))
       (concat
-       (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.2))
+       (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.3))
        (propertize (format "%s  " icon)
                    'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
-                   'display '(raise 0.2))))
+                   'display '(raise 0.3))))
     :tight t)
 
 (spaceline-define-segment
@@ -229,72 +162,15 @@
     (propertize " " 'face '(:height 1.3 :inherit))
     :tight t :when (not active))
 
-(spaceline-define-segment
-    ati-buffer-size "Buffer Size"
-    (propertize (format-mode-line "%I") 'face `(:height 0.9 :inherit) 'display '(raise 0.2))
-    :tight t)
-
-(spaceline-define-segment
-    ati-battery-status "Show battery information"
-    (let* ((charging? (equal "AC" (cdr (assoc ?L fancy-battery-last-status))))
-           (percentage (string-to-int (cdr (assoc ?p fancy-battery-last-status))))
-           (time (format "%s" (cdr (assoc ?t fancy-battery-last-status))))
-           (icon-set (if charging? 'alltheicon 'faicon))
-           (icon-alist
-            (cond
-             (charging? '((icon . "charging") (inherit . success) (height . 1.3) (raise . -0.1)))
-             ((> percentage 95) '((icon . "full") (inherit . success)))
-             ((> percentage 70) '((icon . "three-quarters")))
-             ((> percentage 35) '((icon . "half")))
-             ((> percentage 15) '((icon . "quarter") (inherit . warning)))
-             (t '((icon . "empty") (inherit . error)))))
-           (icon-f (all-the-icons--function-name icon-set))
-           (family (funcall (all-the-icons--family-name icon-set))))
-      (let-alist icon-alist
-        (concat
-         (if .inherit
-             (let ((fg (face-attribute .inherit :foreground)))
-               (propertize (funcall icon-f (format "battery-%s" .icon))
-                           'face `(:height ,(or .height 1.0) :family ,family :foreground ,fg)
-                           'display `(raise ,(or .raise 0.0))))
-             (propertize (funcall icon-f (format "battery-%s" .icon))
-                         'face `(:family ,family :inherit)
-                         'display '(raise 0.0)))
-         " "
-         (if .inherit
-             (let ((fg (face-attribute .inherit :foreground)))
-               (propertize (if charging? (format "%s%%%%" percentage) time) 'face `(:height 0.9 :foreground ,fg)))
-           (propertize time 'face '(:height 0.9 :inherit)))
-         )))
-    :global-override fancy-battery-mode-line :when (and active (fboundp 'fancy-battery-mode) fancy-battery-mode))
-
 (spaceline-define-segment ati-buffer-position
   "The current approximate buffer position, in percent."
   (concat
-   (propertize (all-the-icons-faicon "location-arrow")
+   (propertize (all-the-icons-faicon "map-signs")
                'face `(:family ,(all-the-icons-faicon-family) :height 0.9 :inherit)
-               'display '(raise 0.2))
+               'display '(raise 0.3))
    " "
    (propertize (format-mode-line "%p ")
-               'face '(:height 0.9 :inherit) 'display '(raise 0.2))))
-
-(spaceline-define-segment ati-music
-  "Music player controls"
-  (concat
-   (propertize (all-the-icons-faicon "chevron-left")
-               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
-               'display '(raise 0.2)
-               'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (spotify-previous))))
-   " "
-   (propertize (all-the-icons-faicon "play-circle")
-               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
-               'display '(raise 0.2)
-               'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (spotify-playpause))))
-   " "
-   (propertize (all-the-icons-faicon "chevron-right")
-               'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
-               'display '(raise 0.2)
-               'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (spotify-next))))))
+               'face '(:height 0.9 :inherit) 'display '(raise 0.3))))
 
 (defvar spaceline-org-clock-format-function
   'org-clock-get-clock-string
@@ -309,12 +185,12 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
              (org-clocking-p))
     (concat
      (propertize (all-the-icons-faicon "hourglass-half")
-                 'face `(:family ,(all-the-icons-faicon-family) :height 0.8 :inherit)
-                 'display '(raise 0.2))
+                 'face `(:family ,(all-the-icons-faicon-family) :height 0.7 :inherit)
+                 'display '(raise 0.5))
      " "
      (propertize (s-truncate
-                  40 (substring-no-properties (funcall spaceline-org-clock-format-function)))
-                 'face '(:height 0.9 :inherit) 'display '(raise 0.2))))
+                  30 (substring-no-properties (funcall spaceline-org-clock-format-function)))
+                 'face '(:height 0.9 :inherit ) 'display '(raise 0.3))))
   :global-override org-mode-line-string)
 
 (spaceline-define-segment ati-org-pomodoro
@@ -323,16 +199,12 @@ This segment overrides the modeline functionality of `org-pomodoro' itself."
   (when (and (fboundp 'org-pomodoro-active-p)
              (org-pomodoro-active-p))
     (propertize (nth 1 org-pomodoro-mode-line)
-                'face '(:height 0.9 :inherit) 'display '(raise 0.2)))
+                'face '(:height 0.9 :inherit ) 'display '(raise 0.3)))
   :global-override org-pomodoro-mode-line)
 
 (defun spaceline--direction (dir)
   "Inverts DIR from right to left & vice versa."
   (if spaceline-invert-direction (if (equal dir "right") "left" "right") dir))
-
-(defun spaceline--separator-type ()
-  "Static function to return the separator type."
-  spaceline-separator-type)
 
 (defmacro define-separator (name dir start-face end-face &optional invert)
   "Macro to defined a NAME separator in DIR direction.
@@ -343,9 +215,9 @@ the directions of the separator."
      (spaceline-define-segment
          ,(intern (format "ati-%s-separator" name))
        (let ((dir (if spaceline-invert-direction (spaceline--direction ,dir) ,dir))
-             (sep (spaceline--separator-type)))
+             (sep spaceline-separator-type))
          (propertize (all-the-icons-alltheicon (format "%s-%s" sep dir) :v-adjust 0.0)
-                     'face `(:height 1.5
+                     'face `(:height 1.9
                              :family
                              ,(all-the-icons-alltheicon-family)
                              :foreground
@@ -371,28 +243,21 @@ the directions of the separator."
 
 (spaceline-compile
  "ati"
- '(
-   ((ati-modified ati-window-numbering ati-buffer-size) :face highlight-face :skip-alternate t)
+ '(((ati-modified ati-buffer-size) :face highlight-face :skip-alternate t)
    ati-left-1-separator
-   ((ati-projectile ati-mode-icon ati-buffer-id) :face default-face)
+   ((ati-projectile ati-mode-icon ati-buffer-id) :face other-face)
    ati-left-2-separator
-   ((ati-process ati-position ati-region-info) :face highlight-face :separator " · ")
+   ((ati-position ati-region-info) :face highlight-face :separator "  ")
    ati-left-3-separator
    ati-left-inactive-separator
    ((ati-vc-icon
      ati-flycheck-status
-     purpose
      (ati-org-clock :when active)
-     (ati-org-pomodoro :when active)) :separator " · " :face other-face)
+     (ati-org-pomodoro :when active)) :separator "  " :face other-face)
    ati-left-4-separator)
 
- '(ati-right-4-separator
-   ati-right-inactive-separator
-   ((ati-buffer-position
-     ati-battery-status
-     ati-music
-     ati-package-updates
-     ati-time) :separator " · " :face other-face)))
+ '(((ati-buffer-position
+     ati-time) :separator "  " :face other-face)))
 
 (provide 'spaceline-all-the-icons)
 ;;; spaceline-all-the-icons.el ends here

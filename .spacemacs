@@ -41,7 +41,6 @@ values."
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t)
-     semantic
      shell
      shell-scripts
      sql
@@ -74,7 +73,8 @@ values."
      typography
      twitter
      (version-control :variables
-                      version-control-diff-tool 'diff-hl
+                      version-control-diff-tool 'git-gutter
+                      version-control-diff-side 'left
                       version-control-global-margin t)
      xkcd)
    ;; List of additional packages that will be installed without being
@@ -136,8 +136,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(molokai
-                         solarized-light)
+   dotspacemacs-themes '(doom-molokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -470,13 +469,6 @@ you should place you code here."
   ;; Add line numbers in prog mode
   (add-hook 'prog-mode-hook 'linum-mode)
 
-  ;; Separators
-  (setq powerline-default-separator 'slant)
-
-  ;; Colors
-  (set-face-attribute 'spacemacs-normal-face nil :background "black" :foreground "white")
-  (set-face-attribute 'spacemacs-hybrid-face nil :background "DarkCyan" :foreground "white")
-
   ;; Disable horizontal scroll bar
   (horizontal-scroll-bar-mode -1)
 
@@ -484,22 +476,53 @@ you should place you code here."
   (setq ibuffer-expert t)
   (setq ibuffer-show-empty-filter-groups nil)
 
-  ;; Add rainbow mode to css and scss
-  (add-hook 'css-mode-hook (lambda ()
-                             (rainbow-mode 1)))
-
-  ;; Line breaks in text-ish files
+  ;; A few hooks
+  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
   (add-hook 'text-mode-hook 'auto-fill-mode)
-
-  ;; Org mode line spacing
+  (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
+  (add-hook 'text-mode-hook (lambda () (setq line-spacing 0.1)))
   (add-hook 'org-mode-hook (lambda ()
-                             (setq line-spacing 0.5)))
-
-  ;; Display time in modeline
-  (display-time-mode 1)
+                             (progn
+                               (setq line-spacing 0.3)
+                               (spacemacs/disable-hl-line-mode))))
+  (add-hook 'kill-emacs-hook (lambda ()
+                               (if (neo-global--window-exists-p)
+                                   (neotree-toggle))))
 
   ;; Neotree theme
-  (setq neo-theme (if window-system 'icons 'arrow))
+  (setq ;;neo-theme (if window-system 'icons 'arrow)
+        neo-banner-message nil
+        neo-mode-line-type 'none)
+
+  ;; Hide mode line at
+  (add-hook 'processing-compilation-mode-hook 'hidden-mode-line-mode)
+  (add-hook 'eshell-mode-hook 'hidden-mode-line-mode)
+  (add-hook 'neo-after-create-hook 'hidden-mode-line-mode)
+  (with-current-buffer "*Messages*" (hidden-mode-line-mode +1))
+  (add-hook 'help-mode 'hidden-mode-line-mode)
+  (add-hook 'compilation-mode 'hidden-mode-line-mode)
+  (add-hook 'messages-buffer-mode 'hidden-mode-line-mode)
+  (add-hook 'completion-list-mode 'hidden-mode-line-mode)
+  (advice-add 'helm-display-mode-line
+              :override (lambda (source &optional force) (hidden-mode-line-mode +1)))
+
+  (setq-default fringes-outside-margins t
+                indicate-buffer-boundaries nil)
+
+  (setq flycheck-indication-mode 'right-fringe)
+
+  (define-fringe-bitmap 'git-gutter-fr:added
+    [224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224]
+    nil nil 'center)
+  (define-fringe-bitmap 'git-gutter-fr:modified
+    [224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224]
+    nil nil 'center)
+  (define-fringe-bitmap 'git-gutter-fr:deleted
+    [0 0 0 0 0 0 0 0 0 0 0 0 0 128 192 224 240 248]
+    nil nil 'center)
+
+  (fringe-mode 6)
+  (setq linum-format " %d ")
 
   ;; Web mode
   (setq-default web-mode-markup-indent-offset 2)
@@ -518,8 +541,6 @@ you should place you code here."
   (setq deft-directory user-journal-dir)
   (setq deft-extensions '("org"))
   (setq deft-recursive t)
-  (setq org-journal-dir user-diary-dir)
-  (setq org-journal-enable-encryption t)
 
   ;; Eshell stuff
   (use-package em-tramp
@@ -560,8 +581,6 @@ you should place you code here."
      (q . t)
      (sh . t)
      (sqlite . t)))
-
-  (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
 
   ;; Org clock
   (setq spaceline-org-clock-p t)
