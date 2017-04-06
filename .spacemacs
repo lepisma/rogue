@@ -413,7 +413,6 @@ you should place you code here."
               ("[^<]\\(~~\\)"                #Xe168)
               ("\\(~~>\\)"                   #Xe169)
               ("\\(%%\\)"                    #Xe16a)
-              ("\\(%>%\\)"                   #Xe146)
               ("[^:=]\\(:\\)[^:=]"           #Xe16c)
               ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
               ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
@@ -421,23 +420,29 @@ you should place you code here."
   (defun add-fira-code-symbol-keywords ()
     (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
   (add-hook 'prog-mode-hook 'add-fira-code-symbol-keywords)
-  ;; Special stuff in Python
+  ;; Pretty symbols
   (add-hook
    'python-mode-hook
    (lambda ()
      (mapc (lambda (pair) (push pair prettify-symbols-alist))
            '(;; Syntax
-             ("not" .      #x2757)
-             ("in" .       #x2208)
-             ("not in" .   #x2209)
-             ("return" .   #x27fc)
-             ("yield" .    #x27fb)
-             ("for" .      #x2200)
+             ("not"      . #x2757)
+             ("in"       . #x2208)
+             ("not in"   . #x2209)
+             ("return"   . #x27fc)
+             ("yield"    . #x27fb)
+             ("for"      . #x2200)
              ;; Base Types
-             ("int" .      #x2124)
-             ("float" .    #x211d)
-             ("True" .     #x1d54b)
-             ("False" .    #x1d53d)))))
+             ("int"      . #x2124)
+             ("float"    . #x211d)
+             ("True"     . #x1d54b)
+             ("False"    . #x1d53d)))))
+  (add-hook 'ess-mode-hook
+            (lambda ()
+              (push '("%%>%%" . #x211d) prettify-symbols-alist)))
+  (add-hook 'inferior-ess-mode-hook
+            (lambda ()
+              (push '("%%>%%" . #x211d) prettify-symbols-alist)))
 
   ;; Others
   ;; ------
@@ -451,6 +456,8 @@ you should place you code here."
   ;; Cursor settings
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
+  ;; Hide title
+  (setq frame-title-format "")
   ;; ibuffer
   (setq ibuffer-expert t)
   (setq ibuffer-show-empty-filter-groups nil)

@@ -100,8 +100,7 @@
     (add-hook 'after-revert-hook 'doom-buffer-mode-maybe)
     (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
     (require 'doom-neotree)
-    (require 'doom-nlinum)
-    (setq frame-title-format "")))
+    (require 'doom-nlinum)))
 
 (defun rogue/init-enlive ()
   (use-package enlive))
