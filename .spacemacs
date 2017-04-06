@@ -74,8 +74,8 @@ values."
      twitter
      (version-control :variables
                       version-control-diff-tool 'git-gutter
-                      version-control-diff-side 'left
-                      version-control-global-margin t)
+                      version-control-global-margin t
+                      version-control-diff-side 'left)
      xkcd)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -293,15 +293,13 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
-  ;; Wdired
-  (setq wdired-allow-to-change-permissions t)
-
+  ;; Display
+  ;; -------
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
   ;; This works when using emacs without server/client
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
-
   (defconst fira-code-font-lock-keywords-alist
     (mapcar (lambda (regex-char-pair)
               `(,(car regex-char-pair)
@@ -415,16 +413,15 @@ you should place you code here."
               ("[^<]\\(~~\\)"                #Xe168)
               ("\\(~~>\\)"                   #Xe169)
               ("\\(%%\\)"                    #Xe16a)
+              ("\\(%>%\\)"                   #Xe146)
               ("[^:=]\\(:\\)[^:=]"           #Xe16c)
               ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
               ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 
   (defun add-fira-code-symbol-keywords ()
     (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
-
-  (add-hook 'prog-mode-hook
-            'add-fira-code-symbol-keywords)
-
+  (add-hook 'prog-mode-hook 'add-fira-code-symbol-keywords)
+  ;; Special stuff in Python
   (add-hook
    'python-mode-hook
    (lambda ()
@@ -440,119 +437,71 @@ you should place you code here."
              ("int" .      #x2124)
              ("float" .    #x211d)
              ("True" .     #x1d54b)
-             ("False" .    #x1d53d)
-             ;; Mypy
-             ("Dict" .     #x1d507)
-             ("List" .     #x2112)
-             ("Union" .    #x22c3)))))
+             ("False" .    #x1d53d)))))
 
+  ;; Others
+  ;; ------
+  ;; Wdired
+  (setq wdired-allow-to-change-permissions t)
+  ;; Smaller fonts in echo area
+  (with-current-buffer (get-buffer " *Echo Area 0*")
+    (setq-local face-remapping-alist '((default (:height 0.9) ))))
   ;; Global company
   (global-company-mode)
-
-  ;; BibTex stuff
-  (setq bib-library "~/library.bib")
-
-  (setq reftex-default-bibliography '(bib-library)
-        org-ref-default-bibliography '(bib-library)
-        bibtex-completion-bibliography bib-library)
-
-  (setq org-latex-pdf-process
-        '("pdflatex -interaction nonstopmode -output-directory %o %f"
-          "bibtex %b"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"))
-
   ;; Cursor settings
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
-
-  ;; Add line numbers in prog mode
-  (add-hook 'prog-mode-hook 'linum-mode)
-
-  ;; Disable horizontal scroll bar
-  (horizontal-scroll-bar-mode -1)
-
   ;; ibuffer
   (setq ibuffer-expert t)
   (setq ibuffer-show-empty-filter-groups nil)
-
-  ;; A few hooks
-  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
-  (add-hook 'text-mode-hook 'auto-fill-mode)
-  (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
-  (add-hook 'text-mode-hook (lambda () (setq line-spacing 0.1)))
-  (add-hook 'org-mode-hook (lambda ()
-                             (progn
-                               (setq line-spacing 0.3)
-                               (spacemacs/disable-hl-line-mode))))
-  (add-hook 'kill-emacs-hook (lambda ()
-                               (if (neo-global--window-exists-p)
-                                   (neotree-toggle))))
-
-  ;; Neotree theme
-  (setq ;;neo-theme (if window-system 'icons 'arrow)
-        neo-banner-message nil
+  ;; Neotree
+  (setq neo-banner-message nil
         neo-mode-line-type 'none)
-
-  ;; Hide mode line at
-  (add-hook 'processing-compilation-mode-hook 'hidden-mode-line-mode)
-  (add-hook 'eshell-mode-hook 'hidden-mode-line-mode)
-  (add-hook 'neo-after-create-hook 'hidden-mode-line-mode)
+  ;; Hide mode line in cases
   (with-current-buffer "*Messages*" (hidden-mode-line-mode +1))
-  (add-hook 'help-mode 'hidden-mode-line-mode)
-  (add-hook 'compilation-mode 'hidden-mode-line-mode)
-  (add-hook 'messages-buffer-mode 'hidden-mode-line-mode)
-  (add-hook 'completion-list-mode 'hidden-mode-line-mode)
   (advice-add 'helm-display-mode-line
               :override (lambda (source &optional force) (hidden-mode-line-mode +1)))
-
+  ;; Fringe
   (setq-default fringes-outside-margins t
-                indicate-buffer-boundaries nil)
-
-  (setq flycheck-indication-mode 'right-fringe)
-
+                indicate-buffer-boundaries nil
+                fringe-indicator-alist (delq (assq 'continuation fringe-indicator-alist)
+                                             fringe-indicator-alist))
+  (setq flycheck-indication-mode nil)
   (define-fringe-bitmap 'git-gutter-fr:added
-    [224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224]
+    [224 224 224 224 224 224 224 224 224 224 224 224 224
+         224 224 224 224 224 224 224 224 224 224 224 224]
     nil nil 'center)
   (define-fringe-bitmap 'git-gutter-fr:modified
-    [224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224 224]
+    [224 224 224 224 224 224 224 224 224 224 224 224 224
+         224 224 224 224 224 224 224 224 224 224 224 224]
     nil nil 'center)
   (define-fringe-bitmap 'git-gutter-fr:deleted
     [0 0 0 0 0 0 0 0 0 0 0 0 0 128 192 224 240 248]
     nil nil 'center)
-
-  (fringe-mode 6)
-  (setq linum-format " %d ")
-
+  (fringe-mode 3)
   ;; Web mode
   (setq-default web-mode-markup-indent-offset 2)
   (setq-default web-mode-css-indent-offset 2)
   (setq-default web-mode-code-indent-offset 2)
   (setq-default css-indent-offset 2)
-
   ;; Javascript
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
   (setq-default js2-strict-missing-semi-warning nil)
   (setq-default js2-missing-semi-one-line-override nil)
-  (setq-default typescript-indent-level 2)
-
   ;; Notes etc.
   (setq deft-directory user-journal-dir)
   (setq deft-extensions '("org"))
   (setq deft-recursive t)
-
   ;; Eshell stuff
   (use-package em-tramp
     :config
     (setq eshell-prefer-lisp-functions t)
     (setq password-cache t)
     (setq password-cache-expiry 3600))
-
   ;; Comint
   (setq comint-scroll-show-maximum-output nil)
   (setq comint-input-ignoredups t)
-
   ;; Slime
   (setq inferior-lisp-program "ros -Q run")
   (slime-setup '(slime-asdf
@@ -562,6 +511,37 @@ you should place you code here."
                  slime-sbcl-exts
                  slime-scratch
                  slime-tramp))
+
+  ;; Hooks
+  ;; -----
+  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
+  (add-hook 'text-mode-hook 'auto-fill-mode)
+  (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
+  (add-hook 'text-mode-hook (lambda () (setq line-spacing 0.1)))
+  (add-hook 'org-mode-hook (lambda ()
+                             (progn
+                               (setq line-spacing 0.3)
+                               (spacemacs/disable-hl-line-mode))))
+  (add-hook 'processing-compilation-mode-hook 'hidden-mode-line-mode)
+  (add-hook 'eshell-mode-hook 'hidden-mode-line-mode)
+  (add-hook 'neo-after-create-hook 'hidden-mode-line-mode)
+  (add-hook 'help-mode 'hidden-mode-line-mode)
+  (add-hook 'compilation-mode 'hidden-mode-line-mode)
+  (add-hook 'messages-buffer-mode 'hidden-mode-line-mode)
+  (add-hook 'completion-list-mode 'hidden-mode-line-mode)
+
+  ;; Org
+  ;; ---
+  ;; BibTex stuff
+  (setq bib-library "~/library.bib")
+  (setq reftex-default-bibliography '(bib-library)
+        org-ref-default-bibliography '(bib-library)
+        bibtex-completion-bibliography bib-library)
+  (setq org-latex-pdf-process
+        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+          "bibtex %b"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
   ;; Babel
   (setq org-confirm-babel-evaluate nil
@@ -578,7 +558,6 @@ you should place you code here."
      (js . t)
      (latex . t)
      (python . t)
-     (q . t)
      (sh . t)
      (sqlite . t)))
 

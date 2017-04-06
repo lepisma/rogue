@@ -2,27 +2,26 @@
 
 (setq rogue-packages
       '(all-the-icons
+        beacon
         bm
         browse-at-remote
+        counsel
+        counsel-projectile
         cricbuzz
         doom-themes
         enlive
         flycheck-mypy
-        graphviz-dot-mode
         hackernews
         helm-bm
         helm-org-rifle
-        (kde :location
-             (recipe :fetcher github :repo "lepisma/kde.el"))
+        (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
         magithub
         multiple-cursors
         nlinum
         ob-async
         org-journal
-        powerline
         pretty-mode
-        (read-lyrics :location
-                     (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+        (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
         snakemake-mode
         (spaceline-all-the-icons :location local)
         swiper
@@ -39,47 +38,30 @@
 (defun rogue/init-all-the-icons ()
   (use-package all-the-icons))
 
+(defun rogue/init-beacon ()
+  :config
+  (beacon-mode +1)
+  (setq beacon-color (face-attribute 'region :background nil t)
+        beacon-blink-when-buffer-changes t
+        beacon-blink-when-point-moves-vertically 10))
+
 (defun rogue/init-bm ()
   (use-package bm
-    :ensure t
     :demand t
     :init
     (setq bm-restore-repository-on-load t)
     (setq bm-repository-file "~/.emacs.d/.cache/bm-repository")
     :config
-    ;; Allow cross-buffer 'next'
     (setq bm-cycle-all-buffers t)
-    ;; where to store persistant files
-    ;; save bookmarks
     (setq-default bm-buffer-persistence t)
-    ;; Loading the repository from file when on start up.
     (add-hook 'after-init-hook 'bm-repository-load)
-    ;; Restoring bookmarks when on file find.
-    (add-hook 'find-file-hook 'bm-buffer-restore)
-    ;; Saving bookmarks
     (add-hook 'kill-buffer-hook 'bm-buffer-save)
-    ;; Saving the repository to file when on exit.
-    ;; kill-buffer-hook is not called when Emacs is killed, so we
-    ;; must save all bookmarks first.
     (add-hook 'kill-emacs-hook (lambda ()
                                  (bm-buffer-save-all)
                                  (bm-repository-save)))
-
-    ;; The `after-save-hook' is not necessary to use to achieve persistence,
-    ;; but it makes the bookmark data in repository more in sync with the file
-    ;; state.
     (add-hook 'after-save-hook 'bm-buffer-save)
-    ;; Restoring bookmarks
-    (add-hook 'find-file-hook   'bm-buffer-restore)
+    (add-hook 'find-file-hook 'bm-buffer-restore)
     (add-hook 'after-revert-hook 'bm-buffer-restore)
-    ;; The `after-revert-hook' is not necessary to use to achieve persistence,
-    ;; but it makes the bookmark data in repository more in sync with the file
-    ;; state. This hook might cause trouble when using packages
-    ;; that automatically reverts the buffer (like vc after a check-in).
-    ;; This can easily be avoided if the package provides a hook that is
-    ;; called before the buffer is reverted (like `vc-before-checkin-hook').
-    ;; Then new bookmarks can be saved before the buffer is reverted.
-    ;; Make sure bookmarks is saved before check-in (and revert-buffer)
     (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
     :bind (("C-c b" . bm-toggle)
            ("C-c /" . bm-next)
@@ -88,6 +70,15 @@
 (defun rogue/init-browse-at-remote ()
   (use-package browse-at-remote
     :defer t))
+
+(defun rogue/init-counsel ()
+  (use-package counsel
+    :demand t))
+
+(defun rogue/init-counsel-projectile ()
+  (use-package counsel-projectile
+    :after counsel
+    :bind ("C-c g" . counsel-projectile-ag)))
 
 (defun rogue/init-cricbuzz ()
   (use-package cricbuzz
@@ -110,7 +101,7 @@
     (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
     (require 'doom-neotree)
     (require 'doom-nlinum)
-    ))
+    (setq frame-title-format "")))
 
 (defun rogue/init-enlive ()
   (use-package enlive))
@@ -120,18 +111,13 @@
     :init
     (add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-mypy)))))
 
-(defun rogue/init-graphviz-dot-mode ()
-  (use-package graphviz-dot-mode
-    :after org-babel
-    :config
-    (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))))
-
 (defun rogue/init-hackernews ()
   (use-package hackernews
     :bind ("C-c h" . hackernews)))
 
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
+    :after bm
     :defer t))
 
 (defun rogue/init-helm-org-rifle ()
@@ -157,7 +143,10 @@
 
 (defun rogue/init-nlinum ()
   (use-package nlinum
-    :demand t))
+    :demand t
+    :config
+    (add-hook 'prog-mode-hook 'nlinum-mode)
+    (setq nlinum-format " %d ")))
 
 (defun rogue/init-ob-async ()
   (use-package ob-async
@@ -170,9 +159,6 @@
     (setq org-journal-dir user-diary-dir)
     (setq org-journal-enable-encryption t)))
 
-(defun rogue/init-powerline ()
-  (use-package powerline))
-
 (defun rogue/init-pretty-mode ()
   (use-package pretty-mode
     :config
@@ -180,12 +166,22 @@
     (global-prettify-symbols-mode 1)
 
     (pretty-deactivate-groups
-     '(:equality :ordering :ordering-double :ordering-triple
-                 :arrows :arrows-twoheaded :punctuation
-                 :logic :sets))
+     '(:equality
+       :ordering
+       :ordering-double
+       :ordering-triple
+       :arrows
+       :arrows-twoheaded
+       :punctuation
+       :logic
+       :sets
+       :sub-and-superscripts
+       :subscripts
+       :arithmetic-double
+       :arithmetic-triple))
 
     (pretty-activate-groups
-     '(:sub-and-superscripts :greek :arithmetic-nary))))
+     '(:greek :arithmetic-nary))))
 
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
@@ -214,7 +210,8 @@
 
 (defun rogue/init-tide ()
   (use-package tide
-    :defer t))
+    :mode ("\\.ts\\'" . typescript-mode)
+    :config (setq-default typescript-indent-level 2)))
 
 (defun rogue/init-tldr ()
   (use-package tldr

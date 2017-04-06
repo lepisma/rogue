@@ -2,6 +2,7 @@
 
 (let* ((bg-light   "#222425")
        (bg-dark    "#1f1f1f")
+       (bg-darker  "#1c1c1c")
        (fg-white   "#ffffff")
        (dark-cyan  "#008b8b")
        (region     "#39393d")
@@ -12,23 +13,36 @@
        (type       "#66d9ef"))
   (setq theming-modifications
         `((doom-molokai
+           (company-tooltip
+            :background ,bg-darker)
+           (company-scrollbar-fg
+            :background ,comment)
+           (company-scrollbar-bg
+            :background ,bg-darker)
+           (company-tooltip-common
+            :foreground ,keyword)
+           (company-tooltip-annotation
+            :foreground ,type)
+           (tooltip
+            :foreground ,keyword
+            :background ,bg-darker)
            (git-gutter-fr:modified
             :foreground ,dark-cyan)
            (doom-neotree-dir-face
             :foreground ,keyword
-            :height 0.9)
+            :height 1.0)
            (doom-neotree-file-face
-            :height 0.9)
+            :height 1.0)
            (doom-neotree-text-file-face
-            :height 0.9)
+            :height 1.0)
            (doom-neotree-hidden-file-face
-            :height 0.9
+            :height 1.0
             :foreground ,comment)
            (doom-neotree-media-file-face
-            :height 0.9
+            :height 1.0
             :foreground ,type)
            (doom-neotree-data-file-face
-            :height 0.9
+            :height 1.0
             :foreground ,doc)
            (neo-root-dir-face
             :foreground ,fg-white
