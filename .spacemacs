@@ -437,12 +437,18 @@ you should place you code here."
              ("float"    . #x211d)
              ("True"     . #x1d54b)
              ("False"    . #x1d53d)))))
-  (add-hook 'ess-mode-hook
-            (lambda ()
-              (push '("%%>%%" . #x211d) prettify-symbols-alist)))
-  (add-hook 'inferior-ess-mode-hook
-            (lambda ()
-              (push '("%%>%%" . #x211d) prettify-symbols-alist)))
+  (add-hook
+   'ess-mode-hook
+   (lambda ()
+     (progn
+       (pretty-mode -1)
+       (push '("%>%" . ?|) prettify-symbols-alist))))
+  (add-hook
+   'inferior-ess-mode-hook
+   (lambda ()
+     (progn
+       (pretty-mode -1)
+       (push '("%>%" . ?|) prettify-symbols-alist))))
 
   ;; Others
   ;; ------
