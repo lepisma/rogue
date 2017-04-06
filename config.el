@@ -10,9 +10,16 @@
        (comment    "#525254")
        (builtin    "#fd971f")
        (doc        "#727280")
-       (type       "#66d9ef"))
+       (type       "#66d9ef")
+       (string     "#b6e63e"))
   (setq theming-modifications
         `((doom-molokai
+           (hackernews-link-face
+            :foreground ,type
+            :inherit variable-pitch
+            :height 0.9)
+           (hackernews-comment-count-face
+            :foreground ,string)
            (company-tooltip
             :background ,bg-darker)
            (company-scrollbar-fg
@@ -101,5 +108,4 @@
             :background ,dark-cyan
             :foreground ,fg-white)
            (helm-selection
-            :background ,region)
-           ))))
+            :background ,region)))))

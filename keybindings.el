@@ -33,6 +33,3 @@
 ;; Move lines
 (global-set-key (kbd "M-<up>") 'move-text-line-up)
 (global-set-key (kbd "M-<down>") 'move-text-line-down)
-
-;; Counsel
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
