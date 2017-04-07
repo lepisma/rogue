@@ -28,16 +28,14 @@ values."
      java
      javascript
      nim
-     (python :variables
-             python-enable-yapf-format-on-save t)
+     (python :variables python-enable-yapf-format-on-save t)
      ;; Other languages / assists
      bibtex
      csv
      (latex :variables
             latex-enable-folding t
             latex-enable-auto-fill t)
-     (markdown :variables
-               markdown-live-preview-engine 'vmd)
+     (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t)
@@ -542,6 +540,7 @@ you should place you code here."
   (add-hook 'compilation-mode 'hidden-mode-line-mode)
   (add-hook 'messages-buffer-mode 'hidden-mode-line-mode)
   (add-hook 'completion-list-mode 'hidden-mode-line-mode)
+  (add-hook 'term-mode-hook 'toggle-truncate-lines)
 
   ;; Org
   ;; ---
