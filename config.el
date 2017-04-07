@@ -59,29 +59,57 @@
             :foreground ,bg-dark
             :background ,fg-white)
            (org-document-title
-            :inherit (variable-pitch)
+            :inherit variable-pitch
             :height 1.3
             :box (:line-width 6 :color ,bg-light))
            (org-level-1
-            :inherit (variable-pitch)
+            :inherit variable-pitch
             :height 1.0
             :weight normal
             :background ,bg-light)
            (org-level-2
-            :inherit (variable-pitch)
+            :inherit variable-pitch
             :weight normal
             :height 1.0
             :background ,bg-light)
            (org-level-3
-            :inherit (variable-pitch)
+            :inherit variable-pitch
             :weight normal
             :height 1.0
             :background ,bg-light)
            (org-level-4
-            :inherit (variable-pitch)
+            :inherit variable-pitch
             :weight normal
             :height 1.0
             :background ,bg-light)
+           (org-headline-done
+            :inherit variable-pitch)
+           (org-link
+            :underline nil
+            :slant italic
+            :weight normal)
+           (org-special-keyword
+            :foreground ,comment)
+           (font-latex-sectioning-0-face
+            :foreground ,type
+            :height 1.2)
+           (font-latex-sectioning-1-face
+            :foreground ,type
+            :height 1.1)
+           (font-latex-sectioning-2-face
+            :foreground ,type
+            :height 1.1)
+           (font-latex-sectioning-3-face
+            :foreground ,type
+            :height 1.0)
+           (font-latex-sectioning-4-face
+            :foreground ,type
+            :height 1.0)
+           (font-latex-sectioning-5-face
+            :foreground ,type
+            :height 1.0)
+           (font-latex-verbatim-face
+            :foreground ,builtin)
            (spacemacs-normal-face
             :background ,bg-dark
             :foreground ,fg-white)
