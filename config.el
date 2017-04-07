@@ -66,26 +66,22 @@
             :inherit (variable-pitch)
             :height 1.0
             :weight normal
-            :background ,bg-light
-            :box (:line-width 4 :color ,bg-light))
+            :background ,bg-light)
            (org-level-2
             :inherit (variable-pitch)
             :weight normal
             :height 1.0
-            :background ,bg-light
-            :box (:line-width 4 :color ,bg-light))
+            :background ,bg-light)
            (org-level-3
             :inherit (variable-pitch)
             :weight normal
             :height 1.0
-            :background ,bg-light
-            :box (:line-width 4 :color ,bg-light))
+            :background ,bg-light)
            (org-level-4
             :inherit (variable-pitch)
             :weight normal
             :height 1.0
-            :background ,bg-light
-            :box (:line-width 4 :color ,bg-light))
+            :background ,bg-light)
            (spacemacs-normal-face
             :background ,bg-dark
             :foreground ,fg-white)

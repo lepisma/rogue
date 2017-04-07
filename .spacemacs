@@ -533,7 +533,7 @@ you should place you code here."
   (add-hook 'text-mode-hook (lambda () (setq line-spacing 0.1)))
   (add-hook 'org-mode-hook (lambda ()
                              (progn
-                               (setq line-spacing 0.3)
+                               (setq line-spacing 0.5)
                                (spacemacs/disable-hl-line-mode))))
   (add-hook 'processing-compilation-mode-hook 'hidden-mode-line-mode)
   (add-hook 'eshell-mode-hook 'hidden-mode-line-mode)
