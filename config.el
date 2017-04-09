@@ -119,6 +119,9 @@
            (spacemacs-lisp-face
             :background ,bg-dark
             :foreground ,fg-white)
+           (spacemacs-emacs-face
+            :background ,bg-dark
+            :foreground ,fg-white)
            (spacemacs-motion-face
             :background ,bg-dark
             :foreground ,fg-white)
