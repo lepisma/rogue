@@ -133,6 +133,11 @@ With argument, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
 
+(defun delete-line ()
+  "Delete current line without killing"
+  (interactive)
+  (delete-region (line-beginning-position) (line-end-position)))
+
 (defun duplicate-line ()
   "Duplicate a line."
   (interactive)
@@ -140,7 +145,8 @@ With argument, do this that many times."
   (kill-line)
   (yank)
   (newline)
-  (yank))
+  (yank)
+  (setq kill-ring (cdr kill-ring)))
 
 (defun insect-calc ()
   "Run insect calculator."

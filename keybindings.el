@@ -27,9 +27,8 @@
 ;; Don't kill my words
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
-;; Duplicate lines
+;; Line stuff
 (global-set-key (kbd "C-d") 'duplicate-line)
-
-;; Move lines
 (global-set-key (kbd "M-<up>") 'move-text-line-up)
 (global-set-key (kbd "M-<down>") 'move-text-line-down)
+(global-set-key (kbd "C-S-<backspace>") 'delete-line)
