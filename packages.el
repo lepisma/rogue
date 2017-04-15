@@ -10,6 +10,7 @@
         cricbuzz
         doom-themes
         enlive
+        (esi :location (recipe :fetcher github :repo "lepisma/esi"))
         flycheck-mypy
         hackernews
         helm-bm
@@ -104,6 +105,12 @@
 
 (defun rogue/init-enlive ()
   (use-package enlive))
+
+(defun rogue/init-esi ()
+  (use-package esi
+    :bind (("C-c x m h" . helm-esi-mem-stack-pop)
+           ("C-c x m i" . esi-mem-stack-push)
+           ("C-c x m r" . esi-mem-stack-pop))))
 
 (defun rogue/init-flycheck-mypy ()
   (use-package flycheck-mypy
