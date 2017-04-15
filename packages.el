@@ -125,9 +125,10 @@
 
 (defun rogue/init-kde ()
   (use-package kde
-    :bind (("C-c k a" . kde-kalarm-set-org)
-           ("C-c k s" . kde-kmail-send-default)
-           ("C-c k x" . kde-explore))))
+    :init (spacemacs/set-leader-keys
+            "Ka" 'kde-kalarm-set-org
+            "Ks" 'kde-kmail-send-default
+            "Kx" 'kde-explore)))
 
 (defun rogue/init-magithub ()
   (use-package magithub
