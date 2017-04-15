@@ -17,52 +17,39 @@
 
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
-  (helm-find-files-1 (concat
-                      (file-name-as-directory (expand-file-name "~/.tofish"))
-                      candidate
-                      "/")))
+  (helm-find-files-1 (concat (file-name-as-directory (expand-file-name "~/.tofish"))
+                             candidate "/")))
 
 (defun to-fish-jump ()
   "Jump to to-fish bookmarks"
   (interactive)
   (helm :sources (helm-build-sync-source "bookmarks"
-                   :candidates (lambda ()
-                                 (directory-files "~/.tofish"))
+                   :candidates (directory-files "~/.tofish")
                    :action '(("Jump to bookmark" . to-fish-find-file)))
         :buffer "*helm tofish jump*"
         :prompt "Jump to : "))
 
-(defun git-archive ()
+(defun git-archive (output-file)
   "Archive current repository"
-  (interactive)
-  (let ((repo-root (magit-toplevel)))
-    (if repo-root
-        (let ((output-file (read-file-name "Output file: ")))
-          (if (eq 0 (call-process "git"
-                                  nil nil nil
-                                  "archive"
-                                  "-o" output-file
-                                  "HEAD"))
-              (message "git-archive finished")
-            (display-warning :error "Error in archiving")))
-      (display-warning :error "Not in a git repository"))))
-
-(defun fahrenheit-to-celcius (f)
-  "Convert F to C"
-  (/ (- f 32) 1.8))
+  (interactive "FArchive output file (with extension): ")
+  (if (magit-toplevel)
+      (progn
+        (call-process "git" nil nil nil "archive"
+                      "-o" output-file "HEAD")
+        (message "git-archive finished"))
+    (message "Not in a git repository")))
 
 (defun transform-pair-units (pairs)
   "Transform unit pairs to SI. Just temp for now."
-  (mapcar (lambda (pair)
-            (let ((split (split-string (second pair) "°")))
-              (if (string-equal (second split) "F")
-                  (progn
-                    (list
-                     (first pair)
-                     (concat (format "%0.2f"
-                              (fahrenheit-to-celcius
-                               (string-to-number (first split)))) "°C")))
-                pair))) pairs))
+  (mapcar
+   (lambda (pair)
+     (let* ((split (split-string (second pair) "°"))
+            (value (string-to-number (first split)))
+            (unit (second split)))
+       (if (string-equal unit "F")
+           `(,(first pair)
+             ,(concat (format "%0.2f" (/ (- value 32) 1.8)) "°C"))
+         pair))) pairs))
 
 (defun show-weather-in-buffer (pairs location)
   "Display weather data in a new buffer"
@@ -74,31 +61,11 @@
     (insert "#+TITLE: ")
     (insert location)
     (insert "\n\n")
-    (mapc (lambda (pair)
-            (insert (concat "+ " (first pair) " :: " (second pair) "\n")))
+    (mapc (lambda (pair) (insert (concat "+ " (first pair) " :: " (second pair) "\n")))
           (transform-pair-units (butlast pairs)))
     (switch-to-buffer buffer)
     (setq buffer-read-only t)
     (goto-char (point-min))))
-
-(defun mpc-send-message (channel message)
-  "Send message to mpc"
-  (if (eq 0 (call-process "mpc"
-                          nil nil nil
-                          "sendmessage"
-                          channel message))
-      (message "Done")
-    (display-warning :error "Error in sending message to mpc")))
-
-(defun mpdas-love ()
-  "Love song on scrobbler service"
-  (interactive)
-  (mpc-send-message "mpdas" "love"))
-
-(defun mpdas-unlove ()
-  "Unlove currently playing song"
-  (interactive)
-  (mpc-send-message "mpdas" "unlove"))
 
 (defun weather-amherst ()
   "Get local weather information for Amherst from CS station"
@@ -118,8 +85,7 @@
 
 (define-minor-mode weather-amherst-mode
   "Minor mode for adding keybindings"
-  nil nil
-  weather-amherst-mode-map)
+  nil nil weather-amherst-mode-map)
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
@@ -153,17 +119,13 @@ With argument, do this that many times."
   (interactive)
   (shell-command (format "insect \"%s\"" (read-string "insect: "))))
 
-(defun org-random-sort ()
-  "Shuffle org-entries randomly"
-  (random 1000))
-
 (defun org-shuffle-projects ()
   "Shuffle first level items in project files"
   (interactive)
   (dolist (project-file user-project-files)
     (find-file project-file)
     (goto-char (point-min))
-    (org-sort-entries nil ?f 'org-random-sort)
+    (org-sort-entries nil ?f (lambda () (random 1000)))
     (save-buffer)))
 
 (defun org-screenshot-store-path ()
@@ -196,3 +158,19 @@ Create the directory if not present."
     (call-process-shell-command command)
     (org-insert-link nil image-path "")
     (org-display-inline-images)))
+
+(defun mpc-send-message (channel message)
+  "Send message to mpc"
+  (if (eq 0 (call-process "mpc" nil nil nil "sendmessage" channel message))
+      (message "Done")
+    (message "Error in sending message to mpc")))
+
+(defun mpdas-love ()
+  "Love song on scrobbler service"
+  (interactive)
+  (mpc-send-message "mpdas" "love"))
+
+(defun mpdas-unlove ()
+  "Unlove currently playing song"
+  (interactive)
+  (mpc-send-message "mpdas" "unlove"))
