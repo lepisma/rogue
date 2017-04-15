@@ -281,7 +281,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-project-dir (getenv "PROJECTS_DIR"))
   (defconst user-project-files
     `(,(concat user-journal-dir "/projects.org")
-      ,(concat user-project-dir "/dev/index.org"))))
+      ,(concat user-project-dir "/dev/index.org")))
+  ;; Separate custom stuff
+  (setq custom-file "~/.emacs-custom.el")
+  (load custom-file))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
