@@ -63,9 +63,9 @@
     (add-hook 'find-file-hook 'bm-buffer-restore)
     (add-hook 'after-revert-hook 'bm-buffer-restore)
     (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
-    :bind (("C-c b" . bm-toggle)
-           ("C-c /" . bm-next)
-           ("C-c '" . bm-previous))))
+    :bind (("C-c b t" . bm-toggle)
+           ("C-c b <right>" . bm-next)
+           ("C-c b <left>" . bm-previous))))
 
 (defun rogue/init-browse-at-remote ()
   (use-package browse-at-remote
@@ -125,9 +125,9 @@
 
 (defun rogue/init-kde ()
   (use-package kde
-    :bind (("C-c k" . kde-kalarm-set-org)
-           ("C-c s" . kde-kmail-send-default)
-           ("C-c x" . kde-explore))))
+    :bind (("C-c k a" . kde-kalarm-set-org)
+           ("C-c k s" . kde-kmail-send-default)
+           ("C-c k x" . kde-explore))))
 
 (defun rogue/init-magithub ()
   (use-package magithub
