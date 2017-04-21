@@ -62,6 +62,7 @@ values."
      pdf-tools
      restclient
      rogue
+     slack
      selectric
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
@@ -274,14 +275,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; Directories
-  (defconst user-layer-path "~/.emacs.d/private/rogue")
-  (defconst user-secrets-path (concat user-layer-path "/secrets.json"))
-  (defconst user-journal-dir (getenv "JOURNAL_DIR"))
-  (defconst user-diary-dir (concat user-journal-dir "/diary/"))
-  (defconst user-project-dir (getenv "PROJECTS_DIR"))
+  (defconst user-layer-dir (file-name-as-directory "~/.emacs.d/private/rogue"))
+  (defconst user-secrets-dir (file-name-as-directory (concat user-layer-dir "secrets")))
+  (defconst user-journal-dir (file-name-as-directory (getenv "JOURNAL_DIR")))
+  (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
+  (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
   (defconst user-project-files
-    `(,(concat user-journal-dir "/projects.org")
-      ,(concat user-project-dir "/dev/index.org")))
+    `(,(concat user-journal-dir "projects.org")
+      ,(concat user-project-dir "dev/index.org")))
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
   (load custom-file))
@@ -525,6 +526,9 @@ you should place you code here."
                  slime-sbcl-exts
                  slime-scratch
                  slime-tramp))
+  (setq alert-default-style 'libnotify)
+  ;; Slack
+  (load-file (concat user-secrets-dir "slack.el"))
 
   ;; Hooks
   ;; -----

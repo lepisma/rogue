@@ -232,11 +232,7 @@
   (use-package wolfram
     :defer t
     :config
-    (require 'json)
-    (let* ((json-object-type 'hash-table)
-           (secrets (json-read-file user-secrets-path)))
-      (setq wolfram-alpha-app-id
-            (gethash "wolfram-alpha-app-id" secrets)))))
+    (load-file (concat user-secrets-dir "wolfram.el"))))
 
 (defun rogue/init-writegood-mode ()
   (use-package writegood-mode
