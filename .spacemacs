@@ -459,6 +459,9 @@ you should place you code here."
   ;; Smaller fonts in echo area
   (with-current-buffer (get-buffer " *Echo Area 0*")
     (setq-local face-remapping-alist '((default (:height 0.9) ))))
+  (add-hook 'minibuffer-setup-hook
+            (lambda ()
+              (set (make-local-variable 'face-remapping-alist) '((default :height 0.9)))))
   ;; Global company
   (global-company-mode)
   ;; Cursor settings
