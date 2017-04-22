@@ -21,6 +21,7 @@
         nlinum
         ob-async
         org-journal
+        (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
         pretty-mode
         (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
         snakemake-mode
@@ -97,7 +98,7 @@
     (setq org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
-    (add-hook 'find-file-hook 'doom-buffer-mode-maybe)
+    (add-hook 'prog-mode-hook 'doom-buffer-mode-maybe)
     (add-hook 'after-revert-hook 'doom-buffer-mode-maybe)
     (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
     (require 'doom-neotree)
@@ -165,6 +166,12 @@
     :config
     (setq org-journal-dir user-diary-dir)
     (setq org-journal-enable-encryption t)))
+
+(defun rogue/init-org-pretty-table ()
+  (use-package org-pretty-table
+    :demand t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))))
 
 (defun rogue/init-pretty-mode ()
   (use-package pretty-mode

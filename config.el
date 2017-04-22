@@ -11,13 +11,16 @@
        (builtin    "#fd971f")
        (doc        "#727280")
        (type       "#66d9ef")
-       (string     "#b6e63e"))
+       (string     "#b6e63e")
+       (sans-font  "Source Sans Pro"))
   (setq theming-modifications
         `((doom-molokai
+           (variable-pitch
+            :font ,sans-font)
            (hackernews-link-face
             :foreground ,type
             :inherit variable-pitch
-            :height 0.9)
+            :height 1.2)
            (hackernews-comment-count-face
             :foreground ,string)
            (company-tooltip
@@ -60,28 +63,49 @@
             :background ,fg-white)
            (org-document-title
             :inherit variable-pitch
-            :height 1.3
-            :box (:line-width 6 :color ,bg-light))
+            :height 2.0
+            :weight bold
+            :foreground ,fg-white)
            (org-level-1
             :inherit variable-pitch
-            :height 1.0
-            :weight normal
-            :background ,bg-light)
+            :height 1.5
+            :weight bold
+            :background ,bg-dark)
            (org-level-2
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
-            :background ,bg-light)
+            :weight bold
+            :height 1.3
+            :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
-            :background ,bg-light)
+            :weight bold
+            :height 1.2
+            :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
-            :background ,bg-light)
+            :weight bold
+            :height 1.2
+            :background ,bg-dark)
+           (org-level-5
+            :inherit variable-pitch
+            :weight bold
+            :height 1.2
+            :background ,bg-dark)
+           (org-level-6
+            :inherit variable-pitch
+            :weight bold
+            :height 1.2
+            :background ,bg-dark)
+           (org-level-7
+            :inherit variable-pitch
+            :weight bold
+            :height 1.2
+            :background ,bg-dark)
+           (org-level-8
+            :inherit variable-pitch
+            :weight bold
+            :height 1.2
+            :background ,bg-dark)
            (org-headline-done
             :inherit variable-pitch)
            (org-link
@@ -89,7 +113,10 @@
             :slant italic
             :weight normal)
            (org-special-keyword
+            :height 0.9
             :foreground ,comment)
+           (org-todo
+            :foreground ,builtin)
            (font-latex-sectioning-0-face
             :foreground ,type
             :height 1.2)

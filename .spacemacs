@@ -295,8 +295,6 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
-  ;; Display
-  ;; -------
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
@@ -422,19 +420,16 @@ you should place you code here."
   (defun add-fira-code-symbol-keywords ()
     (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
   (add-hook 'prog-mode-hook 'add-fira-code-symbol-keywords)
-  ;; Pretty symbols
   (add-hook
    'python-mode-hook
    (lambda ()
      (mapc (lambda (pair) (push pair prettify-symbols-alist))
-           '(;; Syntax
-             ("not"      . #x2757)
+           '(("not"      . #x2757)
              ("in"       . #x2208)
              ("not in"   . #x2209)
              ("return"   . #x27fc)
              ("yield"    . #x27fb)
              ("for"      . #x2200)
-             ;; Base Types
              ("int"      . #x2124)
              ("float"    . #x211d)
              ("True"     . #x1d54b)
@@ -452,34 +447,31 @@ you should place you code here."
        (pretty-mode -1)
        (push '("%>%" . ?|) prettify-symbols-alist))))
 
-  ;; Others
-  ;; ------
-  ;; Wdired
   (setq wdired-allow-to-change-permissions t)
+
   ;; Smaller fonts in echo area
   (with-current-buffer (get-buffer " *Echo Area 0*")
     (setq-local face-remapping-alist '((default (:height 0.9) ))))
   (add-hook 'minibuffer-setup-hook
             (lambda ()
               (set (make-local-variable 'face-remapping-alist) '((default :height 0.9)))))
-  ;; Global company
+
   (global-company-mode)
-  ;; Cursor settings
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
-  ;; Hide title
   (setq frame-title-format "")
-  ;; ibuffer
+
   (setq ibuffer-expert t)
   (setq ibuffer-show-empty-filter-groups nil)
-  ;; Neotree
+
   (setq neo-banner-message nil
         neo-mode-line-type 'none)
-  ;; Hide mode line in cases
+
+  ;; Hide mode line in few situations
   (with-current-buffer "*Messages*" (hidden-mode-line-mode +1))
   (advice-add 'helm-display-mode-line
               :override (lambda (source &optional force) (hidden-mode-line-mode +1)))
-  ;; Fringe
+
   (setq-default fringes-outside-margins t
                 indicate-buffer-boundaries nil
                 fringe-indicator-alist (delq (assq 'continuation fringe-indicator-alist)
@@ -497,30 +489,30 @@ you should place you code here."
     [0 0 0 0 0 0 0 0 0 0 0 0 0 128 192 224 240 248]
     nil nil 'center)
   (fringe-mode 3)
-  ;; Web mode
+
   (setq-default web-mode-markup-indent-offset 2)
   (setq-default web-mode-css-indent-offset 2)
   (setq-default web-mode-code-indent-offset 2)
   (setq-default css-indent-offset 2)
-  ;; Javascript
+
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
   (setq-default js2-strict-missing-semi-warning nil)
   (setq-default js2-missing-semi-one-line-override nil)
-  ;; Notes etc.
+
   (setq deft-directory user-journal-dir)
   (setq deft-extensions '("org"))
   (setq deft-recursive t)
-  ;; Eshell stuff
+
   (use-package em-tramp
     :config
     (setq eshell-prefer-lisp-functions t)
     (setq password-cache t)
     (setq password-cache-expiry 3600))
-  ;; Comint
+
   (setq comint-scroll-show-maximum-output nil)
   (setq comint-input-ignoredups t)
-  ;; Slime
+
   (setq inferior-lisp-program "ros -Q run")
   (slime-setup '(slime-asdf
                  slime-company
@@ -530,19 +522,17 @@ you should place you code here."
                  slime-scratch
                  slime-tramp))
   (setq alert-default-style 'libnotify)
-  ;; Slack
   (load-file (concat user-secrets-dir "slack.el"))
 
   ;; Hooks
-  ;; -----
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
-  (add-hook 'text-mode-hook 'auto-fill-mode)
+  (add-hook 'text-mode-hook (lambda ()
+                              (progn
+                                (auto-fill-mode)
+                                (setq left-margin-width 2)
+                                (setq line-spacing 0.1)
+                                (spacemacs/disable-hl-line-mode))))
   (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
-  (add-hook 'text-mode-hook (lambda () (setq line-spacing 0.1)))
-  (add-hook 'org-mode-hook (lambda ()
-                             (progn
-                               (setq line-spacing 0.5)
-                               (spacemacs/disable-hl-line-mode))))
   (add-hook 'processing-compilation-mode-hook 'hidden-mode-line-mode)
   (add-hook 'eshell-mode-hook 'hidden-mode-line-mode)
   (add-hook 'neo-after-create-hook 'hidden-mode-line-mode)
@@ -553,8 +543,6 @@ you should place you code here."
   (add-hook 'term-mode-hook 'toggle-truncate-lines)
 
   ;; Org
-  ;; ---
-  ;; BibTex stuff
   (setq bib-library "~/library.bib")
   (setq reftex-default-bibliography '(bib-library)
         org-ref-default-bibliography '(bib-library)
@@ -565,7 +553,6 @@ you should place you code here."
           "pdflatex -interaction nonstopmode -output-directory %o %f"
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
-  ;; Babel
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
         org-src-tab-acts-natively t)
@@ -583,19 +570,17 @@ you should place you code here."
      (sh . t)
      (sqlite . t)))
 
-  ;; Org clock
   (setq spaceline-org-clock-p t)
 
   (with-eval-after-load 'org
-    ;; Indent
     (setq org-startup-indented t)
-    ;; Org idle time
     (setq org-clock-idle-time 5)
-    ;; Org mode symbols
     (setq org-bullets-bullet-list '("•"))
-    ;; Pretty symbols
+    (font-lock-add-keywords 'org-mode
+                            '(("^ +\\([-*]\\) "
+                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
     (setq org-pretty-entities t)
-    ;; Modules
+    (setq org-hide-emphasis-markers t)
     (customize-set-variable 'org-modules
                             '(org-bibtex
                               org-docview
@@ -604,10 +589,8 @@ you should place you code here."
                               org-w3m))
     ;; Avoid duplicating micro
     (setq org-tags-exclude-from-inheritance '("micro"))
-    ;; Define stuck projects
     (setq org-stuck-projects
           '("+LEVEL=1/-DONE" ("*") ("active" "micro" "old") ""))
-    ;; Agenda stuff
     (setq org-agenda-custom-commands
           '(("n" "Main agenda with micro tasks"
              ((tags "micro"
