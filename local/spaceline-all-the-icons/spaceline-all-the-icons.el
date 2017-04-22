@@ -136,7 +136,7 @@
               (`suspicious  "")))
            (f (cond
                ((string-match "! " text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-warning :background)))
-               ((string-match "✖ [0-9]" text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-error :background)))
+               ((string-match "✖ [0-9]" text) `(:height 0.9 :foreground "#ff6347"))
                ((string-match "disabled" text) `(:height 0.9 :foreground ,(face-attribute 'font-lock-comment-face :foreground)))
                (t '(:height 0.9 :inherit)))))
       (propertize (format "%s" text)
@@ -153,21 +153,21 @@
       (concat
        (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.3))
        (propertize (format "%s  " icon)
-                   'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
-                   'display '(raise 0.3))))
+                   'face `(:height 1.0 :family ,(all-the-icons-wicon-family) :inherit)
+                   'display '(raise 0.2))))
     :tight t)
 
 (spaceline-define-segment
     ati-height-modifier "Modifies the height of inactive buffers"
-    (propertize " " 'face '(:height 1.3 :inherit))
+    (propertize " " 'face '(:height 1.8 :inherit))
     :tight t :when (not active))
 
 (spaceline-define-segment ati-buffer-position
   "The current approximate buffer position, in percent."
   (concat
-   (propertize (all-the-icons-faicon "map-signs")
-               'face `(:family ,(all-the-icons-faicon-family) :height 0.9 :inherit)
-               'display '(raise 0.3))
+   (propertize (all-the-icons-faicon "sort-amount-desc")
+               'face `(:family ,(all-the-icons-faicon-family) :height 0.7 :inherit)
+               'display '(raise 0.6))
    " "
    (propertize (format-mode-line "%p ")
                'face '(:height 0.9 :inherit) 'display '(raise 0.3))))
@@ -217,7 +217,7 @@ the directions of the separator."
        (let ((dir (if spaceline-invert-direction (spaceline--direction ,dir) ,dir))
              (sep spaceline-separator-type))
          (propertize (all-the-icons-alltheicon (format "%s-%s" sep dir) :v-adjust 0.0)
-                     'face `(:height 1.9
+                     'face `(:height 1.8
                              :family
                              ,(all-the-icons-alltheicon-family)
                              :foreground
