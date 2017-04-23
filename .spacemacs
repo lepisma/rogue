@@ -53,6 +53,9 @@ values."
      colors
      dash
      deft
+     (elfeed :variables
+             rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
+             elfeed-enable-web-interface t)
      git
      github
      (ibuffer :variables

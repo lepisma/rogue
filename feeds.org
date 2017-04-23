@@ -1,0 +1,14 @@
+* Feeds                                                              :elfeed:
+** Magazines
+*** http://www.symmetrymagazine.org/feed
+*** http://nautil.us/rss/all
+** Blogs
+*** http://blog.stephenwolfram.com/feed/
+*** http://www.offconvex.org/feed.xml
+*** https://terrytao.wordpress.com/feed/
+*** http://www.randalolson.com/feed/
+*** http://simplystatistics.org/feed/
+*** https://jeremykun.com/feed/
+*** http://fastml.com/atom.xml
+*** http://www.scottaaronson.com/blog/?feed=rss2
+*** http://nullprogram.com/feed
