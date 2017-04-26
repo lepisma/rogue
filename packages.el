@@ -5,8 +5,6 @@
         beacon
         bm
         browse-at-remote
-        counsel
-        counsel-projectile
         cricbuzz
         doom-themes
         enlive
@@ -18,7 +16,6 @@
         (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
         magithub
         multiple-cursors
-        nlinum
         ob-async
         org-journal
         (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
@@ -28,7 +25,6 @@
         (spaceline-all-the-icons :location local)
         swiper
         sx
-        tide
         tldr
         vue-mode
         wolfram
@@ -72,15 +68,6 @@
 (defun rogue/init-browse-at-remote ()
   (use-package browse-at-remote
     :defer t))
-
-(defun rogue/init-counsel ()
-  (use-package counsel
-    :demand t))
-
-(defun rogue/init-counsel-projectile ()
-  (use-package counsel-projectile
-    :after counsel
-    :bind ("C-c g" . counsel-projectile-ag)))
 
 (defun rogue/init-cricbuzz ()
   (use-package cricbuzz
@@ -149,13 +136,6 @@
            ("C-<" . mc/mark-previous-like-this)
            ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
 
-(defun rogue/init-nlinum ()
-  (use-package nlinum
-    :demand t
-    :config
-    (add-hook 'prog-mode-hook 'nlinum-mode)
-    (setq nlinum-format " %d ")))
-
 (defun rogue/init-ob-async ()
   (use-package ob-async
     :config
@@ -221,11 +201,6 @@
 (defun rogue/init-sx ()
   (use-package sx
     :defer t))
-
-(defun rogue/init-tide ()
-  (use-package tide
-    :mode ("\\.ts\\'" . typescript-mode)
-    :config (setq-default typescript-indent-level 2)))
 
 (defun rogue/init-tldr ()
   (use-package tldr

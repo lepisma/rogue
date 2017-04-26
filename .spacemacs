@@ -29,9 +29,13 @@ values."
      javascript
      nim
      (python :variables python-enable-yapf-format-on-save t)
+     racket
+     scheme
+     (typescript :variables typescript-fmt-on-save t)
      ;; Other languages / assists
      bibtex
      csv
+     graphviz
      (latex :variables
             latex-enable-folding t
             latex-enable-auto-fill t)
@@ -56,17 +60,21 @@ values."
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
              elfeed-enable-web-interface t)
+     emoji
+     games
      git
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
+     nlinum
      pandoc
      pdf-tools
      (ranger :variables ranger-show-preview t)
      restclient
      rogue
-     slack
      selectric
+     semantic
+     slack
      (spell-checking :variables spell-checking-enable-by-default nil)
      spotify
      syntax-checking
@@ -502,6 +510,8 @@ you should place you code here."
   (setq-default js2-strict-missing-semi-warning nil)
   (setq-default js2-missing-semi-one-line-override nil)
 
+  (setq-default typescript-indent-level 2)
+
   (setq deft-directory user-journal-dir)
   (setq deft-extensions '("org"))
   (setq deft-recursive t)
@@ -529,6 +539,7 @@ you should place you code here."
 
   (setq ranger-cleanup-eagerly t)
   (setq ranger-show-hidden t)
+  (setq nlinum-format " %d ")
 
   ;; Hooks
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
@@ -547,6 +558,7 @@ you should place you code here."
   (add-hook 'messages-buffer-mode 'hidden-mode-line-mode)
   (add-hook 'completion-list-mode 'hidden-mode-line-mode)
   (add-hook 'term-mode-hook 'toggle-truncate-lines)
+  (add-hook 'prog-mode-hook 'nlinum-mode)
 
   ;; Org
   (setq bib-library "~/library.bib")
