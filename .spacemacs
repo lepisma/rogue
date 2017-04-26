@@ -525,6 +525,7 @@ you should place you code here."
                  slime-tramp))
   (setq alert-default-style 'libnotify)
   (load-file (concat user-secrets-dir "slack.el"))
+  (slack-start)
 
   (setq ranger-cleanup-eagerly t)
   (setq ranger-show-hidden t)
