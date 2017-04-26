@@ -58,17 +58,16 @@ values."
              elfeed-enable-web-interface t)
      git
      github
-     (ibuffer :variables
-              ibuffer-group-buffers-by 'projects)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
      pandoc
      pdf-tools
+     (ranger :variables ranger-show-preview t)
      restclient
      rogue
      slack
      selectric
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
+     (spell-checking :variables spell-checking-enable-by-default nil)
      spotify
      syntax-checking
      theming
@@ -526,6 +525,9 @@ you should place you code here."
                  slime-tramp))
   (setq alert-default-style 'libnotify)
   (load-file (concat user-secrets-dir "slack.el"))
+
+  (setq ranger-cleanup-eagerly t)
+  (setq ranger-show-hidden t)
 
   ;; Hooks
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
