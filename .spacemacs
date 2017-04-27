@@ -537,6 +537,8 @@ you should place you code here."
   (load-file (concat user-secrets-dir "slack.el"))
   (slack-start)
 
+  (setq tramp-default-method "ssh")
+
   (setq ranger-cleanup-eagerly t)
   (setq ranger-show-hidden t)
   (setq nlinum-format " %d ")
