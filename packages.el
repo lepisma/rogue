@@ -96,9 +96,9 @@
 
 (defun rogue/init-esi ()
   (use-package esi
-    :bind (("C-c x m h" . helm-esi-mem-stack-pop)
-           ("C-c x m i" . esi-mem-stack-push)
-           ("C-c x m r" . esi-mem-stack-pop))))
+    :config
+    (esi-start)
+    (setq esi-bm-file (concat user-journal-dir "bookmarks.org"))))
 
 (defun rogue/init-flycheck-mypy ()
   (use-package flycheck-mypy
