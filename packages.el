@@ -7,6 +7,7 @@
         browse-at-remote
         cricbuzz
         doom-themes
+        (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
         enlive
         (esi :location (recipe :fetcher github :repo "lepisma/esi"))
         flycheck-mypy
@@ -90,6 +91,9 @@
     (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
     (require 'doom-neotree)
     (require 'doom-nlinum)))
+
+(defun rogue/init-elnode ()
+  (use-package elnode))
 
 (defun rogue/init-enlive ()
   (use-package enlive))
