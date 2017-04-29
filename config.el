@@ -117,6 +117,31 @@
             :foreground ,comment)
            (org-todo
             :foreground ,builtin)
+           (org-agenda-structure
+            :height 1.7
+            :foreground ,type
+            :weight normal
+            :inherit variable-pitch)
+           (org-agenda-date
+            :foreground ,doc
+            :inherit variable-pitch)
+           (org-agenda-date-today
+            :height 1.7
+            :foreground ,keyword
+            :inherit variable-pitch)
+           (org-agenda-date-weekend
+            :inherit org-agenda-date)
+           (org-scheduled
+            :foreground ,type)
+           (org-upcoming-deadline
+            :foreground ,keyword)
+           (org-scheduled-today
+            :foreground ,type)
+           (org-scheduled-previously
+            :foreground ,dark-cyan)
+           (org-agenda-done
+            :strike-through t
+            :foreground ,doc)
            (font-latex-sectioning-0-face
             :foreground ,type
             :height 1.2)

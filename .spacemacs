@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -544,21 +544,38 @@ you should place you code here."
   (setq nlinum-format " %d ")
 
   ;; Hooks
+  (defun add-margin-hook (hooks &optional margin)
+    "Add left MARGIN to provided HOOKS."
+    (dolist (hook hooks)
+      (add-hook hook (lambda () (progn
+                             (setq left-margin-width (or margin 2))
+                             (set-window-buffer nil (current-buffer)))))))
+
+  (defun add-spacing-hook (hooks &optional spacing)
+    "Add line SPACING to HOOKS."
+    (dolist (hook hooks)
+      (add-hook hook (lambda () (setq line-spacing (or spacing 0.1))))))
+
+  (defun hide-mode-line-hook (hooks)
+    "Hide mode lines in given HOOKS."
+    (dolist (hook hooks)
+      (add-hook hook 'hidden-mode-line-mode)))
+
+  (add-margin-hook '(text-mode-hook org-agenda-mode-hook magit-mode-hook))
+  (add-spacing-hook '(text-mode-hook prog-mode-hook org-agenda-mode-hook))
+  (hide-mode-line-hook '(processing-compilation-mode-hook
+                         eshell-mode-hook
+                         neo-after-create-hook
+                         help-mode
+                         compilation-mode
+                         messages-buffer-mode
+                         completion-list-mode))
+
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
   (add-hook 'text-mode-hook (lambda ()
                               (progn
                                 (auto-fill-mode)
-                                (setq left-margin-width 2)
-                                (setq line-spacing 0.1)
                                 (spacemacs/disable-hl-line-mode))))
-  (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
-  (add-hook 'processing-compilation-mode-hook 'hidden-mode-line-mode)
-  (add-hook 'eshell-mode-hook 'hidden-mode-line-mode)
-  (add-hook 'neo-after-create-hook 'hidden-mode-line-mode)
-  (add-hook 'help-mode 'hidden-mode-line-mode)
-  (add-hook 'compilation-mode 'hidden-mode-line-mode)
-  (add-hook 'messages-buffer-mode 'hidden-mode-line-mode)
-  (add-hook 'completion-list-mode 'hidden-mode-line-mode)
   (add-hook 'term-mode-hook 'toggle-truncate-lines)
   (add-hook 'prog-mode-hook 'nlinum-mode)
 
@@ -601,6 +618,7 @@ you should place you code here."
                                (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
     (setq org-pretty-entities t)
     (setq org-hide-emphasis-markers t)
+    (setq org-agenda-block-separator ?─)
     (customize-set-variable 'org-modules
                             '(org-bibtex
                               org-docview
