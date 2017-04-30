@@ -561,7 +561,7 @@ you should place you code here."
     (dolist (hook hooks)
       (add-hook hook 'hidden-mode-line-mode)))
 
-  (add-margin-hook '(text-mode-hook org-agenda-mode-hook magit-mode-hook))
+  (add-margin-hook '(text-mode-hook org-agenda-mode-hook magit-status-mode-hook))
   (add-spacing-hook '(text-mode-hook prog-mode-hook org-agenda-mode-hook))
   (hide-mode-line-hook '(processing-compilation-mode-hook
                          eshell-mode-hook
