@@ -87,8 +87,6 @@
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
     (add-hook 'prog-mode-hook 'doom-buffer-mode-maybe)
-    (add-hook 'after-revert-hook 'doom-buffer-mode-maybe)
-    (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
     (require 'doom-neotree)
     (require 'doom-nlinum)))
 

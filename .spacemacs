@@ -544,32 +544,27 @@ you should place you code here."
   (setq nlinum-format " %d ")
 
   ;; Hooks
-  (defun add-margin-hook (hooks &optional margin)
-    "Add left MARGIN to provided HOOKS."
+  (defun add-hooks (hooks fun)
+    "Add HOOK to given MODES."
     (dolist (hook hooks)
-      (add-hook hook (lambda () (progn
-                             (setq left-margin-width (or margin 2))
-                             (set-window-buffer nil (current-buffer)))))))
+      (add-hook hook fun)))
 
-  (defun add-spacing-hook (hooks &optional spacing)
-    "Add line SPACING to HOOKS."
-    (dolist (hook hooks)
-      (add-hook hook (lambda () (setq line-spacing (or spacing 0.1))))))
+  (add-hooks '(text-mode-hook org-agenda-mode-hook magit-status-mode-hook)
+             (lambda () (progn
+                     (setq left-margin-width 2)
+                     (set-window-buffer nil (current-buffer)))))
 
-  (defun hide-mode-line-hook (hooks)
-    "Hide mode lines in given HOOKS."
-    (dolist (hook hooks)
-      (add-hook hook 'hidden-mode-line-mode)))
+  (add-hooks '(text-mode-hook prog-mode-hook org-agenda-mode-hook)
+             (lambda () (setq line-spacing 0.1)))
 
-  (add-margin-hook '(text-mode-hook org-agenda-mode-hook magit-status-mode-hook))
-  (add-spacing-hook '(text-mode-hook prog-mode-hook org-agenda-mode-hook))
-  (hide-mode-line-hook '(processing-compilation-mode-hook
-                         eshell-mode-hook
-                         neo-after-create-hook
-                         help-mode
-                         compilation-mode
-                         messages-buffer-mode
-                         completion-list-mode))
+  (add-hooks '(processing-compilation-mode-hook
+               eshell-mode-hook
+               neo-after-create-hook
+               help-mode
+               compilation-mode
+               messages-buffer-mode
+               completion-list-mode)
+             'hidden-mode-line-mode)
 
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
   (add-hook 'text-mode-hook (lambda ()
