@@ -535,7 +535,9 @@ you should place you code here."
                  slime-tramp))
   (setq alert-default-style 'libnotify)
   (load-file (concat user-secrets-dir "slack.el"))
-  (slack-start)
+
+  ;; Delay slack
+  (run-at-time "10 sec" nil 'slack-start)
 
   (setq tramp-default-method "ssh")
 
@@ -545,7 +547,7 @@ you should place you code here."
 
   ;; Hooks
   (defun add-hooks (hooks fun)
-    "Add HOOK to given MODES."
+    "Add FUN to all the HOOKS."
     (dolist (hook hooks)
       (add-hook hook fun)))
 
