@@ -543,6 +543,25 @@ you should place you code here."
 
   (setq ranger-cleanup-eagerly t)
   (setq ranger-show-hidden t)
+  (setq ranger-parent-depth 1)
+
+  (defun ranger-custom-lhs ()
+    (let* ((current-file (or (r--fget ranger-current-file) ""))
+           (file-path (file-name-directory current-file)))
+      (propertize (abbreviate-file-name file-path)
+                  'face `(:inherit variable-pitch :height 1.3 :box (:line-width 7 :color "gray20")))))
+
+  (setq ranger-header-func (lambda ()
+                             (let* ((lhs (ranger-custom-lhs))
+                                    (minimal (r--fget ranger-minimal))
+                                    (used-length (length lhs))
+                                    (fringe-gap (if (eq fringe-mode 0) 2 0))
+                                    (total-window-width (+ 3 (if minimal
+                                                                 (window-width)
+                                                               (- (frame-width) fringe-gap))))
+                                    (filler (make-string (max 0 (- total-window-width used-length)) (string-to-char " "))))
+                               (concat lhs filler))))
+
   (setq nlinum-format " %d ")
 
   ;; Hooks
@@ -559,13 +578,23 @@ you should place you code here."
   (add-hooks '(text-mode-hook prog-mode-hook org-agenda-mode-hook)
              (lambda () (setq line-spacing 0.1)))
 
+  (add-hooks '(ranger-mode-hook)
+             (lambda ()
+               (progn
+                 (setq line-spacing 0.2)
+                 ;;(variable-pitch-mode)
+                 )))
+
   (add-hooks '(processing-compilation-mode-hook
                eshell-mode-hook
                neo-after-create-hook
-               help-mode
-               compilation-mode
-               messages-buffer-mode
-               completion-list-mode)
+               help-mode-hook
+               compilation-mode-hook
+               messages-buffer-mode-hook
+               completion-list-mode-hook
+               ranger-mode-hook
+               ranger-parent-dir-hook
+               ranger-preview-dir-hook)
              'hidden-mode-line-mode)
 
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
