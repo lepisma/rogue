@@ -61,6 +61,8 @@
            (highlight
             :foreground ,bg-dark
             :background ,fg-white)
+           (hl-line
+            :background ,region)
            (org-document-title
             :inherit variable-pitch
             :height 2.0
