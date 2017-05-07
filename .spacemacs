@@ -575,15 +575,8 @@ you should place you code here."
                      (setq left-margin-width 2)
                      (set-window-buffer nil (current-buffer)))))
 
-  (add-hooks '(text-mode-hook prog-mode-hook org-agenda-mode-hook)
+  (add-hooks '(text-mode-hook prog-mode-hook org-agenda-mode-hook ranger-mode-hook)
              (lambda () (setq line-spacing 0.1)))
-
-  (add-hooks '(ranger-mode-hook)
-             (lambda ()
-               (progn
-                 (setq line-spacing 0.2)
-                 ;;(variable-pitch-mode)
-                 )))
 
   (add-hooks '(processing-compilation-mode-hook
                eshell-mode-hook
