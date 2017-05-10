@@ -97,17 +97,17 @@
            (org-level-6
             :inherit variable-pitch
             :weight bold
-            :height 1.0
+            :height 1.1
             :background ,bg-dark)
            (org-level-7
             :inherit variable-pitch
             :weight bold
-            :height 1.0
+            :height 1.1
             :background ,bg-dark)
            (org-level-8
             :inherit variable-pitch
             :weight bold
-            :height 1.0
+            :height 1.1
             :background ,bg-dark)
            (org-headline-done
             :inherit variable-pitch)
