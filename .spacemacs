@@ -92,7 +92,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -564,7 +564,6 @@ you should place you code here."
                                (concat lhs filler))))
 
   (setq nlinum-format " %d ")
-  (setq-default indicate-empty-lines nil)
 
   ;; Hooks
   (defun add-hooks (hooks fun)
@@ -578,7 +577,8 @@ you should place you code here."
                      (set-window-buffer nil (current-buffer)))))
 
   (add-hooks '(text-mode-hook prog-mode-hook org-agenda-mode-hook ranger-mode-hook)
-             (lambda () (setq line-spacing 0.1)))
+             (lambda () (progn
+                     (setq line-spacing 0.1))))
 
   (add-hooks '(processing-compilation-mode-hook
                eshell-mode-hook
