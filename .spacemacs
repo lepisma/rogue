@@ -538,7 +538,7 @@ you should place you code here."
   (load-file (concat user-secrets-dir "slack.el"))
 
   ;; Delay slack
-  (run-at-time "10 sec" nil 'slack-start)
+  (run-at-time "30 sec" nil 'slack-start)
 
   (setq tramp-default-method "ssh")
 
@@ -550,7 +550,7 @@ you should place you code here."
     (let* ((current-file (or (r--fget ranger-current-file) ""))
            (file-path (file-name-directory current-file)))
       (propertize (abbreviate-file-name file-path)
-                  'face `(:inherit variable-pitch :height 1.3 :box (:line-width 7 :color "gray20")))))
+                  'face `(:inherit variable-pitch :height 1.2 :box (:line-width 4 :color "gray20")))))
 
   (setq ranger-header-func (lambda ()
                              (let* ((lhs (ranger-custom-lhs))
@@ -632,10 +632,8 @@ you should place you code here."
   (with-eval-after-load 'org
     (setq org-startup-indented t)
     (setq org-clock-idle-time 5)
-    (setq org-bullets-bullet-list '("•"))
-    (font-lock-add-keywords 'org-mode
-                            '(("^ +\\([-*]\\) "
-                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+    (setq org-bullets-bullet-list '("#"))
+    (setq org-ellipsis "  ")
     (setq org-pretty-entities t)
     (setq org-hide-emphasis-markers t)
     (setq org-agenda-block-separator ?─)

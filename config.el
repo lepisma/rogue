@@ -66,62 +66,62 @@
             :background ,region-dark)
            (org-document-title
             :inherit variable-pitch
-            :height 2.0
+            :height 1.5
             :weight bold
-            :foreground ,fg-white)
+            :foreground ,doc)
            (org-level-1
             :inherit variable-pitch
-            :height 1.5
+            :height 1.3
             :weight bold
             :background ,bg-dark)
            (org-level-2
             :inherit variable-pitch
             :weight bold
-            :height 1.3
+            :height 1.2
             :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
             :weight bold
-            :height 1.2
+            :height 1.1
             :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
             :weight bold
-            :height 1.2
+            :height 1.1
             :background ,bg-dark)
            (org-level-5
             :inherit variable-pitch
             :weight bold
-            :height 1.2
+            :height 1.1
             :background ,bg-dark)
            (org-level-6
             :inherit variable-pitch
             :weight bold
-            :height 1.2
+            :height 1.0
             :background ,bg-dark)
            (org-level-7
             :inherit variable-pitch
             :weight bold
-            :height 1.2
+            :height 1.0
             :background ,bg-dark)
            (org-level-8
             :inherit variable-pitch
             :weight bold
-            :height 1.2
+            :height 1.0
             :background ,bg-dark)
            (org-headline-done
             :inherit variable-pitch)
            (org-link
-            :underline nil
-            :slant italic
+            :underline t
             :weight normal)
            (org-special-keyword
             :height 0.9
             :foreground ,comment)
            (org-todo
-            :foreground ,builtin)
+            :foreground ,builtin
+            :background ,bg-dark)
            (org-agenda-structure
-            :height 1.7
+            :height 1.3
             :foreground ,type
             :weight normal
             :inherit variable-pitch)
@@ -129,7 +129,7 @@
             :foreground ,doc
             :inherit variable-pitch)
            (org-agenda-date-today
-            :height 1.7
+            :height 1.5
             :foreground ,keyword
             :inherit variable-pitch)
            (org-agenda-date-weekend
@@ -144,6 +144,11 @@
             :foreground ,dark-cyan)
            (org-agenda-done
             :strike-through t
+            :foreground ,doc)
+           (org-ellipsis
+            :underline nil
+            :foreground ,comment)
+           (org-tag
             :foreground ,doc)
            (font-latex-sectioning-0-face
             :foreground ,type
