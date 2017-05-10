@@ -87,8 +87,8 @@
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
     (add-hook 'prog-mode-hook 'doom-buffer-mode-maybe)
-    (require 'doom-neotree)
-    (require 'doom-nlinum)))
+    (doom-themes-neotree-config)
+    (doom-themes-nlinum-config)))
 
 (defun rogue/init-elnode ()
   (use-package elnode))
