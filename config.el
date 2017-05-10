@@ -1,18 +1,19 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
-(let* ((bg-light   "#222425")
-       (bg-dark    "#1f1f1f")
-       (bg-darker  "#1c1c1c")
-       (fg-white   "#ffffff")
-       (dark-cyan  "#008b8b")
-       (region     "#39393d")
-       (keyword    "#F92672")
-       (comment    "#525254")
-       (builtin    "#fd971f")
-       (doc        "#727280")
-       (type       "#66d9ef")
-       (string     "#b6e63e")
-       (sans-font  "Source Sans Pro"))
+(let* ((bg-light     "#222425")
+       (bg-dark      "#1f1f1f")
+       (bg-darker    "#1c1c1c")
+       (fg-white     "#ffffff")
+       (dark-cyan    "#008b8b")
+       (region-dark  "#29292d")
+       (region       "#39393d")
+       (keyword      "#F92672")
+       (comment      "#525254")
+       (builtin      "#fd971f")
+       (doc          "#727280")
+       (type         "#66d9ef")
+       (string       "#b6e63e")
+       (sans-font    "Source Sans Pro"))
   (setq theming-modifications
         `((doom-molokai
            (variable-pitch
@@ -56,13 +57,13 @@
             :foreground ,doc)
            (neo-root-dir-face
             :foreground ,fg-white
-            :background ,bg-light
-            :box (:line-width 6 :color ,bg-light))
+            :background ,region-dark
+            :box (:line-width 6 :color ,region-dark))
            (highlight
             :foreground ,bg-dark
             :background ,fg-white)
            (hl-line
-            :background ,region)
+            :background ,region-dark)
            (org-document-title
             :inherit variable-pitch
             :height 2.0
