@@ -475,7 +475,8 @@ you should place you code here."
   (setq ibuffer-show-empty-filter-groups nil)
 
   (setq neo-banner-message nil
-        neo-mode-line-type 'none)
+        neo-mode-line-type 'none
+        neo-autorefresh nil)
 
   ;; Hide mode line in few situations
   (with-current-buffer "*Messages*" (hidden-mode-line-mode +1))
