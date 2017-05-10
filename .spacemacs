@@ -564,6 +564,7 @@ you should place you code here."
                                (concat lhs filler))))
 
   (setq nlinum-format " %d ")
+  (setq-default indicate-empty-lines nil)
 
   ;; Hooks
   (defun add-hooks (hooks fun)
