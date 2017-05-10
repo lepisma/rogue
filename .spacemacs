@@ -572,7 +572,7 @@ you should place you code here."
     (dolist (hook hooks)
       (add-hook hook fun)))
 
-  (add-hooks '(text-mode-hook org-agenda-mode-hook magit-status-mode-hook)
+  (add-hooks '(text-mode-hook org-agenda-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (set-window-buffer nil (current-buffer)))))
@@ -589,7 +589,8 @@ you should place you code here."
                completion-list-mode-hook
                ranger-mode-hook
                ranger-parent-dir-hook
-               ranger-preview-dir-hook)
+               ranger-preview-dir-hook
+               magit-status-mode-hook)
              'hidden-mode-line-mode)
 
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
