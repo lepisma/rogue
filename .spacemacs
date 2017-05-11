@@ -526,6 +526,8 @@ you should place you code here."
   (setq comint-scroll-show-maximum-output nil)
   (setq comint-input-ignoredups t)
 
+  (setq ielm-prompt " λ ")
+
   (setq inferior-lisp-program "ros -Q run")
   (slime-setup '(slime-asdf
                  slime-company
