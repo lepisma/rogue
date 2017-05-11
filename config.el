@@ -66,9 +66,8 @@
             :background ,region-dark)
            (org-document-title
             :inherit variable-pitch
-            :height 1.5
-            :weight bold
-            :foreground ,doc)
+            :height 1.3
+            :foreground ,fg-white)
            (org-level-1
             :inherit variable-pitch
             :height 1.3
