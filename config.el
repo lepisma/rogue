@@ -7,6 +7,7 @@
        (dark-cyan    "#008b8b")
        (region-dark  "#29292d")
        (region       "#39393d")
+       (slate        "#8FA1B3")
        (keyword      "#F92672")
        (comment      "#525254")
        (builtin      "#fd971f")
@@ -19,7 +20,7 @@
            (variable-pitch
             :font ,sans-font)
            (hackernews-link-face
-            :foreground ,type
+            :foreground ,slate
             :inherit variable-pitch
             :height 1.2)
            (hackernews-comment-count-face
