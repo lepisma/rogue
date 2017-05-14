@@ -24,6 +24,7 @@
         (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
         snakemake-mode
         (spaceline-all-the-icons :location local)
+        swap-regions
         swiper
         sx
         tldr
@@ -197,6 +198,11 @@
     (use-package spaceline
       :after powerline
       :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
+
+(defun rogue/init-swap-regions ()
+  (use-package swap-regions
+    :bind (("C-c s" . swap-regions-mode)
+           ("C-c x" . swap-regions))))
 
 (defun rogue/init-swiper ()
   (use-package swiper
