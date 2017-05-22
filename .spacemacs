@@ -572,7 +572,7 @@ you should place you code here."
     (dolist (hook hooks)
       (add-hook hook fun)))
 
-  (add-hooks '(text-mode-hook org-agenda-mode-hook)
+  (add-hooks '(text-mode-hook org-agenda-mode-hook slack-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (set-window-buffer nil (current-buffer)))))
