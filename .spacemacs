@@ -511,6 +511,8 @@ you should place you code here."
                 fringe-indicator-alist (delq (assq 'continuation fringe-indicator-alist)
                                              fringe-indicator-alist))
   (setq flycheck-indication-mode nil)
+
+  (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
   (define-fringe-bitmap 'git-gutter-fr:added
     [224 224 224 224 224 224 224 224 224 224 224 224 224
          224 224 224 224 224 224 224 224 224 224 224 224]
