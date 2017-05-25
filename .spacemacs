@@ -567,26 +567,16 @@ you should place you code here."
 
   (setq tramp-default-method "ssh")
 
-  (setq ranger-cleanup-eagerly t)
-  (setq ranger-show-hidden t)
-  (setq ranger-parent-depth 1)
-
-  (defun ranger-custom-lhs ()
-    (let* ((current-file (or (r--fget ranger-current-file) ""))
-           (file-path (file-name-directory current-file)))
-      (propertize (abbreviate-file-name file-path)
-                  'face `(:inherit variable-pitch :height 1.2 :box (:line-width 4 :color "gray20")))))
-
-  (setq ranger-header-func (lambda ()
-                             (let* ((lhs (ranger-custom-lhs))
-                                    (minimal (r--fget ranger-minimal))
-                                    (used-length (length lhs))
-                                    (fringe-gap (if (eq fringe-mode 0) 2 0))
-                                    (total-window-width (+ 3 (if minimal
-                                                                 (window-width)
-                                                               (- (frame-width) fringe-gap))))
-                                    (filler (make-string (max 0 (- total-window-width used-length)) (string-to-char " "))))
-                               (concat lhs filler))))
+  (setq ranger-cleanup-on-disable t
+        ranger-show-hidden t
+        ranger-parent-depth 2
+        ranger-width-preview 0.60
+        ranger-width-parents 0.15
+        ranger-modify-header t
+        ranger-max-preview-size 5
+        ranger-dont-show-binary t)
+  (ranger-override-dired-mode t)
+  (setq ranger--header-string (lambda () ""))
 
   (setq nlinum-format " %d ")
 
