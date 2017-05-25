@@ -472,8 +472,30 @@ you should place you code here."
   (setq-default cursor-in-non-selected-windows nil)
   (setq frame-title-format "")
 
-  (setq ibuffer-expert t)
-  (setq ibuffer-show-empty-filter-groups nil)
+  (setq ibuffer-expert t
+        ibuffer-show-empty-filter-groups nil
+        ibuffer-filter-group-name-face 'org-level-1
+        ibuffer-modified-char ?\•
+        ibuffer-locked-char ?\⛔
+        ibuffer-read-only-char ?\⛔
+        ibuffer-marked-char ?\✓
+        ibuffer-deletion-char ?\✕
+        ibuffer-deletion-face 'org-agenda-done
+        ibuffer-use-header-line nil)
+
+  (defun ibuffer-remove-title (&rest args)
+    (save-excursion
+      (set-buffer "*Ibuffer*")
+      (toggle-read-only 0)
+      (goto-char 1)
+      (search-forward "-\n" nil t)
+      (delete-region 1 (point))
+      (insert "\n")
+      (let ((window-min-height 1))
+        (shrink-window-if-larger-than-buffer))
+      (toggle-read-only)))
+
+  (advice-add 'ibuffer-update-title-and-summary :after 'ibuffer-remove-title)
 
   (setq neo-banner-message nil
         neo-mode-line-type 'none
