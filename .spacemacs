@@ -586,7 +586,7 @@ you should place you code here."
         ranger-max-preview-size 5
         ranger-dont-show-binary t)
   (ranger-override-dired-mode t)
-  (setq ranger--header-string (lambda () ""))
+  (setq ranger-header-func (lambda () ""))
 
   (setq nlinum-format " %d ")
 

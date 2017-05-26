@@ -7,6 +7,7 @@
         browse-at-remote
         cricbuzz
         calfw
+        dired-subtree
         doom-themes
         (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
         enlive
@@ -94,6 +95,13 @@
     (setq cfw:render-line-breaker 'cfw:render-line-breaker-none)
     (setq cfw:face-item-separator-color nil)
     (setq cfw:org-face-agenda-item-foreground-color "#f92672")))
+
+(defun rogue/init-dired-subtree ()
+  (use-package dired-subtree :ensure t
+    :after ranger
+    :config
+    (bind-key "<tab>" 'dired-subtree-toggle ranger-mode-map)
+    (bind-key "<backtab>" 'dired-subtree-cycle ranger-mode-map)))
 
 (defun rogue/init-doom-themes ()
   (use-package doom-themes
