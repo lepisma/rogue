@@ -180,7 +180,7 @@
     :ensure t
     :after org
     :config
-	  (setq org-gcal-file-alist '(("abhinav.tushar.vs@gmail.com" . user-gcal-file)))
+	  (setq org-gcal-file-alist `(("abhinav.tushar.vs@gmail.com" . ,user-gcal-file)))
     ;; Secret file
     ;; (setq org-gcal-client-id "<>"
 	  ;;       org-gcal-client-secret "<>")
