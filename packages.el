@@ -6,6 +6,7 @@
         bm
         browse-at-remote
         cricbuzz
+        calfw
         doom-themes
         (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
         enlive
@@ -18,6 +19,7 @@
         magithub
         multiple-cursors
         ob-async
+        org-gcal
         org-journal
         (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
         pretty-mode
@@ -74,6 +76,24 @@
 (defun rogue/init-cricbuzz ()
   (use-package cricbuzz
     :defer t))
+
+(defun rogue/init-calfw ()
+  (use-package calfw
+    :after org-gcal
+    :bind (("C-c q" . cfw:open-org-calendar))
+    :config
+    (setq cfw:fchar-junction ?┼
+          cfw:fchar-vertical-line ?│
+          cfw:fchar-horizontal-line ?─
+          cfw:fchar-left-junction ?├
+          cfw:fchar-right-junction ?┤
+          cfw:fchar-top-junction ?┬
+          cfw:fchar-top-left-corner ?┌
+          cfw:fchar-top-right-corner ?┐)
+    (require 'calfw-org)
+    (setq cfw:render-line-breaker 'cfw:render-line-breaker-none)
+    (setq cfw:face-item-separator-color nil)
+    (setq cfw:org-face-agenda-item-foreground-color "#f92672")))
 
 (defun rogue/init-doom-themes ()
   (use-package doom-themes
@@ -146,6 +166,21 @@
   (use-package ob-async
     :config
     (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block)))
+
+(defun rogue/init-org-gcal ()
+  (use-package org-gcal
+    :ensure t
+    :after org
+    :config
+	  (setq org-gcal-file-alist '(("abhinav.tushar.vs@gmail.com" . user-gcal-file)))
+    ;; Secret file
+    ;; (setq org-gcal-client-id "<>"
+	  ;;       org-gcal-client-secret "<>")
+    (load-file (concat user-secrets-dir "gcal.el"))
+    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync)))
+    (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+    (add-hook 'cfw:calendar-mode-hook (lambda () (org-gcal-sync)))
+    (run-at-time "30 min" 1800 'org-gcal-refresh-token)))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
@@ -225,6 +260,8 @@
   (use-package wolfram
     :defer t
     :config
+    ;; Secret
+    ;; (setq wolfram-alpha-app-id "<>")
     (load-file (concat user-secrets-dir "wolfram.el"))))
 
 (defun rogue/init-writegood-mode ()

@@ -8,7 +8,7 @@
        (region-dark  "#29292d")
        (region       "#39393d")
        (slate        "#8FA1B3")
-       (keyword      "#F92672")
+       (keyword      "#f92672")
        (comment      "#525254")
        (builtin      "#fd971f")
        (doc          "#727280")
@@ -195,4 +195,48 @@
             :background ,dark-cyan
             :foreground ,fg-white)
            (helm-selection
-            :background ,region)))))
+            :background ,region)
+           (cfw:face-title
+            :height 2.0
+            :inherit variable-pitch
+            :weight bold
+            :foreground ,doc)
+           (cfw:face-holiday
+            :foreground ,builtin)
+           (cfw:face-saturday
+            :foreground ,doc
+            :weight bold)
+           (cfw:face-sunday
+            :foreground ,doc)
+           (cfw:face-periods
+            :foreground ,dark-cyan)
+           (cfw:face-annotation
+            :foreground ,doc)
+           (cfw:face-select
+            :background ,region)
+           (cfw:face-toolbar-button-off
+            :foreground ,doc)
+           (cfw:face-toolbar-button-on
+            :foreground ,type
+            :weight bold)
+           (cfw:face-day-title
+            :foreground ,doc)
+           (cfw:face-default-content
+            :foreground ,dark-cyan)
+           (cfw:face-disable
+            :foreground ,doc)
+           (cfw:face-today
+            :background ,region
+            :weight bold)
+           (cfw:face-toolbar
+            :inherit default)
+           (cfw:face-today-title
+            :background ,keyword
+            :foreground ,fg-white)
+           (cfw:face-grid
+            :foreground ,comment)
+           (cfw:face-header
+            :foreground ,keyword
+            :weight bold)
+           (cfw:face-default-day
+            :foreground ,fg-white)))))

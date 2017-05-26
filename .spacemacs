@@ -294,6 +294,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-project-files
     `(,(concat user-journal-dir "projects.org")
       ,(concat user-project-dir "dev/index.org")))
+  (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
   (load custom-file))
@@ -560,6 +561,15 @@ you should place you code here."
                  slime-scratch
                  slime-tramp))
   (setq alert-default-style 'libnotify)
+
+  ;; Secret
+  ;; (slack-register-team
+  ;;  :name "<>"
+  ;;  :default t
+  ;;  :client-id "<>"
+  ;;  :client-secret "<>"
+  ;;  :token "<>"
+  ;;  :subscribed-channels '(<>)) ...
   (load-file (concat user-secrets-dir "slack.el"))
 
   ;; Delay slack
@@ -586,7 +596,7 @@ you should place you code here."
     (dolist (hook hooks)
       (add-hook hook fun)))
 
-  (add-hooks '(text-mode-hook org-agenda-mode-hook slack-mode-hook ibuffer-mode-hook)
+  (add-hooks '(cfw:calendar-mode-hook text-mode-hook org-agenda-mode-hook slack-mode-hook ibuffer-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (set-window-buffer nil (current-buffer)))))
@@ -613,6 +623,7 @@ you should place you code here."
                               (progn
                                 (auto-fill-mode)
                                 (spacemacs/disable-hl-line-mode))))
+  (add-hook 'cfw:calendar-mode-hook (lambda () (spacemacs/disable-hl-line-mode)))
   (add-hook 'term-mode-hook 'toggle-truncate-lines)
   (add-hook 'prog-mode-hook 'nlinum-mode)
 
@@ -660,6 +671,11 @@ you should place you code here."
                               org-habit
                               org-info
                               org-w3m))
+    ;; Capture templates
+    (setq org-directory user-journal-dir)
+    (setq org-capture-templates
+          '(("g" "Google calender event" entry (file user-gcal-file)
+             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
     ;; Avoid duplicating micro
     (setq org-tags-exclude-from-inheritance '("micro"))
     (setq org-stuck-projects
