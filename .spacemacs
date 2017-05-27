@@ -471,7 +471,7 @@ you should place you code here."
   (global-company-mode)
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
-  (setq frame-title-format "")
+  (setq frame-title-format "emacs")
 
   (setq ibuffer-expert t
         ibuffer-show-empty-filter-groups nil
