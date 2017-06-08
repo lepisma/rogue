@@ -188,7 +188,8 @@
     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync)))
     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
     (add-hook 'cfw:calendar-mode-hook (lambda () (org-gcal-sync)))
-    (run-at-time "30 min" 1800 'org-gcal-refresh-token)))
+    ;; (run-at-time "30 min" 1800 'org-gcal-refresh-token)
+    ))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
