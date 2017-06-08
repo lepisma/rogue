@@ -43,6 +43,7 @@ values."
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t)
+     ruby
      shell
      shell-scripts
      sql
@@ -684,7 +685,8 @@ you should place you code here."
           '(("n" "Main agenda with micro tasks"
              ((tags "micro"
                     ((org-agenda-overriding-header "Micro tasks")))
-              (agenda "")))
+              (agenda "")
+              (todo "TODO")))
             ("p" "Projects to work on"
              ((tags "micro"
                     ((org-agenda-files user-project-files)
@@ -701,6 +703,9 @@ you should place you code here."
               (tags "old"
                     ((org-agenda-files user-project-files)
                      (org-agenda-overriding-header "Too old")))))
+            ("y" "Yak shaving"
+             ((tags "yak"
+                    ((org-agenda-overriding-header "Yak shaving")))))
             ("d" "Upcoming deadlines" agenda ""
              ((org-agenda-entry-types '(:deadline))
               (org-deadline-warning-days 30)
