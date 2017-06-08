@@ -597,14 +597,21 @@ you should place you code here."
     (dolist (hook hooks)
       (add-hook hook fun)))
 
-  (add-hooks '(cfw:calendar-mode-hook text-mode-hook org-agenda-mode-hook slack-mode-hook ibuffer-mode-hook)
+  (add-hooks '(cfw:calendar-mode-hook
+               text-mode-hook
+               org-agenda-mode-hook
+               slack-mode-hook
+               ibuffer-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (set-window-buffer nil (current-buffer)))))
 
-  (add-hooks '(text-mode-hook prog-mode-hook org-agenda-mode-hook ranger-mode-hook ibuffer-mode-hook)
-             (lambda () (progn
-                     (setq line-spacing 0.1))))
+  (add-hooks '(text-mode-hook
+               prog-mode-hook
+               org-agenda-mode-hook
+               ranger-mode-hook
+               ibuffer-mode-hook)
+             (lambda () (setq line-spacing 0.1)))
 
   (add-hooks '(processing-compilation-mode-hook
                eshell-mode-hook
