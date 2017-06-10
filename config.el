@@ -215,6 +215,8 @@
             :foreground ,fg-white)
            (helm-selection
             :background ,region)
+           (helm-match
+            :foreground ,keyword)
            (cfw:face-title
             :height 2.0
             :inherit variable-pitch
@@ -277,4 +279,6 @@
             :background ,region)
            (vertical-border
             :background ,region
-            :foreground ,region)))))
+            :foreground ,region)
+           (which-key-command-description-face
+            :foreground ,type)))))
