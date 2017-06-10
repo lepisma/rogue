@@ -136,7 +136,7 @@
             :foreground ,builtin
             :background ,bg-dark)
            (org-done
-            :foreground ,type
+            :foreground ,dark-cyan
             :background ,bg-dark)
            (org-agenda-structure
             :height 1.3
