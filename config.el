@@ -38,7 +38,8 @@
            (company-tooltip-selection
             :background ,region)
            (show-paren-match
-            :background ,bg-darker)
+            :background ,keyword
+            :foreground ,bg-dark)
            (magit-section-heading
             :foreground ,keyword)
            (tooltip

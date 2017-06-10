@@ -27,7 +27,7 @@
         pretty-mode
         (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
         snakemake-mode
-        solaire-mode
+        (solaire-mode :location local)
         (spaceline-all-the-icons :location local)
         swap-regions
         swiper
