@@ -5,7 +5,7 @@
        (bg-darker    "#1c1c1c")
        (fg-white     "#ffffff")
        (dark-cyan    "#008b8b")
-       (region-dark  "#29292d")
+       (region-dark  "#2d2e2e")
        (region       "#39393d")
        (slate        "#8FA1B3")
        (keyword      "#f92672")
@@ -42,6 +42,18 @@
             :foreground ,bg-dark)
            (magit-section-heading
             :foreground ,keyword)
+           (magit-header-line
+            :inherit variable-pitch
+            :background ,region-dark
+            :foreground ,fg-white
+            :weight normal
+            :box (:line-width 6 :color ,region-dark)
+            :height 1.5)
+           (magit-diff-hunk-heading
+            :background ,dark-cyan)
+           (magit-diff-hunk-heading-highlight
+            :background ,dark-cyan
+            :foreground ,fg-white)
            (tooltip
             :foreground ,keyword
             :background ,bg-darker)
