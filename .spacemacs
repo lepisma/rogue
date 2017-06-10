@@ -668,13 +668,17 @@ you should place you code here."
   (setq spaceline-org-clock-p t)
 
   (with-eval-after-load 'org
-    (setq org-startup-indented t)
-    (setq org-clock-idle-time 5)
-    (setq org-bullets-bullet-list '("#"))
-    (setq org-ellipsis "  ")
-    (setq org-pretty-entities t)
-    (setq org-hide-emphasis-markers t)
-    (setq org-agenda-block-separator ?─)
+    (setq org-startup-indented t
+          org-clock-idle-time 5
+          org-bullets-bullet-list '("#")
+          org-ellipsis "  "
+          org-pretty-entities t
+          org-hide-emphasis-markers t
+          org-agenda-block-separator ?─
+          org-fontify-whole-heading-line t
+          org-fontify-done-headline t
+          org-fontify-quote-and-verse-blocks t)
+
     (customize-set-variable 'org-modules
                             '(org-bibtex
                               org-docview
@@ -682,14 +686,16 @@ you should place you code here."
                               org-info
                               org-w3m))
     ;; Capture templates
-    (setq org-directory user-journal-dir)
-    (setq org-capture-templates
+    (setq org-directory user-journal-dir
+          org-capture-templates
           '(("g" "Google calender event" entry (file user-gcal-file)
              "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
+
     ;; Avoid duplicating micro
-    (setq org-tags-exclude-from-inheritance '("micro"))
-    (setq org-stuck-projects
+    (setq org-tags-exclude-from-inheritance '("micro")
+          org-stuck-projects
           '("+LEVEL=1/-DONE" ("*") ("active" "micro" "old") ""))
+
     (setq org-agenda-custom-commands
           '(("n" "Main agenda with micro tasks"
              ((tags "micro"

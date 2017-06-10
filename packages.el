@@ -111,12 +111,7 @@
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t)
 
-    (setq org-fontify-whole-heading-line t
-          org-fontify-done-headline t
-          org-fontify-quote-and-verse-blocks t)
-
     (doom-themes-neotree-config)
-
     (setq doom-neotree-enable-variable-pitch t
           doom-neotree-file-icons 'simple
           doom-neotree-line-spacing 4)))

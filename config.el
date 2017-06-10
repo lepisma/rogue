@@ -1,7 +1,7 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
 (let* ((bg-light     "#222425")
-       (bg-dark      "#1f1f1f")
+       (bg-dark      "#1c1e1f")
        (bg-darker    "#1c1c1c")
        (fg-white     "#ffffff")
        (dark-cyan    "#008b8b")
@@ -35,6 +35,12 @@
             :foreground ,keyword)
            (company-tooltip-annotation
             :foreground ,type)
+           (company-tooltip-selection
+            :background ,region)
+           (show-paren-match
+            :background ,bg-darker)
+           (magit-section-heading
+            :foreground ,keyword)
            (tooltip
             :foreground ,keyword
             :background ,bg-darker)
@@ -110,7 +116,16 @@
             :height 1.1
             :background ,bg-dark)
            (org-headline-done
-            :inherit variable-pitch)
+            :family ,sans-font
+            :strike-through t)
+           (org-quote
+            :background ,bg-dark)
+           (org-block
+            :background ,bg-dark)
+           (org-block-begin-line
+            :background ,bg-dark)
+           (org-block-end-line
+            :background ,bg-dark)
            (org-link
             :underline t
             :weight normal)
@@ -119,6 +134,9 @@
             :foreground ,comment)
            (org-todo
             :foreground ,builtin
+            :background ,bg-dark)
+           (org-done
+            :foreground ,type
             :background ,bg-dark)
            (org-agenda-structure
             :height 1.3
@@ -254,4 +272,9 @@
            (dired-subtree-depth-6-face
             :background ,bg-dark)
            (nlinum-current-line
-            :foreground ,builtin)))))
+            :foreground ,builtin)
+           (region
+            :background ,region)
+           (vertical-border
+            :background ,region
+            :foreground ,region)))))
