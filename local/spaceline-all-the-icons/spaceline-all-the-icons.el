@@ -229,32 +229,24 @@ the directions of the separator."
 (defvar spaceline-invert-direction t)
 (defvar spaceline-separator-type "slant")
 
-(define-separator "left-inactive" "right" 'powerline-inactive1 'powerline-inactive2 t)
-(define-separator "right-inactive" "left" 'powerline-inactive2 'mode-line-inactive t)
-
-(define-separator "left-1" "right" highlight-face 'powerline-active1)
-(define-separator "left-2" "right" 'powerline-active1 highlight-face)
-(define-separator "left-3" "right" highlight-face 'mode-line)
-(define-separator "left-4" "right" 'mode-line 'powerline-active2)
-
-(define-separator "right-1" "left" 'powerline-active2 'powerline-active1)
-(define-separator "right-2" "left" 'powerline-active1 'mode-line)
-(define-separator "right-4" "right" 'powerline-active2 'mode-line)
+(define-separator "right-1" "right" highlight-face 'powerline-active1)
+(define-separator "right-2" "right" 'mode-line highlight-face)
+(define-separator "right-3" "right" highlight-face 'mode-line)
+(define-separator "right-4" "right" 'mode-line 'powerline-active1)
 
 (spaceline-compile
  "ati"
  '(((ati-modified ati-buffer-size) :face highlight-face :skip-alternate t)
-   ati-left-1-separator
+   ati-right-1-separator
    ((ati-projectile ati-mode-icon ati-buffer-id) :face other-face)
-   ati-left-2-separator
+   ati-right-2-separator
    ((ati-position ati-region-info) :face highlight-face :separator "  ")
-   ati-left-3-separator
-   ati-left-inactive-separator
+   ati-right-3-separator
    ((ati-vc-icon
      ati-flycheck-status
      (ati-org-clock :when active)
      (ati-org-pomodoro :when active)) :separator "  " :face other-face)
-   ati-left-4-separator)
+   ati-right-4-separator)
 
  '(((ati-buffer-position
      ati-time) :separator "  " :face other-face)))

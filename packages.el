@@ -19,6 +19,7 @@
         (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
         magithub
         multiple-cursors
+        nlinum-hl
         ob-async
         org-gcal
         org-journal
@@ -26,6 +27,7 @@
         pretty-mode
         (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
         snakemake-mode
+        solaire-mode
         (spaceline-all-the-icons :location local)
         swap-regions
         swiper
@@ -105,21 +107,19 @@
 
 (defun rogue/init-doom-themes ()
   (use-package doom-themes
-    :after nlinum
     :config
-    (setq doom-neotree-enable-variable-pitch t
-          doom-neotree-file-icons 'simple
-          doom-neotree-line-spacing 4)
-    (setq doom-enable-bold t
-          doom-enable-italic t)
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t)
+
     (setq org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
-    (add-hook 'prog-mode-hook 'doom-buffer-mode-maybe)
-    (add-hook 'after-revert-hook 'doom-buffer-mode-maybe)
-    (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
+
     (doom-themes-neotree-config)
-    (doom-themes-nlinum-config)))
+
+    (setq doom-neotree-enable-variable-pitch t
+          doom-neotree-file-icons 'simple
+          doom-neotree-line-spacing 4)))
 
 (defun rogue/init-elnode ()
   (use-package elnode))
@@ -169,6 +169,22 @@
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this)
            ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
+
+(defun rogue/init-nlinum-hl ()
+  (use-package nlinum-hl
+    :after nlinum
+    :config
+    ;; Runs occasionally, though unpredictably
+    (add-hook 'post-gc-hook 'nlinum-hl-flush-all-windows)
+    ;; whenever Emacs loses/gains focus
+    (add-hook 'focus-in-hook  'nlinum-hl-flush-all-windows)
+    (add-hook 'focus-out-hook 'nlinum-hl-flush-all-windows)
+    ;; after X amount of idle time
+    (run-with-idle-timer 5 t 'nlinum-hl-flush-window)
+    (run-with-idle-timer 30 t 'nlinum-hl-flush-all-windows)
+    ;; when switching windows
+    (advice-add 'select-window :before 'nlinum-hl-do-flush)
+    (advice-add 'select-window :after 'nlinum-hl-do-flush)))
 
 (defun rogue/init-ob-async ()
   (use-package ob-async
@@ -234,6 +250,13 @@
 (defun rogue/init-snakemake-mode ()
   (use-package snakemake-mode
     :defer t))
+
+(defun rogue/init-solaire-mode ()
+  (use-package solaire-mode
+    :config
+    (add-hook 'prog-mode-hook 'turn-on-solaire-mode)
+    (add-hook 'minibuffer-setup-hook 'solaire-mode-in-minibuffer)
+    (add-hook 'ediff-prepare-buffer-hook 'solaire-mode)))
 
 (defun rogue/init-spaceline-all-the-icons ()
   (progn

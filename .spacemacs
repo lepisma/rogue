@@ -478,8 +478,8 @@ you should place you code here."
         ibuffer-show-empty-filter-groups nil
         ibuffer-filter-group-name-face 'org-level-1
         ibuffer-modified-char ?\•
-        ibuffer-locked-char ?\⛔
-        ibuffer-read-only-char ?\⛔
+        ibuffer-locked-char ?\-
+        ibuffer-read-only-char ?\-
         ibuffer-marked-char ?\✓
         ibuffer-deletion-char ?\✕
         ibuffer-deletion-face 'org-agenda-done
@@ -634,6 +634,8 @@ you should place you code here."
   (add-hook 'cfw:calendar-mode-hook (lambda () (spacemacs/disable-hl-line-mode)))
   (add-hook 'term-mode-hook 'toggle-truncate-lines)
   (add-hook 'prog-mode-hook 'nlinum-mode)
+
+  (setq nlinum-highlight-current-line t)
 
   ;; Org
   (setq bib-library "~/library.bib")

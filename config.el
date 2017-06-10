@@ -61,8 +61,8 @@
             :background ,region-dark
             :box (:line-width 6 :color ,region-dark))
            (highlight
-            :foreground ,bg-dark
-            :background ,fg-white)
+            :background ,bg-dark
+            :foreground ,fg-white)
            (hl-line
             :background ,region-dark)
            (org-document-title
@@ -143,6 +143,7 @@
            (org-scheduled-previously
             :foreground ,dark-cyan)
            (org-agenda-done
+            :inherit nil
             :strike-through t
             :foreground ,doc)
            (org-ellipsis
@@ -251,4 +252,6 @@
            (dired-subtree-depth-5-face
             :background ,bg-dark)
            (dired-subtree-depth-6-face
-            :background ,bg-dark)))))
+            :background ,bg-dark)
+           (nlinum-current-line
+            :foreground ,builtin)))))
