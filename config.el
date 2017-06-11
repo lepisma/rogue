@@ -11,6 +11,7 @@
        (keyword      "#f92672")
        (comment      "#525254")
        (builtin      "#fd971f")
+       (purple       "#9c91e4")
        (doc          "#727280")
        (type         "#66d9ef")
        (string       "#b6e63e")
@@ -92,11 +93,13 @@
             :inherit variable-pitch
             :height 1.3
             :weight bold
+            :foreground ,keyword
             :background ,bg-dark)
            (org-level-2
             :inherit variable-pitch
             :weight bold
             :height 1.2
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
@@ -107,6 +110,7 @@
             :inherit variable-pitch
             :weight bold
             :height 1.1
+            :foreground ,builtin
             :background ,bg-dark)
            (org-level-5
             :inherit variable-pitch
