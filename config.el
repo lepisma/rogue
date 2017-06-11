@@ -288,8 +288,6 @@
             :background ,bg-dark)
            (nlinum-current-line
             :foreground ,builtin)
-           (region
-            :background ,region)
            (vertical-border
             :background ,region
             :foreground ,region)
