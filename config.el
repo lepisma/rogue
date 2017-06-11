@@ -146,7 +146,7 @@
            (org-link
             :underline nil
             :weight normal
-            :slant italic)
+            :foreground ,slate)
            (org-special-keyword
             :height 0.9
             :foreground ,comment)
