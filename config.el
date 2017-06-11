@@ -81,7 +81,7 @@
             :background ,region-dark
             :box (:line-width 6 :color ,region-dark))
            (highlight
-            :background ,bg-dark
+            :background ,comment
             :foreground ,fg-white)
            (hl-line
             :background ,region-dark)
@@ -144,8 +144,9 @@
            (org-block-end-line
             :background ,bg-dark)
            (org-link
-            :underline t
-            :weight normal)
+            :underline nil
+            :weight normal
+            :slant italic)
            (org-special-keyword
             :height 0.9
             :foreground ,comment)
