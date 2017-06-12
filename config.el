@@ -297,4 +297,6 @@
             :background ,region
             :foreground ,region)
            (which-key-command-description-face
-            :foreground ,type)))))
+            :foreground ,type)
+           (flycheck-error
+            :background nil)))))
