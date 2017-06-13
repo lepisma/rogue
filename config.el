@@ -299,4 +299,6 @@
            (which-key-command-description-face
             :foreground ,type)
            (flycheck-error
-            :background nil)))))
+            :background nil)
+           (font-lock-string-face
+            :foreground ,string)))))
