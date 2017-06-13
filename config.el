@@ -301,4 +301,6 @@
            (flycheck-error
             :background nil)
            (font-lock-string-face
-            :foreground ,string)))))
+            :foreground ,string)
+           (helm-ff-symlink
+            :foreground ,slate)))))
