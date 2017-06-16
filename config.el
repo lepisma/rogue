@@ -300,6 +300,8 @@
             :foreground ,type)
            (flycheck-error
             :background nil)
+           (flycheck-warning
+            :background nil)
            (font-lock-string-face
             :foreground ,string)
            (helm-ff-symlink
