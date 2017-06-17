@@ -689,7 +689,15 @@ you should place you code here."
     (setq org-directory user-journal-dir
           org-capture-templates
           '(("g" "Google calender event" entry (file user-gcal-file)
-             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
+             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+            ("y" "Yak" entry (file (concat user-journal-dir "yak.org"))
+             "* %?")
+            ("e" "Explore" entry (file (concat user-journal-dir "explore.org"))
+             "* %? %^g")
+            ("t" "Todo" entry (file (concat user-journal-dir "notes.org"))
+             "* TODO %?\nSCHEDULED: %^T")
+            ("d" "Deadline" entry (file (concat user-journal-dir "notes.org"))
+             "* %?\nDEADLINE: %^T")))
 
     ;; Avoid duplicating micro
     (setq org-tags-exclude-from-inheritance '("micro")
@@ -718,9 +726,6 @@ you should place you code here."
               (tags "old"
                     ((org-agenda-files user-project-files)
                      (org-agenda-overriding-header "Too old")))))
-            ("y" "Yak shaving"
-             ((tags "yak"
-                    ((org-agenda-overriding-header "Yak shaving")))))
             ("d" "Upcoming deadlines" agenda ""
              ((org-agenda-entry-types '(:deadline))
               (org-deadline-warning-days 30)
