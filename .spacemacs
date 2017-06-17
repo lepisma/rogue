@@ -699,6 +699,10 @@ you should place you code here."
             ("d" "Deadline" entry (file (concat user-journal-dir "notes.org"))
              "* %?\nDEADLINE: %^T")))
 
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
+
     ;; Avoid duplicating micro
     (setq org-tags-exclude-from-inheritance '("micro")
           org-stuck-projects
