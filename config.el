@@ -99,18 +99,19 @@
             :inherit variable-pitch
             :weight bold
             :height 1.2
-            :foreground ,slate
+            :foreground nil
             :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
             :weight bold
             :height 1.1
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
             :weight bold
             :height 1.1
-            :foreground ,builtin
+            :foreground ,purple
             :background ,bg-dark)
            (org-level-5
             :inherit variable-pitch
