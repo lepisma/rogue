@@ -128,37 +128,6 @@ With argument, do this that many times."
     (org-sort-entries nil ?f (lambda () (random 1000)))
     (save-buffer)))
 
-(defun org-screenshot-store-path ()
-  "Return path to a directory that stores images for given ORG-FILE-NAME.
-Create the directory if not present."
-  (let ((store-directory-path (file-name-as-directory "./images")))
-    (unless (file-exists-p store-directory-path)
-      (make-directory store-directory-path))
-    store-directory-path))
-
-(defun org-screenshot-unique-file ()
-  "Return path to a unique image file in png"
-  (let ((image-file (concat (number-to-string (float-time)) ".png")))
-    (concat (org-screenshot-store-path) image-file)))
-
-(defun org-insert-screenshot ()
-  "Take screenshot using `import' and insert in current buffer"
-  (interactive)
-  (let* ((image-path (org-screenshot-unique-file))
-         (command (concat "import " image-path)))
-    (call-process-shell-command command)
-    (org-insert-link nil image-path "")
-    (org-display-inline-images)))
-
-(defun org-paste-image ()
-  "Paste image from clipboard into current buffer"
-  (interactive)
-  (let* ((image-path (org-screenshot-unique-file))
-         (command (concat "xclip -selection clipboard -t image/png -o > " image-path)))
-    (call-process-shell-command command)
-    (org-insert-link nil image-path "")
-    (org-display-inline-images)))
-
 (defun mpc-send-message (channel message)
   "Send message to mpc"
   (if (eq 0 (call-process "mpc" nil nil nil "sendmessage" channel message))
