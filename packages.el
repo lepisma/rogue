@@ -126,7 +126,7 @@
 (defun rogue/init-esi ()
   (use-package esi
     :config
-    (setq esi-bm-file (concat user-journal-dir "reads.org"))
+    (setq esi-bm-file (concat user-journal-dir "read.org"))
     (setq esi-music-directory (file-name-as-directory "~/Desktop"))
     (esi-start)))
 
