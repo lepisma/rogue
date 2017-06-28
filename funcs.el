@@ -119,14 +119,19 @@ With argument, do this that many times."
   (interactive)
   (shell-command (format "insect \"%s\"" (read-string "insect: "))))
 
+(defun org-shuffle-save ()
+  "Shuffle and save current file"
+  (interactive)
+  (goto-char (point-min))
+  (org-sort-entries nil ?f (lambda () (random 1000)))
+  (save-buffer))
+
 (defun org-shuffle-projects ()
   "Shuffle first level items in project files"
   (interactive)
   (dolist (project-file user-project-files)
     (find-file project-file)
-    (goto-char (point-min))
-    (org-sort-entries nil ?f (lambda () (random 1000)))
-    (save-buffer)))
+    (org-shuffle-save)))
 
 (defun mpc-send-message (channel message)
   "Send message to mpc"
