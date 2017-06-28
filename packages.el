@@ -21,6 +21,7 @@
         multiple-cursors
         nlinum-hl
         ob-async
+        (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
         org-gcal
         org-journal
         (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
@@ -185,6 +186,11 @@
   (use-package ob-async
     :config
     (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block)))
+
+(defun rogue/init-org-books ()
+  (use-package org-books
+    :config
+    (setq org-books-file (concat user-project-dir "reading-list/reading-list.org"))))
 
 (defun rogue/init-org-gcal ()
   (use-package org-gcal
