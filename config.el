@@ -19,7 +19,7 @@
   (setq theming-modifications
         `((doom-molokai
            (variable-pitch
-            :font ,sans-font)
+            :family ,sans-font)
            (hackernews-link-face
             :foreground ,slate
             :inherit variable-pitch
