@@ -1,44 +1,44 @@
 ;;; packages.el --- rogue Layer packages File for Spacemacs
 
-(setq rogue-packages
-      '(all-the-icons
-        beacon
-        bm
-        browse-at-remote
-        cricbuzz
-        calfw
-        dired-subtree
-        doom-themes
-        (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
-        enlive
-        (esi :location (recipe :fetcher github :repo "lepisma/esi"))
-        flycheck-mypy
-        hackernews
-        helm-bm
-        helm-org-rifle
-        (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
-        magithub
-        multiple-cursors
-        nlinum-hl
-        ob-async
-        (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
-        org-gcal
-        org-journal
-        (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
-        pretty-mode
-        (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
-        snakemake-mode
-        solaire-mode
-        (spaceline-all-the-icons :location local)
-        swap-regions
-        swiper
-        sx
-        tldr
-        vue-mode
-        wolfram
-        writegood-mode
-        writeroom-mode
-        wttrin))
+(defconst rogue-packages
+  '(all-the-icons
+    beacon
+    bm
+    browse-at-remote
+    cricbuzz
+    calfw
+    dired-subtree
+    doom-themes
+    (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
+    enlive
+    (esi :location (recipe :fetcher github :repo "lepisma/esi"))
+    flycheck-mypy
+    hackernews
+    helm-bm
+    helm-org-rifle
+    (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
+    magithub
+    multiple-cursors
+    nlinum-hl
+    ob-async
+    (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
+    org-gcal
+    org-journal
+    (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
+    pretty-mode
+    (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+    snakemake-mode
+    solaire-mode
+    (spaceline-all-the-icons :location local)
+    swap-regions
+    swiper
+    sx
+    tldr
+    vue-mode
+    wolfram
+    writegood-mode
+    writeroom-mode
+    wttrin))
 
 ;; Initialize packages
 (defun rogue/init-all-the-icons ()

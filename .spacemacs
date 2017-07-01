@@ -293,8 +293,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
   (defconst user-project-files
-    `(,(concat user-journal-dir "projects.org")
-      ,(concat user-project-dir "dev/index.org")))
+    (list (concat user-journal-dir "projects.org")
+          (concat user-project-dir "dev/index.org")))
   (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
@@ -664,6 +664,11 @@ you should place you code here."
      (python . t)
      (sh . t)
      (sqlite . t)))
+
+  (defhydra hydra-zoom (global-map "C-x")
+    "zoom"
+    ("C-=" spacemacs/zoom-frm-in)
+    ("C--" spacemacs/zoom-frm-out))
 
   (setq spaceline-org-clock-p t)
 
