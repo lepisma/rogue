@@ -15,6 +15,7 @@
        (doc          "#727280")
        (type         "#66d9ef")
        (string       "#b6e63e")
+       (gray         "#bebebe")
        (sans-font    "Source Sans Pro"))
   (setq theming-modifications
         `((doom-molokai
@@ -99,39 +100,43 @@
             :inherit variable-pitch
             :weight bold
             :height 1.2
-            :foreground nil
+            :foreground ,gray
             :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
             :weight bold
             :height 1.1
-            :foreground ,slate
+            :foreground ,purple
             :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
             :weight bold
             :height 1.1
-            :foreground ,purple
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-5
             :inherit variable-pitch
             :weight bold
             :height 1.1
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-6
             :inherit variable-pitch
             :weight bold
             :height 1.1
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-7
             :inherit variable-pitch
             :weight bold
             :height 1.1
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-8
             :inherit variable-pitch
             :weight bold
             :height 1.1
+            :foreground ,slate
             :background ,bg-dark)
            (org-headline-done
             :family ,sans-font
