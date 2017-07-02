@@ -148,3 +148,13 @@ With argument, do this that many times."
   "Unlove currently playing song"
   (interactive)
   (mpc-send-message "mpdas" "unlove"))
+
+(defun git-update-project (project-root)
+  "Add all, commit and push given project."
+  (let ((default-directory project-root))
+    ;; Blocking add
+    (shell-command-to-string "git add .")
+    ;; Using this to avoid gpg tty issue + to use settings from emacs
+    (ignore-errors
+      (magit-commit '("-m" "git-auto-update")))
+    (call-process-shell-command "git push" nil 0)))

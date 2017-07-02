@@ -672,6 +672,16 @@ you should place you code here."
 
   (setq spaceline-org-clock-p t)
 
+  ;; Auto update projects at six hour intervals
+  (run-at-time "60 min" (* 60 60 6)
+               (lambda ()
+                 (mapc #'git-update-project
+                       (mapcar (lambda (pn) (concat user-project-dir pn))
+                               '("reading-list"
+                                 "kindle-highlights"
+                                 "til-emacs"
+                                 "dev")))))
+
   (with-eval-after-load 'org
     (setq org-startup-indented t
           org-clock-idle-time 5
