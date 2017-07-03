@@ -672,8 +672,8 @@ you should place you code here."
 
   (setq spaceline-org-clock-p t)
 
-  ;; Auto update projects at six hour intervals
-  (run-at-time "60 min" (* 60 60 6)
+  ;; Auto update projects
+  (run-at-time "10 min" 3600
                (lambda ()
                  (mapc #'git-update-project
                        (mapcar (lambda (pn) (concat user-project-dir pn))
