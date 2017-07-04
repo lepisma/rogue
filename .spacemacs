@@ -665,11 +665,6 @@ you should place you code here."
      (sh . t)
      (sqlite . t)))
 
-  (defhydra hydra-zoom (global-map "C-x")
-    "zoom"
-    ("C-=" spacemacs/zoom-frm-in)
-    ("C--" spacemacs/zoom-frm-out))
-
   (setq spaceline-org-clock-p t)
 
   ;; Auto update projects

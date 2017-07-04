@@ -35,3 +35,6 @@
 
 ;; Projectile
 (global-set-key (kbd "C-c g") 'helm-projectile-ag)
+
+;; Zooming
+(global-set-key (kbd "C-c z") 'spacemacs/zoom-frm-transient-state/body)
