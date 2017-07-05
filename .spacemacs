@@ -662,7 +662,6 @@ you should place you code here."
      (js . t)
      (latex . t)
      (python . t)
-     (sh . t)
      (sqlite . t)))
 
   (setq spaceline-org-clock-p t)
