@@ -16,15 +16,18 @@
        (type         "#66d9ef")
        (string       "#b6e63e")
        (gray         "#bebebe")
-       (sans-font    "Source Sans Pro"))
+       (sans-font    "Source Sans Pro")
+       (serif-font    "Merriweather")
+       (sans-mono-font    "Souce Code Pro")
+       (serif-mono-font    "Verily Serif Mono"))
   (setq theming-modifications
         `((doom-molokai
            (variable-pitch
-            :family ,sans-font)
+            :family ,serif-font)
            (hackernews-link-face
             :foreground ,slate
             :inherit variable-pitch
-            :height 1.2)
+            :height 1.0)
            (hackernews-comment-count-face
             :foreground ,string)
            (company-tooltip
@@ -50,7 +53,7 @@
             :foreground ,fg-white
             :weight normal
             :box (:line-width 6 :color ,region-dark)
-            :height 1.5)
+            :height 1.1)
            (magit-diff-hunk-heading
             :background ,dark-cyan)
            (magit-diff-hunk-heading-highlight
@@ -88,54 +91,54 @@
             :background ,region-dark)
            (org-document-title
             :inherit variable-pitch
-            :height 1.3
+            :height 1.2
             :foreground ,fg-white)
            (org-level-1
             :inherit variable-pitch
-            :height 1.3
-            :weight bold
+            :height 1.2
+            :weight normal
             :foreground ,keyword
             :background ,bg-dark)
            (org-level-2
             :inherit variable-pitch
-            :weight bold
-            :height 1.2
+            :weight normal
+            :height 1.1
             :foreground ,gray
             :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
-            :weight bold
-            :height 1.1
+            :weight normal
+            :height 1.0
             :foreground ,purple
             :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
-            :weight bold
-            :height 1.1
+            :weight normal
+            :height 1.0
             :foreground ,slate
             :background ,bg-dark)
            (org-level-5
             :inherit variable-pitch
-            :weight bold
-            :height 1.1
+            :weight normal
+            :height 1.0
             :foreground ,slate
             :background ,bg-dark)
            (org-level-6
             :inherit variable-pitch
-            :weight bold
-            :height 1.1
+            :weight normal
+            :height 1.0
             :foreground ,slate
             :background ,bg-dark)
            (org-level-7
             :inherit variable-pitch
-            :weight bold
-            :height 1.1
+            :weight normal
+            :height 1.0
             :foreground ,slate
             :background ,bg-dark)
            (org-level-8
             :inherit variable-pitch
-            :weight bold
-            :height 1.1
+            :weight normal
+            :height 1.0
             :foreground ,slate
             :background ,bg-dark)
            (org-headline-done
@@ -163,7 +166,7 @@
             :foreground ,dark-cyan
             :background ,bg-dark)
            (org-agenda-structure
-            :height 1.3
+            :height 1.1
             :foreground ,type
             :weight normal
             :inherit variable-pitch)
@@ -171,7 +174,7 @@
             :foreground ,doc
             :inherit variable-pitch)
            (org-agenda-date-today
-            :height 1.5
+            :height 1.2
             :foreground ,keyword
             :inherit variable-pitch)
            (org-agenda-date-weekend
@@ -242,7 +245,7 @@
            (helm-match
             :foreground ,keyword)
            (cfw:face-title
-            :height 2.0
+            :height 1.5
             :inherit variable-pitch
             :weight bold
             :foreground ,doc)
@@ -310,5 +313,8 @@
             :background nil)
            (font-lock-string-face
             :foreground ,string)
+           (font-lock-comment-face
+            :foreground ,doc
+            :family ,serif-mono-font)
            (helm-ff-symlink
             :foreground ,slate)))))
