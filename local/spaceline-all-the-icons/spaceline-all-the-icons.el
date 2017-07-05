@@ -217,7 +217,7 @@ the directions of the separator."
        (let ((dir (if spaceline-invert-direction (spaceline--direction ,dir) ,dir))
              (sep spaceline-separator-type))
          (propertize (all-the-icons-alltheicon (format "%s-%s" sep dir) :v-adjust 0.0)
-                     'face `(:height 1.8
+                     'face `(:height 1.6
                              :family
                              ,(all-the-icons-alltheicon-family)
                              :foreground
@@ -229,18 +229,18 @@ the directions of the separator."
 (defvar spaceline-invert-direction t)
 (defvar spaceline-separator-type "slant")
 
-(define-separator "right-1" "right" highlight-face 'powerline-active1)
-(define-separator "right-2" "right" 'mode-line highlight-face)
-(define-separator "right-3" "right" highlight-face 'mode-line)
+(define-separator "right-1" "right" 'mode-separator 'powerline-active1)
+(define-separator "right-2" "right" 'mode-line 'mode-separator)
+(define-separator "right-3" "right" 'mode-separator 'mode-line)
 (define-separator "right-4" "right" 'mode-line 'powerline-active1)
 
 (spaceline-compile
  "ati"
- '(((ati-modified ati-buffer-size) :face highlight-face :skip-alternate t)
+ '(((ati-modified ati-buffer-size) :face 'mode-highlight :skip-alternate t)
    ati-right-1-separator
    ((ati-projectile ati-mode-icon ati-buffer-id) :face other-face)
    ati-right-2-separator
-   ((ati-position ati-region-info) :face highlight-face :separator "  ")
+   ((ati-position ati-region-info) :face 'mode-highlight :separator "  ")
    ati-right-3-separator
    ((ati-vc-icon
      ati-flycheck-status

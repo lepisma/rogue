@@ -608,10 +608,12 @@ you should place you code here."
 
   (add-hooks '(text-mode-hook
                prog-mode-hook
-               org-agenda-mode-hook
                ranger-mode-hook
                ibuffer-mode-hook)
              (lambda () (setq line-spacing 0.1)))
+
+  (add-hooks '(org-agenda-mode-hook)
+             (lambda () (setq line-spacing 0.2)))
 
   (add-hooks '(processing-compilation-mode-hook
                eshell-mode-hook

@@ -1,33 +1,44 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
-(let* ((bg-light     "#222425")
-       (bg-dark      "#1c1e1f")
-       (bg-darker    "#1c1c1c")
-       (fg-white     "#ffffff")
-       (dark-cyan    "#008b8b")
-       (region-dark  "#2d2e2e")
-       (region       "#39393d")
-       (slate        "#8FA1B3")
-       (keyword      "#f92672")
-       (comment      "#525254")
-       (builtin      "#fd971f")
-       (purple       "#9c91e4")
-       (doc          "#727280")
-       (type         "#66d9ef")
-       (string       "#b6e63e")
-       (gray         "#bebebe")
-       (sans-font    "Source Sans Pro")
-       (serif-font    "Merriweather")
-       (sans-mono-font    "Souce Code Pro")
+(defface mode-highlight
+  '((t :underline nil))
+  "Stuff for mode line")
+
+(defface mode-separator
+  '((t :underline nil))
+  "Stuff for mode line")
+
+(let* ((bg-white           "#fbf8ef")
+       (bg-light           "#222425")
+       (bg-dark            "#1c1e1f")
+       (bg-darker          "#1c1c1c")
+       (fg-white           "#ffffff")
+       (fg-light           "#655370")
+       (dark-cyan          "#008b8b")
+       (region-dark        "#2d2e2e")
+       (region             "#39393d")
+       (slate              "#8FA1B3")
+       (keyword            "#f92672")
+       (comment            "#525254")
+       (builtin            "#fd971f")
+       (purple             "#9c91e4")
+       (doc                "#727280")
+       (type               "#66d9ef")
+       (string             "#b6e63e")
+       (gray               "#bebebe")
+       (sans-font          "Source Sans Pro")
+       (serif-font         "Merriweather")
+       (et-font            "EtBembo")
+       (sans-mono-font     "Souce Code Pro")
        (serif-mono-font    "Verily Serif Mono"))
   (setq theming-modifications
         `((doom-molokai
            (variable-pitch
-            :family ,serif-font)
+            :family ,sans-font)
            (hackernews-link-face
             :foreground ,slate
             :inherit variable-pitch
-            :height 1.0)
+            :height 1.2)
            (hackernews-comment-count-face
             :foreground ,string)
            (company-tooltip
@@ -38,7 +49,7 @@
             :background ,bg-darker)
            (company-tooltip-common
             :foreground ,keyword)
-           (company-tooltip-annotation
+           (company-tootip-annotation
             :foreground ,type)
            (company-tooltip-selection
             :background ,region)
@@ -87,62 +98,68 @@
            (highlight
             :background ,comment
             :foreground ,fg-white)
+           (mode-highlight
+            :background ,bg-dark
+            :foreground ,fg-white)
+           (mode-separator
+            :background ,bg-dark
+            :foreground ,fg-white)
            (hl-line
             :background ,region-dark)
            (org-document-title
             :inherit variable-pitch
-            :height 1.2
+            :height 1.3
             :foreground ,fg-white)
            (org-level-1
             :inherit variable-pitch
-            :height 1.2
-            :weight normal
+            :height 1.3
+            :weight bold
             :foreground ,keyword
             :background ,bg-dark)
            (org-level-2
             :inherit variable-pitch
-            :weight normal
-            :height 1.1
+            :weight bold
+            :height 1.2
             :foreground ,gray
             :background ,bg-dark)
            (org-level-3
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
+            :weight bold
+            :height 1.1
             :foreground ,purple
             :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
+            :weight bold
+            :height 1.1
             :foreground ,slate
             :background ,bg-dark)
            (org-level-5
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
+            :weight bold
+            :height 1.1
             :foreground ,slate
             :background ,bg-dark)
            (org-level-6
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
+            :weight bold
+            :height 1.1
             :foreground ,slate
             :background ,bg-dark)
            (org-level-7
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
+            :weight bold
+            :height 1.1
             :foreground ,slate
             :background ,bg-dark)
            (org-level-8
             :inherit variable-pitch
-            :weight normal
-            :height 1.0
+            :weight bold
+            :height 1.1
             :foreground ,slate
             :background ,bg-dark)
            (org-headline-done
-            :family ,sans-font
+            :family ,serif-font
             :strike-through t)
            (org-quote
             :background ,bg-dark)
@@ -166,7 +183,7 @@
             :foreground ,dark-cyan
             :background ,bg-dark)
            (org-agenda-structure
-            :height 1.1
+            :height 1.3
             :foreground ,type
             :weight normal
             :inherit variable-pitch)
@@ -174,7 +191,7 @@
             :foreground ,doc
             :inherit variable-pitch)
            (org-agenda-date-today
-            :height 1.2
+            :height 1.5
             :foreground ,keyword
             :inherit variable-pitch)
            (org-agenda-date-weekend
@@ -245,7 +262,7 @@
            (helm-match
             :foreground ,keyword)
            (cfw:face-title
-            :height 1.5
+            :height 2.0
             :inherit variable-pitch
             :weight bold
             :foreground ,doc)
@@ -317,4 +334,140 @@
             :foreground ,doc
             :family ,serif-mono-font)
            (helm-ff-symlink
-            :foreground ,slate)))))
+            :foreground ,slate))
+          ;; White theme for org
+          (spacemacs-light
+           (variable-pitch
+            :family ,et-font
+            :background nil
+            :foreground ,bg-dark
+            :height 1.7)
+           (org-table
+            :family ,serif-mono-font
+            :height 0.9
+            :background ,bg-white)
+           (org-document-title
+            :inherit nil
+            :family ,et-font
+            :height 1.8
+            :foreground ,bg-dark
+            :underline nil)
+           (org-document-info-keyword
+            :height 0.8
+            :foreground ,gray)
+           (org-document-info
+            :height 1.2
+            :slant italic)
+           (org-date
+            :family ,sans-mono-font
+            :height 0.8)
+           (org-special-keyword
+            :family ,sans-mono-font
+            :height 0.8)
+           (org-level-1
+            :inherit nil
+            :family ,et-font
+            :height 1.6
+            :weight normal
+            :slant normal
+            :foreground ,bg-dark)
+           (org-level-2
+            :inherit nil
+            :family ,et-font
+            :weight normal
+            :height 1.3
+            :slant italic
+            :foreground ,bg-dark)
+           (org-level-3
+            :inherit nil
+            :family ,et-font
+            :weight normal
+            :slant italic
+            :height 1.2
+            :foreground ,bg-dark)
+           (org-level-4
+            :inherit nil
+            :family ,et-font
+            :weight normal
+            :slant italic
+            :height 1.1
+            :foreground ,bg-dark)
+           (org-headline-done
+            :family ,et-font
+            :strike-through t)
+           (org-agenda-done
+            :strike-through t
+            :foreground ,doc)
+           (org-ellipsis
+            :underline nil
+            :foreground ,comment)
+           (org-tag
+            :foreground ,doc)
+           (org-hide
+            :foreground ,bg-white)
+           (org-block-end-line
+            :background nil
+            :height 0.8
+            :family ,sans-mono-font
+            :foreground ,slate)
+           (org-block-begin-line
+            :background nil
+            :height 0.8
+            :family ,sans-mono-font
+            :foreground ,slate)
+           (org-block
+            :background nil
+            :foreground ,bg-dark)
+           (org-link
+            :foreground ,bg-dark)
+           (nlinum-current-line
+            :foreground ,bg-dark)
+           (font-lock-comment-face
+            :background nil
+            :foreground ,doc
+            :slant italic)
+           (org-code
+            :inherit nil
+            :family ,serif-mono-font
+            :foreground ,comment
+            :height 0.9)
+           (org-agenda-date-today
+            :inherit variable-pitch
+            :height 1.1)
+           (mode-line
+            :background ,bg-white)
+           (powerline-active1
+            :background ,bg-white)
+           (powerline-active2
+            :background ,bg-white)
+           (powerline-inactive1
+            :background ,bg-white)
+           (powerline-inactive2
+            :background ,bg-white)
+           (mode-highlight
+            :foreground ,fg-light
+            :background ,bg-white)
+           (mode-separator
+            :foreground ,bg-white
+            :background ,bg-white)
+           (doom-neotree-dir-face
+            :family ,sans-font
+            :height 1.0)
+           (doom-neotree-file-face
+            :family ,sans-font
+            :height 1.0)
+           (doom-neotree-text-file-face
+            :family ,sans-font
+            :height 1.0)
+           (doom-neotree-hidden-file-face
+            :family ,sans-font
+            :height 1.0
+            :foreground ,comment)
+           (doom-neotree-media-file-face
+            :family ,sans-font
+            :height 1.0
+            :foreground ,type)
+           (doom-neotree-data-file-face
+            :family ,sans-font
+            :height 1.0
+            :foreground ,doc)))))

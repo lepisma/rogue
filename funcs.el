@@ -158,3 +158,24 @@ With argument, do this that many times."
     (ignore-errors
       (magit-commit '("-m" "git-auto-update")))
     (call-process-shell-command "git push" nil 0)))
+
+(defun rogue-light ()
+  "Switch to light theme"
+  (interactive)
+  (setq doom-neotree-enable-variable-pitch nil
+        doom-neotree-line-spacing 1)
+  (spacemacs/load-theme 'spacemacs-light)
+  (setq org-bullets-bullet-list '(" "))
+  (set-face-attribute 'org-indent nil
+                      :inherit '(org-hide fixed-pitch)))
+
+(defun rogue-dark ()
+  "Switch to dark theme"
+  (interactive)
+  (setq doom-neotree-enable-variable-pitch t
+        doom-neotree-line-spacing 4)
+  (disable-theme 'spacemacs-light)
+  (spacemacs/load-theme 'doom-molokai)
+  (setq org-bullets-bullet-list '("#"))
+  (set-face-attribute 'org-indent nil
+                      :inherit '(org-hide)))
