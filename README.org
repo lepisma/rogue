@@ -1,12 +1,13 @@
 * Rogue
 
-Personal [spacemacs](https://github.com/syl20bnr/spacemacs) layer. It looks
-something like this (might not be updated)
-
-/Dark colors/
-
-[[./dark.png]]
+Personal [[https://github.com/syl20bnr/spacemacs][spacemacs]] layer. It looks something like the screens below (might not
+be updated)
 
 /Light colors/
 
 [[./light.png]]
+
+
+/Dark colors/
+
+[[./dark.png]]
