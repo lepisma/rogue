@@ -1,0 +1,12 @@
+* Rogue
+
+Personal [spacemacs](https://github.com/syl20bnr/spacemacs) layer. It looks
+something like this (might not be updated)
+
+/Dark colors/
+
+[[./dark.png]]
+
+/Light colors/
+
+[[./light.png]]
