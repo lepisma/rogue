@@ -305,7 +305,7 @@
   (use-package writeroom-mode
     :defer t
     :config
-    (setq writeroom-width 100
+    (setq writeroom-width 140
           writeroom-mode-line nil
           writeroom-global-effects '(writeroom-set-bottom-divider-width
                                      writeroom-set-internal-border-width
@@ -317,7 +317,8 @@
                                                       '(("python" (:family "Source Code Pro"
                                                                            :height 0.8))))
                                                 (normal-mode)
-                                                (variable-pitch-mode)))
+                                                (variable-pitch-mode)
+                                                (beacon-mode -1)))
                                         ((= arg -1)
                                          (progn (rogue-dark)
                                                 (setq org-src-block-faces
@@ -325,7 +326,8 @@
                                                                            :height 1.0))))
                                                 (normal-mode)
                                                 (variable-pitch-mode)
-                                                (variable-pitch-mode)))))))))
+                                                (variable-pitch-mode)
+                                                (beacon-mode +1)))))))))
 
 (defun rogue/init-wttrin ()
   (use-package wttrin
