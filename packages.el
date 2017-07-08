@@ -18,7 +18,6 @@
     helm-org-rifle
     (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
     multiple-cursors
-    nlinum-hl
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-gcal
@@ -155,22 +154,6 @@
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this)
            ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
-
-(defun rogue/init-nlinum-hl ()
-  (use-package nlinum-hl
-    :after nlinum
-    :config
-    ;; Runs occasionally, though unpredictably
-    (add-hook 'post-gc-hook 'nlinum-hl-flush-all-windows)
-    ;; whenever Emacs loses/gains focus
-    (add-hook 'focus-in-hook  'nlinum-hl-flush-all-windows)
-    (add-hook 'focus-out-hook 'nlinum-hl-flush-all-windows)
-    ;; after X amount of idle time
-    (run-with-idle-timer 5 t 'nlinum-hl-flush-window)
-    (run-with-idle-timer 30 t 'nlinum-hl-flush-all-windows)
-    ;; when switching windows
-    (advice-add 'select-window :before 'nlinum-hl-do-flush)
-    (advice-add 'select-window :after 'nlinum-hl-do-flush)))
 
 (defun rogue/init-ob-async ()
   (use-package ob-async
