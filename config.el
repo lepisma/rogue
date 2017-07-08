@@ -331,7 +331,7 @@
             :foreground ,string)
            (font-lock-comment-face
             :foreground ,doc
-            :family ,serif-mono-font)
+            :slant italic)
            (helm-ff-symlink
             :foreground ,slate))
           ;; White theme for org
