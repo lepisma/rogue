@@ -17,7 +17,6 @@
     helm-bm
     helm-org-rifle
     (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
-    magithub
     multiple-cursors
     nlinum-hl
     ob-async
@@ -30,10 +29,8 @@
     snakemake-mode
     solaire-mode
     (spaceline-all-the-icons :location local)
-    swap-regions
     swiper
     sx
-    tldr
     vue-mode
     wolfram
     writegood-mode
@@ -131,9 +128,7 @@
     (esi-start)))
 
 (defun rogue/init-flycheck-mypy ()
-  (use-package flycheck-mypy
-    :init
-    (add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-mypy)))))
+  (use-package flycheck-mypy))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
@@ -154,11 +149,6 @@
             "Ka" 'kde-kalarm-set-org
             "Ks" 'kde-kmail-send-default
             "Kx" 'kde-explore)))
-
-(defun rogue/init-magithub ()
-  (use-package magithub
-    :after magit
-    :config (magithub-feature-autoinject t)))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
@@ -267,11 +257,6 @@
       :after powerline
       :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
 
-(defun rogue/init-swap-regions ()
-  (use-package swap-regions
-    :bind (("C-c s" . swap-regions-mode)
-           ("C-c x" . swap-regions))))
-
 (defun rogue/init-swiper ()
   (use-package swiper
     :bind (("C-s" . swiper)
@@ -279,10 +264,6 @@
 
 (defun rogue/init-sx ()
   (use-package sx
-    :defer t))
-
-(defun rogue/init-tldr ()
-  (use-package tldr
     :defer t))
 
 (defun rogue/init-vue-mode ()

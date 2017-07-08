@@ -22,14 +22,12 @@ values."
      common-lisp
      emacs-lisp
      ess
-     extra-langs
      haskell
      html
-     java
      javascript
-     nim
      (python :variables python-enable-yapf-format-on-save t)
      racket
+     ruby
      scheme
      (typescript :variables typescript-fmt-on-save t)
      ;; Other languages / assists
@@ -43,7 +41,6 @@ values."
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t)
-     ruby
      shell
      shell-scripts
      sql
@@ -56,13 +53,11 @@ values."
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      colors
-     dash
      deft
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
              elfeed-enable-web-interface t)
      emoji
-     games
      git
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
@@ -73,15 +68,12 @@ values."
      (ranger :variables ranger-show-preview t)
      restclient
      rogue
-     selectric
-     semantic
      slack
      (spell-checking :variables spell-checking-enable-by-default nil)
      spotify
-     syntax-checking
+     (syntax-checking :variables syntax-checking-enable-by-default nil)
      theming
      typography
-     twitter
      (version-control :variables
                       version-control-diff-tool 'git-gutter
                       version-control-global-margin t
@@ -469,7 +461,7 @@ you should place you code here."
             (lambda ()
               (set (make-local-variable 'face-remapping-alist) '((default :height 0.9)))))
 
-  (global-company-mode)
+
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
   (setq frame-title-format '("" "%b - Emacs"))
@@ -574,7 +566,7 @@ you should place you code here."
   (load-file (concat user-secrets-dir "slack.el"))
 
   ;; Delay slack
-  (run-at-time "30 sec" nil 'slack-start)
+  (run-at-time "120 sec" nil 'slack-start)
 
   (setq tramp-default-method "ssh")
 
