@@ -53,7 +53,6 @@ values."
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      colors
-     deft
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
              elfeed-enable-web-interface t)
@@ -531,10 +530,6 @@ you should place you code here."
   (setq-default js2-missing-semi-one-line-override nil)
 
   (setq-default typescript-indent-level 2)
-
-  (setq deft-directory user-journal-dir)
-  (setq deft-extensions '("org"))
-  (setq deft-recursive t)
 
   (use-package em-tramp
     :config
