@@ -236,11 +236,11 @@ the directions of the separator."
 
 (spaceline-compile
  "ati"
- '(((ati-modified ati-buffer-size) :face 'mode-highlight :skip-alternate t)
+ '(((ati-modified ati-buffer-size) :face mode-highlight :skip-alternate t)
    ati-right-1-separator
    ((ati-projectile ati-mode-icon ati-buffer-id) :face other-face)
    ati-right-2-separator
-   ((ati-position ati-region-info) :face 'mode-highlight :separator "  ")
+   ((ati-position ati-region-info) :face mode-highlight :separator "  ")
    ati-right-3-separator
    ((ati-vc-icon
      ati-flycheck-status

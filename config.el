@@ -99,7 +99,8 @@
             :background ,comment
             :foreground ,fg-white)
            (mode-highlight
-            :background ,bg-dark)
+            :background ,bg-dark
+            :foreground ,gray)
            (mode-separator
             :background ,bg-dark
             :foreground ,fg-white)
