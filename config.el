@@ -305,17 +305,17 @@
            (cfw:face-default-day
             :foreground ,fg-white)
            (dired-subtree-depth-1-face
-            :background ,bg-dark)
+            :background nil)
            (dired-subtree-depth-2-face
-            :background ,bg-dark)
+            :background nil)
            (dired-subtree-depth-3-face
-            :background ,bg-dark)
+            :background nil)
            (dired-subtree-depth-4-face
-            :background ,bg-dark)
+            :background nil)
            (dired-subtree-depth-5-face
-            :background ,bg-dark)
+            :background nil)
            (dired-subtree-depth-6-face
-            :background ,bg-dark)
+            :background nil)
            (nlinum-current-line
             :foreground ,builtin)
            (vertical-border
