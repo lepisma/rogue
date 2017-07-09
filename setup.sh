@@ -8,4 +8,4 @@ touch ~/.emacs-custom.el
 # Secret files stubs
 mkdir -p ~/.emacs.d/private/rogue/secrets
 touch ~/.emacs.d/private/rogue/secrets/slack.el
-touch ~/.emacs.d/private/rogue/secrets/wolfram.el
+touch ~/.emacs.d/private/rogue/secrets/gcal.el

@@ -30,7 +30,6 @@
     (spaceline-all-the-icons :location local)
     swiper
     vue-mode
-    wolfram
     writegood-mode
     writeroom-mode
     wttrin))
@@ -247,14 +246,6 @@
 (defun rogue/init-vue-mode ()
   (use-package vue-mode
     :mode ("\\.vue\\'" . vue-mode)))
-
-(defun rogue/init-wolfram ()
-  (use-package wolfram
-    :defer t
-    :config
-    ;; Secret
-    ;; (setq wolfram-alpha-app-id "<>")
-    (load-file (concat user-secrets-dir "wolfram.el"))))
 
 (defun rogue/init-writegood-mode ()
   (use-package writegood-mode
