@@ -144,11 +144,6 @@ With argument, do this that many times."
   (interactive)
   (mpc-send-message "mpdas" "love"))
 
-(defun mpdas-unlove ()
-  "Unlove currently playing song"
-  (interactive)
-  (mpc-send-message "mpdas" "unlove"))
-
 (defun git-update-project (project-root)
   "Add all, commit and push given project."
   (let ((default-directory project-root))
