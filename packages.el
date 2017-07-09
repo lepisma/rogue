@@ -29,7 +29,6 @@
     solaire-mode
     (spaceline-all-the-icons :location local)
     swiper
-    sx
     vue-mode
     wolfram
     writegood-mode
@@ -244,10 +243,6 @@
   (use-package swiper
     :bind (("C-s" . swiper)
            ("C-r" . swiper))))
-
-(defun rogue/init-sx ()
-  (use-package sx
-    :defer t))
 
 (defun rogue/init-vue-mode ()
   (use-package vue-mode
