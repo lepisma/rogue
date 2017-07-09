@@ -25,7 +25,7 @@
        (doc                "#727280")
        (type               "#66d9ef")
        (string             "#b6e63e")
-       (gray               "#bebebe")
+       (gray               "#bbb")
        (sans-font          "Source Sans Pro")
        (serif-font         "Merriweather")
        (et-font            "EtBembo")
@@ -126,7 +126,7 @@
             :inherit variable-pitch
             :weight bold
             :height 1.1
-            :foreground ,purple
+            :foreground ,slate
             :background ,bg-dark)
            (org-level-4
             :inherit variable-pitch
@@ -159,7 +159,6 @@
             :foreground ,slate
             :background ,bg-dark)
            (org-headline-done
-            :family ,serif-font
             :strike-through t)
            (org-quote
             :background ,bg-dark)

@@ -217,7 +217,7 @@ the directions of the separator."
        (let ((dir (if spaceline-invert-direction (spaceline--direction ,dir) ,dir))
              (sep spaceline-separator-type))
          (propertize (all-the-icons-alltheicon (format "%s-%s" sep dir) :v-adjust 0.0)
-                     'face `(:height 1.6
+                     'face `(:height 1.7
                              :family
                              ,(all-the-icons-alltheicon-family)
                              :foreground
