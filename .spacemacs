@@ -703,7 +703,7 @@ you should place you code here."
     (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
-          '(("n" "Main agenda with micro tasks"
+          '(("n" "Main agenda view"
              ((tags "micro"
                     ((org-agenda-overriding-header "Micro tasks")))
               (todo "TODO")
