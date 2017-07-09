@@ -283,8 +283,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-journal-dir (file-name-as-directory (getenv "JOURNAL_DIR")))
   (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
-  (defconst user-project-files
-    (list (concat user-project-dir "dev/projects.org")))
+
+  (defconst user-project-file (concat user-project-dir "dev/projects.org"))
+  (defconst user-books-file (concat user-project-dir "reading-list/reading-list.org"))
+  (defconst user-bookmarks-file (concat user-journal-dir "bookmarks.org"))
   (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
@@ -700,33 +702,22 @@ you should place you code here."
     (setq org-outline-path-complete-in-steps nil)
     (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
 
-    ;; Avoid duplicating micro
-    (setq org-tags-exclude-from-inheritance '("micro")
-          org-stuck-projects
-          '("+LEVEL=1/-DONE" ("*") ("active" "micro" "old") ""))
-
     (setq org-agenda-custom-commands
           '(("n" "Main agenda with micro tasks"
              ((tags "micro"
                     ((org-agenda-overriding-header "Micro tasks")))
-              (agenda "")
-              (todo "TODO")))
-            ("p" "Projects to work on"
-             ((tags "micro"
-                    ((org-agenda-files user-project-files)
-                     (org-agenda-overriding-header "Micro tasks")))
-              (todo "TODO"
-                    ((org-agenda-files user-project-files)
-                     (org-agenda-overriding-header "Tasks")))
-              (tags "active"
-                    ((org-agenda-files user-project-files)
-                     (org-agenda-overriding-header "Active projects")))
-              (stuck ""
-                     ((org-agenda-files user-project-files)
-                      (org-agenda-overriding-header "Needs action")))
-              (tags "old"
-                    ((org-agenda-files user-project-files)
-                     (org-agenda-overriding-header "Too old")))))
+              (todo "TODO")
+              (agenda "")))
+            ("r" "Readings"
+             ((todo "READING"
+                    ((org-agenda-files (list user-bookmarks-file))
+                     (org-agenda-overriding-header "Bookmarks")))
+              (todo "READING"
+                    ((org-agenda-files (list user-books-file))
+                     (org-agenda-overriding-header "Books")))
+              (todo "NEXT"
+                    ((org-agenda-files (list user-books-file))
+                     (org-agenda-overriding-header "Upcoming books")))))
             ("d" "Upcoming deadlines" agenda ""
              ((org-agenda-entry-types '(:deadline))
               (org-deadline-warning-days 30)

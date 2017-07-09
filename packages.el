@@ -120,7 +120,7 @@
 (defun rogue/init-esi ()
   (use-package esi
     :config
-    (setq esi-bm-file (concat user-journal-dir "read.org"))
+    (setq esi-bm-file user-bookmarks-file)
     (setq esi-music-directory (file-name-as-directory "~/Desktop"))
     (esi-start)))
 
@@ -161,7 +161,7 @@
 (defun rogue/init-org-books ()
   (use-package org-books
     :config
-    (setq org-books-file (concat user-project-dir "reading-list/reading-list.org"))))
+    (setq org-books-file user-books-file)))
 
 (defun rogue/init-org-gcal ()
   (use-package org-gcal
