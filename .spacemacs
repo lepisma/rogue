@@ -284,8 +284,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
   (defconst user-project-files
-    (list (concat user-journal-dir "projects.org")
-          (concat user-project-dir "dev/index.org")))
+    (list (concat user-project-dir "dev/projects.org")))
   (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")

@@ -126,13 +126,6 @@ With argument, do this that many times."
   (org-sort-entries nil ?f (lambda () (random 1000)))
   (save-buffer))
 
-(defun org-shuffle-projects ()
-  "Shuffle first level items in project files"
-  (interactive)
-  (dolist (project-file user-project-files)
-    (find-file project-file)
-    (org-shuffle-save)))
-
 (defun mpc-send-message (channel message)
   "Send message to mpc"
   (if (eq 0 (call-process "mpc" nil nil nil "sendmessage" channel message))
