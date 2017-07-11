@@ -25,11 +25,11 @@ values."
      haskell
      html
      javascript
-     (python :variables python-enable-yapf-format-on-save t)
+     python
      racket
      ruby
      scheme
-     (typescript :variables typescript-fmt-on-save t)
+     typescript
      ;; Other languages / assists
      bibtex
      csv
