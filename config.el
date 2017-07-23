@@ -179,6 +179,7 @@
             :foreground ,builtin
             :background ,bg-dark)
            (org-done
+            :inherit variable-pitch
             :foreground ,dark-cyan
             :background ,bg-dark)
            (org-agenda-structure
@@ -333,7 +334,9 @@
             :foreground ,doc
             :slant italic)
            (helm-ff-symlink
-            :foreground ,slate))
+            :foreground ,slate)
+           (region
+            :background ,region-dark))
           ;; White theme for org
           (spacemacs-light
            (variable-pitch
