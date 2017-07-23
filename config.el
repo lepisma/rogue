@@ -105,7 +105,9 @@
             :background ,bg-dark
             :foreground ,fg-white)
            (hl-line
-            :background ,region-dark)
+            :background ,bg-dark)
+           (solaire-hl-line-face
+            :background ,bg-dark)
            (org-document-title
             :inherit variable-pitch
             :height 1.3
