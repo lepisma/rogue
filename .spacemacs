@@ -291,7 +291,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
   (load custom-file))
-
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -535,6 +534,17 @@ you should place you code here."
     (setq eshell-prefer-lisp-functions t)
     (setq password-cache t)
     (setq password-cache-expiry 3600))
+
+  (setq eshell-prompt-function
+        (lambda ()
+          (concat (propertize
+                   (abbreviate-file-name (eshell/pwd)) 'face '(:foreground "#727280"))
+                  "\nλ ")))
+
+  (setq eshell-scroll-show-maximum-output nil)
+
+  (setq ielm-prompt "λ "
+        ielm-prompt-internal "λ ")
 
   (setq comint-scroll-show-maximum-output nil)
   (setq comint-input-ignoredups t)
