@@ -634,10 +634,13 @@ you should place you code here."
                completion-list-mode-hook
                ranger-mode-hook
                ibuffer-mode-hook
+               magit-status-mode-hook
+               magit-popup-mode-hook
+               magit-log-mode-hook
+               magit-diff-mode-hook
                comint-mode-hook
                ranger-parent-dir-hook
                ranger-preview-dir-hook
-               magit-status-mode-hook
                slime-repl-mode-hook
                process-menu-mode-hook)
              'hidden-mode-line-mode)
