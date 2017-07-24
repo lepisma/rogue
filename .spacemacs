@@ -471,7 +471,7 @@ you should place you code here."
   (setq ibuffer-expert t
         ibuffer-show-empty-filter-groups nil
         ibuffer-filter-group-name-face 'org-level-1
-        ibuffer-modified-char ?\•
+        ibuffer-modified-char ?\★
         ibuffer-locked-char ?\-
         ibuffer-read-only-char ?\-
         ibuffer-marked-char ?\✓
