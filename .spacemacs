@@ -713,7 +713,7 @@ you should place you code here."
           org-ellipsis "  "
           org-pretty-entities t
           org-hide-emphasis-markers t
-          org-agenda-block-separator ?─
+          org-agenda-block-separator ""
           org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
