@@ -348,7 +348,7 @@
            (helm-ff-symlink
             :foreground ,slate)
            (region
-            :background ,region-dark)
+            :background ,region)
            (header-line
             :background nil
             :inherit nil))
