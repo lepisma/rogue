@@ -594,7 +594,8 @@ you should place you code here."
                magit-diff-mode-hook
                comint-mode-hook
                eshell-mode-hook
-               slime-repl-mode-hook)
+               slime-repl-mode-hook
+               process-menu-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (setq right-margin-width 2)
@@ -610,7 +611,8 @@ you should place you code here."
                magit-diff-mode-hook
                comint-mode-hook
                eshell-mode-hook
-               slime-repl-mode-hook)
+               slime-repl-mode-hook
+               process-menu-mode-hook)
              (lambda () (setq header-line-format " ")))
 
   (add-hooks '(text-mode-hook
@@ -636,8 +638,9 @@ you should place you code here."
                ranger-parent-dir-hook
                ranger-preview-dir-hook
                magit-status-mode-hook
-               slime-repl-mode-hook)
-             (lambda () (hidden-mode-line-mode +1)))
+               slime-repl-mode-hook
+               process-menu-mode-hook)
+             'hidden-mode-line-mode)
 
   (with-current-buffer "*Messages*"
     (hidden-mode-line-mode +1)
