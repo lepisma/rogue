@@ -111,7 +111,11 @@
            (org-document-title
             :inherit variable-pitch
             :height 1.3
-            :foreground ,fg-white)
+            :weight normal
+            :foreground ,gray)
+           (org-document-info
+            :foreground ,gray
+            :slant italic)
            (org-level-1
             :inherit variable-pitch
             :height 1.3
@@ -170,6 +174,8 @@
             :background ,bg-dark)
            (org-block-end-line
             :background ,bg-dark)
+           (org-document-info-keyword
+            :foreground ,comment)
            (org-link
             :underline nil
             :weight normal
