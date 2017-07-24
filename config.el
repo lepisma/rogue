@@ -105,7 +105,7 @@
             :background ,bg-dark
             :foreground ,fg-white)
            (hl-line
-            :background ,bg-dark)
+            :background ,region-dark)
            (solaire-hl-line-face
             :background ,bg-dark)
            (org-document-title
