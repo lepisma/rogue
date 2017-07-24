@@ -632,6 +632,7 @@ you should place you code here."
                compilation-mode-hook
                messages-buffer-mode-hook
                completion-list-mode-hook
+               org-agenda-mode-hook
                ranger-mode-hook
                ibuffer-mode-hook
                magit-status-mode-hook

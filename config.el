@@ -202,13 +202,13 @@
            (org-agenda-date-weekend
             :inherit org-agenda-date)
            (org-scheduled
-            :foreground ,type)
+            :foreground ,gray)
            (org-upcoming-deadline
             :foreground ,keyword)
            (org-scheduled-today
             :foreground ,fg-white)
            (org-scheduled-previously
-            :foreground ,dark-cyan)
+            :foreground ,slate)
            (org-agenda-done
             :inherit nil
             :strike-through t
