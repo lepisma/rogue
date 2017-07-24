@@ -35,6 +35,12 @@
         `((doom-molokai
            (variable-pitch
             :family ,sans-font)
+           (eval-sexp-fu-flash
+            :background ,dark-cyan
+            :foreground ,fg-white)
+           (eval-sexp-fu-flash-error
+            :background ,keyword
+            :foreground ,fg-white)
            (hackernews-link-face
             :foreground ,slate
             :inherit variable-pitch
@@ -59,16 +65,14 @@
            (magit-section-heading
             :foreground ,keyword)
            (magit-header-line
-            :inherit variable-pitch
-            :background ,region-dark
-            :foreground ,fg-white
-            :weight normal
-            :box (:line-width 6 :color ,region-dark)
-            :height 1.1)
+            :background nil
+            :foreground ,bg-dark
+            :box nil)
            (magit-diff-hunk-heading
-            :background ,dark-cyan)
+            :background ,comment
+            :foreground ,gray)
            (magit-diff-hunk-heading-highlight
-            :background ,dark-cyan
+            :background ,comment
             :foreground ,fg-white)
            (tooltip
             :foreground ,keyword
@@ -192,7 +196,7 @@
             :background ,bg-dark)
            (org-agenda-structure
             :height 1.3
-            :foreground ,type
+            :foreground ,doc
             :weight normal
             :inherit variable-pitch)
            (org-agenda-date
@@ -209,7 +213,7 @@
            (org-upcoming-deadline
             :foreground ,keyword)
            (org-scheduled-today
-            :foreground ,type)
+            :foreground ,fg-white)
            (org-scheduled-previously
             :foreground ,dark-cyan)
            (org-agenda-done
@@ -344,7 +348,10 @@
            (helm-ff-symlink
             :foreground ,slate)
            (region
-            :background ,region-dark))
+            :background ,region-dark)
+           (header-line
+            :background nil
+            :inherit nil))
           ;; White theme for org
           (spacemacs-light
            (variable-pitch
@@ -352,6 +359,13 @@
             :background nil
             :foreground ,bg-dark
             :height 1.7)
+           (header-line
+            :background nil
+            :inherit nil)
+           (magit-header-line
+            :background nil
+            :foreground ,bg-white
+            :box nil)
            (org-table
             :family ,serif-mono-font
             :height 0.9

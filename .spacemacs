@@ -300,6 +300,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+  ;; Colors
+  (setq rogue-current-color 'dark)
+
   ;; Fira Code ligatures
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
@@ -495,11 +498,6 @@ you should place you code here."
         neo-mode-line-type 'none
         neo-autorefresh nil)
 
-  ;; Hide mode line in few situations
-  (with-current-buffer "*Messages*" (hidden-mode-line-mode +1))
-  (advice-add 'helm-display-mode-line
-              :override (lambda (source &optional force) (hidden-mode-line-mode +1)))
-
   (setq-default fringes-outside-margins t
                 indicate-buffer-boundaries nil
                 fringe-indicator-alist (delq (assq 'continuation fringe-indicator-alist)
@@ -589,15 +587,37 @@ you should place you code here."
                text-mode-hook
                org-agenda-mode-hook
                slack-mode-hook
-               ibuffer-mode-hook)
+               ibuffer-mode-hook
+               magit-status-mode-hook
+               magit-popup-mode-hook
+               magit-log-mode-hook
+               magit-diff-mode-hook
+               comint-mode-hook
+               eshell-mode-hook
+               slime-repl-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
+                     (setq right-margin-width 2)
                      (set-window-buffer nil (current-buffer)))))
+
+  (add-hooks '(cfw:calendar-mode-hook
+               text-mode-hook
+               org-agenda-mode-hook
+               slack-mode-hook
+               ibuffer-mode-hook
+               magit-status-mode-hook
+               magit-log-mode-hook
+               magit-diff-mode-hook
+               comint-mode-hook
+               eshell-mode-hook
+               slime-repl-mode-hook)
+             (lambda () (setq header-line-format " ")))
 
   (add-hooks '(text-mode-hook
                prog-mode-hook
                ranger-mode-hook
-               ibuffer-mode-hook)
+               ibuffer-mode-hook
+               comint-mode-hook)
              (lambda () (setq line-spacing 0.1)))
 
   (add-hooks '(org-agenda-mode-hook)
@@ -611,17 +631,30 @@ you should place you code here."
                messages-buffer-mode-hook
                completion-list-mode-hook
                ranger-mode-hook
+               ibuffer-mode-hook
+               comint-mode-hook
                ranger-parent-dir-hook
                ranger-preview-dir-hook
-               magit-status-mode-hook)
-             'hidden-mode-line-mode)
+               magit-status-mode-hook
+               slime-repl-mode-hook)
+             (lambda () (hidden-mode-line-mode +1)))
+
+  (with-current-buffer "*Messages*"
+    (hidden-mode-line-mode +1)
+    (setq header-line-format " ")
+    (setq left-margin-width 2)
+    (setq right-margin-width 2)
+    (set-window-buffer nil (current-buffer)))
+
+  (advice-add 'helm-display-mode-line
+              :override (lambda (source &optional force) (hidden-mode-line-mode +1)))
+
+  (add-hooks '(text-mode-hook
+               cfw:calendar-mode-hook)
+             (lambda () (spacemacs/disable-hl-line-mode)))
 
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
-  (add-hook 'text-mode-hook (lambda ()
-                              (progn
-                                (auto-fill-mode)
-                                (spacemacs/disable-hl-line-mode))))
-  (add-hook 'cfw:calendar-mode-hook (lambda () (spacemacs/disable-hl-line-mode)))
+  (add-hook 'text-mode-hook (lambda () (auto-fill-mode)))
   (add-hook 'term-mode-hook 'toggle-truncate-lines)
   (add-hook 'prog-mode-hook 'nlinum-mode)
 

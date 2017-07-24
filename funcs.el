@@ -147,15 +147,28 @@ With argument, do this that many times."
       (magit-commit '("-m" "git-auto-update")))
     (call-process-shell-command "git push" nil 0)))
 
+(defun rogue-cycle-color ()
+  "Cycle between dark and light scheme"
+  (interactive)
+  (if (eq rogue-current-color 'dark)
+      (progn
+        (rogue-light)
+        (setq rogue-current-color 'light))
+    (progn
+      (rogue-dark)
+      (setq rogue-current-color 'dark))))
+
 (defun rogue-light ()
   "Switch to light theme"
   (interactive)
   (setq doom-neotree-enable-variable-pitch nil
         doom-neotree-line-spacing 1)
+  (disable-theme 'doom-molokai)
   (spacemacs/load-theme 'spacemacs-light)
   (setq org-bullets-bullet-list '(" "))
   (set-face-attribute 'org-indent nil
-                      :inherit '(org-hide fixed-pitch)))
+                      :inherit '(org-hide fixed-pitch))
+  (beacon-mode -1))
 
 (defun rogue-dark ()
   "Switch to dark theme"
@@ -166,4 +179,5 @@ With argument, do this that many times."
   (spacemacs/load-theme 'doom-molokai)
   (setq org-bullets-bullet-list '("#"))
   (set-face-attribute 'org-indent nil
-                      :inherit '(org-hide)))
+                      :inherit '(org-hide))
+  (beacon-mode +1))

@@ -267,8 +267,7 @@
                                                       '(("python" (:family "Source Code Pro"
                                                                            :height 0.8))))
                                                 (normal-mode)
-                                                (variable-pitch-mode)
-                                                (beacon-mode -1)))
+                                                (variable-pitch-mode)))
                                         ((= arg -1)
                                          (progn (rogue-dark)
                                                 (setq org-src-block-faces
@@ -276,8 +275,7 @@
                                                                            :height 1.0))))
                                                 (normal-mode)
                                                 (variable-pitch-mode)
-                                                (variable-pitch-mode)
-                                                (beacon-mode +1)))))))))
+                                                (variable-pitch-mode)))))))))
 
 (defun rogue/init-wttrin ()
   (use-package wttrin

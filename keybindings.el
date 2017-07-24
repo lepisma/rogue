@@ -38,3 +38,6 @@
 
 ;; Zooming
 (global-set-key (kbd "C-c z") 'spacemacs/zoom-frm-transient-state/body)
+
+;; Cycle theme
+(global-set-key (kbd "M-m T n") 'rogue-cycle-color)
