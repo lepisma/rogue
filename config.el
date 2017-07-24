@@ -1,9 +1,5 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
-(defface mode-highlight
-  '((t :underline nil))
-  "Stuff for mode line")
-
 (defface mode-separator
   '((t :underline nil))
   "Stuff for mode line")
@@ -102,9 +98,6 @@
            (highlight
             :background ,comment
             :foreground ,fg-white)
-           (mode-highlight
-            :background ,bg-dark
-            :foreground ,gray)
            (mode-separator
             :background ,bg-dark
             :foreground ,fg-white)
@@ -467,9 +460,6 @@
            (powerline-inactive1
             :background ,bg-white)
            (powerline-inactive2
-            :background ,bg-white)
-           (mode-highlight
-            :foreground ,fg-light
             :background ,bg-white)
            (mode-separator
             :foreground ,bg-white
