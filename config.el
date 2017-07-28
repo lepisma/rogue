@@ -187,6 +187,12 @@
             :inherit variable-pitch
             :foreground ,dark-cyan
             :background ,bg-dark)
+           (org-agenda-current-time
+            :foreground ,slate)
+           (org-time-grid
+            :foreground ,comment)
+           (org-warning
+            :foreground ,builtin)
            (org-agenda-structure
             :height 1.3
             :foreground ,doc
