@@ -20,6 +20,7 @@
     multiple-cursors
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
+    (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
     org-gcal
     org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
@@ -162,6 +163,10 @@
   (use-package org-books
     :config
     (setq org-books-file user-books-file)))
+
+(defun rogue/init-org-expand ()
+  (use-package org-expand
+    :bind (("C-c x" . helm-org-expand))))
 
 (defun rogue/init-org-gcal ()
   (use-package org-gcal
