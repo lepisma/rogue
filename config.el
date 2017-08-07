@@ -192,6 +192,8 @@
             :background ,bg-dark)
            (org-agenda-current-time
             :foreground ,slate)
+           (org-indent
+            :inherit org-hide)
            (org-time-grid
             :foreground ,comment)
            (org-warning
@@ -431,6 +433,8 @@
             :foreground ,doc)
            (org-hide
             :foreground ,bg-white)
+           (org-indent
+            :inherit (org-hide fixed-pitch))
            (org-block-end-line
             :background nil
             :height 0.8
