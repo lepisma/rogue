@@ -4,6 +4,9 @@
   '((t :underline nil))
   "Stuff for mode line")
 
+(defvar rogue-current-color 'dark
+  "Currently active color scheme")
+
 (let* ((bg-white           "#fbf8ef")
        (bg-light           "#222425")
        (bg-dark            "#1c1e1f")
