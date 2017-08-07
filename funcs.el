@@ -147,6 +147,14 @@ With argument, do this that many times."
       (magit-commit '("-m" "git-auto-update")))
     (call-process-shell-command "git push" nil 0)))
 
+(defun reset-org-buffers ()
+  "Reset org-mode in all org buffers"
+  (mapc (lambda (buff)
+          (with-current-buffer buff
+            (if (string-equal "org-mode" major-mode)
+                (org-mode))))
+        (buffer-list)))
+
 (defun rogue-cycle-color ()
   "Cycle between dark and light scheme"
   (interactive)
@@ -166,8 +174,7 @@ With argument, do this that many times."
   (disable-theme 'doom-molokai)
   (spacemacs/load-theme 'spacemacs-light)
   (setq org-bullets-bullet-list '(" "))
-  (set-face-attribute 'org-indent nil
-                      :inherit '(org-hide fixed-pitch))
+  (reset-org-buffers)
   (beacon-mode -1))
 
 (defun rogue-dark ()
@@ -178,6 +185,5 @@ With argument, do this that many times."
   (disable-theme 'spacemacs-light)
   (spacemacs/load-theme 'doom-molokai)
   (setq org-bullets-bullet-list '("#"))
-  (set-face-attribute 'org-indent nil
-                      :inherit '(org-hide))
+  (reset-org-buffers)
   (beacon-mode +1))
