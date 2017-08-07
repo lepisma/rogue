@@ -257,22 +257,25 @@
           writeroom-global-effects '(writeroom-set-bottom-divider-width
                                      writeroom-set-internal-border-width
                                      (lambda (arg)
-                                       (cond
-                                        ((= arg 1)
-                                         (progn (rogue-light)
-                                                (setq org-src-block-faces
-                                                      '(("python" (:family "Source Code Pro"
-                                                                           :height 0.8))))
-                                                (normal-mode)
-                                                (variable-pitch-mode)))
-                                        ((= arg -1)
-                                         (progn (rogue-dark)
-                                                (setq org-src-block-faces
-                                                      '(("python" (:family "Source Code Pro"
-                                                                           :height 1.0))))
-                                                (normal-mode)
-                                                (variable-pitch-mode)
-                                                (variable-pitch-mode)))))))))
+                                       (let ((langs '("python"
+                                                      "emacs-lisp"
+                                                      "common-lisp"
+                                                      "js"
+                                                      "ruby")))
+                                         (cond
+                                          ((= arg 1)
+                                           (progn
+                                             (setq org-src-block-faces
+                                                   (mapcar (lambda (lang) (list lang '(:family "Source Code Pro" :height 0.8))) langs))
+                                             (normal-mode)
+                                             (variable-pitch-mode)))
+                                          ((= arg -1)
+                                           (progn
+                                             (setq org-src-block-faces
+                                                   (mapcar (lambda (lang) (list lang '(:family "Source Code Pro" :height 1.0))) langs))
+                                             (normal-mode)
+                                             (variable-pitch-mode)
+                                             (variable-pitch-mode))))))))))
 
 (defun rogue/init-wttrin ()
   (use-package wttrin
