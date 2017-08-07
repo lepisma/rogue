@@ -16,7 +16,6 @@
     hackernews
     helm-bm
     helm-org-rifle
-    (kde :location (recipe :fetcher github :repo "lepisma/kde.el"))
     multiple-cursors
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
@@ -140,13 +139,6 @@
 (defun rogue/init-helm-org-rifle ()
   (use-package helm-org-rifle
     :bind ("C-c r" . helm-org-rifle-agenda-files)))
-
-(defun rogue/init-kde ()
-  (use-package kde
-    :init (spacemacs/set-leader-keys
-            "Ka" 'kde-kalarm-set-org
-            "Ks" 'kde-kmail-send-default
-            "Kx" 'kde-explore)))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
