@@ -713,12 +713,12 @@ you should place you code here."
                                  "dev")))))
 
   ;; Email setup
-  (run-at-time "10 min" 600
+  (run-at-time "10 min" 1800
                (lambda ()
                  (start-process-shell-command "offlineimap"
                                               "*offlineimap-autorefresh*"
                                               "offlineimap")))
-  (setq mu4e-get-mail-command "offlineimap"
+  (setq mu4e-get-mail-command "offlineimap -o"
         mu4e-use-fancy-chars t
         message-kill-buffer-on-exit t)
 
