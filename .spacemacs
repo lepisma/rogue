@@ -61,6 +61,7 @@ values."
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
+     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
      nlinum
      pandoc
      pdf-tools
@@ -459,7 +460,6 @@ you should place you code here."
             (lambda ()
               (set (make-local-variable 'face-remapping-alist) '((default :height 0.9)))))
 
-
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
   (setq frame-title-format '("" "%b - Emacs"))
@@ -711,6 +711,16 @@ you should place you code here."
                                  "kindle-highlights"
                                  "til-emacs"
                                  "dev")))))
+
+  ;; Email setup
+  (run-at-time "10 min" 600
+               (lambda ()
+                 (start-process-shell-command "offlineimap"
+                                              "*offlineimap-autorefresh*"
+                                              "offlineimap")))
+  (setq mu4e-get-mail-command "offlineimap"
+        mu4e-use-fancy-chars t
+        message-kill-buffer-on-exit t)
 
   (with-eval-after-load 'org
     (setq org-startup-indented t
