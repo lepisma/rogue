@@ -7,6 +7,7 @@
     browse-at-remote
     cricbuzz
     calfw
+    calfw-org
     dired-subtree
     doom-themes
     (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
@@ -77,7 +78,7 @@
 
 (defun rogue/init-calfw ()
   (use-package calfw
-    :after org-gcal
+    :after (org-gcal calfw-org)
     :bind (("C-c q" . cfw:open-org-calendar))
     :config
     (setq cfw:fchar-junction ?┼
@@ -88,9 +89,12 @@
           cfw:fchar-top-junction ?┬
           cfw:fchar-top-left-corner ?┌
           cfw:fchar-top-right-corner ?┐)
-    (require 'calfw-org)
     (setq cfw:render-line-breaker 'cfw:render-line-breaker-none)
-    (setq cfw:face-item-separator-color nil)
+    (setq cfw:face-item-separator-color nil)))
+
+(defun rogue/init-calfw-org ()
+  (use-package calfw-org
+    :config
     (setq cfw:org-face-agenda-item-foreground-color "#f92672")))
 
 (defun rogue/init-dired-subtree ()
