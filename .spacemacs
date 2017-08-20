@@ -61,7 +61,7 @@ values."
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
-     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
+     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
      nlinum
      pandoc
      pdf-tools
