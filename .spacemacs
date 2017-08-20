@@ -144,7 +144,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("SauceCodePro Nerd Font"
                                :size 12
                                :weight regular
                                :width normal
@@ -316,22 +316,9 @@ you should place you code here."
                                      (match-end 1)
                                      ;; The first argument to concat is a string containing a literal tab
                                      ,(concat "	" (list (decode-char 'ucs (cadr regex-char-pair)))))))))
-            '(("\\(www\\)"                   #Xe100)
-              ("[^/]\\(\\*\\*\\)[^/]"        #Xe101)
-              ("\\(\\*\\*\\*\\)"             #Xe102)
-              ("\\(\\*\\*/\\)"               #Xe103)
-              ("\\(\\*>\\)"                  #Xe104)
-              ("[^*]\\(\\*/\\)"              #Xe105)
-              ("\\(\\\\\\\\\\)"              #Xe106)
-              ("\\(\\\\\\\\\\\\\\)"          #Xe107)
-              ("\\({-\\)"                    #Xe108)
-              ("\\(::\\)"                    #Xe10a)
-              ("\\(:::\\)"                   #Xe10b)
-              ("[^=]\\(:=\\)"                #Xe10c)
-              ("\\(!!\\)"                    #Xe10d)
+            '(("[^=]\\(:=\\)"                #Xe10c)
               ("\\(!=\\)"                    #Xe10e)
               ("\\(!==\\)"                   #Xe10f)
-              ("\\(-}\\)"                    #Xe110)
               ("\\(-->\\)"                   #Xe113)
               ("[^-]\\(->\\)"                #Xe114)
               ("\\(->>\\)"                   #Xe115)
@@ -349,14 +336,7 @@ you should place you code here."
               ("\\(#_(\\)"                   #Xe121)
               ("\\(\\.-\\)"                  #Xe122)
               ("\\(\\.=\\)"                  #Xe123)
-              ("\\(\\.\\.\\)"                #Xe124)
-              ("\\(\\.\\.<\\)"               #Xe125)
-              ("\\(\\.\\.\\.\\)"             #Xe126)
               ("\\(\\?=\\)"                  #Xe127)
-              ("\\(\\?\\?\\)"                #Xe128)
-              ("\\(;;\\)"                    #Xe129)
-              ("\\(/\\*\\)"                  #Xe12a)
-              ("\\(/\\*\\*\\)"               #Xe12b)
               ("\\(/=\\)"                    #Xe12c)
               ("\\(/==\\)"                   #Xe12d)
               ("\\(/>\\)"                    #Xe12e)
@@ -367,8 +347,6 @@ you should place you code here."
               ("\\(|>\\)"                    #Xe135)
               ("\\(\\^=\\)"                  #Xe136)
               ("\\(\\$>\\)"                  #Xe137)
-              ("\\(\\+\\+\\)"                #Xe138)
-              ("\\(\\+\\+\\+\\)"             #Xe139)
               ("\\(\\+>\\)"                  #Xe13a)
               ("\\(=:=\\)"                   #Xe13b)
               ("[^!/]\\(==\\)[^>]"           #Xe13c)
@@ -390,8 +368,6 @@ you should place you code here."
               ("\\(<\\*>\\)"                 #Xe14c)
               ("\\(<|\\)"                    #Xe14d)
               ("\\(<|>\\)"                   #Xe14e)
-              ("\\(<\\$\\)"                  #Xe14f)
-              ("\\(<\\$>\\)"                 #Xe150)
               ("\\(<!--\\)"                  #Xe151)
               ("\\(<-\\)"                    #Xe152)
               ("\\(<--\\)"                   #Xe153)
@@ -416,7 +392,6 @@ you should place you code here."
               ("\\(~>\\)"                    #Xe167)
               ("[^<]\\(~~\\)"                #Xe168)
               ("\\(~~>\\)"                   #Xe169)
-              ("\\(%%\\)"                    #Xe16a)
               ("[^:=]\\(:\\)[^:=]"           #Xe16c)
               ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
               ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
@@ -428,8 +403,7 @@ you should place you code here."
    'python-mode-hook
    (lambda ()
      (mapc (lambda (pair) (push pair prettify-symbols-alist))
-           '(("not"      . #x2757)
-             ("in"       . #x2208)
+           '(("in"       . #x2208)
              ("not in"   . #x2209)
              ("return"   . #x27fc)
              ("yield"    . #x27fb)
