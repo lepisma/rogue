@@ -135,9 +135,12 @@
               (`interrupted "! interrupted")
               (`suspicious  "")))
            (f (cond
-               ((string-match "! " text) `(:height 0.8 :foreground ,(face-attribute 'spaceline-flycheck-warning :background)))
-               ((string-match "✖ [0-9]" text) `(:height 0.8 :foreground "#ff6347"))
-               ((string-match "disabled" text) `(:height 0.8 :foreground ,(face-attribute 'font-lock-comment-face :foreground)))
+               ((string-match "! " text) `(:height 0.8 :foreground ,(face-attribute 'spaceline-flycheck-warning :background)
+                                                   :background ,(face-attribute 'highlight :background)))
+               ((string-match "✖ [0-9]" text) `(:height 0.8 :foreground "#ff6347"
+                                                        :background ,(face-attribute 'highlight :background)))
+               ((string-match "disabled" text) `(:height 0.8 :foreground ,(face-attribute 'font-lock-comment-face :foreground)
+                                                         :background ,(face-attribute 'highlight :background)))
                (t '(:height 0.8 :inherit)))))
       (propertize (format "%s" text)
                   'face f
@@ -229,8 +232,8 @@ the directions of the separator."
 (defvar spaceline-invert-direction t)
 (defvar spaceline-separator-type "slant")
 
-(define-separator "right-1" "right" 'default 'mode-line)
-(define-separator "right-2" "right" 'mode-line 'default)
+(define-separator "right-1" "right" 'default 'highlight)
+(define-separator "right-2" "right" 'highlight 'default)
 
 ;; Face function
 (setq spaceline-face-func (lambda (face active)
@@ -238,7 +241,7 @@ the directions of the separator."
                                 (cond ((eq face 'line) (spacemacs//evil-state-face))
                                       ((eq face 'face1) (spacemacs//evil-state-face))
                                       ((eq face 'face2) (spacemacs//evil-state-face))
-                                      ((eq face 'highlight) 'hl-line-face)
+                                      ((eq face 'highlight) 'highlight)
                                       (t 'default))
                               'font-lock-comment-face)))
 

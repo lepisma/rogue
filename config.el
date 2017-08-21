@@ -1,9 +1,5 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 
-(defface mode-separator
-  '((t :underline nil))
-  "Stuff for mode line")
-
 (defvar rogue-current-color 'dark
   "Currently active color scheme")
 
@@ -12,6 +8,7 @@
        (bg-dark            "#1c1e1f")
        (bg-darker          "#1c1c1c")
        (fg-white           "#ffffff")
+       (shade-white        "#efeae9")
        (fg-light           "#655370")
        (dark-cyan          "#008b8b")
        (region-dark        "#2d2e2e")
@@ -98,11 +95,10 @@
             :foreground ,fg-white
             :background ,region-dark
             :box (:line-width 6 :color ,region-dark))
+           (mode-line
+            :background ,bg-darker)
            (highlight
-            :background ,comment
-            :foreground ,fg-white)
-           (mode-separator
-            :background ,bg-dark
+            :background ,region
             :foreground ,fg-white)
            (hl-line
             :background ,region-dark)
@@ -465,7 +461,12 @@
             :inherit variable-pitch
             :height 1.1)
            (mode-line
-            :background ,bg-white)
+            :background ,bg-white
+            :box nil)
+           (mode-line-inactive
+            :box nil)
+           (highlight
+            :background ,shade-white)
            (powerline-active1
             :background ,bg-white)
            (powerline-active2
@@ -473,9 +474,6 @@
            (powerline-inactive1
             :background ,bg-white)
            (powerline-inactive2
-            :background ,bg-white)
-           (mode-separator
-            :foreground ,bg-white
             :background ,bg-white)
            (doom-neotree-dir-face
             :family ,sans-font
