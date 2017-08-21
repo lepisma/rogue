@@ -52,13 +52,13 @@
               (projectile-project-name))
          (propertize (format "%s" (concat (projectile-project-name) ))
                      'face '(:height 0.8 :inherit)
-                     'display '(raise 0.3)
+                     'display '(raise 0.2)
                      'help-echo "Switch Project"
                      'local-map (make-mode-line-mouse-map
                                  'mouse-1 (lambda () (interactive) (projectile-switch-project))))
        (propertize "×" 'face '(:height 0.8 :inherit)))
      " "
-     (propertize "|" 'face '(:height 0.8 :inherit) 'display '(raise 0.3)))
+     (propertize "|" 'face '(:height 0.8 :inherit) 'display '(raise 0.2)))
     :tight t)
 
 (spaceline-define-segment
@@ -68,7 +68,7 @@
         (propertize icon
                     'help-echo (format "Major-mode: `%s`" major-mode)
                     'display '(raise 0.2)
-                    'face `(:height 0.8 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
+                    'face `(:height 0.7 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
 
 (spaceline-define-segment
     ati-buffer-id "An `all-the-icons' segment for the current buffer id"
@@ -81,7 +81,7 @@
                        (format-mode-line "%b"))))
           (propertize (format "%s" name)
                       'face `(:height 0.8 :inherit)
-                      'display '(raise 0.3)
+                      'display '(raise 0.2)
                       'help-echo (format "Major-mode: `%s`" major-mode)))
       (propertize (format-mode-line "%b ") 'face '(:height 0.8 :inherit) 'display '(raise 0.2)))
     :tight t)
