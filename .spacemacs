@@ -700,7 +700,7 @@ you should place you code here."
                                                                 "maildir:/UMassCS/INBOX AND flag:unread OR "
                                                                 "maildir:/UMass/INBOX AND flag:unread OR "
                                                                 "maildir:/Outlook/Inbox AND flag:unread")
-                                                       :key ?u)))
+                                                 :key ?u)))
 
   (with-eval-after-load 'org
     (setq org-startup-indented t
