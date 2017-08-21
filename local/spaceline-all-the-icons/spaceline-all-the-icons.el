@@ -32,17 +32,17 @@
 (spaceline-define-segment
     ati-modified "An `all-the-icons' modified segment"
     (let* ((config-alist
-            '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :height 1.3 :v-adjust 0.2)
-              ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :height 1.3 :v-adjust 0.2)
-              ("%" all-the-icons-octicon-family all-the-icons-octicon "lock" :height 1.3 :v-adjust 0.2)))
+            '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :v-adjust 0.2)
+              ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :v-adjust 0.2)
+              ("%" all-the-icons-octicon-family all-the-icons-octicon "lock" :v-adjust 0.2)))
            (result (cdr (assoc (format-mode-line "%*") config-alist))))
 
-      (propertize (format "%s" (apply (cadr result) (cddr result))) 'face `(:family ,(funcall (car result)) :inherit )))
+      (propertize (format "%s" (apply (cadr result) (cddr result))) 'face `(:family ,(funcall (car result)) :height 0.9 :inherit )))
     :tight t)
 
 (spaceline-define-segment
     ati-buffer-size "Buffer Size"
-    (propertize (format-mode-line "%I") 'face `(:height 0.8 :inherit) 'display '(raise 0.3))
+    (propertize (format-mode-line "%I") 'face `(:height 0.8 :inherit) 'display '(raise 0.2))
     :tight t)
 
 (spaceline-define-segment
@@ -58,7 +58,7 @@
                                  'mouse-1 (lambda () (interactive) (projectile-switch-project))))
        (propertize "×" 'face '(:height 0.8 :inherit)))
      " "
-     (propertize "|" 'face '(:height 0.9 :inherit) 'display '(raise 0.3)))
+     (propertize "|" 'face '(:height 0.8 :inherit) 'display '(raise 0.3)))
     :tight t)
 
 (spaceline-define-segment
@@ -68,7 +68,7 @@
         (propertize icon
                     'help-echo (format "Major-mode: `%s`" major-mode)
                     'display '(raise 0.2)
-                    'face `(:height 0.9 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
+                    'face `(:height 0.8 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
 
 (spaceline-define-segment
     ati-buffer-id "An `all-the-icons' segment for the current buffer id"
@@ -88,7 +88,7 @@
 
 (spaceline-define-segment
     ati-position "An `all-the-icons' segment for the Row and Column of the current point"
-    (propertize (format-mode-line "%l:%c") 'face `(:height 0.8 :inherit) 'display '(raise 0.3)))
+    (propertize (format-mode-line "%l:%c") 'face `(:height 0.8 :inherit) 'display '(raise 0.2)))
 
 (spaceline-define-segment
     ati-region-info "An `all-the-icons' segment for the currently marked region"
@@ -97,11 +97,11 @@
             (chars (count-words (region-end) (region-beginning))))
         (concat
          (propertize (format "%s " (all-the-icons-octicon "pencil") words chars)
-                     'face `(:family ,(all-the-icons-octicon-family) :height 0.8 :inherit)
+                     'face `(:family ,(all-the-icons-octicon-family) :height 0.7 :inherit)
                      'display '(raise 0.3))
          (propertize (format "(%s, %s)" words chars)
                      'face `(:height 0.8 :inherit)
-                     'display '(raise 0.3))))))
+                     'display '(raise 0.2))))))
 
 (defun spaceline---github-vc ()
   "Function to return the Spaceline formatted GIT Version Control text."
@@ -109,8 +109,8 @@
     (concat
      (propertize (format "%s" (all-the-icons-octicon "git-branch"))
                  'face `(:family ,(all-the-icons-octicon-family) :height 0.9 :inherit)
-                 'display '(raise 0.4))
-     (propertize (format " %s" branch) 'face `(:height 0.9 :inherit) 'display '(raise 0.3)))))
+                 'display '(raise 0.3))
+     (propertize (format " %s" branch) 'face `(:height 0.8 :inherit) 'display '(raise 0.3)))))
 
 (spaceline-define-segment
     ati-vc-icon "An `all-the-icons' segment for the current Version Control icon"
@@ -135,10 +135,10 @@
               (`interrupted "! interrupted")
               (`suspicious  "")))
            (f (cond
-               ((string-match "! " text) `(:height 0.9 :foreground ,(face-attribute 'spaceline-flycheck-warning :background)))
-               ((string-match "✖ [0-9]" text) `(:height 0.9 :foreground "#ff6347"))
-               ((string-match "disabled" text) `(:height 0.9 :foreground ,(face-attribute 'font-lock-comment-face :foreground)))
-               (t '(:height 0.9 :inherit)))))
+               ((string-match "! " text) `(:height 0.8 :foreground ,(face-attribute 'spaceline-flycheck-warning :background)))
+               ((string-match "✖ [0-9]" text) `(:height 0.8 :foreground "#ff6347"))
+               ((string-match "disabled" text) `(:height 0.8 :foreground ,(face-attribute 'font-lock-comment-face :foreground)))
+               (t '(:height 0.8 :inherit)))))
       (propertize (format "%s" text)
                   'face f
                   'help-echo "Show Flycheck Errors"
@@ -149,12 +149,12 @@
 (spaceline-define-segment
     ati-time "Time"
     (let* ((hour (string-to-number (format-time-string "%I")))
-           (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.0)))
+           (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.2)))
       (concat
-       (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.3))
        (propertize (format "%s  " icon)
-                   'face `(:height 1.0 :family ,(all-the-icons-wicon-family) :inherit)
-                   'display '(raise 0.2))))
+                   'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
+                   'display '(raise 0.2))
+       (propertize (format-time-string "%H:%M ") 'face `(:height 0.8 :inherit) 'display '(raise 0.3))))
     :tight t)
 
 (spaceline-define-segment
@@ -165,12 +165,12 @@
 (spaceline-define-segment ati-buffer-position
   "The current approximate buffer position, in percent."
   (concat
-   (propertize (all-the-icons-faicon "sort-amount-desc")
+   (propertize (all-the-icons-faicon "map-o")
                'face `(:family ,(all-the-icons-faicon-family) :height 0.7 :inherit)
-               'display '(raise 0.6))
+               'display '(raise 0.5))
    " "
    (propertize (format-mode-line "%p ")
-               'face '(:height 0.9 :inherit) 'display '(raise 0.3))))
+               'face '(:height 0.8 :inherit) 'display '(raise 0.3))))
 
 (defvar spaceline-org-clock-format-function
   'org-clock-get-clock-string
@@ -186,11 +186,11 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
     (concat
      (propertize (all-the-icons-faicon "hourglass-half")
                  'face `(:family ,(all-the-icons-faicon-family) :height 0.7 :inherit)
-                 'display '(raise 0.5))
+                 'display '(raise 0.4))
      " "
      (propertize (s-truncate
                   30 (substring-no-properties (funcall spaceline-org-clock-format-function)))
-                 'face '(:height 0.9 :inherit ) 'display '(raise 0.3))))
+                 'face '(:height 0.8 :inherit ) 'display '(raise 0.3))))
   :global-override org-mode-line-string)
 
 (spaceline-define-segment ati-org-pomodoro
@@ -199,7 +199,7 @@ This segment overrides the modeline functionality of `org-pomodoro' itself."
   (when (and (fboundp 'org-pomodoro-active-p)
              (org-pomodoro-active-p))
     (propertize (nth 1 org-pomodoro-mode-line)
-                'face '(:height 0.9 :inherit ) 'display '(raise 0.3)))
+                'face '(:height 0.8 :inherit ) 'display '(raise 0.3)))
   :global-override org-pomodoro-mode-line)
 
 (defun spaceline--direction (dir)
@@ -229,10 +229,10 @@ the directions of the separator."
 (defvar spaceline-invert-direction t)
 (defvar spaceline-separator-type "slant")
 
-(define-separator "right-1" "right" 'mode-separator 'powerline-active1)
+(define-separator "right-1" "right" 'mode-separator 'mode-line)
 (define-separator "right-2" "right" 'mode-line 'mode-separator)
 (define-separator "right-3" "right" 'mode-separator 'mode-line)
-(define-separator "right-4" "right" 'mode-line 'powerline-active1)
+(define-separator "right-4" "right" 'mode-line 'mode-line)
 
 (spaceline-compile
  "ati"
