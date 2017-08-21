@@ -694,7 +694,13 @@ you should place you code here."
                                               "offlineimap")))
   (setq mu4e-get-mail-command "offlineimap -o"
         mu4e-use-fancy-chars t
-        message-kill-buffer-on-exit t)
+        message-kill-buffer-on-exit t
+        mu4e-bookmarks (list (make-mu4e-bookmark :name "Unread messages"
+                                                 :query (concat "maildir:/Gmail/INBOX AND flag:unread OR "
+                                                                "maildir:/UMassCS/INBOX AND flag:unread OR "
+                                                                "maildir:/UMass/INBOX AND flag:unread OR "
+                                                                "maildir:/Outlook/Inbox AND flag:unread")
+                                                       :key ?u)))
 
   (with-eval-after-load 'org
     (setq org-startup-indented t
