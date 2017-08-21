@@ -788,7 +788,9 @@ you should place you code here."
             ("e" "Explore" entry (file (concat user-journal-dir "explore.org"))
              "* %? %^g")
             ("t" "Todo" entry (file (concat user-journal-dir "notes.org"))
-             "* TODO %?\nSCHEDULED: %^T\n%a\n")
+             "* TODO %?\nSCHEDULED: %^T\n")
+            ("b" "Bookmark" entry (file (concat user-journal-dir "notes.org"))
+             "* TODO %?\n%a")
             ("d" "Deadline" entry (file (concat user-journal-dir "notes.org"))
              "* %?\nDEADLINE: %^T")))
 
