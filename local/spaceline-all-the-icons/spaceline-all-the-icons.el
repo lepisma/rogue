@@ -229,27 +229,37 @@ the directions of the separator."
 (defvar spaceline-invert-direction t)
 (defvar spaceline-separator-type "slant")
 
-(define-separator "right-1" "right" 'mode-separator 'mode-line)
-(define-separator "right-2" "right" 'mode-line 'mode-separator)
-(define-separator "right-3" "right" 'mode-separator 'mode-line)
-(define-separator "right-4" "right" 'mode-line 'mode-line)
+(define-separator "right-1" "right" 'default 'mode-line)
+(define-separator "right-2" "right" 'mode-line 'default)
+
+;; Face function
+(setq spaceline-face-func (lambda (face active)
+                            (if active
+                                (cond ((eq face 'line) (spacemacs//evil-state-face))
+                                      ((eq face 'face1) (spacemacs//evil-state-face))
+                                      ((eq face 'face2) (spacemacs//evil-state-face))
+                                      ((eq face 'highlight) 'hl-line-face)
+                                      (t 'default))
+                              'font-lock-comment-face)))
 
 (spaceline-compile
  "ati"
  '(((ati-modified ati-buffer-size) :face highlight-face :skip-alternate t)
-   ati-right-1-separator
-   ((ati-projectile ati-mode-icon ati-buffer-id) :face other-face)
    ati-right-2-separator
-   ((ati-position ati-region-info) :face highlight-face :separator "  ")
-   ati-right-3-separator
-   ((ati-vc-icon
-     ati-flycheck-status
-     (ati-org-clock :when active)
-     (ati-org-pomodoro :when active)) :separator "  " :face other-face)
-   ati-right-4-separator)
+   ((ati-projectile ati-mode-icon ati-buffer-id))
+   ati-right-1-separator
+   ((ati-position ati-region-info) :separator "  " :face highlight-face)
+   ati-right-2-separator
+   ((ati-vc-icon) :face other-face)
+   ati-right-1-separator
+   ((ati-flycheck-status
+    ((ati-org-clock :when active)
+     (ati-org-pomodoro :when active))) :separator "  " :face highlight-face)
+   ati-right-2-separator)
 
- '(((ati-buffer-position
-     ati-time) :separator "  " :face other-face)))
+ '(ati-right-1-separator
+   ((ati-buffer-position
+     ati-time) :separator "  " :face highlight-face)))
 
 (provide 'spaceline-all-the-icons)
 ;;; spaceline-all-the-icons.el ends here
