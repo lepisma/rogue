@@ -692,6 +692,16 @@ you should place you code here."
                  (start-process-shell-command "offlineimap"
                                               "*offlineimap-autorefresh*"
                                               "offlineimap")))
+
+  (defun mu4e-message-maildir-matches (msg rx)
+    (when rx
+      (if (listp rx)
+          ;; if rx is a list, try each one for a match
+          (or (mu4e-message-maildir-matches msg (car rx))
+              (mu4e-message-maildir-matches msg (cdr rx)))
+        ;; not a list, check rx
+        (string-match rx (mu4e-message-field msg :maildir)))))
+
   (setq user-full-name "Abhinav Tushar")
   (setq mu4e-get-mail-command "offlineimap -o"
         mu4e-use-fancy-chars t
@@ -706,7 +716,7 @@ you should place you code here."
         mu4e-contexts (list (make-mu4e-context
                              :name "Gmail"
                              :match-func (lambda (msg) (when msg
-                                                    (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+                                                    (mu4e-message-maildir-matches msg "^/Gmail")))
                              :vars '((user-mail-address . "abhinav.tushar.vs@gmail.com")
                                      (smtpmail-default-smtp-server . "smtp.gmail.com")
                                      (smtpmail-smtp-server . "smtp.gmail.com")
@@ -720,7 +730,7 @@ you should place you code here."
                             (make-mu4e-context
                              :name "UMassCS"
                              :match-func (lambda (msg) (when msg
-                                                    (string-prefix-p "/UMassCS" (mu4e-message-field msg :maildir))))
+                                                    (mu4e-message-maildir-matches msg "^/UMassCS")))
                              :vars '((user-mail-address . "atushar@cs.umass.edu")
                                      (smtpmail-default-smtp-server . "mailsrv.cs.umass.edu")
                                      (smtpmail-smtp-server . "mailsrv.cs.umass.edu")
@@ -734,7 +744,7 @@ you should place you code here."
                             (make-mu4e-context
                              :name "UMass"
                              :match-func (lambda (msg) (when msg
-                                                    (string-prefix-p "/UMass" (mu4e-message-field msg :maildir))))
+                                                    (mu4e-message-maildir-matches msg "^/UMass")))
                              :vars '((user-mail-address . "atushar@umass.edu")
                                      (smtpmail-default-smtp-server . "mail-auth.oit.umass.edu")
                                      (smtpmail-smtp-server . "mail-auth.oit.umass.edu")
@@ -743,12 +753,12 @@ you should place you code here."
                                      (mu4e-sent-messages-behavior . sent)
                                      (mu4e-sent-folder . "/UMass/INBOX.Sent")
                                      (mu4e-drafts-folder . "/UMass/INBOX.Drafts")
-                                     (mu4e-trash-folder . "/UMass/INBOX.Trach")
+                                     (mu4e-trash-folder . "/UMass/INBOX.Trash")
                                      (mu4e-refile-folder . "/UMass/INBOX.Archive")))
                             (make-mu4e-context
                              :name "Outlook"
                              :match-func (lambda (msg) (when msg
-                                                    (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
+                                                    (mu4e-message-maildir-matches msg "^/Outlook")))
                              :vars '((user-mail-address . "abhinav.tushar.vs@hotmail.com")
                                      (smtpmail-default-smtp-server . "smtp-mail.outlook.com")
                                      (smtpmail-smtp-server . "smtp-mail.outlook.com")
