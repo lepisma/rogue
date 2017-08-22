@@ -869,7 +869,7 @@ you should place you code here."
                               :key ?u)
                              (make-mu4e-bookmark
                               :name "Archived"
-                              :query (concat "maildir:/Gmail/[Gmail].Archive OR"
+                              :query (concat "maildir:/Gmail/[Gmail].Archive OR "
                                              "maildir:/UMassCS/Archive OR "
                                              "maildir:/UMass/INBOX.Archive OR "
                                              "maildir:/Outlook/Archive")
