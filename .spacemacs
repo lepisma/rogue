@@ -144,7 +144,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("SauceCodePro Nerd Font"
+   dotspacemacs-default-font '("Source Code Pro"
                                :size 12
                                :weight regular
                                :width normal
@@ -575,7 +575,9 @@ you should place you code here."
                comint-mode-hook
                eshell-mode-hook
                slime-repl-mode-hook
-               process-menu-mode-hook)
+               process-menu-mode-hook
+               mu4e-view-mode-hook
+               mu4e-main-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (setq right-margin-width 2)
@@ -592,7 +594,9 @@ you should place you code here."
                comint-mode-hook
                eshell-mode-hook
                slime-repl-mode-hook
-               process-menu-mode-hook)
+               process-menu-mode-hook
+               mu4e-view-mode-hook
+               mu4e-main-mode-hook)
              (lambda () (setq header-line-format " ")))
 
   (add-hooks '(text-mode-hook
@@ -840,6 +844,9 @@ you should place you code here."
                      :prompt "*something" :action
                      (mu4e-error "No action for deferred mark"))))
 
+  (add-hook 'mu4e-compose-mode-hook 'org~mu4e-mime-switch-headers-or-body)
+  (setq org-mu4e-convert-to-html t)
+
   (setq mu4e-bookmarks (list (make-mu4e-bookmark
                               :name "Unified Inbox"
                               :query (concat "maildir:/Gmail/INBOX OR "
@@ -870,7 +877,7 @@ you should place you code here."
                                      (smtpmail-smtp-server . "smtp.gmail.com")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . "abhinav.tushar.vs@gmail.com")
+                                     (smtpmail-smtp-user . "abhinav.tushar.vs")
                                      ;; Gmail handles sent mails automatically
                                      (mu4e-sent-messages-behavior . delete)
                                      (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
