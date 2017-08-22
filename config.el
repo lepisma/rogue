@@ -225,6 +225,10 @@
             :foreground ,comment)
            (org-tag
             :foreground ,doc)
+           (org-table
+            ;:family ,serif-mono-font
+            ;:height 0.9
+            :background nil)
            (font-latex-sectioning-0-face
             :foreground ,type
             :height 1.2)
