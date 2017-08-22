@@ -713,7 +713,11 @@ you should place you code here."
                               (:flags      . 12)
                               (:from-or-to . 22)
                               (:maildir    . 15)
-                              (:subject)))
+                              (:subject))
+        mu4e-attachment-dir "~/Downloads/"
+        mu4e-view-show-images t)
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
   (setq mu4e-use-fancy-chars t
         mu4e-headers-draft-mark     '("D" . " ")
         mu4e-headers-flagged-mark   '("F" . " ")
@@ -844,7 +848,9 @@ you should place you code here."
                      :prompt "*something" :action
                      (mu4e-error "No action for deferred mark"))))
 
-  (add-hook 'mu4e-compose-mode-hook 'org~mu4e-mime-switch-headers-or-body)
+  (add-hook 'mu4e-compose-mode-hook (lambda ()
+                                      (org~mu4e-mime-switch-headers-or-body)
+                                      (flyspell-mode)))
   (setq org-mu4e-convert-to-html t)
 
   (setq mu4e-bookmarks (list (make-mu4e-bookmark
