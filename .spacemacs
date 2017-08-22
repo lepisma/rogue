@@ -728,13 +728,13 @@ you should place you code here."
         mu4e-headers-trashed-mark   '("T" . " ")
         mu4e-headers-attach-mark    '("a" . " ")
         mu4e-headers-encrypted-mark '("x" . " ")
-        mu4e-headers-signed-mark    '("s" . " ")
+        mu4e-headers-signed-mark    '("s" . " ")
         mu4e-headers-unread-mark    '("u" . " ")
-        mu4e-headers-has-child-prefix    '("+"  . "❯❯")
-        mu4e-headers-empty-parent-prefix '("-"  . " ")
-        mu4e-headers-first-child-prefix  '("\\" . "❯ ")
-        mu4e-headers-duplicate-prefix    '("="  . "≡ ")
-        mu4e-headers-default-prefix      '("|"  . "│ "))
+        mu4e-headers-has-child-prefix    '("+"  . " ")
+        mu4e-headers-empty-parent-prefix '("-"  . " ")
+        mu4e-headers-first-child-prefix  '("\\" . " ")
+        mu4e-headers-duplicate-prefix    '("="  . " ")
+        mu4e-headers-default-prefix      '("|"  . " "))
 
   (setq mu4e-marks
         '((refile :char
