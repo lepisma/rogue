@@ -210,4 +210,8 @@ With argument, do this that many times."
   "Read unread emails"
   (interactive)
   (let ((mails (mu4e-get-unread-subjects)))
-    (quack-quack (format "You have %s unread emails. %s" (length mails) (s-join ". " mails)))))
+    (quack-quack (format "You have %s. %s"
+                         (cond ((= (length mails) 0) "no unread emails")
+                               ((= (length mails) 1) "1 unread email")
+                               (t (format "%s unread emails" (length mails))))
+                         (s-join ". " mails)))))
