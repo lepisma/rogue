@@ -196,11 +196,10 @@ With argument, do this that many times."
                                              (cl-struct-slot-value 'mu4e-bookmark 'name bm))) mu4e-bookmarks))))
     (cl-struct-slot-value 'mu4e-bookmark 'query bm-item)))
 
-(defun mu4e-get-unread-subjects ()
-  "Return subjects for unread emails"
-  (let ((cmd-out (shell-command-to-string (concat "mu find " (mu4e-unread-bm-query)))))
-    (nreverse (mapcar (lambda (line)
-                        (s-trim (cadr (s-split ">" line)))) (s-split "\n" (s-chomp cmd-out))))))
+(defun mu4e-get-unread-mails ()
+  "Return unread emails"
+  (let ((cmd-out (shell-command-to-string (concat "mu find --format=sexp " (mu4e-unread-bm-query)))))
+    (nreverse (car (read-from-string (concat "(" cmd-out ")"))))))
 
 (defun quack-quack (text)
   "Speak the given text"
@@ -209,9 +208,11 @@ With argument, do this that many times."
 (defun quack-unread-mail ()
   "Read unread emails"
   (interactive)
-  (let ((mails (mu4e-get-unread-subjects)))
+  (let ((subjects (mapcar
+                   (lambda (mail) (plist-get mail :subject))
+                   (mu4e-get-unread-mails))))
     (quack-quack (format "You have %s. %s"
-                         (cond ((= (length mails) 0) "no unread emails")
-                               ((= (length mails) 1) "1 unread email")
-                               (t (format "%s unread emails" (length mails))))
-                         (s-join ". " mails)))))
+                         (cond ((= (length subjects) 0) "no unread emails")
+                               ((= (length subjects) 1) "1 unread email")
+                               (t (format "%s unread emails" (length subjects))))
+                         (s-join ". " subjects)))))
