@@ -1,5 +1,8 @@
 ;;; funcs.el --- rogue Layer utility functions
 
+(require 'cl)
+(require 's)
+
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
@@ -187,3 +190,27 @@ With argument, do this that many times."
   (setq org-bullets-bullet-list '("#"))
   (reset-org-buffers)
   (beacon-mode +1))
+
+(defun mu4e-unread-bm-query ()
+  "Return query string for unread bookmark"
+  (let ((bm-item (car
+                  (member-if (lambda (bm)
+                               (string-equal "All Unread"
+                                             (cl-struct-slot-value 'mu4e-bookmark 'name bm))) mu4e-bookmarks))))
+    (cl-struct-slot-value 'mu4e-bookmark 'query bm-item)))
+
+(defun mu4e-get-unread-subjects ()
+  "Return subjects for unread emails"
+  (let ((cmd-out (shell-command-to-string (concat "mu find " (mu4e-unread-bm-query)))))
+    (nreverse (mapcar (lambda (line)
+                        (s-trim (cadr (s-split ">" line)))) (s-split "\n" (s-chomp cmd-out))))))
+
+(defun quack-quack (text)
+  "Speak the given text"
+  (start-process "quack" nil "quack" text))
+
+(defun quack-unread-mail ()
+  "Read unread emails"
+  (interactive)
+  (let ((mails (mu4e-get-unread-subjects)))
+    (quack-quack (format "You have %s unread emails. %s" (length mails) (s-join ". " mails)))))

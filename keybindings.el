@@ -9,8 +9,8 @@
 ;; Neotree refresh
 (global-set-key (kbd "C-c n") 'neotree-refresh)
 
-;; World time
-(global-set-key (kbd "C-c t") 'helm-world-time)
+;; Speak unread emails
+(global-set-key (kbd "C-c m") 'quack-unread-mail)
 
 ;; Weather
 (global-set-key (kbd "C-c w") 'weather-amherst)
