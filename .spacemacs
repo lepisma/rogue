@@ -695,7 +695,7 @@ you should place you code here."
                (lambda ()
                  (start-process-shell-command "offlineimap"
                                               "*offlineimap-autorefresh*"
-                                              "offlineimap")
+                                              "offlineimap -o")
                  (mu4e-maildirs-extension-force-update)))
 
   (defun mu4e-message-maildir-matches (msg rx)
