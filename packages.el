@@ -16,6 +16,7 @@
     flycheck-mypy
     hackernews
     helm-bm
+    indium
     multiple-cursors
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
@@ -139,6 +140,9 @@
     :after bm
     :defer t))
 
+(defun rogue/init-indium ()
+  (use-package indium
+    :defer t))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
