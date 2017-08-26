@@ -16,7 +16,6 @@
     flycheck-mypy
     hackernews
     helm-bm
-    helm-org-rifle
     multiple-cursors
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
@@ -140,9 +139,6 @@
     :after bm
     :defer t))
 
-(defun rogue/init-helm-org-rifle ()
-  (use-package helm-org-rifle
-    :bind ("C-c r" . helm-org-rifle-agenda-files)))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
