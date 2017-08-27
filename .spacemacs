@@ -65,6 +65,7 @@ values."
      nlinum
      pandoc
      pdf-tools
+     prodigy
      (ranger :variables ranger-show-preview t)
      restclient
      rogue
@@ -697,6 +698,13 @@ you should place you code here."
                                               "*offlineimap-autorefresh*"
                                               "offlineimap -o")
                  (mu4e-maildirs-extension-force-update)))
+  ;; Prodigy services
+  (prodigy-define-service
+   :name "offlineimap"
+   :command "offlineimap"
+   :args '("-o")
+   :stop-signal 'sigkill
+   :kill-process-buffer-on-stop t)
 
   (defun mu4e-message-maildir-matches (msg rx)
     (when rx
@@ -709,6 +717,7 @@ you should place you code here."
 
   (setq user-full-name "Abhinav Tushar")
   (setq mu4e-get-mail-command "offlineimap -o"
+        mu4e-update-interval 300
         message-kill-buffer-on-exit t
         mu4e-headers-fields '((:human-date . 12)
                               (:flags      . 12)
