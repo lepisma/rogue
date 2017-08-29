@@ -691,13 +691,6 @@ you should place you code here."
                                  "til-emacs"
                                  "dev")))))
 
-  ;; Email setup
-  (run-at-time "10 min" 1800
-               (lambda ()
-                 (start-process-shell-command "offlineimap"
-                                              "*offlineimap-autorefresh*"
-                                              "offlineimap -o")
-                 (mu4e-maildirs-extension-force-update)))
   ;; Prodigy services
   (prodigy-define-service
    :name "offlineimap"
@@ -706,6 +699,7 @@ you should place you code here."
    :stop-signal 'sigkill
    :kill-process-buffer-on-stop t)
 
+  ;; Email setup
   (defun mu4e-message-maildir-matches (msg rx)
     (when rx
       (if (listp rx)
@@ -717,7 +711,7 @@ you should place you code here."
 
   (setq user-full-name "Abhinav Tushar")
   (setq mu4e-get-mail-command "offlineimap -o"
-        mu4e-update-interval 300
+        mu4e-update-interval 600
         message-kill-buffer-on-exit t
         mu4e-headers-fields '((:human-date . 12)
                               (:flags      . 12)
