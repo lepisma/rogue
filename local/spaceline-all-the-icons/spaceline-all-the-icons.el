@@ -157,7 +157,7 @@
        (propertize (format "%s  " icon)
                    'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
                    'display '(raise 0.2))
-       (propertize (format-time-string "%H:%M ") 'face `(:height 0.8 :inherit) 'display '(raise 0.3))))
+       (propertize (format-time-string "%H:%M") 'face `(:height 0.8 :inherit) 'display '(raise 0.3))))
     :tight t)
 
 (spaceline-define-segment
