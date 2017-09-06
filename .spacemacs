@@ -25,6 +25,7 @@ values."
      haskell
      html
      javascript
+     ocaml
      python
      racket
      ruby
