@@ -18,6 +18,7 @@
     helm-bm
     indium
     multiple-cursors
+    nov
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
@@ -149,6 +150,11 @@
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this)
            ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
+
+(defun rogue/init-nov ()
+  (use-package nov
+    :config
+    (push '("\\.epub'" . nov-mode) auto-mode-alist)))
 
 (defun rogue/init-ob-async ()
   (use-package ob-async
