@@ -126,17 +126,6 @@ With argument, do this that many times."
   (org-sort-entries nil ?f (lambda () (random 1000)))
   (save-buffer))
 
-(defun mpc-send-message (channel message)
-  "Send message to mpc"
-  (if (eq 0 (call-process "mpc" nil nil nil "sendmessage" channel message))
-      (message "Done")
-    (message "Error in sending message to mpc")))
-
-(defun mpdas-love ()
-  "Love song on scrobbler service"
-  (interactive)
-  (mpc-send-message "mpdas" "love"))
-
 (defun git-update-project (project-root)
   "Add all, commit and push given project."
   (let ((default-directory project-root))
