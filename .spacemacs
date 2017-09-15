@@ -988,8 +988,8 @@ you should place you code here."
           '(("n" "Main agenda view"
              ((tags "micro"
                     ((org-agenda-overriding-header "Micro tasks")))
-              (todo "TODO")
-              (agenda "")))
+              (agenda "")
+              (todo "TODO")))
             ("r" "Readings"
              ((todo "READING"
                     ((org-agenda-files (list user-bookmarks-file))
