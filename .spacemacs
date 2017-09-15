@@ -858,37 +858,43 @@ you should place you code here."
                                       (flyspell-mode)))
   (setq org-mu4e-convert-to-html t)
 
+  (defun get-authinfo-value (machine port key)
+    (let ((entries (mapcar (lambda (line) (s-split " " line))
+                           (s-split "\n" (s-trim (shell-command-to-string "gpg --use-agent --quiet --batch -d /home/lepisma/.authinfo.gpg"))))))
+      (lax-plist-get (car (cl-remove-if (lambda (entry) (not (and (string-equal (lax-plist-get entry "machine") machine) (string-equal (lax-plist-get entry "port") port)))) entries))
+                     key)))
+
   (setq mu4e-bookmarks (list (make-mu4e-bookmark
                               :name "Unified Inbox"
                               :query (concat "maildir:/Gmail/INBOX OR "
                                              "maildir:/UMassCS/INBOX OR "
                                              "maildir:/UMass/INBOX OR "
-                                             "maildir:/Outlook/Inbox")
+                                             "maildir:/Fastmail/INBOX")
                               :key ?i)
                              (make-mu4e-bookmark
                               :name "All Unread"
                               :query (concat "maildir:/Gmail/INBOX AND flag:unread OR "
                                              "maildir:/UMassCS/INBOX AND flag:unread OR "
                                              "maildir:/UMass/INBOX AND flag:unread OR "
-                                             "maildir:/Outlook/Inbox AND flag:unread")
+                                             "maildir:/Fastmail/INBOX AND flag:unread")
                               :key ?u)
                              (make-mu4e-bookmark
                               :name "Archived"
                               :query (concat "maildir:/Gmail/[Gmail].Archive OR "
                                              "maildir:/UMassCS/Archive OR "
                                              "maildir:/UMass/INBOX.Archive OR "
-                                             "maildir:/Outlook/Archive")
+                                             "maildir:/Fastmail/Archive")
                               :key ?a))
         mu4e-contexts (list (make-mu4e-context
                              :name "Gmail"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/Gmail")))
-                             :vars '((user-mail-address . "abhinav.tushar.vs@gmail.com")
+                             :vars `((user-mail-address . ,(get-authinfo-value "imap.gmail.com" "993" "email"))
                                      (smtpmail-default-smtp-server . "smtp.gmail.com")
                                      (smtpmail-smtp-server . "smtp.gmail.com")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . "abhinav.tushar.vs")
+                                     (smtpmail-smtp-user . ,(get-authinfo-value "smtp.gmail.com" "465" "login"))
                                      ;; Gmail handles sent mails automatically
                                      (mu4e-sent-messages-behavior . delete)
                                      (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
@@ -898,12 +904,12 @@ you should place you code here."
                              :name "UMassCS"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/UMassCS")))
-                             :vars '((user-mail-address . "atushar@cs.umass.edu")
+                             :vars `((user-mail-address . ,(get-authinfo-value "mailsrv.cs.umass.edu" "993" "email"))
                                      (smtpmail-default-smtp-server . "mailsrv.cs.umass.edu")
                                      (smtpmail-smtp-server . "mailsrv.cs.umass.edu")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . "atushar@cs.umass.edu")
+                                     (smtpmail-smtp-user . ,(get-authinfo-value "mailsrv.cs.umass.edu" "465" "login"))
                                      (mu4e-sent-messages-behavior . sent)
                                      (mu4e-sent-folder . "/UMassCS/Sent")
                                      (mu4e-drafts-folder . "/UMassCS/Drafts")
@@ -913,32 +919,32 @@ you should place you code here."
                              :name "UMass"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/UMass")))
-                             :vars '((user-mail-address . "atushar@umass.edu")
+                             :vars `((user-mail-address . ,(get-authinfo-value "mail-a.oit.umass.edu" "993" "email"))
                                      (smtpmail-default-smtp-server . "mail-auth.oit.umass.edu")
                                      (smtpmail-smtp-server . "mail-auth.oit.umass.edu")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . "atushar")
+                                     (smtpmail-smtp-user . ,(get-authinfo-value "mail-auth.oit.umass.edu" "465" "login"))
                                      (mu4e-sent-messages-behavior . sent)
                                      (mu4e-sent-folder . "/UMass/INBOX.Sent")
                                      (mu4e-drafts-folder . "/UMass/INBOX.Drafts")
                                      (mu4e-trash-folder . "/UMass/INBOX.Trash")
                                      (mu4e-refile-folder . "/UMass/INBOX.Archive")))
                             (make-mu4e-context
-                             :name "Outlook"
+                             :name "Fastmail"
                              :match-func (lambda (msg) (when msg
-                                                    (mu4e-message-maildir-matches msg "^/Outlook")))
-                             :vars '((user-mail-address . "abhinav.tushar.vs@hotmail.com")
-                                     (smtpmail-default-smtp-server . "smtp-mail.outlook.com")
-                                     (smtpmail-smtp-server . "smtp-mail.outlook.com")
-                                     (smtpmail-smtp-service . 587)
-                                     (smtpmail-stream-type . starttls)
-                                     (smtpmail-smtp-user . "abhinav.tushar.vs@hotmail.com")
+                                                    (mu4e-message-maildir-matches msg "^/Fastmail")))
+                             :vars `((user-mail-address . ,(get-authinfo-value "imap.fastmail.com" "993" "email"))
+                                     (smtpmail-default-smtp-server . "smtp.fastmail.com")
+                                     (smtpmail-smtp-server . "smtp.fastmail.com")
+                                     (smtpmail-smtp-service . 465)
+                                     (smtpmail-stream-type . ssl)
+                                     (smtpmail-smtp-user . ,(get-authinfo-value "smtp.fastmail.com" "465" "login"))
                                      (mu4e-sent-messages-behavior . sent)
-                                     (mu4e-sent-folder . "/Outlook/Sent")
-                                     (mu4e-drafts-folder . "/Outlook/Drafts")
-                                     (mu4e-trash-folder . "/Outlook/Trash")
-                                     (mu4e-refile-folder . "/Outlook/Archive")))))
+                                     (mu4e-sent-folder . "/Fastmail/Sent")
+                                     (mu4e-drafts-folder . "/Fastmail/Drafts")
+                                     (mu4e-trash-folder . "/Fastmail/Trash")
+                                     (mu4e-refile-folder . "/Fastmail/Archive")))))
 
   (with-eval-after-load 'org
     (setq org-startup-indented t
