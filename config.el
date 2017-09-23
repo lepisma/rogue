@@ -1,12 +1,11 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 ;; Mostly theme configuration
 
-(defvar rogue-current-color 'dark
+(defvar rogue-dark-theme 'doom-molokai)
+(defvar rogue-light-theme 'spacemacs-light)
+
+(defvar rogue-current-theme rogue-dark-theme
   "Currently active color scheme")
-
-;; (defvar rogue-dark-theme 'doom-molokai)
-
-;; (defvar rogue-light-theme 'spacemacs-light)
 
 (defmacro set-pair-faces (themes consts faces-alist)
   "Macro for pair setting of custom faces.

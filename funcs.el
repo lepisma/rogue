@@ -144,24 +144,24 @@ With argument, do this that many times."
                 (org-mode))))
         (buffer-list)))
 
-(defun rogue-cycle-color ()
+(defun rogue-cycle-theme ()
   "Cycle between dark and light scheme"
   (interactive)
-  (if (eq rogue-current-color 'dark)
+  (if (eq rogue-current-theme rogue-dark-theme)
       (progn
         (rogue-light)
-        (setq rogue-current-color 'light))
+        (setq rogue-current-theme rogue-light-theme))
     (progn
       (rogue-dark)
-      (setq rogue-current-color 'dark))))
+      (setq rogue-current-theme rogue-dark-theme))))
 
 (defun rogue-light ()
   "Switch to light theme"
   (interactive)
   (setq doom-neotree-enable-variable-pitch nil
         doom-neotree-line-spacing 1)
-  (disable-theme 'doom-molokai)
-  (spacemacs/load-theme 'spacemacs-light)
+  (disable-theme rogue-dark-theme)
+  (spacemacs/load-theme rogue-light-theme)
   (setq org-bullets-bullet-list '(" "))
   (reset-org-buffers)
   (beacon-mode -1))
@@ -171,8 +171,8 @@ With argument, do this that many times."
   (interactive)
   (setq doom-neotree-enable-variable-pitch t
         doom-neotree-line-spacing 4)
-  (disable-theme 'spacemacs-light)
-  (spacemacs/load-theme 'doom-molokai)
+  (disable-theme rogue-light-theme)
+  (spacemacs/load-theme rogue-dark-theme)
   (setq org-bullets-bullet-list '("#"))
   (reset-org-buffers)
   (beacon-mode +1))

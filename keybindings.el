@@ -37,7 +37,7 @@
 (global-set-key (kbd "C-c z") 'spacemacs/zoom-frm-transient-state/body)
 
 ;; Cycle theme
-(global-set-key (kbd "M-m T n") 'rogue-cycle-color)
+(global-set-key (kbd "M-m T n") 'rogue-cycle-theme)
 
 ;; Mail stuff
 (define-key mu4e-compose-mode-map (kbd "C-c C-c") 'message-sign-and-send)
