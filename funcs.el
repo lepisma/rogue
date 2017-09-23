@@ -205,3 +205,9 @@ With argument, do this that many times."
                                ((= (length subjects) 1) "1 unread email")
                                (t (format "%s unread emails" (length subjects))))
                          (s-join ". " subjects)))))
+
+(defun message-sign-and-send ()
+  "Sign and send message"
+  (interactive)
+  (mml-secure-sign)
+  (message-send-and-exit))

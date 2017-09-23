@@ -18,9 +18,6 @@
 ;; Avy
 (global-set-key (kbd "C-'") 'avy-goto-char)
 
-;; Emmet
-(global-set-key (kbd "C-c e") 'emmet-expand-line)
-
 ;; Insect
 (global-set-key (kbd "C-c i") 'insect-calc)
 
@@ -41,3 +38,8 @@
 
 ;; Cycle theme
 (global-set-key (kbd "M-m T n") 'rogue-cycle-color)
+
+;; Mail stuff
+(define-key mu4e-compose-mode-map (kbd "C-c C-c") 'message-sign-and-send)
+(define-key mu4e-compose-mode-map (kbd "C-c e") 'mml-secure-encrypt-pgp)
+(define-key mu4e-view-mode-map (kbd "C-c d") 'epa-mail-decrypt)

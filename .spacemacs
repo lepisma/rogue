@@ -853,10 +853,7 @@ you should place you code here."
                      :prompt "*something" :action
                      (mu4e-error "No action for deferred mark"))))
 
-  (add-hook 'mu4e-compose-mode-hook (lambda ()
-                                      (org~mu4e-mime-switch-headers-or-body)
-                                      (flyspell-mode)))
-  (setq org-mu4e-convert-to-html t)
+  (add-hook 'mu4e-compose-mode-hook (lambda () (flyspell-mode)))
 
   (defun get-authinfo-value (machine port key)
     (let ((entries (mapcar (lambda (line) (s-split " " line))
