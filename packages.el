@@ -114,7 +114,8 @@
     (doom-themes-neotree-config)
     (setq doom-neotree-enable-variable-pitch t
           doom-neotree-file-icons 'simple
-          doom-neotree-line-spacing 4)))
+          doom-neotree-line-spacing 4)
+    (doom-themes-org-config)))
 
 (defun rogue/init-elnode ()
   (use-package elnode))
