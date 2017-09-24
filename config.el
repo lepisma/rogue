@@ -117,7 +117,9 @@ like:
    (:background nil
                 :foreground ,bg-dark
                 :box nil)
-   nil)
+   (:background nil
+                :foreground ,bg-white
+                :box nil))
   (magit-diff-hunk-heading
    (:background ,comment
                 :foreground ,gray)
@@ -136,25 +138,34 @@ like:
   (doom-neotree-dir-face
    (:foreground ,keyword
                 :height 1.0)
-   nil)
+   (:family ,sans-font
+            :height 1.0))
   (doom-neotree-file-face
    (:height 1.0)
-   nil)
+   (:family ,sans-font
+            :height 1.0))
   (doom-neotree-text-file-face
    (:height 1.0)
-   nil)
+   (:family ,sans-font
+            :height 1.0))
   (doom-neotree-hidden-file-face
    (:height 1.0
             :foreground ,comment)
-   nil)
+   (:family ,sans-font
+            :height 1.0
+            :foreground ,comment))
   (doom-neotree-media-file-face
    (:height 1.0
             :foreground ,type)
-   nil)
+   (:family ,sans-font
+            :height 1.0
+            :foreground ,type))
   (doom-neotree-data-file-face
    (:height 1.0
             :foreground ,doc)
-   nil)
+   (:family ,sans-font
+            :height 1.0
+            :foreground ,doc))
   (neo-root-dir-face
    (:foreground ,fg-white
                 :background ,region-dark
@@ -162,11 +173,27 @@ like:
    nil)
   (mode-line
    (:background ,bg-darker)
-   nil)
+   (:background ,bg-white
+                :box nil))
+  (mode-line-inactive
+   nil
+   (:box nil))
+  (powerline-active1
+   nil
+   (:background ,bg-white))
+  (powerline-active2
+   nil
+   (:background ,bg-white))
+  (powerline-inactive1
+   nil
+   (:background ,bg-white))
+  (powerline-inactive2
+   nil
+   (:background ,bg-white))
   (highlight
    (:background ,region
                 :foreground ,fg-white)
-   nil)
+   (:background ,shade-white))
   (hl-line
    (:background ,region-dark)
    nil)
@@ -178,39 +205,64 @@ like:
              :height 1.3
              :weight normal
              :foreground ,gray)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :height 1.8
+             :foreground ,bg-dark
+             :underline nil))
   (org-document-info
    (:foreground ,gray
                 :slant italic)
-   nil)
+   (:height 1.2
+            :slant italic))
   (org-level-1
    (:inherit variable-pitch
              :height 1.3
              :weight bold
              :foreground ,keyword
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :height 1.6
+             :weight normal
+             :slant normal
+             :foreground ,bg-dark))
   (org-level-2
    (:inherit variable-pitch
              :weight bold
              :height 1.2
              :foreground ,gray
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :height 1.3
+             :slant italic
+             :foreground ,bg-dark))
   (org-level-3
    (:inherit variable-pitch
              :weight bold
              :height 1.1
              :foreground ,slate
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :slant italic
+             :height 1.2
+             :foreground ,bg-dark))
   (org-level-4
    (:inherit variable-pitch
              :weight bold
              :height 1.1
              :foreground ,slate
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :slant italic
+             :height 1.1
+             :foreground ,bg-dark))
   (org-level-5
    (:inherit variable-pitch
              :weight bold
@@ -241,31 +293,41 @@ like:
    nil)
   (org-headline-done
    (:strike-through t)
-   nil)
+   (:family ,et-font
+            :strike-through t))
   (org-quote
    (:background ,bg-dark)
    nil)
   (org-block
    (:background ,bg-dark)
-   nil)
+   (:background nil
+                :foreground ,bg-dark))
   (org-block-begin-line
    (:background ,bg-dark)
-   nil)
+   (:background nil
+                :height 0.8
+                :family ,sans-mono-font
+                :foreground ,slate))
   (org-block-end-line
    (:background ,bg-dark)
-   nil)
+   (:background nil
+                :height 0.8
+                :family ,sans-mono-font
+                :foreground ,slate))
   (org-document-info-keyword
    (:foreground ,comment)
-   nil)
+   (:height 0.8
+            :foreground ,gray))
   (org-link
    (:underline nil
                :weight normal
                :foreground ,slate)
-   nil)
+   (:foreground ,bg-dark))
   (org-special-keyword
    (:height 0.9
             :foreground ,comment)
-   nil)
+   (:family ,sans-mono-font
+            :height 0.8))
   (org-todo
    (:foreground ,builtin
                 :background ,bg-dark)
@@ -278,15 +340,22 @@ like:
   (org-agenda-current-time
    (:foreground ,slate)
    nil)
+  (org-hide
+   nil
+   (:foreground ,bg-white))
   (org-indent
    (:inherit org-hide)
-   nil)
+   (:inherit (org-hide fixed-pitch)))
   (org-time-grid
    (:foreground ,comment)
    nil)
   (org-warning
    (:foreground ,builtin)
    nil)
+  (org-date
+   nil
+   (:family ,sans-mono-font
+            :height 0.8))
   (org-agenda-structure
    (:height 1.3
             :foreground ,doc
@@ -296,7 +365,8 @@ like:
   (org-agenda-date
    (:foreground ,doc
                 :inherit variable-pitch)
-   nil)
+   (:inherit variable-pitch
+             :height 1.1))
   (org-agenda-date-today
    (:height 1.5
             :foreground ,keyword
@@ -321,17 +391,27 @@ like:
    (:inherit nil
              :strike-through t
              :foreground ,doc)
-   nil)
+   (:strike-through t
+                    :foreground ,doc))
   (org-ellipsis
    (:underline nil
                :foreground ,comment)
-   nil)
+   (:underline nil
+               :foreground ,comment))
   (org-tag
    (:foreground ,doc)
-   nil)
+   (:foreground ,doc))
   (org-table
    (:background nil)
-   nil)
+   (:family ,serif-mono-font
+            :height 0.9
+            :background ,bg-white))
+  (org-code
+   nil
+   (:inherit nil
+             :family ,serif-mono-font
+             :foreground ,comment
+             :height 0.9))
   (font-latex-sectioning-0-face
    (:foreground ,type
                 :height 1.2)
@@ -479,7 +559,7 @@ like:
    nil)
   (nlinum-current-line
    (:foreground ,builtin)
-   nil)
+   (:foreground ,bg-dark))
   (vertical-border
    (:background ,region
                 :foreground ,region)
@@ -499,7 +579,9 @@ like:
   (font-lock-comment-face
    (:foreground ,doc
                 :slant italic)
-   nil)
+   (:background nil
+                :foreground ,doc
+                :slant italic))
   (helm-ff-symlink
    (:foreground ,slate)
    nil)
@@ -509,145 +591,5 @@ like:
   (header-line
    (:background nil
                 :inherit nil)
-   nil)
-  ))
-
-;;;; LIGHT THEME HERER
-
-;; (header-line
-;;  :background nil
-;;  :inherit nil)
-;; (magit-header-line
-;;  :background nil
-;;  :foreground ,bg-white
-;;  :box nil)
-;; (org-table
-;;  :family ,serif-mono-font
-;;  :height 0.9
-;;  :background ,bg-white)
-;; (org-document-title
-;;  :inherit nil
-;;  :family ,et-font
-;;  :height 1.8
-;;  :foreground ,bg-dark
-;;  :underline nil)
-;; (org-document-info-keyword
-;;  :height 0.8
-;;  :foreground ,gray)
-;; (org-document-info
-;;  :height 1.2
-;;  :slant italic)
-;; (org-date
-;;  :family ,sans-mono-font
-;;  :height 0.8)
-;; (org-special-keyword
-;;  :family ,sans-mono-font
-;;  :height 0.8)
-;; (org-level-1
-;;  :inherit nil
-;;  :family ,et-font
-;;  :height 1.6
-;;  :weight normal
-;;  :slant normal
-;;  :foreground ,bg-dark)
-;; (org-level-2
-;;  :inherit nil
-;;  :family ,et-font
-;;  :weight normal
-;;  :height 1.3
-;;  :slant italic
-;;  :foreground ,bg-dark)
-;; (org-level-3
-;;  :inherit nil
-;;  :family ,et-font
-;;  :weight normal
-;;  :slant italic
-;;  :height 1.2
-;;  :foreground ,bg-dark)
-;; (org-level-4
-;;  :inherit nil
-;;  :family ,et-font
-;;  :weight normal
-;;  :slant italic
-;;  :height 1.1
-;;  :foreground ,bg-dark)
-;; (org-headline-done
-;;  :family ,et-font
-;;  :strike-through t)
-;; (org-agenda-done
-;;  :strike-through t
-;;  :foreground ,doc)
-;; (org-ellipsis
-;;  :underline nil
-;;  :foreground ,comment)
-;; (org-tag
-;;  :foreground ,doc)
-;; (org-hide
-;;  :foreground ,bg-white)
-;; (org-indent
-;;  :inherit (org-hide fixed-pitch))
-;; (org-block-end-line
-;;  :background nil
-;;  :height 0.8
-;;  :family ,sans-mono-font
-;;  :foreground ,slate)
-;; (org-block-begin-line
-;;  :background nil
-;;  :height 0.8
-;;  :family ,sans-mono-font
-;;  :foreground ,slate)
-;; (org-block
-;;  :background nil
-;;  :foreground ,bg-dark)
-;; (org-link
-;;  :foreground ,bg-dark)
-;; (nlinum-current-line
-;;  :foreground ,bg-dark)
-;; (font-lock-comment-face
-;;  :background nil
-;;  :foreground ,doc
-;;  :slant italic)
-;; (org-code
-;;  :inherit nil
-;;  :family ,serif-mono-font
-;;  :foreground ,comment
-;;  :height 0.9)
-;; (org-agenda-date-today
-;;  :inherit variable-pitch
-;;  :height 1.1)
-;; (mode-line
-;;  :background ,bg-white
-;;  :box nil)
-;; (mode-line-inactive
-;;  :box nil)
-;; (highlight
-;;  :background ,shade-white)
-;; (powerline-active1
-;;  :background ,bg-white)
-;; (powerline-active2
-;;  :background ,bg-white)
-;; (powerline-inactive1
-;;  :background ,bg-white)
-;; (powerline-inactive2
-;;  :background ,bg-white)
-;; (doom-neotree-dir-face
-;;  :family ,sans-font
-;;  :height 1.0)
-;; (doom-neotree-file-face
-;;  :family ,sans-font
-;;  :height 1.0)
-;; (doom-neotree-text-file-face
-;;  :family ,sans-font
-;;  :height 1.0)
-;; (doom-neotree-hidden-file-face
-;;  :family ,sans-font
-;;  :height 1.0
-;;  :foreground ,comment)
-;; (doom-neotree-media-file-face
-;;  :family ,sans-font
-;;  :height 1.0
-;;  :foreground ,type)
-;; (doom-neotree-data-file-face
-;;  :family ,sans-font
-;;  :height 1.0
-;;  :foreground ,doc)
+   (:background nil
+                :inherit nil))))
