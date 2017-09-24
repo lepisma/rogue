@@ -158,9 +158,7 @@
     (push '("\\.epub'" . nov-mode) auto-mode-alist)))
 
 (defun rogue/init-ob-async ()
-  (use-package ob-async
-    :config
-    (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block)))
+  (use-package ob-async))
 
 (defun rogue/init-org-books ()
   (use-package org-books
