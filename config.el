@@ -55,6 +55,7 @@ like:
   (doc                "#727280")
   (type               "#66d9ef")
   (string             "#b6e63e")
+  (gray-dark          "#999")
   (gray               "#bbb")
   (sans-font          "Source Sans Pro")
   (serif-font         "Merriweather")
@@ -89,7 +90,8 @@ like:
    (:foreground ,string)
    nil)
   (company-tooltip
-   (:background ,bg-darker)
+   (:background ,bg-darker
+                :foreground ,gray)
    nil)
   (company-scrollbar-fg
    (:background ,comment)
@@ -129,7 +131,7 @@ like:
                 :foreground ,fg-white)
    nil)
   (tooltip
-   (:foreground ,keyword
+   (:foreground ,gray
                 :background ,bg-darker)
    nil)
   (git-gutter-fr:modified
