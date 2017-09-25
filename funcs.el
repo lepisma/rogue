@@ -212,21 +212,23 @@ With argument, do this that many times."
   (mml-secure-sign)
   (message-send-and-exit))
 (defun get-csv-row-best (line &optional best-func)
-  "Return best value from the csv row"
+  "Return best value from the csv row. BEST-FUNC finds the best from a list of numbers. Defaults to
+min."
   (let* ((tokens (s-split "," (s-collapse-whitespace line)))
          (items (mapcar #'string-to-number (cl-remove-if (lambda (x) (= 0 (string-to-number x))) tokens))))
     (if items
         (number-to-string (apply (or best-func #'min) items))
       nil)))
 
-(defun highlight-csv-row-best (&optional best-func)
-  "Highlight best row in the csv"
+(defun highlight-csv-row-best (&optional best-func highlight-face)
+  "Highlight best row in the csv. BEST-FUNC finds the best from a list of numbers. HIGHLIGHT-FACE
+defines the face to use for highlighting."
   (interactive)
   (let ((lines (s-split "\n" (buffer-string))))
     (mapc (lambda (line)
             (let ((best-val (get-csv-row-best line best-func)))
               (if best-val
-                  (highlight-regexp best-val 'highlight-yellow)))) lines)))
+                  (highlight-regexp best-val (or highlight-face 'hi-yellow))))) lines)))
 
 (defun unhighlight-csv ()
   "Unhighlight all from the csv. Simple wrapper."
