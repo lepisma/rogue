@@ -230,6 +230,26 @@ defines the face to use for highlighting."
               (if best-val
                   (highlight-regexp best-val (or highlight-face 'hi-yellow))))) lines)))
 
+(defun color-buffer-text (text color)
+  "Color the text in current buffer."
+  (goto-char (point-min))
+  (while (search-forward text nil t)
+    (put-text-property (- (point) (length text)) (point)
+                       'font-lock-face `(:background ,color))))
+
+(defun get-buffer-numbers ()
+  "Get a list of all numbers in current buffer."
+  (let ((text (s-collapse-whitespace (substring-no-properties (buffer-string)))))
+    (cl-remove-if #'zerop (mapcar #'string-to-number (s-split "," (s-replace " " "," text))))))
+
+(defun highlight-csv-heat-map (&optional cmap)
+  (interactive)
+  (let* ((nums (get-buffer-numbers))
+         (nums-min (float (apply #'min nums)))
+         (nums-max (float (apply #'max nums))))
+    (mapc (lambda (n) (let ((value (/ (- n nums-min) (- nums-max nums-min))))
+                   (color-buffer-text (number-to-string n) (colormaps-get-color value cmap)))) nums)))
+
 (defun unhighlight-csv ()
   "Unhighlight all from the csv. Simple wrapper."
   (interactive)
