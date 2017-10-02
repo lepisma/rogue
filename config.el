@@ -4,7 +4,7 @@
 (defvar rogue-dark-theme 'doom-molokai)
 (defvar rogue-light-theme 'spacemacs-light)
 
-(defvar rogue-current-theme rogue-dark-theme
+(defvar rogue-current-theme rogue-light-theme
   "Currently active color scheme")
 
 (defmacro set-pair-faces (themes consts faces-alist)
@@ -409,7 +409,7 @@ like:
             :height 0.9
             :background ,bg-white))
   (org-code
-   nil
+   (:inherit font-lock-builtin-face)
    (:inherit nil
              :family ,serif-mono-font
              :foreground ,comment
