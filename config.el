@@ -202,6 +202,9 @@ like:
   (solaire-hl-line-face
    (:background ,bg-dark)
    nil)
+  (linum
+   nil
+   (:background ,bg-white))
   (org-document-title
    (:inherit variable-pitch
              :height 1.3
