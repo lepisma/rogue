@@ -212,7 +212,7 @@ like:
              :foreground ,gray)
    (:inherit nil
              :family ,et-font
-             :height 2.2
+             :height 1.7
              :foreground ,bg-dark
              :underline nil))
   (org-document-info
@@ -228,7 +228,7 @@ like:
              :background ,bg-dark)
    (:inherit nil
              :family ,et-font
-             :height 2.0
+             :height 1.8
              :weight normal
              :slant normal
              :foreground ,bg-dark))
@@ -241,7 +241,7 @@ like:
    (:inherit nil
              :family ,et-font
              :weight normal
-             :height 1.7
+             :height 1.6
              :slant italic
              :foreground ,bg-dark))
   (org-level-3
@@ -254,7 +254,7 @@ like:
              :family ,et-font
              :weight normal
              :slant italic
-             :height 1.6
+             :height 1.5
              :foreground ,bg-dark))
   (org-level-4
    (:inherit variable-pitch
@@ -266,7 +266,7 @@ like:
              :family ,et-font
              :weight normal
              :slant italic
-             :height 1.5
+             :height 1.3
              :foreground ,bg-dark))
   (org-level-5
    (:inherit variable-pitch
@@ -341,7 +341,8 @@ like:
    (:inherit variable-pitch
              :foreground ,dark-cyan
              :background ,bg-dark)
-   nil)
+   (:strike-through t
+                    :family ,et-font))
   (org-agenda-current-time
    (:foreground ,slate)
    nil)
