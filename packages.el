@@ -8,6 +8,7 @@
     cricbuzz
     calfw
     calfw-org
+    colormaps
     dired-subtree
     doom-themes
     (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
@@ -97,6 +98,10 @@
   (use-package calfw-org
     :config
     (setq cfw:org-face-agenda-item-foreground-color "#f92672")))
+
+(defun rogue/init-colormaps ()
+  (use-package colormaps
+    :defer t))
 
 (defun rogue/init-dired-subtree ()
   (use-package dired-subtree :ensure t
