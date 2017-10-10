@@ -724,6 +724,8 @@ you should place you code here."
         (string-match rx (mu4e-message-field msg :maildir)))))
 
   (setq user-full-name "Abhinav Tushar")
+  (setq browse-url-generic-program (executable-find (getenv "BROWSER"))
+        browse-url-browser-function 'browse-url-generic)
   (setq mu4e-get-mail-command "offlineimap -o"
         mu4e-update-interval 600
         message-kill-buffer-on-exit t
