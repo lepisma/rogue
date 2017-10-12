@@ -998,8 +998,8 @@ you should place you code here."
 
     (setq org-agenda-custom-commands
           '(("n" "Main agenda view"
-             ((tags "micro"
-                    ((org-agenda-overriding-header "Micro tasks")))
+             ((tags "next"
+                    ((org-agenda-overriding-header "Next concrete todos")))
               (agenda "")
               (todo "TODO")))
             ("r" "Readings"
