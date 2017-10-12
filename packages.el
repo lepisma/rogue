@@ -28,6 +28,7 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+    shell-switcher
     snakemake-mode
     solaire-mode
     (spaceline-all-the-icons :location local)
@@ -229,6 +230,13 @@
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
     :commands (read-lyrics-read-lyrics)))
+
+(defun rogue/init-shell-switcher ()
+  (use-package shell-switcher
+    :demand t
+    :config (setq shell-switcher-mode t)
+    :bind (("C-'" . shell-switcher-switch-buffer)
+           ("C-\"" . shell-switcher-new-shell))))
 
 (defun rogue/init-snakemake-mode ()
   (use-package snakemake-mode
