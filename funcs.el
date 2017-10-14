@@ -254,3 +254,11 @@ defines the face to use for highlighting."
   "Unhighlight all from the csv. Simple wrapper."
   (interactive)
   (unhighlight-regexp t))
+
+(defun prodigy-define-basic (name &optional args)
+  (prodigy-define-service
+    :name name
+    :command name
+    :args args
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t))

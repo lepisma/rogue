@@ -706,12 +706,8 @@ you should place you code here."
                                  "dev")))))
 
   ;; Prodigy services
-  (prodigy-define-service
-   :name "offlineimap"
-   :command "offlineimap"
-   :args '("-o")
-   :stop-signal 'sigkill
-   :kill-process-buffer-on-stop t)
+  (prodigy-define-basic "offlineimap" "-o")
+  (prodigy-define-basic "mpm-play")
 
   ;; Email setup
   (defun mu4e-message-maildir-matches (msg rx)
