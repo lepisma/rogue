@@ -262,3 +262,11 @@ defines the face to use for highlighting."
     :args args
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))
+
+(defun org-clock-in-default ()
+  "Default clock in clock.org"
+  (interactive)
+  (with-current-buffer "clock.org"
+    (goto-char (point-min))
+    (org-next-visible-heading 1)
+    (org-clock-in)))
