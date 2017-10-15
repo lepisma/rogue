@@ -230,7 +230,7 @@
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
     :commands (read-lyrics-read-lyrics)
-    :after s
+    :after (s spotify)
     :config
     (setq read-lyrics-getters
           (list (lambda ()
