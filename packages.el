@@ -161,7 +161,8 @@
 (defun rogue/init-nov ()
   (use-package nov
     :config
-    (push '("\\.epub'" . nov-mode) auto-mode-alist)))
+    (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
+    (setq nov-text-width 80)))
 
 (defun rogue/init-ob-async ()
   (use-package ob-async))

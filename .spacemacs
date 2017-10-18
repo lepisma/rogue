@@ -579,7 +579,8 @@ you should place you code here."
                slime-repl-mode-hook
                process-menu-mode-hook
                mu4e-view-mode-hook
-               mu4e-main-mode-hook)
+               mu4e-main-mode-hook
+               nov-mode-hook)
              (lambda () (progn
                      (setq left-margin-width 2)
                      (setq right-margin-width 2)
@@ -598,7 +599,8 @@ you should place you code here."
                slime-repl-mode-hook
                process-menu-mode-hook
                mu4e-view-mode-hook
-               mu4e-main-mode-hook)
+               mu4e-main-mode-hook
+               nov-mode-hook)
              (lambda () (setq header-line-format " ")))
 
   (add-hooks '(text-mode-hook
