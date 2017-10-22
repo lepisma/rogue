@@ -269,4 +269,5 @@ defines the face to use for highlighting."
   (with-current-buffer "clock.org"
     (goto-char (point-min))
     (org-next-visible-heading 1)
-    (org-clock-in)))
+    (org-clock-in)
+    (save-buffer)))
