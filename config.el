@@ -37,7 +37,7 @@ like:
  (doom-molokai spacemacs-light)
 
  ;; Variables
- ((bg-white           "#fbf8ef")
+ ((bg-white           "#fefff9")
   (bg-light           "#222425")
   (bg-dark            "#1c1e1f")
   (bg-darker          "#1c1c1c")
@@ -51,7 +51,7 @@ like:
   (keyword            "#f92672")
   (comment            "#525254")
   (builtin            "#fd971f")
-  (purple             "#9c91e4")
+  (accent             "#99bbc7")
   (doc                "#727280")
   (type               "#66d9ef")
   (string             "#b6e63e")
@@ -63,13 +63,16 @@ like:
   (sans-mono-font     "Souce Code Pro")
   (serif-mono-font    "Verily Serif Mono"))
 
- ;; Settings
- ((variable-pitch
+  ;; Settings
+  ((variable-pitch
    (:family ,sans-font)
    (:family ,et-font
             :background nil
             :foreground ,bg-dark
             :height 1.0))
+  (default
+    nil
+    (:background ,bg-white))
   (header-line
    (:background nil :inherit nil)
    (:background nil :inherit nil))
