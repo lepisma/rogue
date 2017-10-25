@@ -374,8 +374,7 @@ like:
   (org-agenda-date
    (:foreground ,doc
                 :inherit variable-pitch)
-   (:inherit variable-pitch
-             :height 1.1))
+   (:inherit nil))
   (org-agenda-date-today
    (:height 1.5
             :foreground ,keyword
@@ -400,8 +399,9 @@ like:
    (:inherit nil
              :strike-through t
              :foreground ,doc)
-   (:strike-through t
-                    :foreground ,doc))
+   (:height 1.0
+            :strike-through t
+            :foreground ,doc))
   (org-ellipsis
    (:underline nil
                :foreground ,comment)

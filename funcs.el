@@ -211,6 +211,12 @@ With argument, do this that many times."
   (interactive)
   (mml-secure-sign)
   (message-send-and-exit))
+
+(defun unhighlight-csv ()
+  "Unhighlight all from the csv. Simple wrapper."
+  (interactive)
+  (unhighlight-regexp t))
+
 (defun get-csv-row-best (line &optional best-func)
   "Return best value from the csv row. BEST-FUNC finds the best from a list of numbers. Defaults to
 min."
@@ -224,6 +230,7 @@ min."
   "Highlight best row in the csv. BEST-FUNC finds the best from a list of numbers. HIGHLIGHT-FACE
 defines the face to use for highlighting."
   (interactive)
+  (unhighlight-csv)
   (let ((lines (s-split "\n" (buffer-string))))
     (mapc (lambda (line)
             (let ((best-val (get-csv-row-best line best-func)))
@@ -244,16 +251,12 @@ defines the face to use for highlighting."
 
 (defun highlight-csv-heat-map (&optional cmap)
   (interactive)
+  (unhighlight-csv)
   (let* ((nums (get-buffer-numbers))
          (nums-min (float (apply #'min nums)))
          (nums-max (float (apply #'max nums))))
     (mapc (lambda (n) (let ((value (/ (- n nums-min) (- nums-max nums-min))))
                    (color-buffer-text (number-to-string n) (colormaps-get-color value cmap)))) nums)))
-
-(defun unhighlight-csv ()
-  "Unhighlight all from the csv. Simple wrapper."
-  (interactive)
-  (unhighlight-regexp t))
 
 (defun prodigy-define-basic (name &optional args)
   (prodigy-define-service
