@@ -661,10 +661,10 @@ you should place you code here."
         org-ref-default-bibliography '(bib-library)
         bibtex-completion-bibliography bib-library)
   (setq org-latex-pdf-process
-        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "bibtex %b"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"))
+          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
