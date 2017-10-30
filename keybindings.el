@@ -46,3 +46,4 @@
 
 ;; Some resets
 (global-set-key (kbd "C-x C-l") nil)
+(global-set-key (kbd "<insert>") nil)
