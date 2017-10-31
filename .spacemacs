@@ -644,6 +644,8 @@ you should place you code here."
   (advice-add 'helm-display-mode-line
               :override (lambda (source &optional force) (hidden-mode-line-mode +1)))
 
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
   (add-hooks '(text-mode-hook
                cfw:calendar-mode-hook)
              (lambda () (spacemacs/disable-hl-line-mode)))
