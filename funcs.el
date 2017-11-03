@@ -273,11 +273,11 @@ defines the face to use for highlighting."
     (goto-char (point-min))
     (org-next-visible-heading 1)
     (org-clock-in)
-    (save-buffer)))
+    (org-save-all-org-buffers)))
 
 (defun org-clock-out-default ()
   "Default clock in clock.org"
   (interactive)
   (with-current-buffer "clock.org"
     (org-clock-out)
-    (save-buffer)))
+    (org-save-all-org-buffers)))
