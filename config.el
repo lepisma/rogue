@@ -38,27 +38,29 @@ like:
 
  ;; Variables
  ((bg-white           "#fefff9")
-  (bg-light           "#222425")
-  (bg-dark            "#1c1e1f")
-  (bg-darker          "#1c1c1c")
+  (bg-dark            "#1A1D23")
+  (bg-darker          "#111318")
+  (bg-light           "#22272F")
   (fg-white           "#ffffff")
   (shade-white        "#efeae9")
-  (fg-light           "#655370")
-  (dark-cyan          "#008b8b")
-  (region-dark        "#2d2e2e")
-  (region             "#39393d")
+  (fg-light           "#B48EAD")
+  (dark-cyan          "#5E81AC")
+  (region-dark        "#22272F")
+  (region             "#454D5F")
   (slate              "#8FA1B3")
-  (keyword            "#f92672")
+  (keyword            "#BF616A")
   (comment            "#525254")
-  (builtin            "#fd971f")
+  (builtin            "#D08770")
+  (variable-name      "#EBCB8B")
+  (function-name      "#5E81AC")
+  (constant           "#D08770")
   (accent             "#99bbc7")
   (doc                "#727280")
-  (type               "#66d9ef")
-  (string             "#b6e63e")
+  (type               "#8FBCBB")
+  (string             "#A3BE8C")
   (gray-dark          "#999")
   (gray               "#bbb")
   (sans-font          "Source Sans Pro")
-  (serif-font         "Merriweather")
   (et-font            "EtBembo")
   (sans-mono-font     "Souce Code Pro")
   (serif-mono-font    "Verily Serif Mono"))
@@ -71,8 +73,11 @@ like:
             :foreground ,bg-dark
             :height 1.0))
   (default
-    nil
+    (:background ,bg-dark)
     (:background ,bg-white))
+  (solaire-default-face
+   (:background ,bg-light)
+   nil)
   (header-line
    (:background nil :inherit nil)
    (:background nil :inherit nil))
@@ -140,6 +145,9 @@ like:
   (git-gutter-fr:modified
    (:foreground ,dark-cyan)
    nil)
+  (git-gutter-fr:added
+   (:foreground ,string)
+   nil)
   (doom-neotree-dir-face
    (:foreground ,keyword
                 :height 1.0)
@@ -196,14 +204,14 @@ like:
    nil
    (:background ,bg-white))
   (highlight
-   (:background ,region
+   (:background ,region-dark
                 :foreground ,fg-white)
    (:background ,shade-white))
   (hl-line
    (:background ,region-dark)
    nil)
   (solaire-hl-line-face
-   (:background ,bg-dark)
+   (:background ,region-dark)
    nil)
   (linum
    nil
@@ -416,7 +424,7 @@ like:
             :height 0.9
             :background ,bg-white))
   (org-code
-   (:inherit font-lock-builtin-face)
+   (:foreground ,builtin)
    (:inherit nil
              :family ,serif-mono-font
              :foreground ,comment
@@ -585,6 +593,27 @@ like:
   (font-lock-string-face
    (:foreground ,string)
    nil)
+  (font-lock-keyword-face
+   (:foreground ,keyword)
+   nil)
+  (font-lock-builtin-face
+   (:foreground ,builtin)
+   nil)
+  (font-lock-type-face
+   (:foreground ,type)
+   nil)
+  (font-lock-doc-face
+   (:foreground ,doc)
+   nil)
+  (font-lock-function-name-face
+   (:foreground ,function-name)
+   nil)
+  (font-lock-variable-name-face
+   (:foreground ,variable-name)
+   nil)
+  (font-lock-constant-face
+   (:foreground ,constant)
+   nil)
   (font-lock-comment-face
    (:foreground ,doc
                 :slant italic)
@@ -601,4 +630,34 @@ like:
    (:background nil
                 :inherit nil)
    (:background nil
-                :inherit nil))))
+                :inherit nil))
+  (rainbow-delimiters-depth-1-face
+   (:foreground ,keyword)
+   nil)
+  (rainbow-delimiters-depth-2-face
+   (:foreground ,builtin)
+   nil)
+  (rainbow-delimiters-depth-3-face
+   (:foreground ,variable-name)
+   nil)
+  (rainbow-delimiters-depth-4-face
+   (:foreground ,string)
+   nil)
+  (rainbow-delimiters-depth-5-face
+   (:foreground ,type)
+   nil)
+  (rainbow-delimiters-depth-6-face
+   (:foreground ,dark-cyan)
+   nil)
+  (rainbow-delimiters-depth-7-face
+   (:foreground ,function-name)
+   nil)
+  (rainbow-delimiters-depth-8-face
+   (:foreground ,fg-light)
+   nil)
+  (rainbow-delimiters-depth-9-face
+   (:foreground ,doc)
+   nil)
+  (sp-show-pair-match-face
+   (:background ,bg-dark)
+   nil)))
