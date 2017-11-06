@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name : post-init
+# key : pi
+# --
+---
+layout: post
+title: $1
+summary: $2
+tags: $3
+---
+
+$0
