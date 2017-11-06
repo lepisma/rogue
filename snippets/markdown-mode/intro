@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name : intro
+# key : in
+# --
+<p class="post-intro" markdown="1">
+  $1
+</p>
+<!--more-->
+$0

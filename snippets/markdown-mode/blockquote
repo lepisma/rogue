@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name : blockquote
+# key : q
+# --
+<blockquote>
+  <p>
+    $1
+  </p>
+  <footer>
+    <cite title="$2">$2</cite>
+  </footer>
+</blockquote>
+$0

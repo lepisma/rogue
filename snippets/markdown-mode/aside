@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name : aside
+# key : as
+# --
+<aside markdown="1">
+  <div class="aside-title">
+    $1
+  </div>
+  <p>
+    $2
+  </p>
+</aside>
+$0
