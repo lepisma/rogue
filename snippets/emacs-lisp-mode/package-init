@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name : package-init
-# key : pi
+# key : init
 # --
 ;;; $1 --- $2
 
