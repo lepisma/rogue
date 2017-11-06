@@ -36,6 +36,6 @@
 
 $0
 
-(provide '$1)
+(provide '${1:$(string-remove-suffix ".el" yas-text)})
 
 ;;; `(file-name-nondirectory (buffer-file-name))` ends here
