@@ -69,7 +69,6 @@ values."
      (ranger :variables ranger-show-preview t)
      restclient
      rogue
-     slack
      (spell-checking :variables spell-checking-enable-by-default nil)
      spotify
      (syntax-checking :variables syntax-checking-enable-by-default nil)
@@ -530,19 +529,6 @@ you should place you code here."
                  slime-tramp))
   (setq alert-default-style 'libnotify)
 
-  ;; Secret
-  ;; (slack-register-team
-  ;;  :name "<>"
-  ;;  :default t
-  ;;  :client-id "<>"
-  ;;  :client-secret "<>"
-  ;;  :token "<>"
-  ;;  :subscribed-channels '(<>)) ...
-  (load-file (concat user-secrets-dir "slack.el"))
-
-  ;; Delay slack
-  (run-at-time "120 sec" nil 'slack-start)
-
   (setq tramp-default-method "ssh")
 
   (setq ranger-cleanup-on-disable t
@@ -567,7 +553,6 @@ you should place you code here."
   (add-hooks '(cfw:calendar-mode-hook
                text-mode-hook
                org-agenda-mode-hook
-               slack-mode-hook
                ibuffer-mode-hook
                magit-status-mode-hook
                magit-popup-mode-hook
@@ -588,7 +573,6 @@ you should place you code here."
   (add-hooks '(cfw:calendar-mode-hook
                text-mode-hook
                org-agenda-mode-hook
-               slack-mode-hook
                ibuffer-mode-hook
                magit-status-mode-hook
                magit-log-mode-hook
