@@ -30,6 +30,7 @@
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
     (rogue-ligatures :location local)
     (rogue-mu4e :location local)
+    (rogue-utils :location local)
     shell-switcher
     snakemake-mode
     solaire-mode
@@ -252,6 +253,10 @@
   (use-package rogue-mu4e
     :after (authinfo mu4e)
     :demand t))
+
+
+(defun rogue/init-rogue-utils ()
+  (use-package rogue-utils))
 
 (defun rogue/init-shell-switcher ()
   (use-package shell-switcher
