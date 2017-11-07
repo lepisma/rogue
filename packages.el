@@ -36,8 +36,7 @@
     swiper
     (viz :location local)
     vue-mode
-    writegood-mode
-    writeroom-mode))
+    writegood-mode))
 
 ;; Initialize packages
 (defun rogue/init-all-the-icons ()
@@ -286,32 +285,3 @@
 (defun rogue/init-writegood-mode ()
   (use-package writegood-mode
     :defer t))
-
-(defun rogue/init-writeroom-mode ()
-  (use-package writeroom-mode
-    :defer t
-    :config
-    (setq writeroom-width 140
-          writeroom-mode-line nil
-          writeroom-global-effects '(writeroom-set-bottom-divider-width
-                                     writeroom-set-internal-border-width
-                                     (lambda (arg)
-                                       (let ((langs '("python"
-                                                      "emacs-lisp"
-                                                      "common-lisp"
-                                                      "js"
-                                                      "ruby")))
-                                         (cond
-                                          ((= arg 1)
-                                           (progn
-                                             (setq org-src-block-faces
-                                                   (mapcar (lambda (lang) (list lang '(:family "Source Code Pro" :height 0.8))) langs))
-                                             (normal-mode)
-                                             (variable-pitch-mode)))
-                                          ((= arg -1)
-                                           (progn
-                                             (setq org-src-block-faces
-                                                   (mapcar (lambda (lang) (list lang '(:family "Source Code Pro" :height 1.0))) langs))
-                                             (normal-mode)
-                                             (variable-pitch-mode)
-                                             (variable-pitch-mode))))))))))
