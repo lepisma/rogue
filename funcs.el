@@ -1,20 +1,5 @@
 ;;; funcs.el --- rogue Layer utility functions
 
-(defun kill-other-buffers ()
-  "Kill all other buffers."
-  (interactive)
-  (mapc 'kill-buffer
-        (delq (current-buffer) (buffer-list))))
-
-(defun explore-here ()
-  "Open file manager in current buffer's directory."
-  (interactive)
-  (if (eq system-type 'windows-nt)
-      (shell-command "explorer .")
-    (if (eq system-type 'gnu/linux)
-        (shell-command "xdg-open .")
-      (display-warning :error "System Not supported"))))
-
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
   (helm-find-files-1 (concat (file-name-as-directory (expand-file-name "~/.tofish"))
@@ -28,16 +13,6 @@
                    :action '(("Jump to bookmark" . to-fish-find-file)))
         :buffer "*helm tofish jump*"
         :prompt "Jump to : "))
-
-(defun git-archive (output-file)
-  "Archive current repository"
-  (interactive "FArchive output file (with extension): ")
-  (if (magit-toplevel)
-      (progn
-        (call-process "git" nil nil nil "archive"
-                      "-o" output-file "HEAD")
-        (message "git-archive finished"))
-    (message "Not in a git repository")))
 
 (defun transform-pair-units (pairs)
   "Transform unit pairs to SI. Just temp for now."
@@ -177,19 +152,6 @@ With argument, do this that many times."
   (reset-org-buffers)
   (beacon-mode +1))
 
-(defun mu4e-unread-bm-query ()
-  "Return query string for unread bookmark"
-  (let ((bm-item (car
-                  (member-if (lambda (bm)
-                               (string-equal "All Unread"
-                                             (cl-struct-slot-value 'mu4e-bookmark 'name bm))) mu4e-bookmarks))))
-    (cl-struct-slot-value 'mu4e-bookmark 'query bm-item)))
-
-(defun mu4e-get-unread-mails ()
-  "Return unread emails"
-  (let ((cmd-out (shell-command-to-string (concat "mu find --format=sexp " (mu4e-unread-bm-query)))))
-    (nreverse (car (read-from-string (concat "(" cmd-out ")"))))))
-
 (defun quack-quack (text)
   "Speak the given text"
   (start-process "quack" nil "quack" text))
@@ -199,18 +161,12 @@ With argument, do this that many times."
   (interactive)
   (let ((subjects (mapcar
                    (lambda (mail) (plist-get mail :subject))
-                   (mu4e-get-unread-mails))))
+                   (rogue-mu4e-get-unread-mails))))
     (quack-quack (format "You have %s. %s"
                          (cond ((= (length subjects) 0) "no unread emails")
                                ((= (length subjects) 1) "1 unread email")
                                (t (format "%s unread emails" (length subjects))))
                          (s-join ". " subjects)))))
-
-(defun message-sign-and-send ()
-  "Sign and send message"
-  (interactive)
-  (mml-secure-sign)
-  (message-send-and-exit))
 
 (defun prodigy-define-basic (name &optional args)
   (prodigy-define-service

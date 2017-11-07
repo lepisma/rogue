@@ -30,15 +30,37 @@
 
 ;;; Code:
 
+(require 'cl-macs)
+(require 'mml)
+(require 'message)
 (require 'mu4e)
 (require 'authinfo)
 
-(defun mu4e-message-maildir-matches (msg rx)
+(defun rogue-mu4e-unread-bm-query ()
+  "Return query string for unread bookmark"
+  (let ((bm-item (car
+                  (member-if (lambda (bm)
+                               (string-equal "All Unread"
+                                             (cl-struct-slot-value 'mu4e-bookmark 'name bm))) mu4e-bookmarks))))
+    (cl-struct-slot-value 'mu4e-bookmark 'query bm-item)))
+
+(defun rogue-mu4e-get-unread-mails ()
+  "Return unread emails"
+  (let ((cmd-out (shell-command-to-string (concat "mu find --format=sexp " (rogue-mu4e-unread-bm-query)))))
+    (nreverse (car (read-from-string (concat "(" cmd-out ")"))))))
+
+(defun rogue-mu4e-sign-and-send ()
+  "Sign and send message"
+  (interactive)
+  (mml-secure-sign)
+  (message-send-and-exit))
+
+(defun rogue-mu4e-message-maildir-matches (msg rx)
   (when rx
     (if (listp rx)
         ;; if rx is a list, try each one for a match
-        (or (mu4e-message-maildir-matches msg (car rx))
-            (mu4e-message-maildir-matches msg (cdr rx)))
+        (or (rogue-mu4e-message-maildir-matches msg (car rx))
+            (rogue-mu4e-message-maildir-matches msg (cdr rx)))
       ;; not a list, check rx
       (string-match rx (mu4e-message-field msg :maildir)))))
 
@@ -163,7 +185,7 @@
                             :key ?a))
       mu4e-contexts (list (make-mu4e-context
                            :name "Gmail"
-                           :match-func (lambda (msg) (when msg (mu4e-message-maildir-matches msg "^/Gmail")))
+                           :match-func (lambda (msg) (when msg (rogue-mu4e-message-maildir-matches msg "^/Gmail")))
                            :vars `((user-mail-address . ,(authinfo-get-value "imap.gmail.com" "993" "email"))
                                    (smtpmail-default-smtp-server . "smtp.gmail.com")
                                    (smtpmail-smtp-server . "smtp.gmail.com")
@@ -177,7 +199,7 @@
                                    (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))
                           (make-mu4e-context
                            :name "UMassCS"
-                           :match-func (lambda (msg) (when msg (mu4e-message-maildir-matches msg "^/UMassCS")))
+                           :match-func (lambda (msg) (when msg (rogue-mu4e-message-maildir-matches msg "^/UMassCS")))
                            :vars `((user-mail-address . ,(authinfo-get-value "mailsrv.cs.umass.edu" "993" "email"))
                                    (smtpmail-default-smtp-server . "mailsrv.cs.umass.edu")
                                    (smtpmail-smtp-server . "mailsrv.cs.umass.edu")
@@ -191,7 +213,7 @@
                                    (mu4e-refile-folder . "/UMassCS/Archive")))
                           (make-mu4e-context
                            :name "UMass"
-                           :match-func (lambda (msg) (when msg (mu4e-message-maildir-matches msg "^/UMass")))
+                           :match-func (lambda (msg) (when msg (rogue-mu4e-message-maildir-matches msg "^/UMass")))
                            :vars `((user-mail-address . ,(authinfo-get-value "mail-a.oit.umass.edu" "993" "email"))
                                    (smtpmail-default-smtp-server . "mail-auth.oit.umass.edu")
                                    (smtpmail-smtp-server . "mail-auth.oit.umass.edu")
@@ -205,7 +227,7 @@
                                    (mu4e-refile-folder . "/UMass/INBOX.Archive")))
                           (make-mu4e-context
                            :name "Fastmail"
-                           :match-func (lambda (msg) (when msg (mu4e-message-maildir-matches msg "^/Fastmail")))
+                           :match-func (lambda (msg) (when msg (rogue-mu4e-message-maildir-matches msg "^/Fastmail")))
                            :vars `((user-mail-address . ,(authinfo-get-value "imap.fastmail.com" "993" "email"))
                                    (smtpmail-default-smtp-server . "smtp.fastmail.com")
                                    (smtpmail-smtp-server . "smtp.fastmail.com")
