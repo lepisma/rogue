@@ -18,6 +18,7 @@
     hackernews
     helm-bm
     indium
+    magithub
     multiple-cursors
     nov
     ob-async
@@ -151,6 +152,11 @@
 (defun rogue/init-indium ()
   (use-package indium
     :defer t))
+
+(defun rogue/init-magithub ()
+  (use-package magithub
+    :after magit
+    :config (magithub-feature-autoinject t)))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
