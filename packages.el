@@ -14,10 +14,8 @@
     (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
     enlive
     (esi :location (recipe :fetcher github :repo "lepisma/esi"))
-    flycheck-mypy
     hackernews
     helm-bm
-    indium
     magithub
     multiple-cursors
     nov
@@ -37,8 +35,7 @@
     (viz :location local)
     vue-mode
     writegood-mode
-    writeroom-mode
-    wttrin))
+    writeroom-mode))
 
 ;; Initialize packages
 (defun rogue/init-all-the-icons ()
@@ -138,9 +135,6 @@
     (setq esi-music-directory (file-name-as-directory "~/Desktop"))
     (esi-start)))
 
-(defun rogue/init-flycheck-mypy ()
-  (use-package flycheck-mypy))
-
 (defun rogue/init-hackernews ()
   (use-package hackernews
     :bind ("C-c h" . hackernews)))
@@ -148,10 +142,6 @@
 (defun rogue/init-helm-bm ()
   (use-package helm-bm
     :after bm
-    :defer t))
-
-(defun rogue/init-indium ()
-  (use-package indium
     :defer t))
 
 (defun rogue/init-magithub ()
@@ -195,9 +185,7 @@
     (load-file (concat user-secrets-dir "gcal.el"))
     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync)))
     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
-    (add-hook 'cfw:calendar-mode-hook (lambda () (org-gcal-sync)))
-    ;; (run-at-time "30 min" 1800 'org-gcal-refresh-token)
-    ))
+    (add-hook 'cfw:calendar-mode-hook (lambda () (org-gcal-sync)))))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
@@ -316,9 +304,3 @@
                                              (normal-mode)
                                              (variable-pitch-mode)
                                              (variable-pitch-mode))))))))))
-
-(defun rogue/init-wttrin ()
-  (use-package wttrin
-    :defer t
-    :config
-    (setq wttrin-default-cities '("Amherst?m" "Varanasi?m"))))
