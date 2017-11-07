@@ -75,6 +75,12 @@ like:
   (default
     (:background ,bg-dark)
     (:background ,bg-white))
+  (cursor
+   (:background ,keyword)
+   nil)
+  (which-key-key-face
+   (:foreground ,string)
+   nil)
   (solaire-default-face
    (:background ,bg-light)
    nil)
@@ -488,6 +494,24 @@ like:
    (:background ,dark-cyan
                 :foreground ,fg-white)
    nil)
+  (minibuffer-prompt
+   (:foreground ,keyword)
+   nil)
+  (swiper-line-face
+   (:background ,function-name)
+   nil)
+  (swiper-match-face-2
+   (:background ,variable-name)
+   nil)
+  (helm-M-x-key
+   (:foreground ,builtin)
+   nil)
+  (helm-ff-directory
+   (:foreground ,builtin)
+   nil)
+  (helm-ff-symlink
+   (:foreground ,slate)
+   nil)
   (helm-selection
    (:background ,region)
    nil)
@@ -620,9 +644,6 @@ like:
    (:background nil
                 :foreground ,doc
                 :slant italic))
-  (helm-ff-symlink
-   (:foreground ,slate)
-   nil)
   (region
    (:background ,region)
    nil)
