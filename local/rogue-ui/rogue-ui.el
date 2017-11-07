@@ -1,15 +1,15 @@
-;;; rogue-utils.el --- Utility functions for rogue
+;;; rogue-ui.el --- Ui setup for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-utils
+;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-ui
 
 ;;; Commentary:
 
-;; Personal config package with utilities
+;; Personal config package for setting up ui
 ;; This file is not a part of GNU Emacs.
 
 ;;; License:
@@ -29,12 +29,8 @@
 
 ;;; Code:
 
-;;;###autoload
-(defun rogue-utils-add-hooks (hooks fun)
-  "Add FUN to all the HOOKS."
-  (dolist (hook hooks)
-    (add-hook hook fun)))
+(defun rogue-ui-setup-spacing ())
 
-(provide 'rogue-utils)
+(provide 'rogue-ui)
 
-;;; rogue-utils.el ends here
+;;; rogue-ui.el ends here

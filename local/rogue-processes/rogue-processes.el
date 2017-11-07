@@ -1,15 +1,15 @@
-;;; rogue-utils.el --- Utility functions for rogue
+;;; rogue-processes.el --- Process management for rogue
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-utils
+;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-processes
 
 ;;; Commentary:
 
-;; Personal config package with utilities
+;; Personal config package for working with processes
 ;; This file is not a part of GNU Emacs.
 
 ;;; License:
@@ -29,12 +29,8 @@
 
 ;;; Code:
 
-;;;###autoload
-(defun rogue-utils-add-hooks (hooks fun)
-  "Add FUN to all the HOOKS."
-  (dolist (hook hooks)
-    (add-hook hook fun)))
+(require 'prodigy)
 
-(provide 'rogue-utils)
+(provide 'rogue-processes)
 
-;;; rogue-utils.el ends here
+;;; rogue-processes.el ends here

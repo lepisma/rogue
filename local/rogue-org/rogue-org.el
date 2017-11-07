@@ -1,15 +1,16 @@
-;;; rogue-utils.el --- Utility functions for rogue
+;;; rogue-org --- Org mode settings for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-utils
+;; Keywords: org, rogue
+;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-org
 
 ;;; Commentary:
 
-;; Personal config package with utilities
+;; Personal config package for setting up org mode
 ;; This file is not a part of GNU Emacs.
 
 ;;; License:
@@ -29,12 +30,8 @@
 
 ;;; Code:
 
-;;;###autoload
-(defun rogue-utils-add-hooks (hooks fun)
-  "Add FUN to all the HOOKS."
-  (dolist (hook hooks)
-    (add-hook hook fun)))
+(require 'org)
 
-(provide 'rogue-utils)
+(provide 'rogue-org)
 
-;;; rogue-utils.el ends here
+;;; rogue-org.el ends here

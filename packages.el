@@ -30,6 +30,9 @@
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
     (rogue-ligatures :location local)
     (rogue-mu4e :location local)
+    (rogue-org :location local)
+    (rogue-processes :location local)
+    (rogue-ui :location local)
     (rogue-utils :location local)
     shell-switcher
     snakemake-mode
@@ -254,6 +257,14 @@
     :after (authinfo mu4e)
     :demand t))
 
+(defun rogue/init-rogue-org ()
+  (use-package rogue-org :demand t))
+
+(defun rogue/init-rogue-processes ()
+  (use-package rogue-processes :demand t))
+
+(defun rogue/init-rogue-ui ()
+  (use-package rogue-ui :demand t))
 
 (defun rogue/init-rogue-utils ()
   (use-package rogue-utils))
