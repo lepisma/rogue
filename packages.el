@@ -28,6 +28,7 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+    (rogue-ligatures :location local)
     (rogue-mu4e :location local)
     shell-switcher
     snakemake-mode
@@ -237,6 +238,14 @@
           (list (lambda ()
                   (let ((splits (s-split "-" (shell-command-to-string "bbq :current"))))
                     (list (s-collapse-whitespace (s-join " " (butlast splits))) (s-collapse-whitespace (car (last splits))))))))))
+
+(defun rogue/init-rogue-ligatures ()
+  (use-package rogue-ligatures
+    :after rogue-utils
+    :config
+    (rogue-ligatures-setup-general)
+    (rogue-ligatures-setup-python)
+    (rogue-ligatures-setup-ess)))
 
 (defun rogue/init-rogue-mu4e ()
   (use-package rogue-mu4e
