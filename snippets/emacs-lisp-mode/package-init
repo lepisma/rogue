@@ -6,7 +6,7 @@
 
 ;; Copyright (c) `(format-time-string "%Y")` Abhinav Tushar
 
-;; Author: Abhinav Tushar <lepisma@gmail.com>
+;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
 ;; Keywords: $3
