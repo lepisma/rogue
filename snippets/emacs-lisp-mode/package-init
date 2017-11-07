@@ -2,7 +2,7 @@
 # name : package-init
 # key : init
 # --
-;;; $1 --- $2
+;;; ${1:`(file-name-nondirectory (buffer-file-name))`} --- $2
 
 ;; Copyright (c) `(format-time-string "%Y")` Abhinav Tushar
 
@@ -38,4 +38,4 @@ $0
 
 (provide '${1:$(string-remove-suffix ".el" yas-text)})
 
-;;; `(file-name-nondirectory (buffer-file-name))` ends here
+;;; $1 ends here
