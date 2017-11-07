@@ -34,6 +34,7 @@
     solaire-mode
     (spaceline-all-the-icons :location local)
     swiper
+    (viz :location local)
     vue-mode
     writegood-mode
     writeroom-mode
@@ -274,6 +275,10 @@
   (use-package swiper
     :bind (("C-s" . swiper)
            ("C-r" . swiper))))
+
+(defun rogue/init-viz ()
+  (use-package viz
+    :defer t))
 
 (defun rogue/init-vue-mode ()
   (use-package vue-mode

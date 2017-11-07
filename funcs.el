@@ -212,31 +212,6 @@ With argument, do this that many times."
   (mml-secure-sign)
   (message-send-and-exit))
 
-(defun unhighlight-csv ()
-  "Unhighlight all from the csv. Simple wrapper."
-  (interactive)
-  (unhighlight-regexp t))
-
-(defun get-csv-row-best (line &optional best-func)
-  "Return best value from the csv row. BEST-FUNC finds the best from a list of numbers. Defaults to
-min."
-  (let* ((tokens (s-split "," (s-collapse-whitespace line)))
-         (items (mapcar #'string-to-number (cl-remove-if (lambda (x) (= 0 (string-to-number x))) tokens))))
-    (if items
-        (number-to-string (apply (or best-func #'min) items))
-      nil)))
-
-(defun highlight-csv-row-best (&optional best-func highlight-face)
-  "Highlight best row in the csv. BEST-FUNC finds the best from a list of numbers. HIGHLIGHT-FACE
-defines the face to use for highlighting."
-  (interactive)
-  (unhighlight-csv)
-  (let ((lines (s-split "\n" (buffer-string))))
-    (mapc (lambda (line)
-            (let ((best-val (get-csv-row-best line best-func)))
-              (if best-val
-                  (highlight-regexp best-val (or highlight-face 'hi-yellow))))) lines)))
-
 (defun color-buffer-text (text color)
   "Color the text in current buffer."
   (goto-char (point-min))
@@ -248,15 +223,6 @@ defines the face to use for highlighting."
   "Get a list of all numbers in current buffer."
   (let ((text (s-collapse-whitespace (substring-no-properties (buffer-string)))))
     (cl-remove-if #'zerop (mapcar #'string-to-number (s-split "," (s-replace " " "," text))))))
-
-(defun highlight-csv-heat-map (&optional cmap)
-  (interactive)
-  (unhighlight-csv)
-  (let* ((nums (get-buffer-numbers))
-         (nums-min (float (apply #'min nums)))
-         (nums-max (float (apply #'max nums))))
-    (mapc (lambda (n) (let ((value (/ (- n nums-min) (- nums-max nums-min))))
-                   (color-buffer-text (number-to-string n) (colormaps-get-color value cmap)))) nums)))
 
 (defun prodigy-define-basic (name &optional args)
   (prodigy-define-service
