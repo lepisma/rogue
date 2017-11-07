@@ -33,6 +33,18 @@
 (require 'cl-lib)
 (require 'colormaps)
 
+(defun viz-color-buffer-text (text color)
+  "Color the text in current buffer."
+  (goto-char (point-min))
+  (while (search-forward text nil t)
+    (put-text-property (- (point) (length text)) (point)
+                       'font-lock-face `(:background ,color))))
+
+(defun viz-get-buffer-numbers ()
+  "Get a list of all numbers in current buffer."
+  (let ((text (s-collapse-whitespace (substring-no-properties (buffer-string)))))
+    (cl-remove-if #'zerop (mapcar #'string-to-number (s-split "," (s-replace " " "," text))))))
+
 (defun viz--get-csv-row-best (line &optional best-func)
   "Return best value from the csv row. BEST-FUNC finds the best from a list of numbers. Defaults to
 min."
@@ -64,11 +76,11 @@ defines the face to use for highlighting."
 (defun viz-csv-heat-map (&optional cmap)
   (interactive)
   (viz-unhighlight-csv)
-  (let* ((nums (get-buffer-numbers))
+  (let* ((nums (viz-get-buffer-numbers))
          (nums-min (float (apply #'min nums)))
          (nums-max (float (apply #'max nums))))
     (mapc (lambda (n) (let ((value (/ (- n nums-min) (- nums-max nums-min))))
-                   (color-buffer-text (number-to-string n) (colormaps-get-color value cmap)))) nums)))
+                   (viz-color-buffer-text (number-to-string n) (colormaps-get-color value cmap)))) nums)))
 
 (provide 'viz)
 ;;; viz.el ends here

@@ -212,18 +212,6 @@ With argument, do this that many times."
   (mml-secure-sign)
   (message-send-and-exit))
 
-(defun color-buffer-text (text color)
-  "Color the text in current buffer."
-  (goto-char (point-min))
-  (while (search-forward text nil t)
-    (put-text-property (- (point) (length text)) (point)
-                       'font-lock-face `(:background ,color))))
-
-(defun get-buffer-numbers ()
-  "Get a list of all numbers in current buffer."
-  (let ((text (s-collapse-whitespace (substring-no-properties (buffer-string)))))
-    (cl-remove-if #'zerop (mapcar #'string-to-number (s-split "," (s-replace " " "," text))))))
-
 (defun prodigy-define-basic (name &optional args)
   (prodigy-define-service
     :name name
