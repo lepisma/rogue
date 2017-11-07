@@ -704,7 +704,7 @@ you should place you code here."
                  (mapc #'git-update-project
                        (mapcar (lambda (pn) (concat user-project-dir pn))
                                '("reading-list"
-                                 "kindle-highlights"
+                                 "clippings"
                                  "til-emacs"
                                  "dev")))))
 
