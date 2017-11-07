@@ -1,11 +1,10 @@
-;;; authinfo --- Functions to read from ~/.authinfo.gpg
+;;; authinfo.el --- Functions to read from ~/.authinfo.gpg
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; Keywords: authinfo, rogue
 ;; URL: https://github.com/lepisma/rogue/tree/master/local/authinfo
 
 ;;; Commentary:
@@ -30,7 +29,7 @@
 
 ;;; Code:
 
-(require 'cl)
+(require 'cl-lib)
 (require 'dash-functional)
 (require 's)
 

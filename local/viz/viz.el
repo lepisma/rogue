@@ -1,11 +1,10 @@
-;;; viz.el --- Some visualization functions for Emacs
+;;; viz.el --- Some color based visualization functions
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25") (colormaps "0.1.2"))
-;; Keywords: tools
 ;; URL: https://github.com/lepisma/rogue/tree/master/local/viz
 
 ;;; Commentary:

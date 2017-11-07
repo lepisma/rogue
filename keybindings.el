@@ -12,9 +12,6 @@
 ;; Speak unread emails
 (global-set-key (kbd "C-c m") 'quack-unread-mail)
 
-;; Weather
-(global-set-key (kbd "C-c w") 'weather-amherst)
-
 ;; Avy
 (global-set-key (kbd "C-'") 'avy-goto-char)
 

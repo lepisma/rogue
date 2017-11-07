@@ -7,32 +7,7 @@
 (defvar rogue-current-theme rogue-dark-theme
   "Currently active color scheme")
 
-(defmacro set-pair-faces (themes consts faces-alist)
-  "Macro for pair setting of custom faces.
-THEMES name the pair (theme-one theme-two). CONSTS sets the variables like
-  ((sans-font \"Some Sans Font\") ...). FACES-ALIST has the actual faces
-like:
-  ((face1 theme-one-attr theme-two-atrr)
-   (face2 theme-one-attr nil           )
-   (face3 nil            theme-two-attr)
-   ...)"
-  (defmacro get-proper-faces ()
-    `(let* (,@consts)
-       (backquote ,faces-alist)))
-
-  `(setq theming-modifications
-         ',(mapcar (lambda (theme)
-                     `(,theme ,@(cl-remove-if
-                                 (lambda (x) (equal x "NA"))
-                                 (mapcar (lambda (face)
-                                           (let ((face-name (car face))
-                                                 (face-attrs (nth (cl-position theme themes) (cdr face))))
-                                             (if face-attrs
-                                                 `(,face-name ,@face-attrs)
-                                               "NA"))) (get-proper-faces)))))
-                   themes)))
-
-(set-pair-faces
+(rogue-utils-set-pair-faces
  ;; Themes to cycle in
  (doom-molokai spacemacs-light)
 

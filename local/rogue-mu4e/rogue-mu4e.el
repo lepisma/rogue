@@ -1,11 +1,10 @@
-;;; rogue-mu4e --- mu4e config for rogue layer
+;;; rogue-mu4e.el --- mu4e config for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; Keywords: mu4e, rogue, config
 ;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-mu4e
 
 ;;; Commentary:
