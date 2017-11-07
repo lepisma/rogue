@@ -35,6 +35,7 @@
 (require 'message)
 (require 'mu4e)
 (require 'authinfo)
+(require 's)
 
 (defun rogue-mu4e-unread-bm-query ()
   "Return query string for unread bookmark"
@@ -47,7 +48,8 @@
 (defun rogue-mu4e-get-unread-mails ()
   "Return unread emails"
   (let ((cmd-out (shell-command-to-string (concat "mu find --format=sexp " (rogue-mu4e-unread-bm-query)))))
-    (nreverse (car (read-from-string (concat "(" cmd-out ")"))))))
+    (if (s-starts-with-p "mu: no matches for" cmd-out) nil
+      (nreverse (car (read-from-string (concat "(" cmd-out ")")))))))
 
 (defun rogue-mu4e-sign-and-send ()
   "Sign and send message"
