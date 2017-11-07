@@ -37,6 +37,7 @@
     swiper
     (viz :location local)
     vue-mode
+    (weather-amherst :location local)
     writegood-mode))
 
 ;; Initialize packages
@@ -294,3 +295,7 @@
 (defun rogue/init-writegood-mode ()
   (use-package writegood-mode
     :defer t))
+
+(defun rogue/init-weather-amherst ()
+  (use-package weather-amherst
+    :bind (("C-c w" . weather-amherst))))
