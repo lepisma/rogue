@@ -870,12 +870,6 @@ you should place you code here."
 
   (add-hook 'mu4e-compose-mode-hook (lambda () (flyspell-mode)))
 
-  (defun get-authinfo-value (machine port key)
-    (let ((entries (mapcar (lambda (line) (s-split " " line))
-                           (s-split "\n" (s-trim (shell-command-to-string "gpg --use-agent --quiet --batch -d /home/lepisma/.authinfo.gpg"))))))
-      (lax-plist-get (car (cl-remove-if (lambda (entry) (not (and (string-equal (lax-plist-get entry "machine") machine) (string-equal (lax-plist-get entry "port") port)))) entries))
-                     key)))
-
   (setq mu4e-bookmarks (list (make-mu4e-bookmark
                               :name "Unified Inbox"
                               :query (concat "maildir:/Gmail/INBOX OR "
@@ -901,12 +895,12 @@ you should place you code here."
                              :name "Gmail"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/Gmail")))
-                             :vars `((user-mail-address . ,(get-authinfo-value "imap.gmail.com" "993" "email"))
+                             :vars `((user-mail-address . ,(authinfo-get-value "imap.gmail.com" "993" "email"))
                                      (smtpmail-default-smtp-server . "smtp.gmail.com")
                                      (smtpmail-smtp-server . "smtp.gmail.com")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(get-authinfo-value "smtp.gmail.com" "465" "login"))
+                                     (smtpmail-smtp-user . ,(authinfo-get-value "smtp.gmail.com" "465" "login"))
                                      ;; Gmail handles sent mails automatically
                                      (mu4e-sent-messages-behavior . delete)
                                      (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
@@ -916,12 +910,12 @@ you should place you code here."
                              :name "UMassCS"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/UMassCS")))
-                             :vars `((user-mail-address . ,(get-authinfo-value "mailsrv.cs.umass.edu" "993" "email"))
+                             :vars `((user-mail-address . ,(authinfo-get-value "mailsrv.cs.umass.edu" "993" "email"))
                                      (smtpmail-default-smtp-server . "mailsrv.cs.umass.edu")
                                      (smtpmail-smtp-server . "mailsrv.cs.umass.edu")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(get-authinfo-value "mailsrv.cs.umass.edu" "465" "login"))
+                                     (smtpmail-smtp-user . ,(authinfo-get-value "mailsrv.cs.umass.edu" "465" "login"))
                                      (mu4e-sent-messages-behavior . sent)
                                      (mu4e-sent-folder . "/UMassCS/Sent")
                                      (mu4e-drafts-folder . "/UMassCS/Drafts")
@@ -931,12 +925,12 @@ you should place you code here."
                              :name "UMass"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/UMass")))
-                             :vars `((user-mail-address . ,(get-authinfo-value "mail-a.oit.umass.edu" "993" "email"))
+                             :vars `((user-mail-address . ,(authinfo-get-value "mail-a.oit.umass.edu" "993" "email"))
                                      (smtpmail-default-smtp-server . "mail-auth.oit.umass.edu")
                                      (smtpmail-smtp-server . "mail-auth.oit.umass.edu")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(get-authinfo-value "mail-auth.oit.umass.edu" "465" "login"))
+                                     (smtpmail-smtp-user . ,(authinfo-get-value "mail-auth.oit.umass.edu" "465" "login"))
                                      (mu4e-sent-messages-behavior . sent)
                                      (mu4e-sent-folder . "/UMass/INBOX.Sent")
                                      (mu4e-drafts-folder . "/UMass/INBOX.Drafts")
@@ -946,12 +940,12 @@ you should place you code here."
                              :name "Fastmail"
                              :match-func (lambda (msg) (when msg
                                                     (mu4e-message-maildir-matches msg "^/Fastmail")))
-                             :vars `((user-mail-address . ,(get-authinfo-value "imap.fastmail.com" "993" "email"))
+                             :vars `((user-mail-address . ,(authinfo-get-value "imap.fastmail.com" "993" "email"))
                                      (smtpmail-default-smtp-server . "smtp.fastmail.com")
                                      (smtpmail-smtp-server . "smtp.fastmail.com")
                                      (smtpmail-smtp-service . 465)
                                      (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(get-authinfo-value "smtp.fastmail.com" "465" "login"))
+                                     (smtpmail-smtp-user . ,(authinfo-get-value "smtp.fastmail.com" "465" "login"))
                                      (mu4e-sent-messages-behavior . sent)
                                      (mu4e-sent-folder . "/Fastmail/Sent")
                                      (mu4e-drafts-folder . "/Fastmail/Drafts")

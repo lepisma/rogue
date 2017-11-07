@@ -9,6 +9,7 @@
     calfw
     calfw-org
     colormaps
+    dash-functional
     dired-subtree
     doom-themes
     (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
@@ -102,6 +103,9 @@
 (defun rogue/init-colormaps ()
   (use-package colormaps
     :defer t))
+
+(defun rogue/init-dash-functional ()
+  (use-package dash-functional))
 
 (defun rogue/init-dired-subtree ()
   (use-package dired-subtree :ensure t
