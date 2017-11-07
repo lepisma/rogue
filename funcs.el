@@ -14,54 +14,6 @@
         :buffer "*helm tofish jump*"
         :prompt "Jump to : "))
 
-(defun transform-pair-units (pairs)
-  "Transform unit pairs to SI. Just temp for now."
-  (mapcar
-   (lambda (pair)
-     (let* ((split (split-string (second pair) "°"))
-            (value (string-to-number (first split)))
-            (unit (second split)))
-       (if (string-equal unit "F")
-           `(,(first pair)
-             ,(concat (format "%0.2f" (/ (- value 32) 1.8)) "°C"))
-         pair))) pairs))
-
-(defun show-weather-in-buffer (pairs location)
-  "Display weather data in a new buffer"
-  (let ((buffer (get-buffer-create "*Weather*")))
-    (set-buffer buffer)
-    (setq buffer-read-only nil)
-    (erase-buffer)
-    (org-mode)
-    (insert "#+TITLE: ")
-    (insert location)
-    (insert "\n\n")
-    (mapc (lambda (pair) (insert (concat "+ " (first pair) " :: " (second pair) "\n")))
-          (transform-pair-units (butlast pairs)))
-    (switch-to-buffer buffer)
-    (setq buffer-read-only t)
-    (goto-char (point-min))))
-
-(defun weather-amherst ()
-  "Get local weather information for Amherst from CS station"
-  (interactive)
-  (let* ((rss-url "http://weather.cs.umass.edu/RSS/weewx_rss.xml")
-         (location "Amherst, MA (USA)")
-         (node (first (enlive-get-elements-by-tag-name
-                       (enlive-fetch rss-url) 'encoded)))
-         (items (split-string (enlive-text node) "\n" t)))
-    (show-weather-in-buffer
-     (mapcar (lambda (item)
-               (mapcar 'string-trim (split-string item ": "))) items) location)
-    (weather-amherst-mode)))
-
-(defvar weather-amherst-mode-map (make-sparse-keymap))
-(define-key weather-amherst-mode-map (kbd "q") 'kill-this-buffer)
-
-(define-minor-mode weather-amherst-mode
-  "Minor mode for adding keybindings"
-  nil nil weather-amherst-mode-map)
-
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
 With argument, do this that many times."
