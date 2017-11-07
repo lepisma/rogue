@@ -57,7 +57,6 @@ values."
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
              elfeed-enable-web-interface t)
-     emoji
      git
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
