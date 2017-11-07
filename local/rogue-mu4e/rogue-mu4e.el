@@ -78,9 +78,6 @@
       mu4e-attachment-dir "~/Downloads/"
       mu4e-view-show-images t)
 
-(when (fboundp 'imagemagick-register-types)
-  (imagemagick-register-types))
-
 (setq mu4e-use-fancy-chars t
       mu4e-headers-draft-mark          '("D"  . " ")
       mu4e-headers-flagged-mark        '("F"  . " ")
@@ -160,8 +157,6 @@
                    :prompt "*something"
                    :action (mu4e-error "No action for deferred mark"))))
 
-(add-hook 'mu4e-compose-mode-hook (lambda () (flyspell-mode)))
-
 (setq mu4e-bookmarks (list (make-mu4e-bookmark
                             :name "Unified Inbox"
                             :query (concat "maildir:/Gmail/INBOX OR "
@@ -239,6 +234,11 @@
                                    (mu4e-drafts-folder . "/Fastmail/Drafts")
                                    (mu4e-trash-folder . "/Fastmail/Trash")
                                    (mu4e-refile-folder . "/Fastmail/Archive")))))
+
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+
+(add-hook 'mu4e-compose-mode-hook (lambda () (flyspell-mode)))
 
 (provide 'rogue-mu4e)
 
