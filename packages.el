@@ -2,6 +2,7 @@
 
 (defconst rogue-packages
   '(all-the-icons
+    (authinfo :location local)
     beacon
     bm
     browse-at-remote
@@ -9,7 +10,6 @@
     calfw
     calfw-org
     colormaps
-    dash-functional
     dired-subtree
     doom-themes
     (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
@@ -28,6 +28,7 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+    (rogue-mu4e :location local)
     shell-switcher
     snakemake-mode
     solaire-mode
@@ -41,6 +42,10 @@
 ;; Initialize packages
 (defun rogue/init-all-the-icons ()
   (use-package all-the-icons))
+
+(defun rogue/init-authinfo ()
+  (use-package authinfo
+    :after (s dash-functional)))
 
 (defun rogue/init-beacon ()
   :config
@@ -103,9 +108,6 @@
 (defun rogue/init-colormaps ()
   (use-package colormaps
     :defer t))
-
-(defun rogue/init-dash-functional ()
-  (use-package dash-functional))
 
 (defun rogue/init-dired-subtree ()
   (use-package dired-subtree :ensure t
@@ -236,6 +238,11 @@
           (list (lambda ()
                   (let ((splits (s-split "-" (shell-command-to-string "bbq :current"))))
                     (list (s-collapse-whitespace (s-join " " (butlast splits))) (s-collapse-whitespace (car (last splits))))))))))
+
+(defun rogue/init-rogue-mu4e ()
+  (use-package rogue-mu4e
+    :after (authinfo mu4e)
+    :demand t))
 
 (defun rogue/init-shell-switcher ()
   (use-package shell-switcher

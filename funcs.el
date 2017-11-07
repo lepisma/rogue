@@ -235,21 +235,3 @@ With argument, do this that many times."
   (with-current-buffer "clock.org"
     (org-clock-out)
     (org-save-all-org-buffers)))
-
-(defun authinfo-get-entries ()
-  "Return entries from authinfo"
-  (let* ((cmd-out (s-trim (shell-command-to-string "gpg --use-agent --quiet --batch -d ~/.authinfo.gpg")))
-         (lines (cl-remove-if (-cut s-starts-with-p "#" <>) (s-split "\n" cmd-out))))
-    (mapcar (-cut s-split " " <>) lines)))
-
-(defun authinfo-get-match (machine port)
-  "Return matching entry for given machine and port"
-  (let ((entries (authinfo-get-entries)))
-    (car (cl-remove-if
-          (lambda (entry)
-            (not (and (string-equal (lax-plist-get entry "machine") machine)
-                      (string-equal (lax-plist-get entry "port") port))))
-          entries))))
-
-(defun authinfo-get-value (machine port key)
-  (lax-plist-get (authinfo-get-match machine port) key))
