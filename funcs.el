@@ -53,16 +53,6 @@ With argument, do this that many times."
   (org-sort-entries nil ?f (lambda () (random 1000)))
   (save-buffer))
 
-(defun git-update-project (project-root)
-  "Add all, commit and push given project."
-  (let ((default-directory project-root))
-    ;; Blocking add
-    (shell-command-to-string "git add .")
-    ;; Using this to avoid gpg tty issue + to use settings from emacs
-    (ignore-errors
-      (magit-commit '("-m" "git-auto-update")))
-    (call-process-shell-command "git push" nil 0)))
-
 (defun reset-org-buffers ()
   "Reset org-mode in all org buffers"
   (mapc (lambda (buff)
@@ -119,14 +109,6 @@ With argument, do this that many times."
                                ((= (length subjects) 1) "1 unread email")
                                (t (format "%s unread emails" (length subjects))))
                          (s-join ". " subjects)))))
-
-(defun prodigy-define-basic (name &optional args)
-  (prodigy-define-service
-    :name name
-    :command name
-    :args args
-    :stop-signal 'sigkill
-    :kill-process-buffer-on-stop t))
 
 (defun org-clock-in-default ()
   "Default clock in clock.org"

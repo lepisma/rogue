@@ -30,6 +30,47 @@
 ;;; Code:
 
 (require 'prodigy)
+(require 'dash)
+(require 'dash-functional)
+
+(defcustom rogue-processes-git-update-dirs '()
+  "git directories to autoupdate.")
+
+;;;###autoload
+(defun rogue-processes-define (name &optional args)
+  "Define a basic prodigy service."
+  (prodigy-define-service
+    :name name
+    :command name
+    :args args
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t))
+
+;;;###autoload
+(defun rogue-processes-start-service (name)
+  "Start a service by name."
+  (let ((service (-first (lambda (s) (string-equal name (lax-plist-get s :name))) prodigy-services)))
+    (if service
+        (prodigy-start-service service)
+      (message "No service found"))))
+
+(defun rogue-processes-git-autoupdate (project-dir)
+  "Add all, commit and push given projects."
+  (let ((default-directory project-dir))
+    ;; Blocking add
+    (shell-command-to-string "git add .")
+    ;; Using this to avoid gpg tty issue + to use settings from emacs
+    (ignore-errors
+      (magit-commit '("-m" "git-auto-update")))
+    (call-process-shell-command "git push" nil 0)))
+
+;;;###autoload
+(defun rogue-processes-run-git-autoupdate-loop (itime gtime)
+  (run-at-time
+   itime gtime
+   (lambda ()
+     (dolist (project-dir rogue-processes-git-update-dirs)
+       (rogue-processes-git-autoupdate project-dir)))))
 
 (provide 'rogue-processes)
 

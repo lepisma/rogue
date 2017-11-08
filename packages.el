@@ -261,7 +261,18 @@
   (use-package rogue-org :demand t))
 
 (defun rogue/init-rogue-processes ()
-  (use-package rogue-processes :demand t))
+  (use-package rogue-processes
+    :after rogue-utils
+    :config
+    (rogue-processes-define "offlineimap" "-o")
+    (rogue-processes-define "mpm-play")
+    (rogue-processes-start-service "mpm-play")
+    (setq rogue-processes-git-update-dirs
+          (rogue-utils-get-project-dirs '("reading-list"
+                                          "clippings"
+                                          "til-emacs"
+                                          "dev")))
+    (rogue-processes-run-git-autoupdate-loop "10 min" 3600)))
 
 (defun rogue/init-rogue-ui ()
   (use-package rogue-ui :demand t))

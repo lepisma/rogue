@@ -29,11 +29,19 @@
 
 ;;; Code:
 
+(require 'dash-functional)
+
 ;;;###autoload
 (defun rogue-utils-add-hooks (hooks fun)
   "Add FUN to all the HOOKS."
   (dolist (hook hooks)
     (add-hook hook fun)))
+
+;;;###autoload
+(defun rogue-utils-get-project-dirs (names)
+  "Return full paths to given project NAMES. Relies on a variable
+user-project-dir."
+  (mapcar (-cut concat user-project-dir <>) names))
 
 (provide 'rogue-utils)
 
