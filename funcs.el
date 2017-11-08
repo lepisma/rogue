@@ -46,21 +46,6 @@ With argument, do this that many times."
   (interactive)
   (shell-command (format "insect \"%s\"" (read-string "insect: "))))
 
-(defun org-shuffle-save ()
-  "Shuffle and save current file"
-  (interactive)
-  (goto-char (point-min))
-  (org-sort-entries nil ?f (lambda () (random 1000)))
-  (save-buffer))
-
-(defun reset-org-buffers ()
-  "Reset org-mode in all org buffers"
-  (mapc (lambda (buff)
-          (with-current-buffer buff
-            (if (string-equal "org-mode" major-mode)
-                (org-mode))))
-        (buffer-list)))
-
 (defun rogue-cycle-theme ()
   "Cycle between dark and light scheme"
   (interactive)
@@ -80,7 +65,7 @@ With argument, do this that many times."
   (disable-theme rogue-dark-theme)
   (spacemacs/load-theme rogue-light-theme)
   (setq org-bullets-bullet-list '(" "))
-  (reset-org-buffers)
+  (rogue-org-reset-buffers)
   (beacon-mode -1))
 
 (defun rogue-dark ()
@@ -91,7 +76,7 @@ With argument, do this that many times."
   (disable-theme rogue-light-theme)
   (spacemacs/load-theme rogue-dark-theme)
   (setq org-bullets-bullet-list '("#"))
-  (reset-org-buffers)
+  (rogue-org-reset-buffers)
   (beacon-mode +1))
 
 (defun quack-quack (text)
@@ -109,19 +94,3 @@ With argument, do this that many times."
                                ((= (length subjects) 1) "1 unread email")
                                (t (format "%s unread emails" (length subjects))))
                          (s-join ". " subjects)))))
-
-(defun org-clock-in-default ()
-  "Default clock in clock.org"
-  (interactive)
-  (with-current-buffer "clock.org"
-    (goto-char (point-min))
-    (org-next-visible-heading 1)
-    (org-clock-in)
-    (org-save-all-org-buffers)))
-
-(defun org-clock-out-default ()
-  "Default clock in clock.org"
-  (interactive)
-  (with-current-buffer "clock.org"
-    (org-clock-out)
-    (org-save-all-org-buffers)))

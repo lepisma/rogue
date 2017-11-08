@@ -242,7 +242,8 @@
     (setq read-lyrics-getters
           (list (lambda ()
                   (let ((splits (s-split "-" (shell-command-to-string "bbq :current"))))
-                    (list (s-collapse-whitespace (s-join " " (butlast splits))) (s-collapse-whitespace (car (last splits))))))))))
+                    (list (s-collapse-whitespace (s-join " " (butlast splits)))
+                          (s-collapse-whitespace (car (last splits))))))))))
 
 (defun rogue/init-rogue-ligatures ()
   (use-package rogue-ligatures
@@ -258,7 +259,14 @@
     :demand t))
 
 (defun rogue/init-rogue-org ()
-  (use-package rogue-org :demand t))
+  (use-package rogue-org
+    :after org
+    :demand t
+    :config
+    (rogue-org-setup-general)
+    (rogue-org-setup-notes)
+    (rogue-org-setup-babel)
+    (rogue-org-setup-tex)))
 
 (defun rogue/init-rogue-processes ()
   (use-package rogue-processes
@@ -304,7 +312,8 @@
       :after spaceline)
     (use-package spaceline
       :after powerline
-      :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
+      :config
+      (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
 
 (defun rogue/init-swiper ()
   (use-package swiper
