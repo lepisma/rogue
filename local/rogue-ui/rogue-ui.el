@@ -161,7 +161,7 @@
   (advice-add 'helm-display-mode-line
               :override (lambda (source &optional force) (rogue-ui-hide-mode-line))))
 
-(defun rogue-ui-setup-all ()
+(defun rogue-ui-setup ()
   "Setup everything."
 
   (rogue-ui-setup-fringe)

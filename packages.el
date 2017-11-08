@@ -286,7 +286,7 @@
   (use-package rogue-ui
     :after rogue-utils
     :config
-    (rogue-ui-setup-all)))
+    (rogue-ui-setup)))
 
 (defun rogue/init-rogue-utils ()
   (use-package rogue-utils))
