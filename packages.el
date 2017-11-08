@@ -261,7 +261,6 @@
 (defun rogue/init-rogue-org ()
   (use-package rogue-org
     :after org
-    :demand t
     :config
     (rogue-org-setup-general)
     (rogue-org-setup-notes)
@@ -283,7 +282,10 @@
     (rogue-processes-run-git-autoupdate-loop "10 min" 3600)))
 
 (defun rogue/init-rogue-ui ()
-  (use-package rogue-ui :demand t))
+  (use-package rogue-ui
+    :after rogue-utils
+    :config
+    (rogue-ui-setup-all)))
 
 (defun rogue/init-rogue-utils ()
   (use-package rogue-utils))
