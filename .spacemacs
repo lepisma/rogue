@@ -168,8 +168,7 @@ you should place you code here."
 
   (setq user-full-name "Abhinav Tushar"
         browse-url-generic-program (executable-find (getenv "BROWSER"))
-        browse-url-browser-function 'browse-url-generic
-        rogue-current-color 'dark)
+        browse-url-browser-function 'browse-url-generic)
 
   ;; Language specific settings
   (setq-default web-mode-markup-indent-offset 2
