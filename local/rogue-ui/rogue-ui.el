@@ -158,14 +158,6 @@
 
 (defun rogue-ui-setup-minibuffer ()
   "Fix minibuffer and surrounding area."
-
-  (with-current-buffer (get-buffer " *Echo Area 0*")
-    (setq-local face-remapping-alist '((default (:height 0.9) ))))
-
-  (add-hook 'minibuffer-setup-hook
-            (lambda ()
-              (set (make-local-variable 'face-remapping-alist) '((default :height 0.9)))))
-
   (advice-add 'helm-display-mode-line
               :override (lambda (source &optional force) (rogue-ui-hide-mode-line))))
 

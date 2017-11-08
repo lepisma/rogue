@@ -166,19 +166,24 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
-  (setq rogue-current-color 'dark)
+  (setq user-full-name "Abhinav Tushar"
+        browse-url-generic-program (executable-find (getenv "BROWSER"))
+        browse-url-browser-function 'browse-url-generic
+        rogue-current-color 'dark)
 
   ;; Language specific settings
-  (setq-default web-mode-markup-indent-offset 2)
-  (setq-default web-mode-css-indent-offset 2)
-  (setq-default web-mode-code-indent-offset 2)
-  (setq-default css-indent-offset 2)
-  (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2)
-  (setq-default js2-strict-missing-semi-warning nil)
-  (setq-default js2-missing-semi-one-line-override nil)
-  (setq-default typescript-indent-level 2)
+  (setq-default web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                web-mode-code-indent-offset 2
+                css-indent-offset 2
+                js2-basic-offset 2
+                js-indent-level 2
+                js2-strict-missing-semi-warning nil
+                js2-missing-semi-one-line-override nil
+                typescript-indent-level 2)
+
   (setq inferior-lisp-program "ros -Q run")
+
   (slime-setup '(slime-asdf
                  slime-company
                  slime-fancy

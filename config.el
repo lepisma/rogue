@@ -61,9 +61,7 @@ like:
   (gray-dark          "#999")
   (gray               "#bbb")
   (sans-font          "Source Sans Pro")
-  (et-font            "EtBembo")
-  (sans-mono-font     "Souce Code Pro")
-  (serif-mono-font    "Verily Serif Mono"))
+  (et-font            "EtBembo"))
 
   ;; Settings
   ((variable-pitch
@@ -328,18 +326,19 @@ like:
    (:background ,bg-dark)
    (:background nil
                 :height 0.8
-                :family ,sans-mono-font
                 :foreground ,slate))
   (org-block-end-line
    (:background ,bg-dark)
    (:background nil
                 :height 0.8
-                :family ,sans-mono-font
                 :foreground ,slate))
   (org-document-info-keyword
    (:foreground ,comment)
    (:height 0.8
             :foreground ,gray))
+  (link
+   (:foreground ,slate)
+   nil)
   (org-link
    (:underline nil
                :weight normal
@@ -348,8 +347,7 @@ like:
   (org-special-keyword
    (:height 0.9
             :foreground ,comment)
-   (:family ,sans-mono-font
-            :height 0.8))
+   (:height 0.8))
   (org-todo
    (:foreground ,builtin
                 :background ,bg-dark)
@@ -377,8 +375,7 @@ like:
    nil)
   (org-date
    nil
-   (:family ,sans-mono-font
-            :height 0.8))
+   (:height 0.8))
   (org-agenda-structure
    (:height 1.3
             :foreground ,doc
@@ -426,13 +423,11 @@ like:
    (:foreground ,doc))
   (org-table
    (:background nil)
-   (:family ,serif-mono-font
-            :height 0.9
+   (:height 0.9
             :background ,bg-white))
   (org-code
    (:foreground ,builtin)
    (:inherit nil
-             :family ,serif-mono-font
              :foreground ,comment
              :height 0.9))
   (font-latex-sectioning-0-face
