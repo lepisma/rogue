@@ -215,7 +215,6 @@
   ;; Hooks for hidden modeline
   (rogue-utils-add-hooks '(processing-compilation-mode-hook
                            eshell-mode-hook
-                           neo-after-create-hook
                            help-mode-hook
                            compilation-mode-hook
                            messages-buffer-mode-hook
