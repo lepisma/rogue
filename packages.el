@@ -143,8 +143,7 @@
   (use-package esi
     :config
     (setq esi-bm-file user-bookmarks-file)
-    (setq esi-music-directory (file-name-as-directory "~/Desktop"))
-    (esi-start)))
+    (setq esi-music-directory (file-name-as-directory "~/Desktop"))))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
