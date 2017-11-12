@@ -4,7 +4,6 @@
   '(all-the-icons
     (authinfo :location local)
     beacon
-    bm
     browse-at-remote
     cricbuzz
     calfw
@@ -16,7 +15,6 @@
     enlive
     (esi :location (recipe :fetcher github :repo "lepisma/esi"))
     hackernews
-    helm-bm
     multiple-cursors
     nov
     ob-async
@@ -57,28 +55,6 @@
   (setq beacon-color (face-attribute 'region :background nil t)
         beacon-blink-when-buffer-changes t
         beacon-blink-when-point-moves-vertically 10))
-
-(defun rogue/init-bm ()
-  (use-package bm
-    :demand t
-    :init
-    (setq bm-restore-repository-on-load t)
-    (setq bm-repository-file "~/.emacs.d/.cache/bm-repository")
-    :config
-    (setq bm-cycle-all-buffers t)
-    (setq-default bm-buffer-persistence t)
-    (add-hook 'after-init-hook 'bm-repository-load)
-    (add-hook 'kill-buffer-hook 'bm-buffer-save)
-    (add-hook 'kill-emacs-hook (lambda ()
-                                 (bm-buffer-save-all)
-                                 (bm-repository-save)))
-    (add-hook 'after-save-hook 'bm-buffer-save)
-    (add-hook 'find-file-hook 'bm-buffer-restore)
-    (add-hook 'after-revert-hook 'bm-buffer-restore)
-    (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
-    :bind (("C-c b t" . bm-toggle)
-           ("C-c b <right>" . bm-next)
-           ("C-c b <left>" . bm-previous))))
 
 (defun rogue/init-browse-at-remote ()
   (use-package browse-at-remote
@@ -147,11 +123,6 @@
 (defun rogue/init-hackernews ()
   (use-package hackernews
     :bind ("C-c h" . hackernews)))
-
-(defun rogue/init-helm-bm ()
-  (use-package helm-bm
-    :after bm
-    :defer t))
 
 
 (defun rogue/init-multiple-cursors ()
