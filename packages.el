@@ -15,6 +15,7 @@
     enlive
     (esi :location (recipe :fetcher github :repo "lepisma/esi"))
     hackernews
+    hyperbole
     multiple-cursors
     nov
     ob-async
@@ -124,6 +125,9 @@
   (use-package hackernews
     :bind ("C-c h" . hackernews)))
 
+(defun rogue/init-hyperbole ()
+  (use-package hyperbole
+    :demand t))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
