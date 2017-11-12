@@ -485,10 +485,6 @@ like:
    (:background ,bg-dark
                 :foreground ,fg-white)
    nil)
-  (bm-persistent-face
-   (:background ,dark-cyan
-                :foreground ,fg-white)
-   nil)
   (minibuffer-prompt
    (:foreground ,keyword)
    nil)
