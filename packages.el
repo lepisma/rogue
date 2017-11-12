@@ -17,7 +17,6 @@
     (esi :location (recipe :fetcher github :repo "lepisma/esi"))
     hackernews
     helm-bm
-    magithub
     multiple-cursors
     nov
     ob-async
@@ -154,10 +153,6 @@
     :after bm
     :defer t))
 
-(defun rogue/init-magithub ()
-  (use-package magithub
-    :after magit
-    :config (magithub-feature-autoinject t)))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
