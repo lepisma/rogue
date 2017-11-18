@@ -52,8 +52,10 @@
 (defun org-make-run-task (task-name)
   "Run TASK-NAME."
   (org-make-run-in-context
-   (message task-name)))
+   (org-babel-goto-named-src-block task-name)
+   (org-babel-execute-src-block)))
 
+;;;###autoload
 (defun org-make ()
   "Run tasks from the project's file"
   (interactive)
