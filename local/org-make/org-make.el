@@ -30,10 +30,15 @@
 ;;; Code:
 
 (require 'org)
+(require 'ob)
+(require 'cl-lib)
 (require 'helm)
 
 (defvar org-make-file-name "README.org"
   "The main file to look tasks in.")
+
+(defvar org-make-task-prefix "om-"
+  "Prefix to filter each task specified in org file with.")
 
 (defun org-make-get-dir ()
   "Get the main README.org file in the project"
@@ -47,7 +52,9 @@
 (defun org-make-tasks ()
   "Return a list of tasks in given ORG-FILE."
   (org-make-run-in-context
-   (org-babel-src-block-names)))
+   (cl-remove-if-not
+    (lambda (name) (string-prefix-p org-make-task-prefix name))
+    (org-babel-src-block-names))))
 
 (defun org-make-run-task (task-name)
   "Run TASK-NAME."
