@@ -33,16 +33,22 @@
 (require 'ob)
 (require 'cl-lib)
 (require 'helm)
+(require 'projectile)
 
-(defvar org-make-file-name "README.org"
+(defcustom org-make-file-name "README.org"
   "The main file to look tasks in.")
 
-(defvar org-make-task-prefix "om-"
+(defcustom org-make-task-prefix "om-"
   "Prefix to filter each task specified in org file with.")
+
+(defcustom org-make-use-projectile nil
+  "Flag specifying whether to use projectile for finding root dir.")
 
 (defun org-make-get-dir ()
   "Get the main README.org file in the project"
-  (locate-dominating-file "." org-make-file-name))
+  (if org-make-use-projectile
+      (projectile-project-root)
+    (locate-dominating-file "." org-make-file-name)))
 
 (defmacro org-make-run-in-context (&rest body)
   `(let ((default-directory (org-make-get-dir)))
