@@ -66,7 +66,8 @@
   "Run TASK-NAME."
   (org-make-run-in-context
    (org-babel-goto-named-src-block task-name)
-   (org-babel-execute-src-block)))
+   (org-babel-execute-src-block)
+   (save-buffer)))
 
 ;;;###autoload
 (defun org-make ()
