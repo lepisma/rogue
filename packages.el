@@ -25,6 +25,7 @@
     org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
+    parinfer
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
     (rogue-ligatures :location local)
@@ -37,6 +38,7 @@
     snakemake-mode
     solaire-mode
     (spaceline-all-the-icons :location local)
+    smartparens
     swiper
     (viz :location local)
     vue-mode
@@ -159,10 +161,10 @@
     :ensure t
     :after org
     :config
-	  (setq org-gcal-file-alist `(("abhinav.tushar.vs@gmail.com" . ,user-gcal-file)))
+    (setq org-gcal-file-alist `(("abhinav.tushar.vs@gmail.com" . ,user-gcal-file)))
     ;; Secret file
     ;; (setq org-gcal-client-id "<>"
-	  ;;       org-gcal-client-secret "<>")
+    ;;       org-gcal-client-secret "<>")
     (load-file (concat user-secrets-dir "gcal.el"))
     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync)))
     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
@@ -183,6 +185,24 @@
 (defun rogue/init-org-make ()
   (use-package org-make
     :after org))
+
+(defun rogue/init-parinfer ()
+  (use-package parinfer
+    :ensure t
+    :bind (("C-," . parinfer-toggle-mode))
+    :init
+    (progn
+      (setq parinfer-extensions
+            '(defaults        ; should be included.
+               pretty-parens  ; different paren styles for different modes.
+               paredit        ; Introduce some paredit commands.
+               smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
+               smart-yank))   ; Yank behavior depend on mode.
+      (add-hook 'clojure-mode-hook #'parinfer-mode)
+      (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+      (add-hook 'common-lisp-mode-hook #'parinfer-mode)
+      (add-hook 'scheme-mode-hook #'parinfer-mode)
+      (add-hook 'lisp-mode-hook #'parinfer-mode))))
 
 (defun rogue/init-pretty-mode ()
   (use-package pretty-mode
@@ -291,6 +311,18 @@
       :after powerline
       :config
       (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
+
+(defun rogue/init-smartparens ()
+  (use-package smartparens
+    :config
+    (require 'smartparens-config)
+    :bind (("M-<right>"   . sp-forward-slurp-sexp)
+           ("M-<left>"    . sp-forward-barf-sexp)
+           ("M-S-<right>" . sp-backward-barf-sexp)
+           ("M-S-<left>"  . sp-backward-slurp-sexp)
+           ("M-u"         . sp-backward-unwrap-sexp)
+           ("M-n"         . sp-end-of-sexp)
+           ("M-p"         . sp-beginning-of-sexp))))
 
 (defun rogue/init-swiper ()
   (use-package swiper
