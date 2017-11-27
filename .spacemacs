@@ -10,7 +10,7 @@ values."
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(;; Pure languages
+   '(;; Languages
      c-c++
      common-lisp
      emacs-lisp
@@ -24,7 +24,7 @@ values."
      ruby
      scheme
      typescript
-     ;; Other languages / assists
+     ;; Other assists
      bibtex
      csv
      graphviz

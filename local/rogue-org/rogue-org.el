@@ -38,11 +38,9 @@
   (setq reftex-default-bibliography (list bib-library)
         org-ref-default-bibliography (list bib-library)
         bibtex-completion-bibliography bib-library)
-  (setq org-latex-pdf-process
-        '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "bibtex %b"
-          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
+
+  (setq org-latex-pdf-process (list "latexmk -xelatex -f -pdf %f"))
+  (setq TeX-engine 'xetex))
 
 (defun rogue-org-setup-babel ()
   "Setup org-babel."
