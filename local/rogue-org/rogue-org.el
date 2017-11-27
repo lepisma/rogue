@@ -35,8 +35,8 @@
 (defun rogue-org-setup-tex ()
   "Setup tex related stuff."
   (setq bib-library "~/library.bib")
-  (setq reftex-default-bibliography '(bib-library)
-        org-ref-default-bibliography '(bib-library)
+  (setq reftex-default-bibliography (list bib-library)
+        org-ref-default-bibliography (list bib-library)
         bibtex-completion-bibliography bib-library)
   (setq org-latex-pdf-process
         '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
