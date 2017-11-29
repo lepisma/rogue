@@ -1,6 +1,8 @@
 ;;; config.el --- rogue Layer config File for Spacemacs
 ;; Mostly theme configuration
 
+(require 'color)
+
 (defvar rogue-dark-theme 'doom-molokai)
 (defvar rogue-light-theme 'spacemacs-light)
 
@@ -37,34 +39,69 @@ like:
  (doom-molokai spacemacs-light)
 
  ;; Variables
- ((bg-white           "#fefff9")
-  (bg-dark            "#1A1D23")
-  (bg-darker          "#111318")
-  (bg-light           "#22272F")
-  (fg-white           "#ffffff")
-  (shade-white        "#efeae9")
-  (fg-light           "#B48EAD")
-  (dark-cyan          "#5E81AC")
-  (region-dark        "#22272F")
-  (region             "#454D5F")
-  (slate              "#8FA1B3")
-  (keyword            "#BF616A")
-  (comment            "#525254")
-  (builtin            "#D08770")
-  (variable-name      "#EBCB8B")
-  (function-name      "#5E81AC")
-  (constant           "#D08770")
-  (accent             "#99bbc7")
-  (doc                "#727280")
-  (type               "#8FBCBB")
-  (string             "#A3BE8C")
-  (gray-dark          "#999")
-  (gray               "#bbb")
+ (;; Palette from desktop color scheme
+  (dark-1             "#2E3440")
+  (dark-2             "#3B4252")
+  (dark-3             "#434C5E")
+  (dark-4             "#4C566A")
+  (light-1            "#D8DEE9")
+  (light-2            "#E5E9F0")
+  (light-3            "#ECEFF4")
+  (accent-dark        "#1C2028")
+  (accent-dark-gray   (color-darken-name accent-dark 1))
+  (accent-light       "#8a9899")
+  (accent-shade-1     "#8FBCBB")
+  (accent-shade-2     "#88C0D0")
+  (accent-shade-3     "#81A1C1")
+  (accent-shade-4     "#5E81AC")
+  (colors-blue        accent-shade-4)
+  (colors-red         "#BF616A")
+  (colors-orange      "#D08770")
+  (colors-yellow      "#EBCB8B")
+  (colors-green       "#A3BE8C")
+  (colors-purple      "#B48EAD")
+
+  ;; For use in levelified faces set
+  (level-1            colors-blue)
+  (level-2            colors-red)
+  (level-3            colors-purple)
+  (level-4            colors-orange)
+  (level-5            accent-shade-3)
+  (level-6            colors-green)
+  (level-7            accent-shade-2)
+  (level-8            colors-yellow)
+  (level-9            accent-shade-1)
+
+  ;; Base gray shades
+  (bg-white           "#FEFFF9")
+  (bg-dark            accent-dark-gray)
+  (bg-darker          accent-dark)
+  (bg-dark-solaire    (color-lighten-name accent-dark 2))
+  (fg-white           light-3)
+  (shade-white        light-1)
+  (highlight          (color-lighten-name accent-dark 4))
+  (region-dark        (color-lighten-name accent-dark 2))
+  (region             dark-3)
+  (slate              accent-shade-1)
+  (gray               (color-lighten-name dark-4 10))
+
+  ;; Programming
+  (comment            (color-lighten-name dark-4 2))
+  (doc                (color-lighten-name dark-4 20))
+  (keyword            colors-red)
+  (builtin            colors-orange)
+  (variable-name      colors-yellow)
+  (function-name      accent-shade-2)
+  (constant           colors-purple)
+  (type               accent-shade-1)
+  (string             colors-green)
+
+  ;; Fonts
   (sans-font          "Source Sans Pro")
   (et-font            "EtBembo"))
 
-  ;; Settings
-  ((variable-pitch
+ ;; Settings
+ ((variable-pitch
    (:family ,sans-font)
    (:family ,et-font
             :background nil
@@ -74,19 +111,19 @@ like:
     (:background ,bg-dark)
     (:background ,bg-white))
   (cursor
-   (:background ,keyword)
+   (:background ,colors-blue)
    nil)
   (which-key-key-face
    (:foreground ,string)
    nil)
   (solaire-default-face
-   (:background ,bg-light)
+   (:background ,bg-dark-solaire)
    nil)
   (header-line
    (:background nil :inherit nil)
    (:background nil :inherit nil))
   (eval-sexp-fu-flash
-   (:background ,dark-cyan
+   (:background ,colors-blue
                 :foreground ,fg-white)
    nil)
   (eval-sexp-fu-flash-error
@@ -103,7 +140,7 @@ like:
    nil)
   (company-tooltip
    (:background ,bg-darker
-                :foreground ,gray)
+                :foreground ,doc)
    nil)
   (company-scrollbar-fg
    (:background ,comment)
@@ -114,11 +151,14 @@ like:
   (company-tooltip-common
    (:foreground ,keyword)
    nil)
+  (company-tooltip-mouse
+   (:background ,accent-shade-3)
+   nil)
   (company-tootip-annotation
    (:foreground ,type)
    nil)
   (company-tooltip-selection
-   (:background ,region)
+   (:background ,highlight)
    nil)
   (show-paren-match
    (:background ,keyword
@@ -147,7 +187,7 @@ like:
                 :background ,bg-darker)
    nil)
   (git-gutter-fr:modified
-   (:foreground ,dark-cyan)
+   (:foreground ,colors-blue)
    nil)
   (git-gutter-fr:added
    (:foreground ,string)
@@ -193,7 +233,7 @@ like:
    (:background ,bg-white
                 :box nil))
   (mode-line-inactive
-   nil
+   (:background ,bg-dark)
    (:box nil))
   (powerline-active1
    nil
@@ -339,6 +379,9 @@ like:
   (link
    (:foreground ,slate)
    nil)
+  (org-list-dt
+   (:foreground ,function-name)
+   nil)
   (org-link
    (:underline nil
                :weight normal
@@ -354,7 +397,7 @@ like:
    nil)
   (org-done
    (:inherit variable-pitch
-             :foreground ,dark-cyan
+             :foreground ,colors-blue
              :background ,bg-dark)
    (:strike-through t
                     :family ,et-font))
@@ -374,7 +417,7 @@ like:
    (:foreground ,builtin)
    nil)
   (org-date
-   nil
+   (:foreground ,doc)
    (:height 0.8))
   (org-agenda-structure
    (:height 1.3
@@ -415,6 +458,7 @@ like:
             :foreground ,doc))
   (org-ellipsis
    (:underline nil
+               :background ,accent-dark-gray
                :foreground ,comment)
    (:underline nil
                :foreground ,comment))
@@ -422,7 +466,8 @@ like:
    (:foreground ,doc)
    (:foreground ,doc))
   (org-table
-   (:background nil)
+   (:background nil
+                :foreground ,doc)
    (:height 0.9
             :background ,bg-white))
   (org-code
@@ -489,13 +534,20 @@ like:
    (:foreground ,keyword)
    nil)
   (swiper-line-face
-   (:background ,function-name)
+   (:background ,dark-3
+                :foreground ,fg-white)
    nil)
   (swiper-match-face-2
-   (:background ,variable-name)
+   (:background ,builtin)
+   nil)
+  (ido-first-match
+   (:foreground ,constant)
    nil)
   (helm-M-x-key
    (:foreground ,builtin)
+   nil)
+  (helm-grep-match
+   (:foreground ,constant)
    nil)
   (helm-ff-directory
    (:foreground ,builtin)
@@ -503,10 +555,19 @@ like:
   (helm-ff-symlink
    (:foreground ,slate)
    nil)
+  (helm-ff-dotted-symlink-directory
+   (:background nil)
+   nil)
   (helm-selection
-   (:background ,region)
+   (:background ,highlight)
    nil)
   (helm-match
+   (:foreground ,keyword)
+   nil)
+  (helm-ff-prefix
+   (:foreground ,keyword)
+   nil)
+  (helm-separator
    (:foreground ,keyword)
    nil)
   (cfw:face-title
@@ -526,7 +587,7 @@ like:
    (:foreground ,doc)
    nil)
   (cfw:face-periods
-   (:foreground ,dark-cyan)
+   (:foreground ,colors-blue)
    nil)
   (cfw:face-annotation
    (:foreground ,doc)
@@ -545,7 +606,7 @@ like:
    (:foreground ,doc)
    nil)
   (cfw:face-default-content
-   (:foreground ,dark-cyan)
+   (:foreground ,colors-blue)
    nil)
   (cfw:face-disable
    (:foreground ,doc)
@@ -644,32 +705,45 @@ like:
    (:background nil
                 :inherit nil))
   (rainbow-delimiters-depth-1-face
-   (:foreground ,keyword)
+   (:foreground ,level-1)
    nil)
   (rainbow-delimiters-depth-2-face
-   (:foreground ,builtin)
+   (:foreground ,level-2)
    nil)
   (rainbow-delimiters-depth-3-face
-   (:foreground ,variable-name)
+   (:foreground ,level-3)
    nil)
   (rainbow-delimiters-depth-4-face
-   (:foreground ,string)
+   (:foreground ,level-4)
    nil)
   (rainbow-delimiters-depth-5-face
-   (:foreground ,type)
+   (:foreground ,level-5)
    nil)
   (rainbow-delimiters-depth-6-face
-   (:foreground ,dark-cyan)
+   (:foreground ,level-6)
    nil)
   (rainbow-delimiters-depth-7-face
-   (:foreground ,function-name)
+   (:foreground ,level-7)
    nil)
   (rainbow-delimiters-depth-8-face
-   (:foreground ,fg-light)
+   (:foreground ,level-8)
    nil)
   (rainbow-delimiters-depth-9-face
-   (:foreground ,doc)
+   (:foreground ,level-9)
    nil)
   (sp-show-pair-match-face
    (:background ,bg-dark)
+   nil)
+  (sp-pair-overlay-face
+   (:background ,bg-dark-solaire)
+   nil)
+  (sp-wrap-overlay-face
+   (:background ,bg-dark-solaire)
+   nil)
+  (slime-repl-inputed-output-face
+   (:foreground ,keyword)
    nil)))
+
+;; Highlight parenthesis
+(setq hl-paren-colors (reverse '("#5E81AC" "#BF616A" "#B48EAD" "#D08770"
+                                 "#81A1C1" "#A3BE8C" "#88C0D0" "#EBCB8B")))

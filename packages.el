@@ -87,7 +87,7 @@
 (defun rogue/init-calfw-org ()
   (use-package calfw-org
     :config
-    (setq cfw:org-face-agenda-item-foreground-color "#f92672")))
+    (setq cfw:org-face-agenda-item-foreground-color "#BF616A")))
 
 (defun rogue/init-colormaps ()
   (use-package colormaps
