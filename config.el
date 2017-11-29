@@ -111,7 +111,7 @@ like:
     (:background ,bg-dark)
     (:background ,bg-white))
   (cursor
-   (:background ,colors-blue)
+   (:background ,colors-red)
    nil)
   (which-key-key-face
    (:foreground ,string)
