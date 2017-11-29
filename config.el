@@ -116,6 +116,12 @@ like:
   (which-key-key-face
    (:foreground ,string)
    nil)
+  (which-key-command-description-face
+   (:foreground ,type)
+   nil)
+  (which-key-local-map-description-face
+   (:foreground ,variable-name)
+   nil)
   (solaire-default-face
    (:background ,bg-dark-solaire)
    nil)
@@ -656,9 +662,6 @@ like:
   (vertical-border
    (:background ,region
                 :foreground ,region)
-   nil)
-  (which-key-command-description-face
-   (:foreground ,type)
    nil)
   (flycheck-error
    (:background nil)
