@@ -748,5 +748,4 @@ like:
    nil)))
 
 ;; Highlight parenthesis
-(setq hl-paren-colors (reverse '("#5E81AC" "#BF616A" "#B48EAD" "#D08770"
-                                 "#81A1C1" "#A3BE8C" "#88C0D0" "#EBCB8B")))
+(setq hl-paren-colors '("#88C0D0" "#D08770" "#A3BE8C" "#EBCB8B"))
