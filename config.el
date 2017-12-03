@@ -82,8 +82,8 @@ like:
   (highlight          (color-lighten-name accent-dark 4))
   (region-dark        (color-lighten-name accent-dark 2))
   (region             dark-3)
-  (slate              accent-shade-1)
-  (gray               (color-lighten-name dark-4 10))
+  (slate              accent-shade-3)
+  (gray               (color-lighten-name dark-4 20))
 
   ;; Programming
   (comment            (color-lighten-name dark-4 2))
@@ -136,12 +136,10 @@ like:
    (:background ,keyword
                 :foreground ,fg-white)
    nil)
-  (hackernews-link-face
-   (:foreground ,slate
-                :inherit variable-pitch
-                :height 1.2)
+  (hackernews-link
+   (:foreground ,slate)
    nil)
-  (hackernews-comment-count-face
+  (hackernews-comment-count
    (:foreground ,string)
    nil)
   (company-tooltip
@@ -309,7 +307,7 @@ like:
    (:inherit variable-pitch
              :weight bold
              :height 1.1
-             :foreground ,slate
+             :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
              :family ,et-font
@@ -321,7 +319,7 @@ like:
    (:inherit variable-pitch
              :weight bold
              :height 1.1
-             :foreground ,slate
+             :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
              :family ,et-font
@@ -333,28 +331,28 @@ like:
    (:inherit variable-pitch
              :weight bold
              :height 1.1
-             :foreground ,slate
+             :foreground ,gray
              :background ,bg-dark)
    nil)
   (org-level-6
    (:inherit variable-pitch
              :weight bold
              :height 1.1
-             :foreground ,slate
+             :foreground ,gray
              :background ,bg-dark)
    nil)
   (org-level-7
    (:inherit variable-pitch
              :weight bold
              :height 1.1
-             :foreground ,slate
+             :foreground ,gray
              :background ,bg-dark)
    nil)
   (org-level-8
    (:inherit variable-pitch
              :weight bold
              :height 1.1
-             :foreground ,slate
+             :foreground ,gray
              :background ,bg-dark)
    nil)
   (org-headline-done
