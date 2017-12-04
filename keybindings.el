@@ -44,3 +44,12 @@
 ;; Some resets
 (global-set-key (kbd "C-x C-l") nil)
 (global-set-key (kbd "<insert>") nil)
+
+;; Smartparens
+(global-set-key (kbd "M-<right>") 'sp-forward-slurp-sexp)
+(global-set-key (kbd "M-<left>") 'sp-forward-barf-sexp)
+(global-set-key (kbd "M-S-<right>") 'sp-backward-barf-sexp)
+(global-set-key (kbd "M-S-<left>") 'sp-backward-slurp-sexp)
+(global-set-key (kbd "M-u") 'sp-backward-unwrap-sexp)
+(global-set-key (kbd "M-n") 'sp-end-of-sexp)
+(global-set-key (kbd "M-p") 'sp-beginning-of-sexp)

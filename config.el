@@ -744,6 +744,3 @@ like:
   (slime-repl-inputed-output-face
    (:foreground ,keyword)
    nil)))
-
-;; Highlight parenthesis
-(setq hl-paren-colors '("#88C0D0" "#D08770" "#A3BE8C" "#EBCB8B"))

@@ -38,7 +38,6 @@
     snakemake-mode
     solaire-mode
     (spaceline-all-the-icons :location local)
-    smartparens
     swiper
     (viz :location local)
     vue-mode
@@ -310,18 +309,6 @@
       :after powerline
       :config
       (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))))
-
-(defun rogue/init-smartparens ()
-  (use-package smartparens
-    :config
-    (require 'smartparens-config)
-    :bind (("M-<right>"   . sp-forward-slurp-sexp)
-           ("M-<left>"    . sp-forward-barf-sexp)
-           ("M-S-<right>" . sp-backward-barf-sexp)
-           ("M-S-<left>"  . sp-backward-slurp-sexp)
-           ("M-u"         . sp-backward-unwrap-sexp)
-           ("M-n"         . sp-end-of-sexp)
-           ("M-p"         . sp-beginning-of-sexp))))
 
 (defun rogue/init-swiper ()
   (use-package swiper
