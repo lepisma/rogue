@@ -10,8 +10,7 @@ values."
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(
-     erlang;; Languages
+   '(;; Languages
      c-c++
      common-lisp
      emacs-lisp
@@ -48,9 +47,9 @@ values."
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      colors
-     ;; (elfeed :variables
-     ;;         rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
-     ;;         elfeed-enable-web-interface t)
+     (elfeed :variables
+             rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
+             elfeed-enable-web-interface t)
      git
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
