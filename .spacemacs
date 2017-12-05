@@ -10,36 +10,35 @@ values."
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(;; Languages
+   '(bibtex
      c-c++
      common-lisp
+     csv
+     erlang
      emacs-lisp
      ess
+     graphviz
      haskell
      html
      javascript
-     ocaml
-     python
-     racket
-     ruby
-     scheme
-     typescript
-     ;; Other assists
-     bibtex
-     csv
-     graphviz
      (latex :variables
             latex-enable-folding t
             latex-enable-auto-fill t)
      (markdown :variables markdown-live-preview-engine 'vmd)
+     ocaml
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t)
+     python
+     racket
+     ruby
+     scheme
      shell
      shell-scripts
      sql
+     typescript
      yaml
-     ;; Everything else
+     ;; Assists
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
@@ -47,9 +46,10 @@ values."
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      colors
-     (elfeed :variables
-             rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
-             elfeed-enable-web-interface t)
+     dash
+     ;; (elfeed :variables
+     ;;         rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
+     ;;         elfeed-enable-web-interface t)
      git
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
