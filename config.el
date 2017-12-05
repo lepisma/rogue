@@ -101,47 +101,7 @@ like:
   (et-font            "EtBembo"))
 
  ;; Settings
- ((variable-pitch
-   (:family ,sans-font)
-   (:family ,et-font
-            :background nil
-            :foreground ,bg-dark
-            :height 1.0))
-  (default
-    (:background ,bg-dark)
-    (:background ,bg-white))
-  (cursor
-   (:background ,colors-red)
-   nil)
-  (which-key-key-face
-   (:foreground ,string)
-   nil)
-  (which-key-command-description-face
-   (:foreground ,type)
-   nil)
-  (which-key-local-map-description-face
-   (:foreground ,variable-name)
-   nil)
-  (solaire-default-face
-   (:background ,bg-dark-solaire)
-   nil)
-  (header-line
-   (:background nil :inherit nil)
-   (:background nil :inherit nil))
-  (eval-sexp-fu-flash
-   (:background ,colors-blue
-                :foreground ,fg-white)
-   nil)
-  (eval-sexp-fu-flash-error
-   (:background ,keyword
-                :foreground ,fg-white)
-   nil)
-  (hackernews-link
-   (:foreground ,slate)
-   nil)
-  (hackernews-comment-count
-   (:foreground ,string)
-   nil)
+ (
   (company-tooltip
    (:background ,bg-darker
                 :foreground ,doc)
@@ -164,38 +124,20 @@ like:
   (company-tooltip-selection
    (:background ,highlight)
    nil)
-  (show-paren-match
-   (:background ,keyword
-                :foreground ,bg-dark)
+  (cursor
+   (:background ,colors-red)
    nil)
-  (magit-section-heading
-   (:foreground ,keyword)
-   nil)
-  (magit-header-line
-   (:background nil
-                :foreground ,bg-dark
-                :box nil)
-   (:background nil
-                :foreground ,bg-white
-                :box nil))
-  (magit-diff-hunk-heading
-   (:background ,comment
-                :foreground ,gray)
-   nil)
-  (magit-diff-hunk-heading-highlight
-   (:background ,comment
+  (eval-sexp-fu-flash
+   (:background ,colors-blue
                 :foreground ,fg-white)
    nil)
-  (tooltip
-   (:foreground ,gray
-                :background ,bg-darker)
+  (eval-sexp-fu-flash-error
+   (:background ,keyword
+                :foreground ,fg-white)
    nil)
-  (git-gutter-fr:modified
-   (:foreground ,colors-blue)
-   nil)
-  (git-gutter-fr:added
-   (:foreground ,string)
-   nil)
+  (default
+    (:background ,bg-dark)
+    (:background ,bg-white))
   (doom-neotree-dir-face
    (:foreground ,keyword
                 :height 1.0)
@@ -227,10 +169,128 @@ like:
    (:family ,sans-font
             :height 1.0
             :foreground ,doc))
+  (header-line
+   (:background nil :inherit nil)
+   (:background nil :inherit nil))
+  (hackernews-link
+   (:foreground ,slate)
+   nil)
+  (hackernews-comment-count
+   (:foreground ,string)
+   nil)
+  (git-gutter-fr:modified
+   (:foreground ,colors-blue)
+   nil)
+  (git-gutter-fr:added
+   (:foreground ,string)
+   nil)
+  (flycheck-error
+   (:background nil)
+   nil)
+  (flycheck-warning
+   (:background nil)
+   nil)
+  (font-lock-string-face
+   (:foreground ,string)
+   nil)
+  (font-lock-keyword-face
+   (:foreground ,keyword)
+   nil)
+  (font-lock-builtin-face
+   (:foreground ,builtin)
+   nil)
+  (font-lock-type-face
+   (:foreground ,type)
+   nil)
+  (font-lock-doc-face
+   (:foreground ,doc)
+   nil)
+  (font-lock-function-name-face
+   (:foreground ,function-name)
+   nil)
+  (font-lock-variable-name-face
+   (:foreground ,variable-name)
+   nil)
+  (font-lock-constant-face
+   (:foreground ,constant)
+   nil)
+  (font-lock-comment-face
+   (:foreground ,doc
+                :slant italic)
+   (:background nil
+                :foreground ,doc
+                :slant italic))
   (neo-root-dir-face
    (:foreground ,fg-white
                 :background ,region-dark
                 :box (:line-width 6 :color ,region-dark))
+   nil)
+  (magit-section-heading
+   (:foreground ,colors-red)
+   nil)
+  (magit-section-heading-selection
+   (:foreground ,colors-yellow)
+   nil)
+  (magit-header-line
+   (:background nil
+                :foreground ,bg-dark
+                :box nil)
+   (:background nil
+                :foreground ,bg-white
+                :box nil))
+  (magit-diff-hunk-heading
+   (:background ,region
+                :foreground ,gray)
+   nil)
+  (magit-diff-hunk-heading-highlight
+   (:background ,region
+                :foreground ,fg-white)
+   nil)
+  (magit-diff-added
+   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 50)
+                :foreground ,(color-darken-name colors-green 10))
+   nil)
+  (magit-diff-added-highlight
+   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 45)
+    :foreground ,colors-green)
+   nil)
+  (magit-diff-removed
+   (:background ,(color-darken-name (color-desaturate-name colors-red 40) 40)
+                :foreground ,(color-darken-name colors-red 10))
+   nil)
+  (magit-diff-removed-highlight
+   (:background ,(color-darken-name (color-desaturate-name colors-red 40) 35)
+                :foreground ,colors-red)
+   nil)
+  (magit-diff-lines-heading
+   (:background ,colors-orange
+                :weight bold
+                :foreground ,bg-dark)
+   nil)
+  (magit-branch-local
+   (:foreground ,colors-blue)
+   nil)
+  (magit-branch-remote
+   (:foreground ,colors-green)
+   nil)
+  (magit-branch-current
+   (:foreground ,colors-purple)
+   nil)
+  (magit-log-author
+   (:foreground ,colors-orange)
+   nil)
+  (magit-log-date
+   (:foreground ,colors-blue)
+   nil)
+  (mu4e-header-highlight-face
+   (:underline nil
+               :background ,highlight)
+   nil)
+  (mu4e-header-key-face
+   (:foreground ,gray)
+   nil)
+  (mu4e-header-value-face
+   (:foreground ,slate)
    nil)
   (mode-line
    (:background ,bg-darker)
@@ -657,54 +717,9 @@ like:
   (nlinum-current-line
    (:foreground ,builtin)
    (:foreground ,bg-dark))
-  (vertical-border
-   (:background ,region
-                :foreground ,region)
-   nil)
-  (flycheck-error
-   (:background nil)
-   nil)
-  (flycheck-warning
-   (:background nil)
-   nil)
-  (font-lock-string-face
-   (:foreground ,string)
-   nil)
-  (font-lock-keyword-face
-   (:foreground ,keyword)
-   nil)
-  (font-lock-builtin-face
-   (:foreground ,builtin)
-   nil)
-  (font-lock-type-face
-   (:foreground ,type)
-   nil)
-  (font-lock-doc-face
-   (:foreground ,doc)
-   nil)
-  (font-lock-function-name-face
-   (:foreground ,function-name)
-   nil)
-  (font-lock-variable-name-face
-   (:foreground ,variable-name)
-   nil)
-  (font-lock-constant-face
-   (:foreground ,constant)
-   nil)
-  (font-lock-comment-face
-   (:foreground ,doc
-                :slant italic)
-   (:background nil
-                :foreground ,doc
-                :slant italic))
   (region
    (:background ,region)
    nil)
-  (header-line
-   (:background nil
-                :inherit nil)
-   (:background nil
-                :inherit nil))
   (rainbow-delimiters-depth-1-face
    (:foreground ,level-1)
    nil)
@@ -732,8 +747,16 @@ like:
   (rainbow-delimiters-depth-9-face
    (:foreground ,level-9)
    nil)
+  (show-paren-match
+   (:background ,keyword
+                :foreground ,bg-dark)
+   nil)
+  (solaire-default-face
+   (:background ,bg-dark-solaire)
+   nil)
   (sp-show-pair-match-face
-   (:background ,bg-dark)
+   (:background ,bg-dark
+                :foreground ,keyword)
    nil)
   (sp-pair-overlay-face
    (:background ,bg-dark-solaire)
@@ -743,7 +766,31 @@ like:
    nil)
   (slime-repl-inputed-output-face
    (:foreground ,keyword)
-   nil)))
+   nil)
+  (tooltip
+   (:foreground ,gray
+                :background ,bg-darker)
+   nil)
+  (variable-pitch
+   (:family ,sans-font)
+   (:family ,et-font
+            :background nil
+            :foreground ,bg-dark
+            :height 1.0))
+  (vertical-border
+   (:background ,region
+                :foreground ,region)
+   nil)
+  (which-key-key-face
+   (:foreground ,string)
+   nil)
+  (which-key-command-description-face
+   (:foreground ,type)
+   nil)
+  (which-key-local-map-description-face
+   (:foreground ,variable-name)
+   nil)
+  ))
 
 (with-eval-after-load 'highlight-parentheses
   ;; Parentheses colors
