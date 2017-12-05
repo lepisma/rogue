@@ -171,6 +171,7 @@
 
   ;; Hooks for side gaps
   (rogue-utils-add-hooks '(cfw:calendar-mode-hook
+                           help-mode-hook
                            text-mode-hook
                            org-agenda-mode-hook
                            ibuffer-mode-hook
@@ -190,6 +191,7 @@
   ;; Hooks for header gaps
   (rogue-utils-add-hooks '(cfw:calendar-mode-hook
                            text-mode-hook
+                           help-mode-hook
                            org-agenda-mode-hook
                            ibuffer-mode-hook
                            magit-status-mode-hook
@@ -227,6 +229,7 @@
 
   ;; Hooks for line spacing
   (rogue-utils-add-hooks '(text-mode-hook
+                           helm-mode-hook
                            prog-mode-hook
                            ranger-mode-hook
                            ibuffer-mode-hook
