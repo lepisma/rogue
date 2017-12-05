@@ -101,16 +101,77 @@ like:
   (et-font            "EtBembo"))
 
  ;; Settings
- (
-  (company-tooltip
-   (:background ,bg-darker
-                :foreground ,doc)
+ ((cfw:face-annotation
+   (:foreground ,doc)
+   nil)
+  (cfw:face-day-title
+   (:foreground ,doc)
+   nil)
+  (cfw:face-default-content
+   (:foreground ,colors-blue)
+   nil)
+  (cfw:face-default-day
+   (:foreground ,fg-white)
+   nil)
+  (cfw:face-disable
+   (:foreground ,doc)
+   nil)
+  (cfw:face-grid
+   (:foreground ,comment)
+   nil)
+  (cfw:face-header
+   (:foreground ,keyword
+                :weight bold)
+   nil)
+  (cfw:face-holiday
+   (:foreground ,builtin)
+   nil)
+  (cfw:face-periods
+   (:foreground ,colors-blue)
+   nil)
+  (cfw:face-saturday
+   (:foreground ,doc
+                :weight bold)
+   nil)
+  (cfw:face-select
+   (:background ,region)
+   nil)
+  (cfw:face-sunday
+   (:foreground ,doc)
+   nil)
+  (cfw:face-title
+   (:height 2.0
+            :inherit variable-pitch
+            :weight bold
+            :foreground ,doc)
+   nil)
+  (cfw:face-today
+   (:background ,region
+                :weight bold)
+   nil)
+  (cfw:face-today-title
+   (:background ,keyword
+                :foreground ,fg-white)
+   nil)
+  (cfw:face-toolbar
+   (:inherit default)
+   nil)
+  (cfw:face-toolbar-button-off
+   (:foreground ,doc)
+   nil)
+  (cfw:face-toolbar-button-on
+   (:foreground ,type
+                :weight bold)
+   nil)
+  (company-scrollbar-bg
+   (:background ,bg-darker)
    nil)
   (company-scrollbar-fg
    (:background ,comment)
    nil)
-  (company-scrollbar-bg
-   (:background ,bg-darker)
+  (company-tooltip
+   (:background ,bg-darker
+                :foreground ,doc)
    nil)
   (company-tooltip-common
    (:foreground ,keyword)
@@ -118,36 +179,48 @@ like:
   (company-tooltip-mouse
    (:background ,accent-shade-3)
    nil)
-  (company-tootip-annotation
-   (:foreground ,type)
-   nil)
   (company-tooltip-selection
    (:background ,highlight)
+   nil)
+  (company-tootip-annotation
+   (:foreground ,type)
    nil)
   (cursor
    (:background ,colors-red)
    nil)
-  (eval-sexp-fu-flash
-   (:background ,colors-blue
-                :foreground ,fg-white)
-   nil)
-  (eval-sexp-fu-flash-error
-   (:background ,keyword
-                :foreground ,fg-white)
-   nil)
   (default
     (:background ,bg-dark)
     (:background ,bg-white))
+  (dired-subtree-depth-1-face
+   (:background nil)
+   nil)
+  (dired-subtree-depth-2-face
+   (:background nil)
+   nil)
+  (dired-subtree-depth-3-face
+   (:background nil)
+   nil)
+  (dired-subtree-depth-4-face
+   (:background nil)
+   nil)
+  (dired-subtree-depth-5-face
+   (:background nil)
+   nil)
+  (dired-subtree-depth-6-face
+   (:background nil)
+   nil)
+  (doom-neotree-data-file-face
+   (:height 1.0
+            :foreground ,doc)
+   (:family ,sans-font
+            :height 1.0
+            :foreground ,doc))
   (doom-neotree-dir-face
    (:foreground ,keyword
                 :height 1.0)
    (:family ,sans-font
             :height 1.0))
   (doom-neotree-file-face
-   (:height 1.0)
-   (:family ,sans-font
-            :height 1.0))
-  (doom-neotree-text-file-face
    (:height 1.0)
    (:family ,sans-font
             :height 1.0))
@@ -163,26 +236,17 @@ like:
    (:family ,sans-font
             :height 1.0
             :foreground ,type))
-  (doom-neotree-data-file-face
-   (:height 1.0
-            :foreground ,doc)
+  (doom-neotree-text-file-face
+   (:height 1.0)
    (:family ,sans-font
-            :height 1.0
-            :foreground ,doc))
-  (header-line
-   (:background nil :inherit nil)
-   (:background nil :inherit nil))
-  (hackernews-link
-   (:foreground ,slate)
+            :height 1.0))
+  (eval-sexp-fu-flash
+   (:background ,colors-blue
+                :foreground ,fg-white)
    nil)
-  (hackernews-comment-count
-   (:foreground ,string)
-   nil)
-  (git-gutter-fr:modified
-   (:foreground ,colors-blue)
-   nil)
-  (git-gutter-fr:added
-   (:foreground ,string)
+  (eval-sexp-fu-flash-error
+   (:background ,keyword
+                :foreground ,fg-white)
    nil)
   (flycheck-error
    (:background nil)
@@ -190,29 +254,35 @@ like:
   (flycheck-warning
    (:background nil)
    nil)
-  (font-lock-string-face
-   (:foreground ,string)
+  (font-latex-sectioning-0-face
+   (:foreground ,type
+                :height 1.2)
    nil)
-  (font-lock-keyword-face
-   (:foreground ,keyword)
+  (font-latex-sectioning-1-face
+   (:foreground ,type
+                :height 1.1)
+   nil)
+  (font-latex-sectioning-2-face
+   (:foreground ,type
+                :height 1.1)
+   nil)
+  (font-latex-sectioning-3-face
+   (:foreground ,type
+                :height 1.0)
+   nil)
+  (font-latex-sectioning-4-face
+   (:foreground ,type
+                :height 1.0)
+   nil)
+  (font-latex-sectioning-5-face
+   (:foreground ,type
+                :height 1.0)
+   nil)
+  (font-latex-verbatim-face
+   (:foreground ,builtin)
    nil)
   (font-lock-builtin-face
    (:foreground ,builtin)
-   nil)
-  (font-lock-type-face
-   (:foreground ,type)
-   nil)
-  (font-lock-doc-face
-   (:foreground ,doc)
-   nil)
-  (font-lock-function-name-face
-   (:foreground ,function-name)
-   nil)
-  (font-lock-variable-name-face
-   (:foreground ,variable-name)
-   nil)
-  (font-lock-constant-face
-   (:foreground ,constant)
    nil)
   (font-lock-comment-face
    (:foreground ,doc
@@ -220,24 +290,102 @@ like:
    (:background nil
                 :foreground ,doc
                 :slant italic))
-  (neo-root-dir-face
-   (:foreground ,fg-white
-                :background ,region-dark
-                :box (:line-width 6 :color ,region-dark))
+  (font-lock-constant-face
+   (:foreground ,constant)
    nil)
-  (magit-section-heading
-   (:foreground ,colors-red)
+  (font-lock-doc-face
+   (:foreground ,doc)
    nil)
-  (magit-section-heading-selection
-   (:foreground ,colors-yellow)
+  (font-lock-function-name-face
+   (:foreground ,function-name)
    nil)
-  (magit-header-line
-   (:background nil
-                :foreground ,bg-dark
-                :box nil)
-   (:background nil
-                :foreground ,bg-white
-                :box nil))
+  (font-lock-keyword-face
+   (:foreground ,keyword)
+   nil)
+  (font-lock-string-face
+   (:foreground ,string)
+   nil)
+  (font-lock-type-face
+   (:foreground ,type)
+   nil)
+  (font-lock-variable-name-face
+   (:foreground ,variable-name)
+   nil)
+  (git-gutter-fr:added
+   (:foreground ,string)
+   nil)
+  (git-gutter-fr:modified
+   (:foreground ,colors-blue)
+   nil)
+  (hackernews-comment-count
+   (:foreground ,string)
+   nil)
+  (hackernews-link
+   (:foreground ,slate)
+   nil)
+  (header-line
+   (:background nil :inherit nil)
+   (:background nil :inherit nil))
+  (helm-M-x-key
+   (:foreground ,builtin)
+   nil)
+  (helm-ff-directory
+   (:foreground ,builtin)
+   nil)
+  (helm-ff-dotted-symlink-directory
+   (:background nil)
+   nil)
+  (helm-ff-prefix
+   (:foreground ,keyword)
+   nil)
+  (helm-ff-symlink
+   (:foreground ,slate)
+   nil)
+  (helm-grep-match
+   (:foreground ,constant)
+   nil)
+  (helm-match
+   (:foreground ,keyword)
+   nil)
+  (helm-selection
+   (:background ,highlight)
+   nil)
+  (helm-separator
+   (:foreground ,keyword)
+   nil)
+  (highlight
+   (:background ,region-dark
+                :foreground ,fg-white)
+   (:background ,shade-white))
+  (hl-line
+   (:background ,region-dark)
+   nil)
+  (ido-first-match
+   (:foreground ,constant)
+   nil)
+  (link
+   (:foreground ,slate)
+   nil)
+  (linum
+   nil
+   (:background ,bg-white))
+  (magit-branch-current
+   (:foreground ,colors-purple)
+   nil)
+  (magit-branch-local
+   (:foreground ,colors-blue)
+   nil)
+  (magit-branch-remote
+   (:foreground ,colors-green)
+   nil)
+  (magit-diff-added
+   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 50)
+                :foreground ,(color-darken-name colors-green 10))
+   nil)
+  (magit-diff-added-highlight
+   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 45)
+                :foreground ,colors-green)
+   nil)
   (magit-diff-hunk-heading
    (:background ,region
                 :foreground ,gray)
@@ -246,13 +394,10 @@ like:
    (:background ,region
                 :foreground ,fg-white)
    nil)
-  (magit-diff-added
-   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 50)
-                :foreground ,(color-darken-name colors-green 10))
-   nil)
-  (magit-diff-added-highlight
-   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 45)
-    :foreground ,colors-green)
+  (magit-diff-lines-heading
+   (:background ,colors-orange
+                :weight bold
+                :foreground ,bg-dark)
    nil)
   (magit-diff-removed
    (:background ,(color-darken-name (color-desaturate-name colors-red 40) 40)
@@ -262,26 +407,35 @@ like:
    (:background ,(color-darken-name (color-desaturate-name colors-red 40) 35)
                 :foreground ,colors-red)
    nil)
-  (magit-diff-lines-heading
-   (:background ,colors-orange
-                :weight bold
-                :foreground ,bg-dark)
-   nil)
-  (magit-branch-local
-   (:foreground ,colors-blue)
-   nil)
-  (magit-branch-remote
-   (:foreground ,colors-green)
-   nil)
-  (magit-branch-current
-   (:foreground ,colors-purple)
-   nil)
+  (magit-header-line
+   (:background nil
+                :foreground ,bg-dark
+                :box nil)
+   (:background nil
+                :foreground ,bg-white
+                :box nil))
   (magit-log-author
    (:foreground ,colors-orange)
    nil)
   (magit-log-date
    (:foreground ,colors-blue)
    nil)
+  (magit-section-heading
+   (:foreground ,colors-red)
+   nil)
+  (magit-section-heading-selection
+   (:foreground ,colors-yellow)
+   nil)
+  (minibuffer-prompt
+   (:foreground ,keyword)
+   nil)
+  (mode-line
+   (:background ,bg-darker)
+   (:background ,bg-white
+                :box nil))
+  (mode-line-inactive
+   (:background ,bg-dark)
+   (:box nil))
   (mu4e-header-highlight-face
    (:underline nil
                :background ,highlight)
@@ -292,38 +446,73 @@ like:
   (mu4e-header-value-face
    (:foreground ,slate)
    nil)
-  (mode-line
-   (:background ,bg-darker)
-   (:background ,bg-white
-                :box nil))
-  (mode-line-inactive
+  (neo-root-dir-face
+   (:foreground ,fg-white
+                :background ,region-dark
+                :box (:line-width 6 :color ,region-dark))
+   nil)
+  (nlinum-current-line
+   (:foreground ,builtin)
+   (:foreground ,bg-dark))
+  (org-agenda-current-time
+   (:foreground ,slate)
+   nil)
+  (org-agenda-date
+   (:foreground ,doc
+                :inherit variable-pitch)
+   (:inherit nil))
+  (org-agenda-date-today
+   (:height 1.5
+            :foreground ,keyword
+            :inherit variable-pitch)
+   nil)
+  (org-agenda-date-weekend
+   (:inherit org-agenda-date)
+   nil)
+  (org-agenda-done
+   (:inherit nil
+             :strike-through t
+             :foreground ,doc)
+   (:height 1.0
+            :strike-through t
+            :foreground ,doc))
+  (org-agenda-structure
+   (:height 1.3
+            :foreground ,doc
+            :weight normal
+            :inherit variable-pitch)
+   nil)
+  (org-block
    (:background ,bg-dark)
-   (:box nil))
-  (powerline-active1
-   nil
-   (:background ,bg-white))
-  (powerline-active2
-   nil
-   (:background ,bg-white))
-  (powerline-inactive1
-   nil
-   (:background ,bg-white))
-  (powerline-inactive2
-   nil
-   (:background ,bg-white))
-  (highlight
-   (:background ,region-dark
-                :foreground ,fg-white)
-   (:background ,shade-white))
-  (hl-line
-   (:background ,region-dark)
-   nil)
-  (solaire-hl-line-face
-   (:background ,region-dark)
-   nil)
-  (linum
-   nil
-   (:background ,bg-white))
+   (:background nil
+                :foreground ,bg-dark))
+  (org-block-begin-line
+   (:background ,bg-dark)
+   (:background nil
+                :height 0.8
+                :foreground ,slate))
+  (org-block-end-line
+   (:background ,bg-dark)
+   (:background nil
+                :height 0.8
+                :foreground ,slate))
+  (org-code
+   (:foreground ,builtin)
+   (:inherit nil
+             :foreground ,comment
+             :height 0.9))
+  (org-date
+   (:foreground ,doc)
+   (:height 0.8))
+  (org-document-info
+   (:foreground ,gray
+                :slant italic)
+   (:height 1.2
+            :slant italic))
+  (org-document-info-keyword
+   (:foreground ,comment)
+   (:height 0.8
+            :foreground ,gray))
   (org-document-title
    (:inherit variable-pitch
              :height 1.3
@@ -334,11 +523,28 @@ like:
              :height 1.7
              :foreground ,bg-dark
              :underline nil))
-  (org-document-info
-   (:foreground ,gray
-                :slant italic)
-   (:height 1.2
-            :slant italic))
+  (org-done
+   (:inherit variable-pitch
+             :foreground ,colors-blue
+             :background ,bg-dark)
+   (:strike-through t
+                    :family ,et-font))
+  (org-ellipsis
+   (:underline nil
+               :background ,accent-dark-gray
+               :foreground ,comment)
+   (:underline nil
+               :foreground ,comment))
+  (org-headline-done
+   (:strike-through t)
+   (:family ,et-font
+            :strike-through t))
+  (org-hide
+   nil
+   (:foreground ,bg-white))
+  (org-indent
+   (:inherit org-hide)
+   (:inherit (org-hide fixed-pitch)))
   (org-level-1
    (:inherit variable-pitch
              :height 1.3
@@ -415,311 +621,63 @@ like:
              :foreground ,gray
              :background ,bg-dark)
    nil)
-  (org-headline-done
-   (:strike-through t)
-   (:family ,et-font
-            :strike-through t))
-  (org-quote
-   (:background ,bg-dark)
-   nil)
-  (org-block
-   (:background ,bg-dark)
-   (:background nil
-                :foreground ,bg-dark))
-  (org-block-begin-line
-   (:background ,bg-dark)
-   (:background nil
-                :height 0.8
-                :foreground ,slate))
-  (org-block-end-line
-   (:background ,bg-dark)
-   (:background nil
-                :height 0.8
-                :foreground ,slate))
-  (org-document-info-keyword
-   (:foreground ,comment)
-   (:height 0.8
-            :foreground ,gray))
-  (link
-   (:foreground ,slate)
-   nil)
-  (org-list-dt
-   (:foreground ,function-name)
-   nil)
   (org-link
    (:underline nil
                :weight normal
                :foreground ,slate)
    (:foreground ,bg-dark))
-  (org-special-keyword
-   (:height 0.9
-            :foreground ,comment)
-   (:height 0.8))
-  (org-todo
-   (:foreground ,builtin
-                :background ,bg-dark)
+  (org-list-dt
+   (:foreground ,function-name)
    nil)
-  (org-done
-   (:inherit variable-pitch
-             :foreground ,colors-blue
-             :background ,bg-dark)
-   (:strike-through t
-                    :family ,et-font))
-  (org-agenda-current-time
-   (:foreground ,slate)
-   nil)
-  (org-hide
-   nil
-   (:foreground ,bg-white))
-  (org-indent
-   (:inherit org-hide)
-   (:inherit (org-hide fixed-pitch)))
-  (org-time-grid
-   (:foreground ,comment)
-   nil)
-  (org-warning
-   (:foreground ,builtin)
-   nil)
-  (org-date
-   (:foreground ,doc)
-   (:height 0.8))
-  (org-agenda-structure
-   (:height 1.3
-            :foreground ,doc
-            :weight normal
-            :inherit variable-pitch)
-   nil)
-  (org-agenda-date
-   (:foreground ,doc
-                :inherit variable-pitch)
-   (:inherit nil))
-  (org-agenda-date-today
-   (:height 1.5
-            :foreground ,keyword
-            :inherit variable-pitch)
-   nil)
-  (org-agenda-date-weekend
-   (:inherit org-agenda-date)
+  (org-quote
+   (:background ,bg-dark)
    nil)
   (org-scheduled
    (:foreground ,gray)
    nil)
-  (org-upcoming-deadline
-   (:foreground ,keyword)
+  (org-scheduled-previously
+   (:foreground ,slate)
    nil)
   (org-scheduled-today
    (:foreground ,fg-white)
    nil)
-  (org-scheduled-previously
-   (:foreground ,slate)
-   nil)
-  (org-agenda-done
-   (:inherit nil
-             :strike-through t
-             :foreground ,doc)
-   (:height 1.0
-            :strike-through t
-            :foreground ,doc))
-  (org-ellipsis
-   (:underline nil
-               :background ,accent-dark-gray
-               :foreground ,comment)
-   (:underline nil
-               :foreground ,comment))
-  (org-tag
-   (:foreground ,doc)
-   (:foreground ,doc))
+  (org-special-keyword
+   (:height 0.9
+            :foreground ,comment)
+   (:height 0.8))
   (org-table
    (:background nil
                 :foreground ,doc)
    (:height 0.9
             :background ,bg-white))
-  (org-code
-   (:foreground ,builtin)
-   (:inherit nil
-             :foreground ,comment
-             :height 0.9))
-  (font-latex-sectioning-0-face
-   (:foreground ,type
-                :height 1.2)
-   nil)
-  (font-latex-sectioning-1-face
-   (:foreground ,type
-                :height 1.1)
-   nil)
-  (font-latex-sectioning-2-face
-   (:foreground ,type
-                :height 1.1)
-   nil)
-  (font-latex-sectioning-3-face
-   (:foreground ,type
-                :height 1.0)
-   nil)
-  (font-latex-sectioning-4-face
-   (:foreground ,type
-                :height 1.0)
-   nil)
-  (font-latex-sectioning-5-face
-   (:foreground ,type
-                :height 1.0)
-   nil)
-  (font-latex-verbatim-face
-   (:foreground ,builtin)
-   nil)
-  (spacemacs-normal-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (spacemacs-evilified-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (spacemacs-lisp-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (spacemacs-emacs-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (spacemacs-motion-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (spacemacs-visual-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (spacemacs-hybrid-face
-   (:background ,bg-dark
-                :foreground ,fg-white)
-   nil)
-  (minibuffer-prompt
-   (:foreground ,keyword)
-   nil)
-  (swiper-line-face
-   (:background ,dark-3
-                :foreground ,fg-white)
-   nil)
-  (swiper-match-face-2
-   (:background ,builtin)
-   nil)
-  (ido-first-match
-   (:foreground ,constant)
-   nil)
-  (helm-M-x-key
-   (:foreground ,builtin)
-   nil)
-  (helm-grep-match
-   (:foreground ,constant)
-   nil)
-  (helm-ff-directory
-   (:foreground ,builtin)
-   nil)
-  (helm-ff-symlink
-   (:foreground ,slate)
-   nil)
-  (helm-ff-dotted-symlink-directory
-   (:background nil)
-   nil)
-  (helm-selection
-   (:background ,highlight)
-   nil)
-  (helm-match
-   (:foreground ,keyword)
-   nil)
-  (helm-ff-prefix
-   (:foreground ,keyword)
-   nil)
-  (helm-separator
-   (:foreground ,keyword)
-   nil)
-  (cfw:face-title
-   (:height 2.0
-            :inherit variable-pitch
-            :weight bold
-            :foreground ,doc)
-   nil)
-  (cfw:face-holiday
-   (:foreground ,builtin)
-   nil)
-  (cfw:face-saturday
-   (:foreground ,doc
-                :weight bold)
-   nil)
-  (cfw:face-sunday
+  (org-tag
    (:foreground ,doc)
-   nil)
-  (cfw:face-periods
-   (:foreground ,colors-blue)
-   nil)
-  (cfw:face-annotation
-   (:foreground ,doc)
-   nil)
-  (cfw:face-select
-   (:background ,region)
-   nil)
-  (cfw:face-toolbar-button-off
-   (:foreground ,doc)
-   nil)
-  (cfw:face-toolbar-button-on
-   (:foreground ,type
-                :weight bold)
-   nil)
-  (cfw:face-day-title
-   (:foreground ,doc)
-   nil)
-  (cfw:face-default-content
-   (:foreground ,colors-blue)
-   nil)
-  (cfw:face-disable
-   (:foreground ,doc)
-   nil)
-  (cfw:face-today
-   (:background ,region
-                :weight bold)
-   nil)
-  (cfw:face-toolbar
-   (:inherit default)
-   nil)
-  (cfw:face-today-title
-   (:background ,keyword
-                :foreground ,fg-white)
-   nil)
-  (cfw:face-grid
+   (:foreground ,doc))
+  (org-time-grid
    (:foreground ,comment)
    nil)
-  (cfw:face-header
-   (:foreground ,keyword
-                :weight bold)
+  (org-todo
+   (:foreground ,builtin
+                :background ,bg-dark)
    nil)
-  (cfw:face-default-day
-   (:foreground ,fg-white)
+  (org-upcoming-deadline
+   (:foreground ,keyword)
    nil)
-  (dired-subtree-depth-1-face
-   (:background nil)
-   nil)
-  (dired-subtree-depth-2-face
-   (:background nil)
-   nil)
-  (dired-subtree-depth-3-face
-   (:background nil)
-   nil)
-  (dired-subtree-depth-4-face
-   (:background nil)
-   nil)
-  (dired-subtree-depth-5-face
-   (:background nil)
-   nil)
-  (dired-subtree-depth-6-face
-   (:background nil)
-   nil)
-  (nlinum-current-line
+  (org-warning
    (:foreground ,builtin)
-   (:foreground ,bg-dark))
-  (region
-   (:background ,region)
    nil)
+  (powerline-active1
+   nil
+   (:background ,bg-white))
+  (powerline-active2
+   nil
+   (:background ,bg-white))
+  (powerline-inactive1
+   nil
+   (:background ,bg-white))
+  (powerline-inactive2
+   nil
+   (:background ,bg-white))
   (rainbow-delimiters-depth-1-face
    (:foreground ,level-1)
    nil)
@@ -747,25 +705,66 @@ like:
   (rainbow-delimiters-depth-9-face
    (:foreground ,level-9)
    nil)
+  (region
+   (:background ,region)
+   nil)
   (show-paren-match
    (:background ,keyword
                 :foreground ,bg-dark)
    nil)
+  (slime-repl-inputed-output-face
+   (:foreground ,keyword)
+   nil)
   (solaire-default-face
+   (:background ,bg-dark-solaire)
+   nil)
+  (solaire-hl-line-face
+   (:background ,region-dark)
+   nil)
+  (sp-pair-overlay-face
    (:background ,bg-dark-solaire)
    nil)
   (sp-show-pair-match-face
    (:background ,bg-dark
                 :foreground ,keyword)
    nil)
-  (sp-pair-overlay-face
-   (:background ,bg-dark-solaire)
-   nil)
   (sp-wrap-overlay-face
    (:background ,bg-dark-solaire)
    nil)
-  (slime-repl-inputed-output-face
-   (:foreground ,keyword)
+  (spacemacs-emacs-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (spacemacs-evilified-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (spacemacs-hybrid-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (spacemacs-lisp-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (spacemacs-motion-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (spacemacs-normal-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (spacemacs-visual-face
+   (:background ,bg-dark
+                :foreground ,fg-white)
+   nil)
+  (swiper-line-face
+   (:background ,dark-3
+                :foreground ,fg-white)
+   nil)
+  (swiper-match-face-2
+   (:background ,builtin)
    nil)
   (tooltip
    (:foreground ,gray
@@ -781,16 +780,12 @@ like:
    (:background ,region
                 :foreground ,region)
    nil)
-  (which-key-key-face
-   (:foreground ,string)
-   nil)
   (which-key-command-description-face
    (:foreground ,type)
    nil)
-  (which-key-local-map-description-face
-   (:foreground ,variable-name)
-   nil)
-  ))
+  (which-key-key-face
+   (:foreground ,string)
+   nil)))
 
 (with-eval-after-load 'highlight-parentheses
   ;; Parentheses colors
