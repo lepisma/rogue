@@ -712,6 +712,9 @@ like:
    (:background ,keyword
                 :foreground ,bg-dark)
    nil)
+  (sldb-restartable-frame-line-face
+   (:foreground ,colors-green)
+   nil)
   (slime-repl-inputed-output-face
    (:foreground ,keyword)
    nil)
