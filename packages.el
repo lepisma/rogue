@@ -14,6 +14,7 @@
     (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
     enlive
     (esi :location (recipe :fetcher github :repo "lepisma/esi"))
+    focus
     hackernews
     hyperbole
     multiple-cursors
@@ -122,6 +123,11 @@
     :config
     (setq esi-bm-file user-bookmarks-file)
     (setq esi-music-directory (file-name-as-directory "~/Desktop"))))
+
+(defun rogue/init-focus ()
+  (use-package focus
+    :config
+    (add-hook 'prog-mode-hook (lambda () (focus-mode 1)))))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
