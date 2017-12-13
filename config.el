@@ -728,8 +728,8 @@ like:
    (:background ,bg-dark-solaire)
    nil)
   (sp-show-pair-match-face
-   (:background ,bg-dark
-                :foreground ,keyword)
+   (:background ,comment
+                :foreground ,colors-yellow)
    nil)
   (sp-wrap-overlay-face
    (:background ,bg-dark-solaire)
