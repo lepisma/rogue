@@ -70,7 +70,6 @@
 
 (defun rogue/init-calfw ()
   (use-package calfw
-    :after (org-gcal calfw-org)
     :bind (("C-c q" . cfw:open-org-calendar))
     :config
     (setq cfw:fchar-junction ?┼
@@ -86,6 +85,7 @@
 
 (defun rogue/init-calfw-org ()
   (use-package calfw-org
+    :after calfw
     :config
     (setq cfw:org-face-agenda-item-foreground-color "#BF616A")))
 
@@ -125,9 +125,7 @@
     (setq esi-music-directory (file-name-as-directory "~/Desktop"))))
 
 (defun rogue/init-focus ()
-  (use-package focus
-    :config
-    (add-hook 'prog-mode-hook (lambda () (focus-mode 1)))))
+  (use-package focus))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
@@ -164,16 +162,16 @@
 (defun rogue/init-org-gcal ()
   (use-package org-gcal
     :ensure t
-    :after org
+    :after (org calfw calfw-org)
+    :hook ((org-agenda-mode . org-gcal-sync)
+           (org-capture-after-finalize . org-gcal-sync)
+           (cfw:calendar-mode . org-gcal-sync))
     :config
     (setq org-gcal-file-alist `(("abhinav.tushar.vs@gmail.com" . ,user-gcal-file)))
     ;; Secret file
     ;; (setq org-gcal-client-id "<>"
     ;;       org-gcal-client-secret "<>")
-    (load-file (concat user-secrets-dir "gcal.el"))
-    (add-hook 'org-agenda-mode-hook #'org-gcal-sync)
-    (add-hook 'org-capture-after-finalize-hook #'org-gcal-sync)
-    (add-hook 'cfw:calendar-mode-hook #'org-gcal-sync)))
+    (load-file (concat user-secrets-dir "gcal.el"))))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
@@ -184,7 +182,7 @@
 (defun rogue/init-org-pretty-table ()
   (use-package org-pretty-table
     :demand t
-    :config
+    :init
     (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))))
 
 (defun rogue/init-org-make ()
@@ -195,18 +193,18 @@
   (use-package parinfer
     :ensure t
     :bind (("C-," . parinfer-toggle-mode))
+    :hook ((clojure-mode . parinfer-mode)
+           (emacs-lisp-mode . parinfer-mode)
+           (common-lisp-mode . parinfer-mode)
+           (racket-mode . parinfer-mode)
+           (lisp-mode . parinfer-mode)
+           (scheme-mode . parinfer-mode)
+           (hy-mode . parinfer-mode))
     :init
-    (progn
-      (setq parinfer-extensions
-            '(defaults        ; should be included.
-               pretty-parens  ; different paren styles for different modes.
-               smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-               smart-yank))   ; Yank behavior depend on mode.
-      (add-hook 'clojure-mode-hook #'parinfer-mode)
-      (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
-      (add-hook 'common-lisp-mode-hook #'parinfer-mode)
-      (add-hook 'scheme-mode-hook #'parinfer-mode)
-      (add-hook 'lisp-mode-hook #'parinfer-mode))))
+    (setq parinfer-extensions '(defaults
+                                pretty-parens
+                                smart-tab
+                                smart-yank))))
 
 (defun rogue/init-pretty-mode ()
   (use-package pretty-mode
@@ -302,10 +300,9 @@
 
 (defun rogue/init-solaire-mode ()
   (use-package solaire-mode
-    :config
-    (add-hook 'prog-mode-hook #'turn-on-solaire-mode)
-    (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
-    (add-hook 'ediff-prepare-buffer-hook #'solaire-mode)))
+    :hook ((prog-mode . turn-on-solaire-mode)
+           (minibuffer-setup . solaire-mode-in-minibuffer)
+           (ediff-prepare-buffer . solaire-mode))))
 
 (defun rogue/init-spaceline-all-the-icons ()
   (progn
