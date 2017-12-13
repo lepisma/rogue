@@ -239,7 +239,7 @@
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
-  (add-hook 'mu4e-compose-mode-hook (lambda () (flyspell-mode))))
+  (add-hook 'mu4e-compose-mode-hook #'flyspell-mode))
 
 (provide 'rogue-mu4e)
 

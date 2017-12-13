@@ -1,4 +1,4 @@
-;;; funcs.el --- rogue Layer utility functions
+;;; funcs.el --- rogue Layer utility functions -*- lexical-binding: t -*-
 
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"

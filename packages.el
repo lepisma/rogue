@@ -165,9 +165,9 @@
     ;; (setq org-gcal-client-id "<>"
     ;;       org-gcal-client-secret "<>")
     (load-file (concat user-secrets-dir "gcal.el"))
-    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync)))
-    (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
-    (add-hook 'cfw:calendar-mode-hook (lambda () (org-gcal-sync)))))
+    (add-hook 'org-agenda-mode-hook #'org-gcal-sync)
+    (add-hook 'org-capture-after-finalize-hook #'org-gcal-sync)
+    (add-hook 'cfw:calendar-mode-hook #'org-gcal-sync)))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
@@ -297,9 +297,9 @@
 (defun rogue/init-solaire-mode ()
   (use-package solaire-mode
     :config
-    (add-hook 'prog-mode-hook 'turn-on-solaire-mode)
-    (add-hook 'minibuffer-setup-hook 'solaire-mode-in-minibuffer)
-    (add-hook 'ediff-prepare-buffer-hook 'solaire-mode)))
+    (add-hook 'prog-mode-hook #'turn-on-solaire-mode)
+    (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+    (add-hook 'ediff-prepare-buffer-hook #'solaire-mode)))
 
 (defun rogue/init-spaceline-all-the-icons ()
   (progn

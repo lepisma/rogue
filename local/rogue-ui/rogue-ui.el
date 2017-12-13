@@ -62,7 +62,7 @@
                                              fringe-indicator-alist))
   (setq flycheck-indication-mode nil)
 
-  (add-hook 'magit-post-refresh-hook 'git-gutter:update-all-windows)
+  (add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
   (define-fringe-bitmap 'git-gutter-fr:added
     [224 224 224 224 224 224 224 224 224 224 224 224 224
          224 224 224 224 224 224 224 224 224 224 224 224]
@@ -107,6 +107,8 @@
 (defun rogue-ui-setup-misc ()
   "Setup ui for misc packages/tools."
 
+  (delete-selection-mode 1)
+  
   (use-package em-tramp
     :config
     (setq eshell-prefer-lisp-functions t
@@ -186,7 +188,7 @@
                            mu4e-view-mode-hook
                            mu4e-main-mode-hook
                            nov-mode-hook)
-                         'rogue-ui-clear-sides)
+                         #'rogue-ui-clear-sides)
 
   ;; Hooks for header gaps
   (rogue-utils-add-hooks '(cfw:calendar-mode-hook
@@ -204,7 +206,7 @@
                            mu4e-view-mode-hook
                            mu4e-main-mode-hook
                            nov-mode-hook)
-                         'rogue-ui-clear-header)
+                         #'rogue-ui-clear-header)
 
   ;; Hooks for hidden modeline
   (rogue-utils-add-hooks '(processing-compilation-mode-hook
@@ -225,7 +227,7 @@
                            ranger-preview-dir-hook
                            slime-repl-mode-hook
                            process-menu-mode-hook)
-                         'rogue-ui-hide-mode-line)
+                         #'rogue-ui-hide-mode-line)
 
   ;; Hooks for line spacing
   (rogue-utils-add-hooks '(text-mode-hook
@@ -234,15 +236,15 @@
                            ranger-mode-hook
                            ibuffer-mode-hook
                            comint-mode-hook)
-                         (-partial 'rogue-ui-line-spacing 0.1))
+                         (lambda () (rogue-ui-line-spacing 0.1)))
 
   (rogue-utils-add-hooks '(org-agenda-mode-hook)
-                         (-partial 'rogue-ui-line-spacing 0.2))
+                         (lambda () (rogue-ui-line-spacing 0.2)))
 
   ;; No line highlighting
   (rogue-utils-add-hooks '(text-mode-hook
                            cfw:calendar-mode-hook)
-                         'rogue-ui-no-hl-line)
+                         #'rogue-ui-no-hl-line)
 
   ;; Clear message buffer
   (with-current-buffer "*Messages*"
@@ -252,9 +254,9 @@
 
   ;; Other general hooks
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
-  (add-hook 'text-mode-hook 'auto-fill-mode)
-  (add-hook 'term-mode-hook 'toggle-truncate-lines)
-  (add-hook 'prog-mode-hook 'nlinum-mode))
+  (add-hook 'text-mode-hook #'auto-fill-mode)
+  (add-hook 'term-mode-hook #'toggle-truncate-lines)
+  (add-hook 'prog-mode-hook #'nlinum-mode))
 
 (provide 'rogue-ui)
 
