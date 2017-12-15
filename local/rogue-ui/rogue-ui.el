@@ -107,8 +107,6 @@
 (defun rogue-ui-setup-misc ()
   "Setup ui for misc packages/tools."
 
-  (delete-selection-mode 1)
-  
   (use-package em-tramp
     :config
     (setq eshell-prefer-lisp-functions t
