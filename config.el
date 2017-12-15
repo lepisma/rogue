@@ -78,7 +78,7 @@ like:
   (bg-darker          accent-dark)
   (bg-dark-solaire    (color-lighten-name accent-dark 2))
   (fg-white           light-3)
-  (shade-white        light-1)
+  (shade-white        (color-lighten-name light-1 10))
   (highlight          (color-lighten-name accent-dark 4))
   (region-dark        (color-lighten-name accent-dark 2))
   (region             dark-3)
@@ -329,12 +329,18 @@ like:
   (helm-M-x-key
    (:foreground ,builtin)
    nil)
+  (helm-buffer-file
+   nil
+   (:background ,bg-white))
   (helm-ff-directory
    (:foreground ,builtin)
-   nil)
+   (:background ,bg-white))
   (helm-ff-dotted-symlink-directory
    (:background nil)
    nil)
+  (helm-ff-file
+   nil
+   (:background ,bg-white))
   (helm-ff-prefix
    (:foreground ,keyword)
    nil)

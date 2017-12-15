@@ -233,13 +233,7 @@
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
     :commands (read-lyrics-read-lyrics)
-    :after (s spotify)
-    :config
-    (setq read-lyrics-getters
-          (list (lambda ()
-                  (let ((splits (s-split "-" (shell-command-to-string "bbq :current"))))
-                    (list (s-collapse-whitespace (s-join " " (butlast splits)))
-                          (s-collapse-whitespace (car (last splits))))))))))
+    :after (s spotify)))
 
 (defun rogue/init-rogue-ligatures ()
   (use-package rogue-ligatures
