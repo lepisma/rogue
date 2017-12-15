@@ -15,6 +15,7 @@
     enlive
     (esi :location (recipe :fetcher github :repo "lepisma/esi"))
     focus
+    gscholar-bibtex
     hackernews
     hyperbole
     multiple-cursors
@@ -126,6 +127,12 @@
 
 (defun rogue/init-focus ()
   (use-package focus))
+
+(defun rogue/init-gscholar-bibtex ()
+  (use-package gscholar-bibtex
+    :config
+    (setq gscholar-bibtex-database-file "~/library.bib"
+          gscholar-bibtex-default-source "Google Scholar")))
 
 (defun rogue/init-hackernews ()
   (use-package hackernews
