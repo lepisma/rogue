@@ -638,6 +638,9 @@ like:
   (org-quote
    (:background ,bg-dark)
    nil)
+  (org-ref-cite-face
+   (:foreground ,builtin)
+   (:foreground ,builtin))
   (org-scheduled
    (:foreground ,gray)
    nil)
