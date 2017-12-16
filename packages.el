@@ -22,6 +22,7 @@
     nov
     ob-async
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
+    org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
     org-gcal
     org-journal
@@ -161,6 +162,10 @@
   (use-package org-books
     :config
     (setq org-books-file user-books-file)))
+
+(defun rogue/init-org-cliplink ()
+  (use-package org-cliplink
+    :bind (("C-c y" . org-cliplink))))
 
 (defun rogue/init-org-expand ()
   (use-package org-expand
