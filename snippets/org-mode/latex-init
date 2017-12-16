@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name : latex-init
+# key : init
+# --
+#+TITLE: $1
+#+AUTHOR: Abhinav Tushar
+#+EMAIL: $2
+
+#+OPTIONS: toc:nil
+
+#+LATEX_CLASS: article
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{biblatex}
+#+LATEX_HEADER: \addbibresource{~/library.bib}
+
+\begin{abstract}
+\end{abstract}
+
+$0
+
+\printbibliography{}
