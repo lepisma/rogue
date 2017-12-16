@@ -44,6 +44,7 @@
 ;; Some resets
 (global-set-key (kbd "C-x C-l") nil)
 (global-set-key (kbd "<insert>") nil)
+(define-key org-mode-map (kbd "C-c C-x C-s") nil)
 
 ;; Smartparens
 (global-set-key (kbd "M-<right>") 'sp-forward-slurp-sexp)
