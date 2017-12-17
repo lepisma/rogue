@@ -4,7 +4,7 @@
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25") (enlive "0.0.1"))
+;; Package-Requires: ((dash "2.13.0") (s "1.12.0") (emacs "25") (enlive "0.0.1"))
 ;; URL: https://github.com/lepisma/rogue/tree/master/local/weather-amherst
 
 ;;; Commentary:
@@ -30,20 +30,36 @@
 
 ;;; Code:
 
+(require 'dash)
 (require 'enlive)
 (require 'org)
+(require 's)
+
+(defun weather-amherst-transform-temperature (pair)
+  (let ((value (->> pair
+                  (second)
+                  (s-split "°")
+                  (first)
+                  (string-to-number))))
+    (list (first pair)
+          (format "%0.2f°C" (/ (- value 32) 1.8)))))
+
+(defun weather-amherst-transform-speed (pair)
+  (let ((value (->> pair
+                  (second)
+                  (s-split "mph")
+                  (first)
+                  (string-to-number))))
+    (list (first pair)
+          (format "%0.2f kmph%s" (* 1.60934 value)
+                  (mapconcat #'identity (cdr (s-split "mph" (second pair))) "")))))
 
 (defun weather-amherst-transform-units (pairs)
-  "Transform unit PAIRS to SI. Just temp for now."
-  (mapcar
-   (lambda (pair)
-     (let* ((split (split-string (second pair) "°"))
-            (value (string-to-number (first split)))
-            (unit (second split)))
-       (if (string-equal unit "F")
-           `(,(first pair)
-             ,(concat (format "%0.2f" (/ (- value 32) 1.8)) "°C"))
-         pair))) pairs))
+  "Transform unit PAIRS to SI."
+  (mapcar (lambda (pair)
+            (cond ((s-contains? "°F" (second pair)) (weather-amherst-transform-temperature pair))
+                  ((s-contains? "mph" (second pair)) (weather-amherst-transform-speed pair))
+                  (t pair))) pairs))
 
 (defun weather-amherst-show-in-buffer (pairs location)
   "Display weather data in a new buffer."
