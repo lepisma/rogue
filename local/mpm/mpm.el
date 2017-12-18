@@ -29,16 +29,15 @@
 
 ;;; Code:
 
+(require 'async)
 (require 'dash)
 (require 'org-cliplink)
 (require 's)
 
-(defun mpm-add-item (url title artist &optional album)
-  (+ 1 1))
-
 (defun mpm-detect-metadata (page-title)
   "Try to figure out song metadata from PAGE-TITLE.
-Return a cons cell like this (artist . title)."
+Return a cons cell like this (artist . title).
+TODO: Save artist for better heuristic."
   (let ((parts (--> page-title
                   (s-split "-" it)
                   (butlast it)
@@ -59,13 +58,24 @@ Return a cons cell like this (artist . title)."
     (or (s-starts-with? "youtube.com" url-main)
         (s-starts-with? "youtu.be" url-main))))
 
-;; TODO: Define a minor mode for metadata manipulation
-;; - Allow swapping title, artist
-;; - Allow adding album
-;; - Save artists for better heuristic
-;; - Allow removing texts in parentheses
-;; - Probably get help from yasnippet?
+(defun mpm-run-import (artist title &optional album)
+  "Import the item in mpm"
+  (print "lolkek"))
 
+(defun mpm-confirm-metadata (artist-title-pair)
+  "Ask user for confirming the metadata provided"
+  (let ((buffer (get-buffer-create "*mpm-confirm*")))
+    (set-buffer buffer)
+    (emacs-lisp-mode)
+    (erase-buffer)
+    (insert ";; Mpm import confirmation\n\n")
+    (insert (pp `(let ((artist ,(car artist-title-pair))
+                       (title ,(cdr artist-title-pair))
+                       (album nil))
+                   (mpm-run-import artist title album))))
+    (switch-to-buffer buffer)))
+
+;;;###autoload
 (defun mpm-cliplink ()
   "Save the current link to mpm database."
   (interactive)
@@ -74,7 +84,7 @@ Return a cons cell like this (artist . title)."
         (org-cliplink-retrieve-title
          url
          (lambda (url page-title)
-           (print (mpm-detect-metadata page-title))))
+           (mpm-confirm-metadata (mpm-detect-metadata page-title))))
       (message "Not a valid url"))))
 
 (provide 'mpm)
