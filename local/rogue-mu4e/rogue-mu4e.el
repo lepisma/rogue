@@ -166,6 +166,13 @@
                                              "maildir:/Fastmail/INBOX")
                               :key ?i)
                              (make-mu4e-bookmark
+                              :name "All Sent"
+                              :query (concat "\"maildir:/Gmail/[Gmail].Sent Mail\" OR "
+                                             "maildir:/UMassCS/Sent OR "
+                                             "maildir:/UMass/INBOX.Sent OR "
+                                             "maildir:/Fastmail/Sent")
+                              :key ?s)
+                             (make-mu4e-bookmark
                               :name "All Unread"
                               :query (concat "maildir:/Gmail/INBOX AND flag:unread OR "
                                              "maildir:/UMassCS/INBOX AND flag:unread OR "
