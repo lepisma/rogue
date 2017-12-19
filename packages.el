@@ -18,6 +18,7 @@
     gscholar-bibtex
     hackernews
     hyperbole
+    (mpm :location local)
     multiple-cursors
     nov
     ob-async
@@ -142,6 +143,9 @@
 (defun rogue/init-hyperbole ()
   (use-package hyperbole
     :demand t))
+
+(defun rogue/init-mpm ()
+  (use-package mpm))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors

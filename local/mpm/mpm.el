@@ -37,7 +37,7 @@
 (defun mpm-detect-metadata (page-title)
   "Try to figure out song metadata from PAGE-TITLE.
 Return a cons cell like this (artist . title).
-TODO: Save artist for better heuristic."
+TODO: Save artists for better heuristic."
   (let ((parts (--> page-title
                   (s-split "-" it)
                   (butlast it)
@@ -58,34 +58,47 @@ TODO: Save artist for better heuristic."
     (or (s-starts-with? "youtube.com" url-main)
         (s-starts-with? "youtu.be" url-main))))
 
-(defun mpm-run-import (artist title &optional album)
+(defmacro mpm-run-import (url artist title &optional album)
   "Import the item in mpm"
-  (print "lolkek"))
+  (let ((args `("--artist" ,artist
+                "--title" ,title
+                "--url" ,url)))
+    `(start-process "*mpm*" (get-buffer-create "*mpm*") "mpm" "add"
+                    ,@(if album
+                          (append (list "--album" (shell-quote-argument album))
+                                  args)
+                        args))))
 
-(defun mpm-confirm-metadata (artist-title-pair)
+(defun mpm-confirm-metadata (url artist-title-pair)
   "Ask user for confirming the metadata provided"
   (let ((buffer (get-buffer-create "*mpm-confirm*")))
     (set-buffer buffer)
     (emacs-lisp-mode)
     (erase-buffer)
     (insert ";; Mpm import confirmation\n\n")
+    (insert ";; Check artist and title, swap if needed.\n")
+    (insert ";; Insert album as the last argument to mpm-run-import.\n\n")
     (insert (pp `(let ((artist ,(car artist-title-pair))
                        (title ,(cdr artist-title-pair))
-                       (album nil))
-                   (mpm-run-import artist title album))))
+                       (url ,url))
+                   (mpm-run-import url artist title nil)
+                   (bury-buffer))))
     (switch-to-buffer buffer)))
+
+(defun mpm-add-link (url)
+  (if (mpm-url-valid? url)
+      (org-cliplink-retrieve-title
+       url
+       (lambda (url page-title)
+         (mpm-confirm-metadata url (mpm-detect-metadata page-title))))
+    (message "Not a valid url")))
 
 ;;;###autoload
 (defun mpm-cliplink ()
   "Save the current link to mpm database."
   (interactive)
   (let ((url (substring-no-properties (current-kill 0))))
-    (if (mpm-url-valid? url)
-        (org-cliplink-retrieve-title
-         url
-         (lambda (url page-title)
-           (mpm-confirm-metadata (mpm-detect-metadata page-title))))
-      (message "Not a valid url"))))
+    (mpm-add-link url)))
 
 (provide 'mpm)
 
