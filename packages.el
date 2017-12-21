@@ -145,7 +145,8 @@
     :demand t))
 
 (defun rogue/init-mpm ()
-  (use-package mpm))
+  (use-package mpm
+    :after org-cliplink))
 
 (defun rogue/init-multiple-cursors ()
   (use-package multiple-cursors
