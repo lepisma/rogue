@@ -4,8 +4,8 @@
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/mpm.el
+;; Package-Requires: ((dash "2.13.0") org-cliplink (s "1.12.0") (emacs "25"))
+;; URL: https://github.com/lepisma/mpm
 
 ;;; Commentary:
 
@@ -29,7 +29,6 @@
 
 ;;; Code:
 
-(require 'async)
 (require 'dash)
 (require 'org-cliplink)
 (require 's)
