@@ -11,9 +11,8 @@
     colormaps
     dired-subtree
     doom-themes
-    (elnode :location (recipe :fetcher github :repo "lepisma/elnode"))
     enlive
-    (esi :location (recipe :fetcher github :repo "lepisma/esi"))
+    (etab :location (recipe :fetcher github :repo "lepisma/etab"))
     focus
     gscholar-bibtex
     hackernews
@@ -121,11 +120,10 @@
 (defun rogue/init-enlive ()
   (use-package enlive))
 
-(defun rogue/init-esi ()
-  (use-package esi
+(defun rogue/init-etab ()
+  (use-package etab
     :config
-    (setq esi-bm-file user-bookmarks-file)
-    (setq esi-music-directory (file-name-as-directory "~/Desktop"))))
+    (setq etab-bookmarks-file user-bookmarks-file)))
 
 (defun rogue/init-focus ()
   (use-package focus))
@@ -146,6 +144,7 @@
 
 (defun rogue/init-mpm ()
   (use-package mpm
+    :demand t
     :after org-cliplink))
 
 (defun rogue/init-multiple-cursors ()
@@ -249,7 +248,6 @@
 
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
-    :commands (read-lyrics-read-lyrics)
     :after (s spotify)))
 
 (defun rogue/init-rogue-ligatures ()

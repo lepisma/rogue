@@ -4,7 +4,7 @@
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
-;; Package-Requires: ((dash "2.13.0") org-cliplink (s "1.12.0") (emacs "25"))
+;; Package-Requires: ((dash "2.13.0") (org-cliplink) (s "1.12.0") (emacs "25"))
 ;; URL: https://github.com/lepisma/mpm
 
 ;;; Commentary:
