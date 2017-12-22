@@ -5,7 +5,7 @@
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/org-make.el
+;; URL: https://github.com/lepisma/org-make
 
 ;;; Commentary:
 
@@ -31,7 +31,8 @@
 
 (require 'org)
 (require 'ob)
-(require 'cl-lib)
+(require 'dash)
+(require 'dash-functional)
 (require 'helm)
 (require 'projectile)
 
@@ -56,11 +57,9 @@
        ,@body)))
 
 (defun org-make-tasks ()
-  "Return a list of tasks in given ORG-FILE."
+  "Return a list of tasks"
   (org-make-run-in-context
-   (cl-remove-if-not
-    (lambda (name) (string-prefix-p org-make-task-prefix name))
-    (org-babel-src-block-names))))
+   (-filter (-cut string-prefix-p org-make-task-prefix <>) (org-babel-src-block-names))))
 
 (defun org-make-run-task (task-name)
   "Run TASK-NAME."
