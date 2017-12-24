@@ -181,7 +181,11 @@ you should place you code here."
                 js2-missing-semi-one-line-override nil
                 typescript-indent-level 2)
 
-  (setq inferior-lisp-program "ros -Q run")
+  (setf slime-lisp-implementations
+        `((sbcl    ("sbcl"))
+          (roswell ("ros" "-Q" "run"))
+          (roswell-dune ("ros" "-Q" "run" "-e" "(ql:quickload :dune)" "-e" "(in-package :dune)")))
+        slime-default-lisp 'roswell-dune)
 
   (slime-setup '(slime-asdf
                  slime-company
