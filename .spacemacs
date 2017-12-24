@@ -25,7 +25,6 @@ values."
             latex-enable-folding t
             latex-enable-auto-fill t)
      (markdown :variables markdown-live-preview-engine 'vmd)
-     ocaml
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t)
