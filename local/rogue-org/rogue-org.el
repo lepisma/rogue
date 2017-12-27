@@ -62,7 +62,6 @@
      (latex      . t)
      (lisp       . t)
      (makefile   . t)
-     (ocaml      . t)
      (python     . t)
      (R          . t)
      (restclient . t)
