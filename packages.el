@@ -279,7 +279,7 @@
     :config
     (rogue-processes-define "offlineimap" "-o")
     (rogue-processes-define "mpm-play")
-    (rogue-processes-start-service "mpm-play")
+    ;; (rogue-processes-start-service "mpm-play")
     (setq rogue-processes-git-update-dirs
           (rogue-utils-get-project-dirs '("reading-list"
                                           "clippings"
