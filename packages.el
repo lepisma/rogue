@@ -17,7 +17,7 @@
     gscholar-bibtex
     hackernews
     hyperbole
-    (mpm :location local)
+    (mpm :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
     multiple-cursors
     nov
     ob-async
