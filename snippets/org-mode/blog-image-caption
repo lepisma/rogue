@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : blog-image-caption
+# key : imgc
+# --
+{% image_caption ${1:zoom} %}
+${2:#image-url}
+
+${3:#caption}
+{% endimage_caption %}
+$0

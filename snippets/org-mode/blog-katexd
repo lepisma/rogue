@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : blog-katexd
+# key : katd
+# --
+{% katex display %}
+$1
+{% endkatex %}
+$0

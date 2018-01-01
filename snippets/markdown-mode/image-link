@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name : image-link
+# key : imgl
+# --
+{% image_link %}
+${1:#image-url}
+${2:#link}
+{% endimage_link %}
+$0

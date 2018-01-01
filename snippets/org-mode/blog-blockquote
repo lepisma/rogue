@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name : blockquote
+# name : blog-blockquote
 # key : block
 # --
 <blockquote markdown="1">

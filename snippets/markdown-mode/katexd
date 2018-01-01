@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : katexd
+# key : katd
+# --
+{% katex display %}
+$1
+{% endkatex %}
+$0

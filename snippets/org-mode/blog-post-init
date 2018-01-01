@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name : blog-post-init
+# key : initp
+# --
+---
+layout: post
+title: $1
+summary: $2
+tags: $3
+---
+
+<p class="post-intro" markdown="1">
+  $4
+</p>
+<!--more-->
+
+<span class="dropcap">$0</span>

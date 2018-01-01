@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name : blog-katex
+# key : kat
+# --
+{% katex %}$1{% endkatex %} $0
