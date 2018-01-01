@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name : blog-aside
-# key : as
-# --
-<aside markdown="1">
-  $1
-</aside>
-$0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name : blog-edits
-# key : ed
-# --
-<div class="edits" markdown="1">
-- $1
-</div>

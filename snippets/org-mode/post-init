@@ -1,13 +1,11 @@
 # -*- mode: snippet -*-
-# name : blog-post-init
+# name : post-init
 # key : initp
 # --
----
-layout: post
-title: $1
-summary: $2
-tags: $3
----
+#+TITLE: $1
+#+LAYOUT: post
+#+SUMMARY: $2
+#+TAGS: $3
 
 <p class="post-intro" markdown="1">
   $4

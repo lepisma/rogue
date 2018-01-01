@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name : post-init
-# key : init
+# key : initp
 # --
 ---
 layout: post
