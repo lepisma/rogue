@@ -132,6 +132,8 @@ to be set:
             ("d" "Deadline" entry (file "notes.org")
              "* %?\nDEADLINE: %^T")))
 
+    (setq org-html-validation-link nil)
+
     (setq org-refile-use-outline-path 'file
           org-outline-path-complete-in-steps nil
           org-refile-targets '((org-agenda-files :maxlevel . 1)))
