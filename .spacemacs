@@ -31,6 +31,7 @@ values."
      python
      racket
      ruby
+     (rust :variables rust-format-on-save t)
      scheme
      shell
      shell-scripts
