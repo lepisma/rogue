@@ -45,9 +45,7 @@
 
 (defun org-gh-current-repo ()
   "Look back and tell which repo we are talking about"
-  (save-excursion
-    (search-backward "github.com")
-    (thing-at-point-url-at-point)))
+  (org-entry-get (point) "github" t))
 
 (defun org-gh-build-url (repo-url id)
   "Build the url to open"
