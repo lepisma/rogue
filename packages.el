@@ -17,6 +17,7 @@
     gscholar-bibtex
     hackernews
     hyperbole
+    (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein"))
     (mpm :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
     multiple-cursors
     nov
@@ -123,6 +124,7 @@
 
 (defun rogue/init-etab ()
   (use-package etab
+    :after levenshtein
     :config
     (setq etab-bookmarks-file user-bookmarks-file)))
 
@@ -142,6 +144,9 @@
 (defun rogue/init-hyperbole ()
   (use-package hyperbole
     :demand t))
+
+(defun rogue/init-levenshtein ()
+  (use-package levenshtein))
 
 (defun rogue/init-mpm ()
   (use-package mpm
@@ -253,7 +258,7 @@
 
 (defun rogue/init-read-lyrics ()
   (use-package read-lyrics
-    :after (s spotify)))
+    :after (s spotify levenshtein)))
 
 (defun rogue/init-rogue-ligatures ()
   (use-package rogue-ligatures
