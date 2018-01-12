@@ -25,6 +25,7 @@
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
     org-gcal
+    (org-gh :location local)
     org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
@@ -188,6 +189,10 @@
     ;; (setq org-gcal-client-id "<>"
     ;;       org-gcal-client-secret "<>")
     (load-file (concat user-secrets-dir "gcal.el"))))
+
+(defun rogue/init-org-gh ()
+  (use-package org-gh
+    :demand t))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
