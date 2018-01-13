@@ -38,6 +38,10 @@
         right-margin-width 2)
   (set-window-buffer nil (current-buffer)))
 
+(defun rogue-ui-clear-header-sides ()
+  "Add left gap in header line"
+  (setq header-line-format '(:eval (concat "  " (get-text-property (point-min) (quote header-line))))))
+
 (defun rogue-ui-clear-header ()
   "Clear header line."
   (setq header-line-format " "))
@@ -185,8 +189,13 @@
                            process-menu-mode-hook
                            mu4e-view-mode-hook
                            mu4e-main-mode-hook
-                           nov-mode-hook)
+                           nov-mode-hook
+                           Info-mode-hook)
                          #'rogue-ui-clear-sides)
+
+  ;; Hooks for side gap in header
+  (rogue-utils-add-hooks '(Info-mode-hook)
+                         #'rogue-ui-clear-header-sides)
 
   ;; Hooks for header gaps
   (rogue-utils-add-hooks '(cfw:calendar-mode-hook
