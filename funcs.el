@@ -41,11 +41,6 @@ With argument, do this that many times."
   (yank)
   (setq kill-ring (cdr kill-ring)))
 
-(defun insect-calc ()
-  "Run insect calculator."
-  (interactive)
-  (shell-command (format "insect \"%s\"" (read-string "insect: "))))
-
 (defun rogue-cycle-theme ()
   "Cycle between dark and light scheme"
   (interactive)
