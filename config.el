@@ -360,7 +360,7 @@ like:
    (:foreground ,keyword)
    nil)
   (highlight
-   (:background ,region-dark
+   (:background ,highlight
                 :foreground ,fg-white)
    (:background ,shade-white))
   (hl-line
