@@ -594,6 +594,9 @@ like:
                :foreground ,comment)
    (:underline nil
                :foreground ,comment))
+  (org-formula
+   (:foreground ,type)
+   nil)
   (org-headline-done
    (:strike-through t)
    (:family ,et-font
