@@ -432,6 +432,60 @@ like:
   (magit-section-heading-selection
    (:foreground ,colors-yellow)
    nil)
+  (markdown-blockquote-face
+   (:inherit org-quote :foreground nil)
+   (:inherit org-quote :foreground nil))
+  (markdown-bold-face
+   (:inherit bold :foreground nil)
+   (:inherit bold :foreground nil))
+  (markdown-code-face
+   (:inherit org-code :foreground nil)
+   (:inherit org-code :foreground nil))
+  (markdown-header-delimiter-face
+   (:inherit org-level-1 :foreground ,gray)
+   (:inherit org-level-1 :foreground nil))
+  (markdown-header-face
+   (:inherit org-level-1 :foreground nil)
+   (:inherit org-level-1 :foreground nil))
+  (markdown-header-face-1
+   (:inherit org-level-1 :foreground nil)
+   (:inherit org-level-1 :foreground nil))
+  (markdown-header-face-2
+   (:inherit org-level-2 :foreground nil)
+   (:inherit org-level-2 :foreground nil))
+  (markdown-header-face-3
+   (:inherit org-level-3 :foreground nil)
+   (:inherit org-level-3 :foreground nil))
+  (markdown-header-face-4
+   (:inherit org-level-4 :foreground nil)
+   (:inherit org-level-4 :foreground nil))
+  (markdown-header-face-5
+   (:inherit org-level-5 :foreground nil)
+   (:inherit org-level-5 :foreground nil))
+  (markdown-header-face-6
+   (:inherit org-level-6 :foreground nil)
+   (:inherit org-level-6 :foreground nil))
+  (markdown-inline-code-face
+   (:inherit org-code)
+   (:inherit org-code))
+  (markdown-italic-face
+   (:inherit italic :foreground nil)
+   (:inherit italic :foreground nil))
+  (markdown-link-face
+   (:inherit org-link :foreground nil)
+   (:inherit org-link :foreground nil))
+  (markdown-list-face
+   (:inherit org-list-dt :foreground nil)
+   (:inherit org-list-dt :foreground nil))
+  (markdown-metadata-key-face
+   (:inherit font-lock-keyword-face :foreground nil)
+   (:inherit font-lock-keyword-face :foreground nil))
+  (markdown-pre-face
+   (:inherit org-block :foreground nil)
+   (:inherit org-block :foreground nil))
+  (markdown-url-face
+   (:inherit org-link :foreground nil)
+   (:inherit org-link :foreground nil))
   (minibuffer-prompt
    (:foreground ,keyword)
    nil)
@@ -505,8 +559,7 @@ like:
   (org-code
    (:foreground ,builtin)
    (:inherit nil
-             :foreground ,comment
-             :height 0.9))
+             :foreground ,comment))
   (org-date
    (:foreground ,doc)
    (:height 0.8))
@@ -526,7 +579,7 @@ like:
              :foreground ,gray)
    (:inherit nil
              :family ,et-font
-             :height 1.7
+             :height 1.4
              :foreground ,bg-dark
              :underline nil))
   (org-done
@@ -559,7 +612,7 @@ like:
              :background ,bg-dark)
    (:inherit nil
              :family ,et-font
-             :height 1.8
+             :height 1.4
              :weight normal
              :slant normal
              :foreground ,bg-dark))
@@ -572,7 +625,7 @@ like:
    (:inherit nil
              :family ,et-font
              :weight normal
-             :height 1.6
+             :height 1.3
              :slant italic
              :foreground ,bg-dark))
   (org-level-3
@@ -585,7 +638,7 @@ like:
              :family ,et-font
              :weight normal
              :slant italic
-             :height 1.5
+             :height 1.2
              :foreground ,bg-dark))
   (org-level-4
    (:inherit variable-pitch
@@ -597,7 +650,7 @@ like:
              :family ,et-font
              :weight normal
              :slant italic
-             :height 1.3
+             :height 1.2
              :foreground ,bg-dark))
   (org-level-5
    (:inherit variable-pitch
@@ -605,28 +658,48 @@ like:
              :height 1.1
              :foreground ,gray
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :slant italic
+             :height 1.2
+             :foreground ,bg-dark))
   (org-level-6
    (:inherit variable-pitch
              :weight bold
              :height 1.1
              :foreground ,gray
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :slant italic
+             :height 1.2
+             :foreground ,bg-dark))
   (org-level-7
    (:inherit variable-pitch
              :weight bold
              :height 1.1
              :foreground ,gray
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :slant italic
+             :height 1.2
+             :foreground ,bg-dark))
   (org-level-8
    (:inherit variable-pitch
              :weight bold
              :height 1.1
              :foreground ,gray
              :background ,bg-dark)
-   nil)
+   (:inherit nil
+             :family ,et-font
+             :weight normal
+             :slant italic
+             :height 1.2
+             :foreground ,bg-dark))
   (org-link
    (:underline nil
                :weight normal
