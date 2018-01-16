@@ -2,7 +2,7 @@
 # name : package-init
 # key : init
 # --
-;;; ${1:`(file-name-nondirectory (buffer-file-name))`} --- $2
+;;; ${1:`(file-name-nondirectory (buffer-file-name))`} --- $2 -*- lexical-binding: t; -*-
 
 ;; Copyright (c) `(format-time-string "%Y")` Abhinav Tushar
 
