@@ -22,6 +22,7 @@
     multiple-cursors
     nov
     ob-async
+    (org-bbq :location local)
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
@@ -36,6 +37,7 @@
     (rogue-ligatures :location local)
     (rogue-mu4e :location local)
     (rogue-org :location local)
+    (rogue-pile :location local)
     (rogue-processes :location local)
     (rogue-ui :location local)
     (rogue-utils :location local)
@@ -168,6 +170,10 @@
 (defun rogue/init-ob-async ()
   (use-package ob-async))
 
+(defun rogue/init-org-bbq ()
+  (use-package orb-bbq
+    :after org))
+
 (defun rogue/init-org-books ()
   (use-package org-books
     :config
@@ -197,7 +203,7 @@
 
 (defun rogue/init-org-gh ()
   (use-package org-gh
-    :demand t))
+    :after org))
 
 (defun rogue/init-org-journal ()
   (use-package org-journal
@@ -282,6 +288,12 @@
     (rogue-org-setup-notes)
     (rogue-org-setup-babel)
     (rogue-org-setup-tex)))
+
+(defun rogue/init-rogue-pile ()
+  (use-package rogue-pile
+    :after rogue-utils
+    :config
+    (rogue-pile-setup)))
 
 (defun rogue/init-rogue-processes ()
   (use-package rogue-processes

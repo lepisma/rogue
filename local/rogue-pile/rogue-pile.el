@@ -46,9 +46,8 @@
              :base-extension "org"
              :recursive t
              :publishing-directory ,pile-output
-             :publishing-function (org-html-publish-to-html
-                                   org-org-publish-to-org)
-             :htmlized-source t
+             :publishing-function org-html-publish-to-html
+             :htmlized-source nil
              :html-checkbox-type unicode
              :html-doctype "html5"
              :html-html5-fancy t
