@@ -171,7 +171,7 @@
   (use-package ob-async))
 
 (defun rogue/init-org-bbq ()
-  (use-package orb-bbq
+  (use-package org-bbq
     :after org))
 
 (defun rogue/init-org-books ()
