@@ -29,6 +29,24 @@
 (require 'spaceline)
 (require 'spaceline-config)
 
+(spaceline-define-segment ati-persp-name
+  "The current perspective name."
+  (when (and active
+             (bound-and-true-p persp-mode)
+             ;; There are multiple implementations of
+             ;; persp-mode with different APIs
+             (fboundp 'safe-persp-name)
+             (fboundp 'get-frame-persp))
+    (let ((name (safe-persp-name (get-frame-persp))))
+      (propertize
+       (downcase (if (file-directory-p name)
+                     (file-name-nondirectory (directory-file-name name))
+                   name))
+       'face `(:height 0.8
+                       :background ,(face-attribute 'default :background)
+                       :foreground ,(face-attribute 'font-lock-doc-face :foreground))
+       'display '(raise 0.2)))))
+
 (spaceline-define-segment
     ati-modified "An `all-the-icons' modified segment"
     (let* ((config-alist
@@ -50,12 +68,9 @@
     (concat
      (if (and (fboundp 'projectile-project-name)
               (projectile-project-name))
-         (propertize (format "%s" (concat (projectile-project-name) ))
+         (propertize (format "%s" (projectile-project-name))
                      'face '(:height 0.8 :inherit)
-                     'display '(raise 0.2)
-                     'help-echo "Switch Project"
-                     'local-map (make-mode-line-mouse-map
-                                 'mouse-1 (lambda () (interactive) (projectile-switch-project))))
+                     'display '(raise 0.2))
        (propertize "×" 'face '(:height 0.8 :inherit)))
      " "
      (propertize "|" 'face '(:height 0.8 :inherit) 'display '(raise 0.2)))
@@ -95,13 +110,9 @@
     (when mark-active
       (let ((words (count-lines (region-beginning) (region-end)))
             (chars (count-words (region-end) (region-beginning))))
-        (concat
-         (propertize (format "%s " (all-the-icons-octicon "pencil") words chars)
-                     'face `(:family ,(all-the-icons-octicon-family) :height 0.7 :inherit)
-                     'display '(raise 0.3))
-         (propertize (format "(%s, %s)" words chars)
-                     'face `(:height 0.8 :inherit)
-                     'display '(raise 0.2))))))
+        (propertize (format "(%s, %s)" words chars)
+                    'face `(:height 0.8 :inherit)
+                    'display '(raise 0.2)))))
 
 (defun spaceline---github-vc ()
   "Function to return the Spaceline formatted GIT Version Control text."
@@ -167,13 +178,8 @@
 
 (spaceline-define-segment ati-buffer-position
   "The current approximate buffer position, in percent."
-  (concat
-   (propertize (all-the-icons-faicon "map-o")
-               'face `(:family ,(all-the-icons-faicon-family) :height 0.7 :inherit)
-               'display '(raise 0.5))
-   " "
-   (propertize (format-mode-line "%p ")
-               'face '(:height 0.8 :inherit) 'display '(raise 0.3))))
+  (propertize (format-mode-line "%p ")
+              'face '(:height 0.8 :inherit) 'display '(raise 0.3)))
 
 (defvar spaceline-org-clock-format-function
   'org-clock-get-clock-string
@@ -246,23 +252,23 @@ the directions of the separator."
                               'font-lock-comment-face)))
 
 (spaceline-compile
- "ati"
- '(((ati-modified ati-buffer-size) :face highlight-face :skip-alternate t)
-   ati-right-2-separator
-   ((ati-projectile ati-mode-icon ati-buffer-id))
-   ati-right-1-separator
-   ((ati-position ati-region-info) :separator "  " :face highlight-face)
-   ati-right-2-separator
-   ((ati-vc-icon) :face other-face)
-   ati-right-1-separator
-   ((ati-flycheck-status
-    ((ati-org-clock :when active)
-     (ati-org-pomodoro :when active))) :separator "  " :face highlight-face)
-   ati-right-2-separator)
+  "ati"
+  '(((ati-modified ati-buffer-size) :face highlight-face :skip-alternate t)
+    ati-right-2-separator
+    ((ati-persp-name ati-projectile ati-mode-icon ati-buffer-id))
+    ati-right-1-separator
+    ((ati-position ati-region-info) :separator "  " :face highlight-face)
+    ati-right-2-separator
+    ((ati-vc-icon) :face other-face)
+    ati-right-1-separator
+    ((ati-flycheck-status
+      ((ati-org-clock :when active)
+       (ati-org-pomodoro :when active))) :separator "  " :face highlight-face)
+    ati-right-2-separator)
 
- '(ati-right-1-separator
-   ((ati-buffer-position
-     ati-time) :separator "  " :face highlight-face)))
+  '(ati-right-1-separator
+    ((ati-buffer-position
+      ati-time) :separator "  " :face highlight-face)))
 
 (provide 'spaceline-all-the-icons)
 ;;; spaceline-all-the-icons.el ends here
