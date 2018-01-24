@@ -519,15 +519,18 @@ like:
    nil)
   (org-agenda-date
    (:foreground ,doc
-                :inherit variable-pitch)
+                :inherit variable-pitch
+                :height 1.2)
    (:inherit nil))
   (org-agenda-date-today
-   (:height 1.5
+   (:height 1.4
             :foreground ,keyword
             :inherit variable-pitch)
    nil)
   (org-agenda-date-weekend
-   (:inherit org-agenda-date)
+   (:inherit org-agenda-date
+             :height 1.0
+             :foreground ,comment)
    nil)
   (org-agenda-done
    (:inherit nil
