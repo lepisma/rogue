@@ -36,7 +36,30 @@
 (defun rogue-pile-setup ()
   "Setup for pile"
   (let ((pile-source (concat user-project-dir "pile/pile/"))
-        (pile-output (concat user-project-dir "pile/docs/")))
+        (pile-output (concat user-project-dir "pile/docs/"))
+        (preamble "<header>
+  <div class='site-title'>
+    <a href='/'>
+      <img src='/assets/images/avatar32.png'>
+    </a>
+  </div>
+  <div class='site-nav'>
+    <a href='/pile'> pile</a>
+    <a href='/feed.xml'> feed</a>
+    <a href='/archive'> blog</a>
+    <a href='/about'> about</a>
+  </div>
+  <div class='clearfix'>
+  </div>
+</header>
+
+<div class='page-header'>
+  <div class='page-meta small'>
+    Last modified: %d %C
+  </div>
+  <h1>%t</h1>
+</div>")
+        (postamble "<footer></footer>"))
     (setq org-publish-project-alist
           `(("pile-pages"
              :auto-sitemap t
@@ -51,9 +74,8 @@
              :html-checkbox-type unicode
              :html-doctype "html5"
              :html-html5-fancy t
-             :html-postamble t
-             :html-preamble t
-             :makeindex t)
+             :html-postamble ,postamble
+             :html-preamble ,preamble)
             ("pile-static"
              :base-directory ,pile-source
              :base-extension ".*"
