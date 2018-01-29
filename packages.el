@@ -305,7 +305,6 @@
     (setq rogue-processes-git-update-dirs
           (rogue-utils-get-project-dirs '("reading-list"
                                           "clippings"
-                                          "til-emacs"
                                           "dev")))
     (rogue-processes-run-git-autoupdate-loop "10 min" 3600)))
 
