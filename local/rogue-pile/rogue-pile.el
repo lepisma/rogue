@@ -39,15 +39,17 @@
 
 (defun rogue-pile-remove-index (list)
   "Walk over the list to remove index.org items"
-  (->> list
-     (-remove (lambda (it)
-                (and (eq (type-of it) 'cons) (= (length it) 1)
-                     (or (s-contains? "index.org]" (car it))
-                         (s-contains? "allpages.org" (car it))))))
-     (-map (lambda (it)
-             (if (eq (type-of it) 'cons)
-                 (rogue-pile-remove-index it)
-               it)))))
+  (let ((ignore-patterns '("/index.org"
+                           "allpages.org"
+                           "org-test.org")))
+    (->> list
+       (-remove (lambda (it)
+                  (and (eq (type-of it) 'cons) (= (length it) 1)
+                       (-any (-cut s-contains? <> (car it)) ignore-patterns))))
+       (-map (lambda (it)
+               (if (eq (type-of it) 'cons)
+                   (rogue-pile-remove-index it)
+                 it))))))
 
 (defun rogue-pile-sitemap (title list)
   (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (rogue-pile-remove-index list))))
