@@ -29,9 +29,51 @@
 
 ;;; Code:
 
+(require 'dash)
+(require 'dash-functional)
+(require 'f)
 (require 'org)
 (require 'ox-html)
 (require 'ox-publish)
+(require 's)
+
+(defun rogue-pile-remove-index (list)
+  "Walk over the list to remove index.org items"
+  (->> list
+     (-remove (lambda (it)
+                (and (eq (type-of it) 'cons) (= (length it) 1)
+                     (or (s-contains? "index.org]" (car it))
+                         (s-contains? "allpages.org" (car it))))))
+     (-map (lambda (it)
+             (if (eq (type-of it) 'cons)
+                 (rogue-pile-remove-index it)
+               it)))))
+
+(defun rogue-pile-sitemap (title list)
+  (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (rogue-pile-remove-index list))))
+
+(defun rogue-pile-sitemap-entry (entry style project)
+  (cond ((not (directory-name-p entry))
+         (format "[[file:%s][%s]]"
+                 entry
+                 (org-publish-find-title entry project)))
+        ((eq style 'tree)
+         (let ((index-file (f-join entry "index.org")))
+           (format "[[file:%s][%s]]"
+                   index-file
+                   (org-publish-find-title index-file project))))
+        (t entry)))
+
+;;;###autoload
+(defun rogue-pile-clear-cache ()
+  "Clear org-publish-cache"
+  (interactive)
+  (setq org-publish-cache nil)
+  (let ((cache-root (f-full "~/.emacs.d/.cache/.org-timestamps/")))
+    (->> '("pile-pages.cache" "pile-static.cache")
+       (-map (-cut f-join cache-root <>))
+       (-filter #'f-exists?)
+       (-map #'f-delete))))
 
 (defun rogue-pile-setup ()
   "Setup for pile"
@@ -65,6 +107,8 @@
              :auto-sitemap t
              :sitemap-filename "sitemap.org"
              :sitemap-title "Sitemap"
+             :sitemap-format-entry rogue-pile-sitemap-entry
+             :sitemap-function rogue-pile-sitemap
              :base-directory ,pile-source
              :base-extension "org"
              :recursive t
