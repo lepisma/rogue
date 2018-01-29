@@ -103,7 +103,7 @@
   </div>
   <h1>%t</h1>
 </div>")
-        (postamble "<footer></footer>"))
+        (postamble "<footer id='footer'></footer>"))
     (setq org-publish-project-alist
           `(("pile-pages"
              :auto-sitemap t
