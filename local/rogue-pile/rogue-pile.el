@@ -61,7 +61,6 @@
                       (-map #'f-filename)
                       (-remove (-cut s-starts-with? ".#" <>))
                       (-remove (-cut string-equal "index.org" <>)))))
-    (print org-files)
     (insert "* Pages in this section\n\n")
     (-map (lambda (file) (insert (format "- [[./%s][%s]]\n" file (rogue-pile-file-title file))))
           org-files)))
