@@ -37,6 +37,35 @@
 (require 'ox-publish)
 (require 's)
 
+(defun rogue-pile-file-title (file)
+  "Return title for an org file"
+  (second (s-split "TITLE: " (-find (-cut s-starts-with? "#+TITLE:" <>)
+                                    (s-split "\n" (f-read-text file))))))
+
+(defun rogue-pile-regenerate-index ()
+  "Regenerate index for current dir"
+  (interactive)
+  (let ((insert-at (point)))
+    (goto-char (point-min))
+    (if (search-forward "* Pages in this section" nil t)
+        (progn
+          (delete-line)
+          (delete-region (point) (point-max))
+          (setq insert-at (point))))
+    (goto-char insert-at)
+    (rogue-pile-insert-index)))
+
+(defun rogue-pile-insert-index ()
+  "Generate and insert index for the current dir"
+  (let ((org-files (->> (f-glob "*.org")
+                      (-map #'f-filename)
+                      (-remove (-cut s-starts-with? ".#" <>))
+                      (-remove (-cut string-equal "index.org" <>)))))
+    (print org-files)
+    (insert "* Pages in this section\n\n")
+    (-map (lambda (file) (insert (format "- [[./%s][%s]]\n" file (rogue-pile-file-title file))))
+          org-files)))
+
 (defun rogue-pile-remove-index (list)
   "Walk over the list to remove index.org items"
   (let ((ignore-patterns '("/index.org"
