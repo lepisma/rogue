@@ -157,7 +157,8 @@
              :recursive t
              :publishing-directory ,pile-output
              :publishing-function org-publish-attachment)
-            ("pile" :components ("pile-pages" "pile-static"))))))
+            ("pile" :components ("pile-pages" "pile-static")))
+          org-html-htmlize-output-type 'inline-css)))
 
 (provide 'rogue-pile)
 

@@ -66,6 +66,7 @@
      (R          . t)
      (restclient . t)
      (ruby       . t)
+     (sagemath   . t)
      (scheme     . t)
      (sh         . t)
      (shell      . t)

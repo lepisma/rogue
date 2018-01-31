@@ -41,6 +41,7 @@
     (rogue-processes :location local)
     (rogue-ui :location local)
     (rogue-utils :location local)
+    sage-shell-mode
     shell-switcher
     snakemake-mode
     solaire-mode
@@ -316,6 +317,14 @@
 
 (defun rogue/init-rogue-utils ()
   (use-package rogue-utils))
+
+(defun rogue/init-sage-shell-mode ()
+  (use-package sage-shell-mode
+    :config
+    (sage-shell:define-alias)
+    (add-hook 'sage-shell-mode-hook #'eldoc-mode)
+    (add-hook 'sage-shell:sage-mode-hook #'eldoc-mode)
+    (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)))
 
 (defun rogue/init-shell-switcher ()
   (use-package shell-switcher
