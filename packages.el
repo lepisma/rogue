@@ -322,6 +322,7 @@
   (use-package sage-shell-mode
     :config
     (sage-shell:define-alias)
+    (setq sage-shell-view-default-resolution 150)
     (add-hook 'sage-shell-mode-hook #'eldoc-mode)
     (add-hook 'sage-shell:sage-mode-hook #'eldoc-mode)
     (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)))
