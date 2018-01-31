@@ -65,7 +65,7 @@
   (beacon-mode +1)
   (setq beacon-color (face-attribute 'region :background nil t)
         beacon-blink-when-buffer-changes t
-        beacon-blink-when-point-moves-vertically 10))
+        beacon-blink-when-point-moves-vertically nil))
 
 (defun rogue/init-browse-at-remote ()
   (use-package browse-at-remote
