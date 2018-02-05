@@ -22,6 +22,7 @@
     multiple-cursors
     nov
     ob-async
+    ob-sagemath
     (org-bbq :location local)
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-cliplink
@@ -170,6 +171,9 @@
 
 (defun rogue/init-ob-async ()
   (use-package ob-async))
+
+(defun rogue/init-ob-sagemath ()
+  (use-package ob-sagemath))
 
 (defun rogue/init-org-bbq ()
   (use-package org-bbq
