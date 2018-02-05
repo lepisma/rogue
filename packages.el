@@ -308,8 +308,7 @@
     (rogue-processes-define "mpm-play")
     ;; (rogue-processes-start-service "mpm-play")
     (setq rogue-processes-git-update-dirs
-          (rogue-utils-get-project-dirs '("reading-list"
-                                          "clippings"
+          (rogue-utils-get-project-dirs '("clippings"
                                           "dev")))
     (rogue-processes-run-git-autoupdate-loop "10 min" 3600)))
 
