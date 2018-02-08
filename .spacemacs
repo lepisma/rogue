@@ -152,6 +152,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (defconst user-project-file (concat user-project-dir "dev/projects.org"))
   (defconst user-books-file (concat user-project-dir "pile/pile/readings/books.org"))
+  (defconst user-clippings-file (concat user-project-dir "pile/pile/readings/clippings.org"))
   (defconst user-bookmarks-file (concat user-journal-dir "bookmarks.org"))
   (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
   ;; Separate custom stuff

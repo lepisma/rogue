@@ -145,6 +145,11 @@
   (use-package hackernews
     :bind ("C-c h" . hackernews)))
 
+(defun rogue/init-kindle ()
+  (use-package kindle
+    :config
+    (setq kindle-clipping-save-file user-clippings-file)))
+
 (defun rogue/init-hyperbole ()
   (use-package hyperbole
     :demand t))
