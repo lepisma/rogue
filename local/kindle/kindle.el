@@ -47,6 +47,10 @@
 - %t is for date (and time) added
 - %a is for book and author")
 
+(defcustom kindle-clipping-save-file nil
+  "Save file for kindle clippings. Assumes a few things to be in
+the file as of now.")
+
 (defun kindle-check-device ()
   "Check if kindle is mounted"
   (let ((mount-line (->> (f-read-text kindle-mount-path)
@@ -54,30 +58,76 @@
                        (-find (-cut s-contains? "Kindle" <>)))))
     mount-line))
 
-(defun kindle-read-clippings-file (mount-directory)
-  "Read clippings file from the kindle mount directory"
-  (f-read-text (f-join mount-directory "documents" "My Clippings.txt")))
+(defun kindle--get-mount-path (mount-line)
+  "Return mount path from /proc/mounts MOUNT-LINE"
+  (second (s-split " " mount-line)))
 
-(defun kindle-parse-clipping (clipping-text)
-  "Parse a clipping text"
+(defun kindle-clipping--parse (clipping-text)
+  "Parse a clipping from CLIPPING-TEXT"
   (let* ((lines (s-split "\n" (s-trim clipping-text)))
          (source (s-trim (car lines)))
          (added (->> (s-split "| Added on " (second lines)) (second) (s-trim)))
          (text (s-trim (s-join "\n" (nthcdr 2 lines)))))
     (list text source added)))
 
-(defun kindle-parse-clippings-text (text)
-  "Parse a list of clippings from the text"
-  (let ((clippings (s-split "==========" (s-trim text))))
-    (-map #'kindle-parse-clipping
+(defun kindle-clipping-read-file (mount-directory)
+  "Parse a list of clippings from kindle MOUNT-DIRECTORY"
+  (let* ((clippings-file (f-join mount-directory "documents" "My Clippings.txt"))
+         (text (f-read-text clippings-file))
+         (clippings (s-split "==========" (s-trim text))))
+    (-map #'kindle-clipping--parse
           (-remove (-cut string-equal <> "") clippings))))
 
-(defun kindle-pretty-print-clipping (clipping)
+(defun kindle-clipping-clear-device-file (mount-directory)
+  "Clear the clipping file in MOUNT-DIRECTORY"
+  (let ((clippings-file (f-join mount-directory "documents" "My Clippings.txt")))
+    (f-write-text "" 'utf-8 clippings-file)))
+
+(defun kindle-clipping--pretty-print (clipping)
   "Pretty print a clipping using the format specified in kindle-clipping-format"
-  (s-replace-all '(("%s" . (nth 0 clipping))
-                   ("%a" . (nth 1 clipping))
-                   ("%t" . (nth 2 clipping)))
+  (s-replace-all `(("%s" . ,(nth 0 clipping))
+                   ("%a" . ,(nth 1 clipping))
+                   ("%t" . ,(nth 2 clipping)))
                  kindle-clipping-format))
+
+(defun kindle-clipping--in-buffer? (clipping buffer-text)
+  "Check if CLIPPING is present in BUFFER-TEXT"
+  (let ((text (s-collapse-whitespace (nth 0 clipping))))
+    (s-contains? text buffer-text)))
+
+(defun kindle-clipping--filter-clippings (clippings buffer)
+  "Remove CLIPPINGS already present in BUFFER"
+  (let ((buffer-text (s-collapse-whitespace
+                      (with-current-buffer buffer
+                        (buffer-substring-no-properties (point-min) (point-max))))))
+    (-remove (-cut kindle-clipping--in-buffer? <> buffer-text) clippings)))
+
+(defun kindle-clipping--insert-clipping (clipping buffer)
+  "Insert CLIPPING at the top of BUFFER"
+  (with-current-buffer buffer
+    (save-excursion
+      (goto-char (point-min))
+      (search-forward "div class=\"epigraph\">" nil t)
+      (insert "\n")
+      (insert (kindle-clipping--pretty-print clipping))
+      (insert "\n")
+      (search-backward "#+BEGIN_QUOTE" nil t)
+      (next-line)
+      (org-fill-element))))
+
+(defun kindle-clipping-ingest-new ()
+  "Ingest new clippings"
+  (interactive)
+  (let ((mount-line (kindle-check-device)))
+    (if mount-line
+        (let* ((buffer (find-file-noselect kindle-clipping-save-file))
+               (clippings (--> (kindle--get-mount-path mount-line)
+                            (kindle-clipping-read-file it)
+                            (kindle-clipping-filter-clippings it buffer))))
+          (message (format "Found %s new clippings" (length clippings)))
+          (-each clippings (-cut kindle-clipping--insert-clipping <> buffer))
+          (with-current-buffer buffer (save-buffer)))
+      (message "Kindle not found"))))
 
 (provide 'kindle)
 
