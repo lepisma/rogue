@@ -17,6 +17,7 @@
     gscholar-bibtex
     hackernews
     hyperbole
+    (kindle :location local)
     (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein"))
     (mpm :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
     multiple-cursors
