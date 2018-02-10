@@ -122,16 +122,10 @@ to be set:
           org-capture-templates
           '(("g" "Google calender event" entry (file user-gcal-file)
              "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-            ("y" "Yak" entry (file "yak.org")
-             "* %?")
-            ("e" "Explore" entry (file "explore.org")
-             "* %? %^g")
             ("t" "Todo" entry (file "notes.org")
              "* TODO %?\nSCHEDULED: %^T\n")
             ("b" "Bookmark" entry (file "notes.org")
-             "* TODO %?\n%a")
-            ("d" "Deadline" entry (file "notes.org")
-             "* %?\nDEADLINE: %^T")))
+             "* TODO %?\n%a")))
 
     (setq org-html-validation-link nil)
 
@@ -141,20 +135,7 @@ to be set:
 
     (setq org-agenda-custom-commands
           '(("n" "Main agenda view"
-             ((tags "next"
-                    ((org-agenda-overriding-header "Next concrete todos")))
-              (agenda "")
-              (todo "TODO")))
-            ("r" "Readings"
-             ((todo "READING"
-                    ((org-agenda-files (list user-bookmarks-file))
-                     (org-agenda-overriding-header "Bookmarks")))
-              (todo "READING"
-                    ((org-agenda-files (list user-books-file))
-                     (org-agenda-overriding-header "Books")))
-              (todo "NEXT"
-                    ((org-agenda-files (list user-books-file))
-                     (org-agenda-overriding-header "Upcoming books")))))
+             ((agenda "")))
             ("d" "Upcoming deadlines" agenda ""
              ((org-agenda-entry-types '(:deadline))
               (org-deadline-warning-days 30)
