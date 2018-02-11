@@ -122,10 +122,10 @@ to be set:
           org-capture-templates
           '(("g" "Google calender event" entry (file user-gcal-file)
              "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-            ("t" "Todo" entry (file "notes.org")
-             "* TODO %?\nSCHEDULED: %^T\n")
+            ("l" "Logistic" entry (file "notes.org")
+             "* LOGISTICS %?\nSCHEDULED: %^T\n")
             ("b" "Bookmark" entry (file "notes.org")
-             "* TODO %?\n%a")))
+             "* %?\n%a")))
 
     (setq org-html-validation-link nil)
 
@@ -136,6 +136,11 @@ to be set:
     (setq org-agenda-custom-commands
           '(("n" "Main agenda view"
              ((agenda "")))
+            ("l" "Logistics"
+             ((todo "LOGISTICS"
+                    ((org-agenda-overriding-header "Logistics")
+                     (org-agenda-prefix-format "[ ] %T: ")
+                     (org-agenda-sorting-strategy '(priority-down))))))
             ("d" "Upcoming deadlines" agenda ""
              ((org-agenda-entry-types '(:deadline))
               (org-deadline-warning-days 30)
