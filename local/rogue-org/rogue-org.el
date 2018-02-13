@@ -139,7 +139,6 @@ to be set:
             ("l" "Logistics"
              ((todo "LOGISTICS"
                     ((org-agenda-overriding-header "Logistics")
-                     (org-agenda-prefix-format "[ ] %T: ")
                      (org-agenda-sorting-strategy '(priority-down))))))
             ("d" "Upcoming deadlines" agenda ""
              ((org-agenda-entry-types '(:deadline))
