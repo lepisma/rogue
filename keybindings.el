@@ -54,3 +54,6 @@
 (global-set-key (kbd "M-u") 'sp-backward-unwrap-sexp)
 (global-set-key (kbd "M-n") 'sp-end-of-sexp)
 (global-set-key (kbd "M-p") 'sp-beginning-of-sexp)
+
+;; Persp grouping
+(global-set-key (kbd "C-x C-b") #'(lambda (arg) (interactive "P") (with-persp-buffer-list () (ibuffer arg))))
