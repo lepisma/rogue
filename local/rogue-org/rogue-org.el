@@ -39,7 +39,7 @@
         org-ref-default-bibliography (list bib-library)
         bibtex-completion-bibliography bib-library)
 
-  (setq org-latex-pdf-process (list "latexmk -xelatex -f -pdf %f"))
+  (setq org-latex-pdf-process (list "latexmk -pdflatex=xelatex -f -pdf %f"))
   (setq TeX-engine 'xetex))
 
 (defun rogue-org-setup-babel ()
