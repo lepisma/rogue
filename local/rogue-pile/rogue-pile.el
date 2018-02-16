@@ -42,7 +42,7 @@
   (second (s-split "TITLE: " (-find (-cut s-starts-with? "#+TITLE:" <>)
                                     (s-split "\n" (f-read-text file))))))
 
-(defun rogue-pile-regenerate-index ()
+(defun rogue-pile-index-regenerate ()
   "Regenerate index for current dir"
   (interactive)
   (let ((insert-at (point)))
@@ -53,34 +53,58 @@
           (delete-region (point) (point-max))
           (setq insert-at (point))))
     (goto-char insert-at)
-    (rogue-pile-insert-index)))
+    (rogue-pile-index-insert)))
 
-(defun rogue-pile-insert-index ()
-  "Generate and insert index for the current dir"
-  (let ((org-files (->> (f-glob "*.org")
-                      (-map #'f-filename)
-                      (-remove (-cut s-starts-with? ".#" <>))
-                      (-remove (-cut string-equal "index.org" <>)))))
+(defun rogue-pile-index-parse-dir (dir)
+  "Parse directory for org files recursively"
+  (let ((items (f-entries dir))
+        (output nil))
+    (-each items
+      (lambda (it)
+        (cond ((and (f-file? it)
+                    (s-ends-with? ".org" it)
+                    (not (s-ends-with? "index.org" it))
+                    (not (s-starts-with? ".#" (f-filename it))))
+               (push it output))
+              ((and (f-dir? it) (f-exists? (f-join it "index.org")))
+               (progn
+                 (push (f-join it "index.org") output)
+                 (push (rogue-pile-index-parse-dir it) output))))))
+    (reverse (-remove #'null output))))
+
+(defun rogue-pile-index-format (index-tree &optional level)
+  "Format index tree as org list"
+  (let ((output "")
+        (indent (s-join "" (-repeat (or level 0) "  "))))
+    (-each index-tree
+      (lambda (it)
+        (cond ((stringp it)
+               (let ((link-path (f-relative it default-directory))
+                     (link-title (rogue-pile-file-title it)))
+                 (setq output (s-append (format "%s- [[./%s][%s]]\n" indent link-path link-title) output))))
+              ((consp it)
+               (setq output (s-append (rogue-pile-index-format it (+ (or level 0) 1)) output))))))
+    output))
+
+(defun rogue-pile-index-insert ()
+  "Generate and insert index for the current dir."
+  (let ((file-tree (rogue-pile-index-parse-dir default-directory)))
     (insert "* Pages in this section\n\n")
-    (-map (lambda (file) (insert (format "- [[./%s][%s]]\n" file (rogue-pile-file-title file))))
-          org-files)))
+    (insert (rogue-pile-index-format file-tree))))
 
-(defun rogue-pile-remove-index (list)
+(defun rogue-pile-fix-index (list)
   "Walk over the list to remove index.org items"
   (let ((ignore-patterns '("/index.org"
                            "allpages.org"
                            "org-test.org")))
     (->> list
        (-remove (lambda (it)
-                  (and (eq (type-of it) 'cons) (= (length it) 1)
+                  (and (consp it) (= (length it) 1)
                        (-any (-cut s-contains? <> (car it)) ignore-patterns))))
-       (-map (lambda (it)
-               (if (eq (type-of it) 'cons)
-                   (rogue-pile-remove-index it)
-                 it))))))
+       (-map (lambda (it) (if (consp it) (rogue-pile-fix-index it) it))))))
 
 (defun rogue-pile-sitemap (title list)
-  (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (rogue-pile-remove-index list))))
+  (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (rogue-pile-fix-index list))))
 
 (defun rogue-pile-sitemap-entry (entry style project)
   (cond ((not (directory-name-p entry))
