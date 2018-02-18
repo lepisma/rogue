@@ -302,9 +302,10 @@
 
 (defun rogue/init-pile ()
   (use-package pile
-    :after rogue-utils
     :config
-    (pile-setup)))
+    (pile-setup)
+    (setq pile-source (concat user-project-dir "pile/pile/")
+          pile-output (concat user-project-dir "pile/docs/"))))
 
 (defun rogue/init-rogue-processes ()
   (use-package rogue-processes

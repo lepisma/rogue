@@ -38,6 +38,13 @@
 (require 'ox-publish)
 (require 's)
 
+
+(defcustom pile-source nil
+  "Source files for pile")
+
+(defcustom pile-output nil
+  "Output directory for pile")
+
 (defun pile--fix-sitemap (list)
   "Walk over the list to remove index.org items"
   (let ((ignore-patterns '("/index.org"
@@ -75,11 +82,18 @@
        (-filter #'f-exists?)
        (-map #'f-delete))))
 
+(defalias 'pile-publish-current-file #'org-publish-current-file)
+
+;;;###autoload
+(defun pile-publish ())
+
+;;;###autoload
+(defun pile-clear-output ()
+  "Remove files in output directory which are not in input")
+
 (defun pile-setup ()
   "Setup for pile"
-  (let ((pile-source (concat user-project-dir "pile/pile/"))
-        (pile-output (concat user-project-dir "pile/docs/"))
-        (preamble "<header>
+  (let ((preamble "<header>
   <div class='site-title'>
     <a href='/'>
       <img src='/assets/images/avatar32.png'>
