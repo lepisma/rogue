@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name : source
-# key : source
-# --
-#+BEGIN_SRC $1 :eval never-export :exports both :results output
-$0
-#+END_SRC
