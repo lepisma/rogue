@@ -3,13 +3,6 @@
 # key : initp
 # --
 #+TITLE: $1
-#+LAYOUT: post
-#+SUMMARY: $2
-#+TAGS: $3
+#+SETUPFILE: ${2:`(f-relative (locate-dominating-file "." "assets") ".")`}assets/export.setup
 
-<p class="post-intro" markdown="1">
-  $4
-</p>
-<!--more-->
-
-<span class="dropcap">$0</span>
+$0
