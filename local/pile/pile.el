@@ -1,11 +1,11 @@
-;;; rogue-pile.el --- Pile management
+;;; pile.el --- Pile management
 
 ;; Copyright (c) 2018 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue-pile.el
+;; URL: https://github.com/lepisma/pile.el
 
 ;;; Commentary:
 
@@ -32,67 +32,13 @@
 (require 'dash)
 (require 'dash-functional)
 (require 'f)
+(require 'pile-index)
 (require 'org)
 (require 'ox-html)
 (require 'ox-publish)
 (require 's)
 
-(defun rogue-pile-file-title (file)
-  "Return title for an org file"
-  (second (s-split "TITLE: " (-find (-cut s-starts-with? "#+TITLE:" <>)
-                                    (s-split "\n" (f-read-text file))))))
-
-(defun rogue-pile-index-regenerate ()
-  "Regenerate index for current dir"
-  (interactive)
-  (let ((insert-at (point)))
-    (goto-char (point-min))
-    (if (search-forward "* Pages in this section" nil t)
-        (progn
-          (delete-line)
-          (delete-region (point) (point-max))
-          (setq insert-at (point))))
-    (goto-char insert-at)
-    (rogue-pile-index-insert)))
-
-(defun rogue-pile-index-parse-dir (dir)
-  "Parse directory for org files recursively"
-  (let ((items (f-entries dir))
-        (output nil))
-    (-each items
-      (lambda (it)
-        (cond ((and (f-file? it)
-                    (s-ends-with? ".org" it)
-                    (not (s-ends-with? "index.org" it))
-                    (not (s-starts-with? ".#" (f-filename it))))
-               (push it output))
-              ((and (f-dir? it) (f-exists? (f-join it "index.org")))
-               (progn
-                 (push (f-join it "index.org") output)
-                 (push (rogue-pile-index-parse-dir it) output))))))
-    (reverse (-remove #'null output))))
-
-(defun rogue-pile-index-format (index-tree &optional level)
-  "Format index tree as org list"
-  (let ((output "")
-        (indent (s-join "" (-repeat (or level 0) "  "))))
-    (-each index-tree
-      (lambda (it)
-        (cond ((stringp it)
-               (let ((link-path (f-relative it default-directory))
-                     (link-title (rogue-pile-file-title it)))
-                 (setq output (s-append (format "%s- [[./%s][%s]]\n" indent link-path link-title) output))))
-              ((consp it)
-               (setq output (s-append (rogue-pile-index-format it (+ (or level 0) 1)) output))))))
-    output))
-
-(defun rogue-pile-index-insert ()
-  "Generate and insert index for the current dir."
-  (let ((file-tree (rogue-pile-index-parse-dir default-directory)))
-    (insert "* Pages in this section\n\n")
-    (insert (rogue-pile-index-format file-tree))))
-
-(defun rogue-pile-fix-index (list)
+(defun pile--fix-sitemap (list)
   "Walk over the list to remove index.org items"
   (let ((ignore-patterns '("/index.org"
                            "allpages.org"
@@ -101,12 +47,12 @@
        (-remove (lambda (it)
                   (and (consp it) (= (length it) 1)
                        (-any (-cut s-contains? <> (car it)) ignore-patterns))))
-       (-map (lambda (it) (if (consp it) (rogue-pile-fix-index it) it))))))
+       (-map (lambda (it) (if (consp it) (pile--fix-sitemap it) it))))))
 
-(defun rogue-pile-sitemap (title list)
-  (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (rogue-pile-fix-index list))))
+(defun pile-sitemap (title list)
+  (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (pile--fix-sitemap list))))
 
-(defun rogue-pile-sitemap-entry (entry style project)
+(defun pile-sitemap-entry (entry style project)
   (cond ((not (directory-name-p entry))
          (format "[[file:%s][%s]]"
                  entry
@@ -119,7 +65,7 @@
         (t entry)))
 
 ;;;###autoload
-(defun rogue-pile-clear-cache ()
+(defun pile-clear-cache ()
   "Clear org-publish-cache"
   (interactive)
   (setq org-publish-cache nil)
@@ -129,7 +75,7 @@
        (-filter #'f-exists?)
        (-map #'f-delete))))
 
-(defun rogue-pile-setup ()
+(defun pile-setup ()
   "Setup for pile"
   (let ((pile-source (concat user-project-dir "pile/pile/"))
         (pile-output (concat user-project-dir "pile/docs/"))
@@ -161,8 +107,8 @@
              :auto-sitemap t
              :sitemap-filename "sitemap.org"
              :sitemap-title "Sitemap"
-             :sitemap-format-entry rogue-pile-sitemap-entry
-             :sitemap-function rogue-pile-sitemap
+             :sitemap-format-entry pile-sitemap-entry
+             :sitemap-function pile-sitemap
              :base-directory ,pile-source
              :base-extension "org"
              :recursive t
@@ -184,6 +130,6 @@
             ("pile" :components ("pile-pages" "pile-static")))
           org-html-htmlize-output-type 'inline-css)))
 
-(provide 'rogue-pile)
+(provide 'pile)
 
-;;; rogue-pile.el ends here
+;;; pile.el ends here

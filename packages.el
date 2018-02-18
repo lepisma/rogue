@@ -34,12 +34,12 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
     parinfer
+    (pile :location local)
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
     (rogue-ligatures :location local)
     (rogue-mu4e :location local)
     (rogue-org :location local)
-    (rogue-pile :location local)
     (rogue-processes :location local)
     (rogue-ui :location local)
     (rogue-utils :location local)
@@ -300,11 +300,11 @@
     (rogue-org-setup-babel)
     (rogue-org-setup-tex)))
 
-(defun rogue/init-rogue-pile ()
-  (use-package rogue-pile
+(defun rogue/init-pile ()
+  (use-package pile
     :after rogue-utils
     :config
-    (rogue-pile-setup)))
+    (pile-setup)))
 
 (defun rogue/init-rogue-processes ()
   (use-package rogue-processes
