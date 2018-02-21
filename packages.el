@@ -202,9 +202,7 @@
   (use-package org-gcal
     :ensure t
     :after (org calfw calfw-org)
-    :hook ((org-agenda-mode . org-gcal-sync)
-           (org-capture-after-finalize . org-gcal-sync)
-           (cfw:calendar-mode . org-gcal-sync))
+    :hook ((cfw:calendar-mode . org-gcal-sync))
     :config
     (setq org-gcal-file-alist `(("abhinav.tushar.vs@gmail.com" . ,user-gcal-file)))
     ;; Secret file
