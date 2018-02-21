@@ -91,6 +91,7 @@
 (defun pile-clear-output ()
   "Remove files in output directory which are not in input")
 
+;;;###autoload
 (defun pile-setup ()
   "Setup for pile"
   (let ((preamble "<header>
