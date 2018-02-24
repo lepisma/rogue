@@ -34,10 +34,13 @@
 
 (defun rogue-org-setup-tex ()
   "Setup tex related stuff."
-  (setq bib-library "~/library.bib")
-  (setq reftex-default-bibliography (list bib-library)
-        org-ref-default-bibliography (list bib-library)
-        bibtex-completion-bibliography bib-library)
+  (setq bib-library user-bib-file
+        reftex-default-bibliography `(,user-bib-file)
+        org-ref-default-bibliography `(,user-bib-file)
+        bibtex-completion-bibliography user-bib-file
+        org-ref-bibliography-notes user-bib-notes-file
+        bibtex-completion-notes-path user-bib-notes-file
+        org-ref-notes-function 'org-ref-notes-function-one-file)
 
   (setq org-latex-pdf-process (list "latexmk -pdflatex=xelatex -f -pdf %f"))
   (setq TeX-engine 'xetex))

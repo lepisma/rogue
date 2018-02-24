@@ -150,6 +150,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
 
+  (defconst user-bib-file (concat user-journal-dir "library.bib"))
+  (defconst user-bib-notes-file (concat user-project-dir "pile/pile/readings/bib-notes.org"))
   (defconst user-project-file (concat user-project-dir "dev/projects.org"))
   (defconst user-books-file (concat user-project-dir "pile/pile/readings/books.org"))
   (defconst user-clippings-file (concat user-project-dir "pile/pile/readings/clippings.org"))

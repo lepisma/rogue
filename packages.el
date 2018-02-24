@@ -139,7 +139,7 @@
 (defun rogue/init-gscholar-bibtex ()
   (use-package gscholar-bibtex
     :config
-    (setq gscholar-bibtex-database-file "~/library.bib"
+    (setq gscholar-bibtex-database-file user-bib-file
           gscholar-bibtex-default-source "Google Scholar")))
 
 (defun rogue/init-hackernews ()
