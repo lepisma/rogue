@@ -2,8 +2,7 @@
 
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
-  (helm-find-files-1 (concat (file-name-as-directory (expand-file-name "~/.tofish"))
-                             candidate "/")))
+  (helm-find-files-1 (file-name-as-directory (f-canonical (f-join "~/.tofish" candidate)))))
 
 (defun to-fish-jump ()
   "Jump to to-fish bookmarks"
