@@ -240,7 +240,7 @@
 (defun rogue/init-org-journal ()
   (use-package org-journal
     :config
-    (setq org-journal-dir user-diary-dir)
+    (setq org-journal-dir user-journal-dir)
     (setq org-journal-enable-encryption t)))
 
 (defun rogue/init-org-pretty-table ()

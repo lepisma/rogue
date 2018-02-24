@@ -146,17 +146,22 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Directories
   (defconst user-layer-dir (file-name-as-directory "~/.emacs.d/private/rogue"))
   (defconst user-secrets-dir (file-name-as-directory (concat user-layer-dir "secrets")))
-  (defconst user-journal-dir (file-name-as-directory (getenv "JOURNAL_DIR")))
-  (defconst user-diary-dir (file-name-as-directory (concat user-journal-dir "diary")))
+  (defconst user-cloud-dir (file-name-as-directory (getenv "CLOUD_DIR")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
 
-  (defconst user-bib-file (concat user-journal-dir "library.bib"))
+  ;; Derived directories
+  (defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "Notes")))
+  (defconst user-journal-dir (file-name-as-directory (concat user-notes-dir "journal")))
+  (defconst user-pdfs-dir (file-name-as-directory (concat user-notes-dir "pdfs")))
+
+  ;; Files
+  (defconst user-bib-file (concat user-notes-dir "library.bib"))
   (defconst user-bib-notes-file (concat user-project-dir "pile/pile/readings/bib-notes.org"))
-  (defconst user-project-file (concat user-project-dir "dev/projects.org"))
   (defconst user-books-file (concat user-project-dir "pile/pile/readings/books.org"))
   (defconst user-clippings-file (concat user-project-dir "pile/pile/readings/clippings.org"))
-  (defconst user-bookmarks-file (concat user-journal-dir "bookmarks.org"))
-  (defconst user-gcal-file (concat user-journal-dir "gcal.org"))
+  (defconst user-bookmarks-file (concat user-notes-dir "bookmarks.org"))
+  (defconst user-gcal-file (concat user-notes-dir "gcal.org"))
+
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
   (load custom-file))

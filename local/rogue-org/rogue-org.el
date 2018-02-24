@@ -35,11 +35,12 @@
 (defun rogue-org-setup-tex ()
   "Setup tex related stuff."
   (setq bib-library user-bib-file
-        reftex-default-bibliography `(,user-bib-file)
-        org-ref-default-bibliography `(,user-bib-file)
+        reftex-default-bibliography (list user-bib-file)
+        org-ref-default-bibliography (list user-bib-file)
         bibtex-completion-bibliography user-bib-file
         org-ref-bibliography-notes user-bib-notes-file
         bibtex-completion-notes-path user-bib-notes-file
+        org-ref-pdf-directory user-pdfs-dir
         org-ref-notes-function 'org-ref-notes-function-one-file)
 
   (setq org-latex-pdf-process (list "latexmk -pdflatex=xelatex -f -pdf %f"))
@@ -110,18 +111,13 @@
     (org-save-all-org-buffers)))
 
 (defun rogue-org-setup-notes ()
-  "Setup agenda/captures and other notes related things. Expects following variables
-to be set:
-  - user-journal-dir
-  - user-gcal-file
-  - user-bookmarks-file
-  - user-books-file"
+  "Setup agenda/captures and other notes related things"
 
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   (with-eval-after-load 'org
     ;; Capture templates
-    (setq org-directory user-journal-dir
+    (setq org-directory user-notes-dir
           org-capture-templates
           '(("g" "Google calender event" entry (file user-gcal-file)
              "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
