@@ -138,7 +138,7 @@
             ("pile-static"
              :base-directory ,pile-source
              :base-extension ".*"
-             :exclude ".*\.org"
+             :exclude ".*\.org\\|.*references.el"
              :recursive t
              :publishing-directory ,pile-output
              :publishing-function org-publish-attachment)
