@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : blockquote
+# key : bq
+# --
+#+BEGIN_QUOTE
+$1
+
+#+HTML:<footer>$2</footer>
+#+END_QUOTE
+$0
