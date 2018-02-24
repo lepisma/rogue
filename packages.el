@@ -24,6 +24,7 @@
     nov
     ob-async
     ob-sagemath
+    openwith
     (org-bbq :location local)
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-cliplink
@@ -180,6 +181,28 @@
 
 (defun rogue/init-ob-sagemath ()
   (use-package ob-sagemath))
+
+(defun rogue/init-openwith ()
+  (use-package openwith
+    :demand t
+    :config
+    (setq openwith-associations
+          (list
+           (list (openwith-make-extension-regexp
+                  '("mpg" "mpeg" "mp3" "mp4"
+                    "avi" "wmv" "wav" "mov" "flv"
+                    "ogm" "ogg" "mkv"))
+                 "vlc"
+                 '(file))
+           (list (openwith-make-extension-regexp
+                  '("doc" "xls" "ppt" "odt" "ods" "odg" "odp"))
+                 "libreoffice"
+                 '(file))
+           (list (openwith-make-extension-regexp
+                  '("pdf" "ps" "ps.gz" "dvi"))
+                 "okular"
+                 '(file))))
+    (openwith-mode t)))
 
 (defun rogue/init-org-bbq ()
   (use-package org-bbq
