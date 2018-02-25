@@ -86,7 +86,6 @@
   (interactive "sCalibre search: ")
   (let* ((books (calibre-search-in-calibre search-term))
          (total-items (length books)))
-    (print (car books))
     (cond ((= total-items 0) (message "No results"))
           ((= total-items 1) (calibre-open-book (car books)))
           (t (helm :sources (helm-build-sync-source "search results"
