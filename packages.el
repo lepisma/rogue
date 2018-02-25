@@ -8,6 +8,7 @@
     cricbuzz
     calfw
     calfw-org
+    (calibre :location local)
     colormaps
     dired-subtree
     doom-themes
@@ -98,6 +99,11 @@
     :after calfw
     :config
     (setq cfw:org-face-agenda-item-foreground-color "#BF616A")))
+
+(defun rogue/init-calibre ()
+  (use-package calibre
+    :config
+    (setq calibre-root (concat user-cloud-dir "Calibre Shared"))))
 
 (defun rogue/init-colormaps ()
   (use-package colormaps
