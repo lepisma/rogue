@@ -102,6 +102,7 @@
 
 (defun rogue/init-calibre ()
   (use-package calibre
+    :after (s dash-functional)
     :config
     (setq calibre-root (concat user-cloud-dir "Calibre Shared"))))
 
