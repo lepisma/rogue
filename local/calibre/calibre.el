@@ -41,8 +41,9 @@
 (defcustom calibre-ext-preference '("pdf" "cbr" "cbz" "djvu" "epub" "azw3" "mobi")
   "Preference order for book formats")
 
-(defcustom calibre-opener "okular"
-  "Okular FTW")
+(defun calibre-get-opener (extension)
+  "Return command for working with extension"
+  (if (string-equal "mobi" extension) "xdg-open" "okular"))
 
 (defun calibre-get-sql-stmt (query)
   "Return sql statement for the given query."
@@ -70,7 +71,8 @@
   (if ext-list
       (let ((file-path (calibre-get-book-extension book-path (car ext-list))))
         (if file-path
-            (start-process calibre-opener nil calibre-opener file-path)
+            (let ((calibre-opener (calibre-get-opener (car ext-list))))
+              (start-process calibre-opener nil calibre-opener file-path))
           (calibre-open-preferred-format book-path (cdr ext-list))))
     (message "No suitable book format found.")))
 
