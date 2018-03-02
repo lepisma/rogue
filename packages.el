@@ -51,6 +51,7 @@
     solaire-mode
     (spaceline-all-the-icons :location local)
     swiper
+    switch-window
     (viz :location local)
     vue-mode
     (weather-amherst :location local)
@@ -393,6 +394,14 @@
   (use-package swiper
     :bind (("C-s" . swiper)
            ("C-r" . swiper))))
+
+(defun rogue/init-switch-window ()
+  (use-package switch-window
+    :config
+    (global-set-key (kbd "C-x o") 'switch-window)
+    (setq switch-window-shortcut-style 'qwerty
+          switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
+          switch-window-minibuffer-shortcut ?z)))
 
 (defun rogue/init-viz ()
   (use-package viz
