@@ -30,7 +30,10 @@
 
 ;;; Code:
 
+(require 'f)
+(require 'helm-bibtex)
 (require 'org)
+(require 'org-ref)
 
 (defun rogue-org-setup-tex ()
   "Setup tex related stuff."
@@ -44,7 +47,18 @@
         org-ref-notes-function 'org-ref-notes-function-one-file)
 
   (setq org-latex-pdf-process (list "latexmk -pdflatex=xelatex -f -pdf %f"))
-  (setq TeX-engine 'xetex))
+  (setq TeX-engine 'xetex)
+
+  ;; Setup helm bibtex action for opening pdf
+  (let ((pdf-action "Open local pdf"))
+    (helm-delete-action-from-source pdf-action helm-source-bibtex)
+    (helm-add-action-to-source pdf-action
+                               (lambda (key)
+                                 (let ((file-path (concat (f-join user-pdfs-dir key) ".pdf")))
+                                   (if (f-exists? file-path)
+                                       (find-file file-path)
+                                     (message (format "Pdf not found for %s" key)))))
+                               helm-source-bibtex)))
 
 (defun rogue-org-setup-babel ()
   "Setup org-babel."
