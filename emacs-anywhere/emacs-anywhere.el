@@ -18,4 +18,3 @@
 (ea-hook)
 (switch-to-buffer "*Emacs Anywhere*")
 (select-frame-set-input-focus (selected-frame))
-(text-scale-increase 1)
