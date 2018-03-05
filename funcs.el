@@ -88,3 +88,10 @@ With argument, do this that many times."
                                ((= (length subjects) 1) "1 unread email")
                                (t (format "%s unread emails" (length subjects))))
                          (s-join ". " subjects)))))
+
+(defun magit-commit-generic-update (&optional args)
+  (interactive (list (magit-commit-arguments)))
+  (magit-commit '("-m" "General updates")))
+
+(magit-define-popup-action 'magit-commit-popup
+  ?g "Commit with generic message" 'magit-commit-generic-update)
