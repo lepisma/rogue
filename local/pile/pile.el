@@ -32,6 +32,7 @@
 (require 'dash)
 (require 'dash-functional)
 (require 'f)
+(require 'pile-breadcrumbs)
 (require 'pile-index)
 (require 'org)
 (require 'ox-html)
