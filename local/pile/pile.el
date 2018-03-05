@@ -32,7 +32,7 @@
 (require 'dash)
 (require 'dash-functional)
 (require 'f)
-(require 'pile-breadcrumbs)
+(require 'pile-bc)
 (require 'pile-index)
 (require 'org)
 (require 'ox-html)
@@ -85,12 +85,14 @@
 
 (defun pile-publish-current-file ()
   (interactive)
-  (org-publish-current-file current-prefix-arg))
+  (with-pile-bc
+   (org-publish-current-file current-prefix-arg)))
 
 ;;;###autoload
 (defun pile-publish (arg)
   (interactive "P")
-  (org-publish-project "pile" arg))
+  (with-pile-bc
+   (org-publish-project "pile" arg)))
 
 (defun pile--output-valid (output-path)
   "Check whether the given output path is expected from the current source"
