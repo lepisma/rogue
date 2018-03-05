@@ -91,17 +91,17 @@
   (let ((rel-path (pile-bc--relative (buffer-file-name))))
     (insert (pile-bc-generate-breadcrumbs rel-path))))
 
-(defmacro with-pile-bc (body)
+(defmacro with-pile-bc (&rest body)
   "Run body with pile bc export hook set"
   (let ((remove-form '(remove-hook 'org-export-before-parsing-hook 'pile-bc-hook)))
     `(condition-case err
          (progn
            (add-hook 'org-export-before-parsing-hook 'pile-bc-hook)
-           ,body
+           ,@body
            ,remove-form)
        (error (progn
                 ,remove-form
-                (print err))))))
+                (signal (car err) (cdr err)))))))
 
 (provide 'pile-bc)
 
