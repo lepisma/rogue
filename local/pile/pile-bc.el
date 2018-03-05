@@ -35,7 +35,7 @@
 (require 'f)
 (require 's)
 
-(defcustom pile-bc-root-file nil
+(defcustom pile-bc-root-file-name nil
   "Path to the home file for breadcrumbs")
 
 (defun pile-bc--relative (file-name)
@@ -62,17 +62,20 @@
                                  (format "<a href='%s'>%s</a>" (cdr parent) (car parent)))
                                parents)))
 
-(defun pile-bc--linkify-root (parents)
+(defun pile-bc--linkify-root (rel-path)
   "Return link for root file"
-  (let ((root-url (concat (s-repeat (+ 1 (length parents)) "../") pile-bc-root-file)))
-    (format "<a href='%s'>%s</a>" root-url "≡ index")))
+  (let* ((root-input-file (concat pile-bc-root-file-name ".org"))
+         (full-path (f-join pile-source rel-path))
+         (root-rel-path (f-relative (locate-dominating-file full-path root-input-file) full-path))
+         (root-output-file (f-join root-rel-path (f-swap-ext root-input-file "html"))))
+    (format "<a href='%s'>%s</a>" (substring-no-properties root-output-file 1) "≡ index")))
 
 (defun pile-bc-generate-breadcrumbs (rel-path)
   "Generate html breadcrumbs"
   (let* ((splits (reverse (s-split "/" rel-path)))
          (parents (pile-bc--parents rel-path))
          (parent-links (pile-bc--linkify-parents parents))
-         (root-link (pile-bc--linkify-root parents))
+         (root-link (pile-bc--linkify-root rel-path))
          (page-title (if (string-equal (car splits) "index")
                          (if (null (second splits)) "home" (second splits))
                        (car splits))))
