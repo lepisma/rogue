@@ -316,7 +316,7 @@
 
 (defun rogue/init-rogue-mu4e ()
   (use-package rogue-mu4e
-    :after (authinfo mu4e)
+    :after (authinfo mu4e openwith)
     :config
     (rogue-mu4e-setup)))
 

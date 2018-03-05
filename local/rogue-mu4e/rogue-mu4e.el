@@ -34,6 +34,7 @@
 (require 'message)
 (require 'mu4e)
 (require 'authinfo)
+(require 'openwith)
 (require 's)
 
 (defun rogue-mu4e-unread-bm-query ()
@@ -53,8 +54,11 @@
 (defun rogue-mu4e-sign-and-send ()
   "Sign and send message"
   (interactive)
-  (mml-secure-sign)
-  (message-send-and-exit))
+  (let ((ow-state (bound-and-true-p openwith-mode)))
+    (openwith-mode -1)
+    (mml-secure-sign)
+    (message-send-and-exit)
+    (openwith-mode (if ow-state 1 -1))))
 
 (defun rogue-mu4e--message-maildir-matches (msg rx)
   (when rx
