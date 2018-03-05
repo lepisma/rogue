@@ -56,6 +56,13 @@
                              (concat (s-repeat (+ offset index) "../") item "/index.html"))))
                    parents))))
 
+(defun pile-bc--page-title (rel-path)
+  "Return page title for the path given"
+  (let ((splits (reverse (s-split "/" rel-path))))
+    (if (string-equal (car splits) "index")
+        (or (second splits) "home")
+      (car splits))))
+
 (defun pile-bc--linkify-parents (parents)
   "Return concatenated html for parents"
   (funcall 's-join " / " (-map (lambda (parent)
@@ -72,17 +79,11 @@
 
 (defun pile-bc-generate-breadcrumbs (rel-path)
   "Generate html breadcrumbs"
-  (let* ((splits (reverse (s-split "/" rel-path)))
-         (parents (pile-bc--parents rel-path))
-         (parent-links (pile-bc--linkify-parents parents))
-         (root-link (pile-bc--linkify-root rel-path))
-         (page-title (if (string-equal (car splits) "index")
-                         (if (null (second splits)) "home" (second splits))
-                       (car splits))))
+  (let ((parents (pile-bc--parents rel-path)))
     (format "#+HTML:<div id='breadcrumbs'>%s / %s %s</div>"
-            root-link
-            (if (zerop (length parents)) "" (format "%s /" parent-links))
-            page-title)))
+            (pile-bc--linkify-root rel-path)
+            (if (zerop (length parents)) "" (format "%s /" (pile-bc--linkify-parents parents)))
+            (pile-bc--page-title rel-path))))
 
 (defun pile-bc-hook (_)
   "Function to insert breadcrumbs in the exported file"
