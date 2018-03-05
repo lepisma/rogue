@@ -84,7 +84,7 @@
 
 (defun pile-publish-current-file ()
   (interactive)
-  (org-publish-current-file))
+  (org-publish-current-file current-prefix-arg))
 
 ;;;###autoload
 (defun pile-publish (arg)
