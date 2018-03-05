@@ -113,6 +113,12 @@
               ((f-dir? entry) (+ 1 1 1)))))))
 
 ;;;###autoload
+(defun pile-commit ()
+  "Run magit commit with a default message"
+  (interactive)
+  (magit-commit '("-m" "pile-update")))
+
+;;;###autoload
 (defun pile-setup ()
   "Setup for pile"
   (let ((preamble "<header>
