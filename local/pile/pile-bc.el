@@ -87,10 +87,10 @@
 
 (defun pile-bc-hook (_)
   "Function to insert breadcrumbs in the exported file"
-  (search-forward ".setup")
-  (next-line)
-  (let ((rel-path (pile-bc--relative (buffer-file-name))))
-    (insert (pile-bc-generate-breadcrumbs rel-path))))
+  (if (search-forward ".setup" nil t)
+      (progn (next-line)
+             (let ((rel-path (pile-bc--relative (buffer-file-name))))
+               (insert (pile-bc-generate-breadcrumbs rel-path))))))
 
 (defmacro with-pile-bc (&rest body)
   "Run body with pile bc export hook set"
