@@ -83,10 +83,10 @@
        (-filter #'f-exists?)
        (-map #'f-delete))))
 
-(defun pile-publish-current-file ()
-  (interactive)
+(defun pile-publish-current-file (arg)
+  (interactive "P")
   (with-pile-bc
-   (org-publish-current-file current-prefix-arg)))
+   (org-publish-current-file arg)))
 
 ;;;###autoload
 (defun pile-publish (arg)
