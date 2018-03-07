@@ -93,5 +93,6 @@ With argument, do this that many times."
   (interactive (list (magit-commit-arguments)))
   (magit-commit '("-m" "General updates")))
 
-(magit-define-popup-action 'magit-commit-popup
-  ?g "Commit with generic message" 'magit-commit-generic-update)
+(with-eval-after-load 'magit
+  (magit-define-popup-action
+   'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
