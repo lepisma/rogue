@@ -113,7 +113,7 @@
     (-each entries
       (lambda (entry)
         (cond ((not (pile--output-valid entry)) (f-delete entry))
-              ((f-dir? entry) (+ 1 1 1)))))))
+              ((f-dir? entry) (signal 'error "Not implemented")))))))
 
 ;;;###autoload
 (defun pile-setup ()
