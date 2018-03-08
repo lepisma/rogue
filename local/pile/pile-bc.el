@@ -85,12 +85,27 @@
             (if (zerop (length parents)) "" (format "%s /" (pile-bc--linkify-parents parents)))
             (pile-bc--page-title rel-path))))
 
+(defun pile--at-header? ()
+  "Return if at a header or empty line"
+  (let ((line-text (s-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
+    (or (s-equals? line-text "")
+        (s-starts-with? "#+" line-text))))
+
+(defun pile--goto-top ()
+  "Move point to the top of file just after the headers"
+  (goto-char 0)
+  (if (search-forward "#+SETUPFILE:" nil t)
+      (progn
+        (while (pile--at-header?) (next-line))
+        (previous-line)
+        (insert "\n"))
+    (signal 'error (format "SETUPFILE line not found in %s." buffer-file-name))))
+
 (defun pile-bc-hook (_)
   "Function to insert breadcrumbs in the exported file"
-  (if (search-forward ".setup" nil t)
-      (progn (next-line)
-             (let ((rel-path (pile-bc--relative (buffer-file-name))))
-               (insert (pile-bc-generate-breadcrumbs rel-path))))))
+  (let ((rel-path (pile-bc--relative (buffer-file-name))))
+    (pile--goto-top)
+    (insert (pile-bc-generate-breadcrumbs rel-path))))
 
 (defmacro with-pile-bc (&rest body)
   "Run body with pile bc export hook set"
