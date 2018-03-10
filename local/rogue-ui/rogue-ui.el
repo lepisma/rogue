@@ -85,14 +85,15 @@
 
   (setq ibuffer-expert t
         ibuffer-show-empty-filter-groups nil
-        ibuffer-filter-group-name-face 'org-level-1
+        ibuffer-filter-group-name-face 'org-tag
         ibuffer-modified-char ?\★
         ibuffer-locked-char ?\-
         ibuffer-read-only-char ?\-
         ibuffer-marked-char ?\✓
         ibuffer-deletion-char ?\✕
         ibuffer-deletion-face 'org-agenda-done
-        ibuffer-use-header-line nil)
+        ibuffer-use-header-line nil
+        ibuffer-projectile-prefix "")
 
   (defun rogue-ui--ibuffer-remove-title (&rest args)
     (save-excursion
