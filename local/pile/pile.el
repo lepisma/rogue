@@ -34,6 +34,7 @@
 (require 'f)
 (require 'pile-bc)
 (require 'pile-index)
+(require 'pile-images)
 (require 'org)
 (require 'ox-html)
 (require 'ox-publish)
@@ -83,15 +84,29 @@
        (-filter #'f-exists?)
        (-map #'f-delete))))
 
+(defmacro with-pile-hooks (&rest body)
+  "Run body with pile related export hooks set"
+  (let* ((hooks '(#'pile-bc-hook #'pile-images-pdf-hook))
+         (add-forms (-map (lambda (hook) `(add-hook 'org-export-before-parsing-hook ,hook)) hooks))
+         (remove-forms (-map (lambda (hook) `(remove-hook 'org-export-before-parsing-hook ,hook)) hooks)))
+    `(condition-case err
+         (progn
+           ,@add-forms
+           ,@body
+           ,@remove-forms)
+       (error (progn
+                ,@remove-forms
+                (signal (car err) (cdr err)))))))
+
 (defun pile-publish-current-file (arg)
   (interactive "P")
-  (with-pile-bc
+  (with-pile-hooks
    (org-publish-current-file arg)))
 
 ;;;###autoload
 (defun pile-publish (arg)
   (interactive "P")
-  (with-pile-bc
+  (with-pile-hooks
    (org-publish-project "pile" arg)))
 
 (defun pile--output-valid (output-path)

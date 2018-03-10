@@ -108,18 +108,6 @@
     (pile--goto-top)
     (insert (pile-bc-generate-breadcrumbs rel-path))))
 
-(defmacro with-pile-bc (&rest body)
-  "Run body with pile bc export hook set"
-  (let ((remove-form '(remove-hook 'org-export-before-parsing-hook #'pile-bc-hook)))
-    `(condition-case err
-         (progn
-           (add-hook 'org-export-before-parsing-hook #'pile-bc-hook)
-           ,@body
-           ,remove-form)
-       (error (progn
-                ,remove-form
-                (signal (car err) (cdr err)))))))
-
 (provide 'pile-bc)
 
 ;;; pile-bc.el ends here
