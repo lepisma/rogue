@@ -89,7 +89,8 @@
   "Return if at a header or empty line"
   (let ((line-text (s-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
     (or (s-equals? line-text "")
-        (s-starts-with? "#+" line-text))))
+        (and (s-starts-with? "#+" line-text)
+             (not (s-starts-with? "#+begin" (downcase line-text)))))))
 
 (defun pile--goto-top ()
   "Move point to the top of file just after the headers"
