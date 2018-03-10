@@ -369,6 +369,48 @@ like:
   (ido-first-match
    (:foreground ,constant)
    nil)
+  (js2-error
+   (:foreground nil :inherit font-lock-keyword-face)
+   (:foreground nil :inherit font-lock-keyword-face))
+  (js2-external-variable
+   (:foreground nil :inherit font-lock-variable-name-face)
+   (:foreground nil :inherit font-lock-variable-name-face))
+  (js2-function-call
+   (:foreground nil :inherit font-lock-function-name-face)
+   (:foreground nil :inherit font-lock-function-name-face))
+  (js2-function-param
+   (:foreground nil :inherit font-lock-constant-face)
+   (:foreground nil :inherit font-lock-constant-face))
+  (js2-instance-member
+   (:foreground nil :inherit font-lock-variable-face)
+   (:foreground nil :inherit font-lock-variable-face))
+  (js2-jsdoc-html-tag-name
+   (:foreground nil :inherit font-lock-string-face)
+   (:foreground nil :inherit font-lock-string-face))
+  (js2-jsdoc-html-tag-delimiter
+   (:foreground nil :inherit font-lock-type-face)
+   (:foreground nil :inherit font-lock-type-face))
+  (js2-jsdoc-tag
+   (:foreground nil :inherit font-lock-comment-face)
+   (:foreground nil :inherit font-lock-comment-face))
+  (js2-jsdoc-type
+   (:foreground nil :inherit font-lock-type-face)
+   (:foreground nil :inherit font-lock-type-face))
+  (js2-jsdoc-value
+   (:foreground nil :inherit font-lock-doc-face)
+   (:foreground nil :inherit font-lock-doc-face))
+  (js2-object-property
+   (:foreground nil :inherit font-lock-type-face)
+   (:foreground nil :inherit font-lock-type-face))
+  (js2-object-property-access
+   (:foreground nil :inherit font-lock-type-face)
+   (:foreground nil :inherit font-lock-type-face))
+  (js2-private-function-call
+   (:foreground nil :inherit font-lock-function-name-face)
+   (:foreground nil :inherit font-lock-function-name-face))
+  (js2-private-member
+   (:foreground nil :inherit font-lock-builtin-face)
+   (:foreground nil :inherit font-lock-builtin-face))
   (link
    (:foreground ,slate)
    nil)
@@ -391,6 +433,10 @@ like:
   (magit-diff-added-highlight
    (:background ,(color-darken-name (color-desaturate-name colors-green 20) 45)
                 :foreground ,colors-green)
+   nil)
+  (magit-diff-file-heading-selection
+   (:background ,region
+                :foreground ,fg-white)
    nil)
   (magit-diff-hunk-heading
    (:background ,region
@@ -750,6 +796,9 @@ like:
    nil)
   (org-upcoming-deadline
    (:foreground ,keyword)
+   nil)
+  (org-verbatim
+   (:foreground ,type)
    nil)
   (org-warning
    (:foreground ,builtin)
