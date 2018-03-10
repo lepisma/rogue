@@ -182,7 +182,7 @@
              :publishing-directory ,pile-output
              :publishing-function org-publish-attachment)
             ("pile" :components ("pile-pages" "pile-static")))
-          org-html-htmlize-output-type 'inline-css)))
+          org-html-htmlize-output-type 'css)))
 
 (provide 'pile)
 
