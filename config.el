@@ -363,6 +363,9 @@ like:
    (:background ,highlight
                 :foreground ,fg-white)
    (:background ,shade-white))
+  (highlight-numbers-number
+   (:foreground ,constant)
+   nil)
   (hl-line
    (:background ,region-dark)
    nil)
