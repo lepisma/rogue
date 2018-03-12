@@ -769,6 +769,9 @@ like:
   (org-ref-cite-face
    (:foreground ,builtin)
    (:foreground ,builtin))
+  (org-ref-ref-face
+   (:foreground nil :inherit org-link)
+   (:foreground nil :inherit org-link))
   (org-scheduled
    (:foreground ,gray)
    nil)
