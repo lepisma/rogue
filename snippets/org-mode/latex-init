@@ -11,12 +11,11 @@
 #+LATEX_CLASS: article
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usepackage{float}
-#+LATEX_HEADER: \usepackage{biblatex}
-#+LATEX_HEADER: \addbibresource{~/library.bib}
 
 \begin{abstract}
 \end{abstract}
 
 $0
 
-\printbibliography{}
+bibliographystyle:unsrt
+bibliography:./library.bib
