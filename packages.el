@@ -17,7 +17,6 @@
     focus
     gscholar-bibtex
     hackernews
-    hyperbole
     (kindle :location local)
     (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein"))
     (mpm :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
@@ -35,6 +34,7 @@
     org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
+    outshine
     parinfer
     (pile :location local)
     pretty-mode
@@ -160,10 +160,6 @@
     :config
     (setq kindle-clipping-save-file user-clippings-file)))
 
-(defun rogue/init-hyperbole ()
-  (use-package hyperbole
-    :demand t))
-
 (defun rogue/init-levenshtein ()
   (use-package levenshtein))
 
@@ -260,6 +256,12 @@
 (defun rogue/init-org-make ()
   (use-package org-make
     :after org))
+
+(defun rogue/init-outshine ()
+  (use-package outshine
+    :config
+    (add-hook 'outline-minor-mode-hook #'outshine-hook-function)
+    (add-hook 'prog-mode-hook #'outline-minor-mode)))
 
 (defun rogue/init-parinfer ()
   (use-package parinfer

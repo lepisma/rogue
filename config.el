@@ -809,6 +809,30 @@ like:
   (org-warning
    (:foreground ,builtin)
    nil)
+  (outline-1
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-2
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-3
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-4
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-5
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-6
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-7
+   (:background ,bg-dark-solaire)
+   nil)
+  (outline-8
+   (:background ,bg-dark-solaire)
+   nil)
   (powerline-active1
    nil
    (:background ,bg-white))
