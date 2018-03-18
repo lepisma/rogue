@@ -185,6 +185,24 @@ like:
   (company-tootip-annotation
    (:foreground ,type)
    nil)
+  (coq-cheat-face
+   (:inherit font-lock-warning-face)
+   (:inherit font-lock-warning-face))
+  (coq-context-qualifier-face
+   (:inherit font-lock-keyword-face)
+   (:inherit font-lock-keyword-face))
+  (coq-question-mark-face
+   (:inherit font-lock-warning-face)
+   (:inherit font-lock-warning-face))
+  (coq-solve-tactics-face
+   (:inherit font-lock-function-name-face)
+   (:inherit font-lock-function-name-face))
+  (coq-symbol-binder-face
+   (:inherit font-lock-type-face)
+   (:inherit font-lock-type-face))
+  (coq-symbol-face
+   (:inherit font-lock-builtin-face)
+   (:inherit font-lock-builtin-face))
   (cursor
    (:background ,colors-red)
    nil)
@@ -845,6 +863,12 @@ like:
   (powerline-inactive2
    nil
    (:background ,bg-white))
+  (proof-tactics-name-face
+   (:inherit font-lock-constant-face)
+   (:inherit font-lock-constant-face))
+  (proof-tacticals-name-face
+   (:inherit font-lock-variable-face)
+   (:inherit font-lock-variable-face))
   (rainbow-delimiters-depth-1-face
    (:foreground ,level-1)
    nil)

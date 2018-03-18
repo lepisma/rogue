@@ -189,6 +189,10 @@ you should place you code here."
                 js2-missing-semi-one-line-override nil
                 typescript-indent-level 2)
 
+  ;; Load PG if found locally
+  (when (f-exists? "~/.emacs.d/PG")
+    (load "~/.emacs.d/PG/generic/proof-site"))
+
   (setf slime-lisp-implementations
         `((sbcl    ("sbcl"))
           (roswell ("ros" "-Q" "run"))
