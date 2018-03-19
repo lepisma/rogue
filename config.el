@@ -348,7 +348,7 @@ like:
    (:foreground ,builtin)
    nil)
   (helm-buffer-file
-   nil
+   (:background nil)
    (:background ,bg-white))
   (helm-ff-directory
    (:foreground ,builtin)
@@ -357,7 +357,7 @@ like:
    (:background nil)
    nil)
   (helm-ff-file
-   nil
+   (:background nil)
    (:background ,bg-white))
   (helm-ff-prefix
    (:foreground ,keyword)
@@ -436,7 +436,7 @@ like:
    (:foreground ,slate)
    nil)
   (linum
-   nil
+   (:background nil)
    (:background ,bg-white))
   (magit-branch-current
    (:foreground ,colors-purple)
