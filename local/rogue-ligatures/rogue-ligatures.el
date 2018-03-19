@@ -137,22 +137,6 @@
             (lambda () (font-lock-add-keywords nil rogue-ligatures-font-lock-keywords-alist))))
 
 ;;;###autoload
-(defun rogue-ligatures-setup-python ()
-  "Setup symbols for python."
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (mapc (lambda (pair) (push pair prettify-symbols-alist))
-                    '(("in"       . #x2208)
-                      ("not in"   . #x2209)
-                      ("return"   . #x27fc)
-                      ("yield"    . #x27fb)
-                      ("for"      . #x2200)
-                      ("int"      . #x2124)
-                      ("float"    . #x211d)
-                      ("True"     . #x1d54b)
-                      ("False"    . #x1d53d))))))
-
-;;;###autoload
 (defun rogue-ligatures-setup-ess ()
   "Setup ligatures for ess."
   (rogue-utils-add-hooks '(ess-mode-hook inferior-ess-mode-hook)

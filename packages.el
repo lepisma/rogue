@@ -313,7 +313,6 @@
     :after rogue-utils
     :config
     (rogue-ligatures-setup-general)
-    (rogue-ligatures-setup-python)
     (rogue-ligatures-setup-ess)))
 
 (defun rogue/init-rogue-mu4e ()
