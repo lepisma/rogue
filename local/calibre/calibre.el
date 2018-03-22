@@ -82,9 +82,9 @@
     (calibre-open-preferred-format book-path calibre-ext-preference)))
 
 ;;;###autoload
-(defun calibre-open (search-term)
-  (interactive "sCalibre search: ")
-  (let* ((books (calibre-search-in-calibre search-term))
+(defun calibre-open (&optional search-term)
+  (interactive)
+  (let* ((books (calibre-search-in-calibre (or search-term "")))
          (total-items (length books)))
     (cond ((= total-items 0) (message "No results"))
           ((= total-items 1) (calibre-open-book (car books)))
