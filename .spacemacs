@@ -89,7 +89,7 @@ values."
    dotspacemacs-editing-style '(hybrid :variables
                                        hybrid-mode-default-state 'hybrid)
    dotspacemacs-verbose-loading nil
-   dotspacemacs-startup-banner "~/cfg/avatar/avatar256-white.png"
+   dotspacemacs-startup-banner 'official
    dotspacemacs-startup-lists '(recents projects)
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'org-mode
