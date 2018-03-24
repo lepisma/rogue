@@ -105,8 +105,9 @@
 (defun pile-bc-hook (_)
   "Function to insert breadcrumbs in the exported file"
   (let ((rel-path (pile-bc--relative (buffer-file-name))))
-    (pile--goto-top)
-    (insert (pile-bc-generate-breadcrumbs rel-path))))
+    (unless (string-equal "sitemap" rel-path)
+      (pile--goto-top)
+      (insert (pile-bc-generate-breadcrumbs rel-path)))))
 
 (provide 'pile-bc)
 
