@@ -5,4 +5,8 @@
 #+TITLE: $1
 #+SETUPFILE: ${2:`(f-relative (locate-dominating-file "." "assets") ".")`}assets/export.setup
 
+#+BEGIN_QUOTE
+This page is a work in progress
+#+END_QUOTE
+
 $0
