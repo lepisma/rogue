@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name : github
+# key : gh
+# --
+[[gh:$1]]

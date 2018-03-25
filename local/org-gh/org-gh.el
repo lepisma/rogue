@@ -31,17 +31,17 @@
 (require 'org)
 (require 'thingatpt)
 
+(org-add-link-type "gh" #'org-gh-open)
+
 (defun org-gh-id-correct? (id)
   "Check whether the id is correct"
   (and id (not (zerop (string-to-number id)))))
 
-(defun org-gh-open ()
+(defun org-gh-open (id)
   "Open gh id at point"
-  (interactive)
-  (let ((id (thing-at-point 'word)))
-    (if (org-gh-id-correct? id)
-        (org-gh-open-id id)
-      (message "Nothing found at point"))))
+  (if (org-gh-id-correct? id)
+      (org-gh-open-id id)
+    (message "Wrong id")))
 
 (defun org-gh-current-repo ()
   "Look back and tell which repo we are talking about"
