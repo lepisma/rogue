@@ -34,7 +34,6 @@
     org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
-    outshine
     parinfer
     (pile :location local)
     pretty-mode
@@ -256,12 +255,6 @@
 (defun rogue/init-org-make ()
   (use-package org-make
     :after org))
-
-(defun rogue/init-outshine ()
-  (use-package outshine
-    :config
-    (add-hook 'outline-minor-mode-hook #'outshine-hook-function)
-    (add-hook 'prog-mode-hook #'outline-minor-mode)))
 
 (defun rogue/init-parinfer ()
   (use-package parinfer
