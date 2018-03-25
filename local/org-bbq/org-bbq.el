@@ -31,7 +31,7 @@
 (require 'org)
 (require 's)
 
-(org-add-link-type "bbq" 'org-bbq-play)
+(org-add-link-type "bbq" #'org-bbq-play)
 
 (defun org-bbq-play (path)
   (apply #'start-process "bbq" nil "bbq" (s-split " " path)))
