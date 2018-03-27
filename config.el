@@ -693,7 +693,7 @@ like:
    (:inherit variable-pitch
              :weight bold
              :height 1.2
-             :foreground ,gray
+             :foreground ,accent-light
              :background ,bg-dark)
    (:inherit nil
              :family ,et-font
