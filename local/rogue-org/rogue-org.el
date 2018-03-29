@@ -49,6 +49,18 @@
   (setq org-latex-pdf-process (list "latexmk -pdflatex=xelatex -f -pdf %f"))
   (setq TeX-engine 'xetex)
 
+  (setq org-preview-latex-default-process 'imagemagick
+        org-preview-latex-process-alist
+        '((imagemagick :programs ("xelatex" "convert")
+                       :description "pdf > png"
+                       :message "you need to install the programs: xelatex and imagemagick."
+                       :use-xcolor t
+                       :image-input-type "pdf"
+                       :image-output-type "png"
+                       :image-size-adjust (1.0 . 1.0)
+                       :latex-compiler ("xelatex -interaction nonstopmode -output-directory %o %f")
+                       :image-converter ("convert -density %D -trim -antialias %f -quality 100 %O"))))
+
   ;; Setup helm bibtex action for opening pdf
   (let ((pdf-action "Open local pdf"))
     (helm-delete-action-from-source pdf-action helm-source-bibtex)
