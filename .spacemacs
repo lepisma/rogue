@@ -192,7 +192,8 @@ you should place you code here."
   ;; Load PG if found locally
   (when (f-exists? "~/.emacs.d/PG")
     (load "~/.emacs.d/PG/generic/proof-site")
-    (add-hook 'coq-mode-hook #'nlinum-mode))
+    (add-hook 'coq-mode-hook #'nlinum-mode)
+    (add-hook 'coq-mode-hook #'solaire-mode))
 
   (setf slime-lisp-implementations
         `((sbcl    ("sbcl"))
