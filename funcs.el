@@ -91,7 +91,7 @@ With argument, do this that many times."
 
 (defun magit-commit-generic-update (&optional args)
   (interactive (list (magit-commit-arguments)))
-  (magit-commit '("-m" "General updates")))
+  (magit-commit '("-m" "Updates")))
 
 (with-eval-after-load 'magit
   (magit-define-popup-action
