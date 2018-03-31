@@ -73,6 +73,13 @@
                    (org-publish-find-title index-file project))))
         (t entry)))
 
+(setq org-ref-bibliography-entry-format
+      '(("article" . "%a. %y. \"%t.\" <i>%j</i>, %v(%n), %p. <a class=\"bib-link\" href=\"%U\">link</a>. <a class=\"bib-link\" href=\"http://dx.doi.org/%D\">doi</a>.")
+        ("book" . "%a. %y. <i>%t</i>. %u.")
+        ("techreport" . "%a. %y. \"%t\", %i, %u.")
+        ("proceedings" . "%e. %y. \"%t\" in %S, %u.")
+        ("inproceedings" . "%a. %y. \"%t\", %p, in %b, edited by %e, %u")))
+
 ;;;###autoload
 (defun pile-clear-cache ()
   "Clear org-publish-cache"
