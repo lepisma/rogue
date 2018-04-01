@@ -327,8 +327,7 @@
   (use-package pile
     :config
     (setq pile-source (concat user-project-dir "pile/pile/")
-          pile-output (concat user-project-dir "pile/docs/")
-          pile-bc-root-file-name "allpages")
+          pile-output (concat user-project-dir "pile/docs/"))
     (pile-setup)))
 
 (defun rogue/init-rogue-processes ()

@@ -35,9 +35,6 @@
 (require 'f)
 (require 's)
 
-(defcustom pile-bc-root-file-name nil
-  "Path to the home file for breadcrumbs")
-
 (defun pile-bc--relative (file-name)
   "Get relative path of the file from pile root"
   (let ((rel-path (f-relative file-name pile-source)))
@@ -71,10 +68,10 @@
 
 (defun pile-bc--linkify-root (rel-path)
   "Return link for root file"
-  (let* ((root-input-file (concat pile-bc-root-file-name ".org"))
+  (let* ((root-input-file "index.org")
          (full-path (f-join pile-source rel-path))
-         (root-rel-path (f-relative (locate-dominating-file full-path root-input-file) full-path))
-         (root-output-file (f-join root-rel-path (f-swap-ext root-input-file "html"))))
+         (root-rel-path (f-relative (f-join pile-source root-input-file) full-path))
+         (root-output-file (f-swap-ext root-rel-path "html")))
     (format "<a href='%s'>%s</a>" (substring-no-properties root-output-file 1) "≡ index")))
 
 (defun pile-bc-generate-breadcrumbs (rel-path)
