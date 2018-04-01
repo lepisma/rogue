@@ -35,6 +35,7 @@
 (require 'pile-bc)
 (require 'pile-index)
 (require 'pile-images)
+(require 'pile-sitemap)
 (require 'org)
 (require 'ox-html)
 (require 'ox-publish)
@@ -46,32 +47,6 @@
 
 (defcustom pile-output nil
   "Output directory for pile")
-
-(defun pile--fix-sitemap (list)
-  "Walk over the list to remove index.org items"
-  (let ((ignore-patterns '("/index.org"
-                           "allpages.org"
-                           "org-test.org")))
-    (->> list
-       (-remove (lambda (it)
-                  (and (consp it) (= (length it) 1)
-                       (-any (-cut s-contains? <> (car it)) ignore-patterns))))
-       (-map (lambda (it) (if (consp it) (pile--fix-sitemap it) it))))))
-
-(defun pile-sitemap (title list)
-  (concat "#+TITLE: Sitemap\n\n" (org-list-to-org (pile--fix-sitemap list))))
-
-(defun pile-sitemap-entry (entry style project)
-  (cond ((not (directory-name-p entry))
-         (format "[[file:%s][%s]]"
-                 entry
-                 (org-publish-find-title entry project)))
-        ((eq style 'tree)
-         (let ((index-file (f-join entry "index.org")))
-           (format "[[file:%s][%s]]"
-                   index-file
-                   (org-publish-find-title index-file project))))
-        (t entry)))
 
 (setq org-ref-bibliography-entry-format
       '(("article" . "%a. %y. \"%t.\" <i>%j</i>, %v(%n), %p. <a class=\"bib-link\" href=\"%U\">link</a>. <a class=\"bib-link\" href=\"http://dx.doi.org/%D\">doi</a>.")
