@@ -661,7 +661,7 @@ like:
   (org-ellipsis
    (:underline nil
                :background ,accent-dark-gray
-               :foreground ,comment)
+               :foreground ,doc)
    (:underline nil
                :foreground ,comment))
   (org-formula
