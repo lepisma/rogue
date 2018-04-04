@@ -43,7 +43,6 @@ Doesn't work exactly because of a useless right div in youtube."
   (let ((search-url (format "https://youtube.com/results?search_query=%s" (url-hexify-string term)))
         video-id)
     (with-current-buffer (url-retrieve-synchronously search-url)
-      (f-write-text (buffer-string) 'utf-8 "~/Desktop/test.html")
       (goto-char (point-min))
       (search-forward "watch?v=")
       (setq video-id (buffer-substring-no-properties (point) (+ 11 (point))))
