@@ -30,11 +30,52 @@
 
 (require 'org)
 (require 's)
+(require 'url)
+(require 'url-util)
+(require 'dash)
+(require 'dash-functional)
 
-(org-add-link-type "bbq" #'org-bbq-play)
+(org-add-link-type "bbq" #'org-bbq-play #'org-bbq-export)
+
+(defun org-bbq--yt-search (term)
+  "Search for term in youtube and return first youtube url.
+Doesn't work exactly because of a useless right div in youtube."
+  (let ((search-url (format "https://youtube.com/results?search_query=%s" (url-hexify-string term)))
+        video-id)
+    (with-current-buffer (url-retrieve-synchronously search-url)
+      (f-write-text (buffer-string) 'utf-8 "~/Desktop/test.html")
+      (goto-char (point-min))
+      (search-forward "watch?v=")
+      (setq video-id (buffer-substring-no-properties (point) (+ 11 (point))))
+      (kill-buffer))
+    video-id))
+
+(defun org-bbq--format-yt (yid)
+  (format
+   (concat "<iframe width=\"30\""
+           " height=\"30\""
+           " src=\"https://www.youtube.com/embed/%s\""
+           " frameborder=\"0\""
+           " allowfullscreen></iframe>") yid))
 
 (defun org-bbq-play (path)
   (apply #'start-process "bbq" nil "bbq" (s-split " " path)))
+
+(defun org-bbq--format-item (item)
+  (let* ((title (cdr (assoc "title" item)))
+         (artist (cdr (assoc "artist" item)))
+         (yid (org-bbq--yt-search (concat title " " artist))))
+    (format "<pre class=\"example\">Title: %s\nArtist: %s\n%s</pre>" title artist (org-bbq--format-yt yid))))
+
+(defun org-bbq--get-items (path)
+  (read (shell-command-to-string (format "bbq --list --sexp %s" path))))
+
+(defun org-bbq-export (path desc backend)
+  "Export list of items in the playlist"
+  (if (eq backend 'html)
+      (let ((items (org-bbq--get-items path)))
+        (format "<h3>Playlist: %s <code>[%s]</code></h3>%s" desc path
+                (apply #'concat (-map #'org-bbq--format-item items))))))
 
 (provide 'org-bbq)
 
