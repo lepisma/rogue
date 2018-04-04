@@ -56,6 +56,7 @@ Doesn't work exactly because of a useless right div in youtube."
            " height=\"30\""
            " src=\"https://www.youtube.com/embed/%s\""
            " frameborder=\"0\""
+           " style=\"vertical-align: middle;\""
            " allowfullscreen></iframe>") yid))
 
 (defun org-bbq-play (path)
@@ -65,7 +66,7 @@ Doesn't work exactly because of a useless right div in youtube."
   (let* ((title (cdr (assoc "title" item)))
          (artist (cdr (assoc "artist" item)))
          (yid (org-bbq--yt-search (concat title " " artist))))
-    (format "<pre class=\"example\">Title: %s\nArtist: %s\n%s</pre>" title artist (org-bbq--format-yt yid))))
+    (format "<li>%s &nbsp %s - <em>%s</em></li>" (org-bbq--format-yt yid) title artist)))
 
 (defun org-bbq--get-items (path)
   (read (shell-command-to-string (format "bbq --list --sexp %s" path))))
@@ -74,7 +75,7 @@ Doesn't work exactly because of a useless right div in youtube."
   "Export list of items in the playlist"
   (if (eq backend 'html)
       (let ((items (org-bbq--get-items path)))
-        (format "<h3>Playlist: %s <code>[%s]</code></h3>%s" desc path
+        (format "<h3>Playlist: %s <code>[%s]</code></h3><ul>%s</ul>" desc path
                 (apply #'concat (-map #'org-bbq--format-item items))))))
 
 (provide 'org-bbq)
