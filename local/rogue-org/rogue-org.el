@@ -149,6 +149,8 @@
              "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
             ("l" "Logistic" entry (file "notes.org")
              "* LOGISTICS %?\nSCHEDULED: %^T\n")
+            ("n" "Note" entry (file "notes.org")
+             "* %?\n")
             ("b" "Bookmark" entry (file "notes.org")
              "* %?\n%a")))
 
