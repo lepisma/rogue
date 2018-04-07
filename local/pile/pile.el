@@ -132,7 +132,7 @@
 </header>
 
 <div class='page-header'>
-  <div class='page-meta small'>
+  <div class='page-meta'>
     Last modified: %d %C
   </div>
   <h1>%t</h1>
