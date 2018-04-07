@@ -205,7 +205,7 @@
                                      (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
                                      (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))
                             (make-mu4e-context
-                             :name "UMassCS"
+                             :name "CSUMass"
                              :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMassCS")))
                              :vars `((user-mail-address . ,(authinfo-get-value "mailsrv.cs.umass.edu" "993" "email"))
                                      (smtpmail-default-smtp-server . "mailsrv.cs.umass.edu")
