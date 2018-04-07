@@ -35,7 +35,7 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
     parinfer
-    (pile :location local)
+    (pile :location (recipe :fetcher github :repo "lepisma/pile-wiki"))
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
     (rogue-ligatures :location local)
