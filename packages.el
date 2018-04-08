@@ -25,7 +25,7 @@
     ob-async
     ob-sagemath
     openwith
-    (org-bbq :location local)
+    (org-bbq :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/org-bbq.el"))
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
