@@ -8,7 +8,7 @@
     cricbuzz
     calfw
     calfw-org
-    (calibre :location local)
+    (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
     colormaps
     dired-subtree
     doom-themes
