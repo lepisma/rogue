@@ -59,7 +59,11 @@
                        :image-output-type "png"
                        :image-size-adjust (1.0 . 1.0)
                        :latex-compiler ("xelatex -interaction nonstopmode -output-directory %o %f")
-                       :image-converter ("convert -density %D -trim -antialias %f -quality 100 %O"))))
+                       :image-converter ("convert -density %D -trim -antialias %f -quality 100 %O")))
+        org-format-latex-options
+        '(:foreground "Black" :background "Transparent" :scale 1.0
+                      :html-foreground "Black" :html-background "Transparent"
+                      :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
 
   ;; Setup helm bibtex action for opening pdf
   (let ((pdf-action "Open local pdf"))
