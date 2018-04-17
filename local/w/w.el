@@ -4,7 +4,8 @@
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
+;; Package-Requires: ((emacs "25") (helm "2.9.2"))
+;; URL: https://github.com/lepisma/w.el
 
 ;;; Commentary:
 
