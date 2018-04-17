@@ -81,15 +81,21 @@
   "Pretty print process"
   (format "[%s] live-server: %s" (oref wi port) (abbreviate-file-name (oref wi dir))))
 
+(defun w-dir-live-p (dir)
+  "Tell which instance is serving DIR"
+  (find dir w-instances :key (lambda (wi) (oref wi :dir))))
+
 (defun w-start (&optional dir)
-  "Start a new w instance here"
+  "Start a new w instance in DIR"
   (interactive)
   (let* ((dir (or dir default-directory))
-         (port (w-get-free-port))
-         (process (w-launch-live-server dir port))
-         (wi (w :dir dir :port port :process process)))
-    (setq w-instances (cons wi w-instances))
-    (w-browse wi)))
+         (wi (w-dir-live-p dir)))
+    (if wi (w-browse wi)
+      (let* ((port (w-get-free-port))
+             (process (w-launch-live-server dir port))
+             (wi (w :dir dir :port port :process process)))
+        (setq w-instances (cons wi w-instances))
+        (w-browse wi)))))
 
 (defun w-browser ()
   "Start browser for a w instance"
