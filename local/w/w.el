@@ -1,4 +1,4 @@
-;;; w.el --- Simple web server launcher -*- lexical-binding: t; -*-
+;;; w.el --- Simple server process launcher -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2018 Abhinav Tushar
 
@@ -9,7 +9,7 @@
 
 ;;; Commentary:
 
-;; Simple web server launcher
+;; Simple server process launcher
 ;; This file is not a part of GNU Emacs.
 
 ;;; License:
@@ -31,8 +31,20 @@
 
 (require 'helm)
 
+(defgroup w nil
+  "w server launcher")
+
 (defcustom w-start-port 8080
-  "First port to check for")
+  "First port to check for"
+  :group 'w)
+
+(defcustom w-launcher (cons "live-server"
+                            (lambda (dir port)
+                              (let ((default-directory dir)
+                                    (port-arg (format "--port=%s" port)))
+                                (start-process "live-server" nil "live-server" port-arg "--no-browser"))))
+  "Launcher function and identifier"
+  :group 'w)
 
 (defvar w-instances '()
   "List of instances currently active")
@@ -49,12 +61,6 @@
     (if (w-port-active-p port)
         (w-get-free-port (+ 1 port))
       port)))
-
-(defun w-launch-live-server (dir port)
-  "Launch live server and return process"
-  (let ((default-directory dir)
-        (port-arg (format "--port=%s" port)))
-    (start-process "live-server" nil "live-server" port-arg "--no-browser")))
 
 (defclass w ()
   ((dir :initarg :dir
@@ -80,7 +86,7 @@
 
 (cl-defmethod w-pp ((wi w))
   "Pretty print process"
-  (format "[%s] live-server: %s" (oref wi port) (abbreviate-file-name (oref wi dir))))
+  (format "[%s] %s: %s" (oref wi port) (car w-launcher) (abbreviate-file-name (oref wi dir))))
 
 (defun w-dir-live-p (dir)
   "Tell which instance is serving DIR"
@@ -93,7 +99,7 @@
          (wi (w-dir-live-p dir)))
     (if wi (w-browse wi)
       (let* ((port (w-get-free-port))
-             (process (w-launch-live-server dir port))
+             (process (funcall (cdr w-launcher) dir port))
              (wi (w :dir dir :port port :process process)))
         (setq w-instances (cons wi w-instances))
         (w-browse wi)))))
