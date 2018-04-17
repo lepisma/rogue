@@ -53,6 +53,7 @@
     switch-window
     (viz :location local)
     vue-mode
+    (w :location (recipe :fetcher github :repo "lepisma/w.el"))
     (weather-amherst :location local)
     writegood-mode))
 
@@ -406,10 +407,13 @@
   (use-package vue-mode
     :mode ("\\.vue\\'" . vue-mode)))
 
-(defun rogue/init-writegood-mode ()
-  (use-package writegood-mode
-    :defer t))
+(defun rogue/init-w ()
+  (use-package w))
 
 (defun rogue/init-weather-amherst ()
   (use-package weather-amherst
     :bind (("C-c w" . weather-amherst))))
+
+(defun rogue/init-writegood-mode ()
+  (use-package writegood-mode
+    :defer t))
