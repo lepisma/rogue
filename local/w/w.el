@@ -79,7 +79,7 @@
 
 (cl-defmethod w-pp ((wi w))
   "Pretty print process"
-  (format "[%s] live-server: %s" (oref wi port) (oref wi dir)))
+  (format "[%s] live-server: %s" (oref wi port) (abbreviate-file-name (oref wi dir))))
 
 (defun w-start (&optional dir)
   "Start a new w instance here"
