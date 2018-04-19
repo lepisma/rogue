@@ -102,7 +102,6 @@
      (ruby       . t)
      (sagemath   . t)
      (scheme     . t)
-     (sh         . t)
      (shell      . t)
      (sql        . t)
      (sqlite     . t))))
