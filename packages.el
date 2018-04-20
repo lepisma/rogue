@@ -114,7 +114,9 @@
 
 (defun rogue/init-company-box ()
   (use-package company-box
-    :hook (company-mode . company-box-mode)))
+    :hook (company-mode . company-box-mode)
+    :config
+    (setq company-box-enable-icon nil)))
 
 (defun rogue/init-dired-subtree ()
   (use-package dired-subtree :ensure t
