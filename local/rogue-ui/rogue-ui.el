@@ -191,7 +191,8 @@
                            mu4e-view-mode-hook
                            mu4e-main-mode-hook
                            nov-mode-hook
-                           Info-mode-hook)
+                           Info-mode-hook
+                           anaconda-view-mode)
                          #'rogue-ui-clear-sides)
 
   ;; Hooks for side gap in header
