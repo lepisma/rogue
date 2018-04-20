@@ -10,6 +10,7 @@
     calfw-org
     (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
     colormaps
+    company-box
     dired-subtree
     doom-themes
     enlive
@@ -110,6 +111,10 @@
 (defun rogue/init-colormaps ()
   (use-package colormaps
     :defer t))
+
+(defun rogue/init-company-box ()
+  (use-package company-box
+    :hook (company-mode . company-box-mode)))
 
 (defun rogue/init-dired-subtree ()
   (use-package dired-subtree :ensure t
