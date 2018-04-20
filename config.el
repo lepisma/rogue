@@ -556,6 +556,9 @@ like:
   (minibuffer-prompt
    (:foreground ,keyword)
    nil)
+  (mmm-default-submode-face
+   (:background ,bg-dark-solaire)
+   nil)
   (mode-line
    (:background ,bg-darker)
    (:background ,bg-white
