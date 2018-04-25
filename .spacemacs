@@ -27,7 +27,8 @@ values."
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables
           org-enable-github-support t
-          org-enable-reveal-js-support t)
+          org-enable-reveal-js-support t
+          org-enable-org-journal-support t)
      python
      racket
      ruby
