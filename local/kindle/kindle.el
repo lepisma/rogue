@@ -115,6 +115,7 @@ the file as of now.")
       (next-line)
       (org-fill-element))))
 
+;;;###autoload
 (defun kindle-clipping-ingest-new ()
   "Ingest new clippings"
   (interactive)
