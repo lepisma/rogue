@@ -10,6 +10,7 @@
     calfw-org
     (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
     colormaps
+    conda
     company-box
     dired-subtree
     doom-themes
@@ -111,6 +112,12 @@
 (defun rogue/init-colormaps ()
   (use-package colormaps
     :defer t))
+
+(defun rogue/init-conda ()
+  (use-package conda
+    :config
+    (conda-env-initialize-eshell)
+    (setq conda-anaconda-home (expand-file-name "~/.miniconda"))))
 
 (defun rogue/init-company-box ()
   (use-package company-box

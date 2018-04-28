@@ -122,6 +122,9 @@
         (lambda ()
           (concat (propertize
                    (abbreviate-file-name (eshell/pwd)) 'face '(:foreground "#727280"))
+                  " "
+                  (propertize
+                   (or conda-env-current-name "") 'face '(:foreground "#00bfff"))
                   "\nλ ")))
 
   (setq tramp-default-method "ssh"
