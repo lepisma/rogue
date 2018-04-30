@@ -98,7 +98,8 @@ like:
 
   ;; Fonts
   (sans-font          "Source Sans Pro")
-  (et-font            "EtBembo"))
+  (et-font            "EtBembo")
+  (mono-font          "Iosevka"))
 
  ;; Settings
  ((cfw:face-annotation
@@ -266,6 +267,9 @@ like:
    (:background ,keyword
                 :foreground ,fg-white)
    nil)
+  (fixed-pitch
+   (:family ,mono-font)
+   (:family ,mono-font))
   (flycheck-error
    (:background nil)
    nil)
@@ -807,10 +811,12 @@ like:
             :foreground ,comment)
    (:height 0.8))
   (org-table
-   (:background nil
-                :foreground ,doc)
-   (:height 0.9
-            :background ,bg-white))
+   (:inherit fixed-pitch
+             :background nil
+             :foreground ,doc)
+   (:inherit fixed-pitch
+             :height 0.9
+             :background ,bg-white))
   (org-tag
    (:foreground ,doc)
    (:foreground ,doc))
