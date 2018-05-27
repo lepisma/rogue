@@ -11,7 +11,6 @@
     (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
     colormaps
     conda
-    company-box
     dired-subtree
     doom-themes
     enlive
@@ -118,12 +117,6 @@
     :config
     (conda-env-initialize-eshell)
     (setq conda-anaconda-home (expand-file-name "~/.miniconda"))))
-
-(defun rogue/init-company-box ()
-  (use-package company-box
-    :hook (company-mode . company-box-mode)
-    :config
-    (setq company-box-enable-icon nil)))
 
 (defun rogue/init-dired-subtree ()
   (use-package dired-subtree :ensure t
