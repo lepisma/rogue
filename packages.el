@@ -354,30 +354,30 @@
                                 <div class='page-meta'>%s</div>
                                 <h1>%%t</h1>
                               </div>")
-          (postamble "<footer id='footer'></footer>")))
-    (setq pile-projects
-          (list (pile-project :name "wiki"
-                              :base-url "pile/wiki"
-                              :input-dir (concat user-project-dir "pile/wiki")
-                              :output-dir (concat user-project-dir "pile/docs/wiki")
-                              :type 'wiki
-                              :postamble postamble
-                              :preamble (format preamble-template "Last modified: %%d %%C"))
-                (pile-project :name "blog"
-                              :base-url "pile/blog"
-                              :input-dir (concat user-project-dir "pile/blog")
-                              :output-dir (concat user-project-dir "pile/docs/blog")
-                              :type 'blog
-                              :postamble postamble
-                              :preamble (format preamble-template "%%d"))
-                (pile-project :name "journal"
-                              :base-url "pile/journal"
-                              :input-dir (concat user-project-dir "pile/journal")
-                              :output-dir (concat user-project-dir "pile/docs/wiki")
-                              :type 'blog
-                              :postamble postamble
-                              :preamble (format preamble-template "%%d"))))
-    (pile-setup)))
+          (postamble "<footer id='footer'></footer>"))
+      (setq pile-projects
+            (list (pile-project :name "wiki"
+                                :base-url "pile/wiki"
+                                :input-dir (concat user-project-dir "pile/wiki")
+                                :output-dir (concat user-project-dir "pile/docs/wiki")
+                                :type 'wiki
+                                :postamble postamble
+                                :preamble (format preamble-template "Last modified: %%d %%C"))
+                  (pile-project :name "blog"
+                                :base-url "pile/blog"
+                                :input-dir (concat user-project-dir "pile/blog")
+                                :output-dir (concat user-project-dir "pile/docs/blog")
+                                :type 'blog
+                                :postamble postamble
+                                :preamble (format preamble-template "%%d"))
+                  (pile-project :name "journal"
+                                :base-url "pile/journal"
+                                :input-dir (concat user-project-dir "pile/journal")
+                                :output-dir (concat user-project-dir "pile/docs/wiki")
+                                :type 'blog
+                                :postamble postamble
+                                :preamble (format preamble-template "%%d"))))
+      (pile-setup))))
 
 (defun rogue/init-rogue-processes ()
   (use-package rogue-processes
