@@ -335,9 +335,48 @@
   (use-package pile
     :after w
     :config
-    (setq pile-source (concat user-project-dir "pile/files/")
-          pile-output (concat user-project-dir "pile/docs/")
-          pile-base-url "pile")
+    (let ((preamble-template "<header>
+                                <div class='site-title'>
+                                  <a href='/'>
+                                    <img src='/assets/images/avatar32.png'>
+                                  </a>
+                                </div>
+                                <div class='site-nav'>
+                                  <a href='/blog'> blog</a>
+                                  <a href='/journal'> journal</a>
+                                  <a href='/wiki'> wiki</a>
+                                  <a href='/about'> about</a>
+                                </div>
+                                <div class='clearfix'></div>
+                              </header>
+
+                              <div class='page-header'>
+                                <div class='page-meta'>%s</div>
+                                <h1>%%t</h1>
+                              </div>")
+          (postamble "<footer id='footer'></footer>")))
+    (setq pile-projects
+          (list (pile-project :name "wiki"
+                              :base-url "pile/wiki"
+                              :input-dir (concat user-project-dir "pile/wiki")
+                              :output-dir (concat user-project-dir "pile/docs/wiki")
+                              :type 'wiki
+                              :postamble postamble
+                              :preamble (format preamble-template "Last modified: %%d %%C"))
+                (pile-project :name "blog"
+                              :base-url "pile/blog"
+                              :input-dir (concat user-project-dir "pile/blog")
+                              :output-dir (concat user-project-dir "pile/docs/blog")
+                              :type 'blog
+                              :postamble postamble
+                              :preamble (format preamble-template "%%d"))
+                (pile-project :name "journal"
+                              :base-url "pile/journal"
+                              :input-dir (concat user-project-dir "pile/journal")
+                              :output-dir (concat user-project-dir "pile/docs/wiki")
+                              :type 'blog
+                              :postamble postamble
+                              :preamble (format preamble-template "%%d"))))
     (pile-setup)))
 
 (defun rogue/init-rogue-processes ()
