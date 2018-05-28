@@ -362,21 +362,25 @@
                                 :output-dir (concat user-project-dir "pile/docs/wiki")
                                 :type 'wiki
                                 :postamble postamble
-                                :preamble (format preamble-template "Last modified: %%d %%C"))
+                                :preamble (format preamble-template "Last modified: %d %C"))
                   (pile-project :name "blog"
                                 :base-url "pile/blog"
                                 :input-dir (concat user-project-dir "pile/blog")
                                 :output-dir (concat user-project-dir "pile/docs/blog")
                                 :type 'blog
                                 :postamble postamble
-                                :preamble (format preamble-template "%%d"))
+                                :preamble (format preamble-template "%d"))
                   (pile-project :name "journal"
                                 :base-url "pile/journal"
                                 :input-dir (concat user-project-dir "pile/journal")
-                                :output-dir (concat user-project-dir "pile/docs/wiki")
+                                :output-dir (concat user-project-dir "pile/docs/journal")
                                 :type 'blog
                                 :postamble postamble
-                                :preamble (format preamble-template "%%d"))))
+                                :preamble (format preamble-template "%d"))
+                  (pile-project :name "assets"
+                                :input-dir (concat user-project-dir "pile/assets")
+                                :output-dir (concat user-project-dir "pile/docs")
+                                :type 'static)))
       (pile-setup))))
 
 (defun rogue/init-rogue-processes ()
