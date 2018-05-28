@@ -157,9 +157,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; Files
   (defconst user-bib-file (concat user-notes-dir "library.bib"))
-  (defconst user-bib-notes-file (concat user-project-dir "pile/files/readings/bib-notes.org"))
-  (defconst user-books-file (concat user-project-dir "pile/files/readings/books.org"))
-  (defconst user-clippings-file (concat user-project-dir "pile/files/readings/clippings.org"))
+  (defconst user-bib-notes-file (concat user-project-dir "pile/wiki/readings/bib-notes.org"))
+  (defconst user-books-file (concat user-project-dir "pile/wiki/readings/books.org"))
+  (defconst user-clippings-file (concat user-project-dir "pile/wiki/readings/clippings.org"))
   (defconst user-bookmarks-file (concat user-notes-dir "bookmarks.org"))
   (defconst user-gcal-file (concat user-notes-dir "gcal.org"))
 
