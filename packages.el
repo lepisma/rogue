@@ -347,7 +347,7 @@
                                   </a>
                                 </div>
                                 <div class='site-nav'>
-                                  <a href='/blog'> blog</a>
+                                  <a href='/'> blog</a>
                                   <a href='/journal'> journal</a>
                                   <a href='/wiki'> wiki</a>
                                   <a href='/about'> about</a>
@@ -362,21 +362,21 @@
           (postamble "<footer id='footer'></footer>"))
       (setq pile-projects
             (list (pile-project :name "wiki"
-                                :base-url "pile/wiki"
+                                :base-url "wiki"
                                 :input-dir (concat user-project-dir "pile/wiki")
                                 :output-dir (concat user-project-dir "pile/docs/wiki")
                                 :type 'wiki
                                 :postamble postamble
                                 :preamble (format preamble-template "Last modified: %d %C"))
                   (pile-project :name "blog"
-                                :base-url "pile/blog"
+                                :base-url ""
                                 :input-dir (concat user-project-dir "pile/blog")
                                 :output-dir (concat user-project-dir "pile/docs")
                                 :type 'blog
                                 :postamble postamble
                                 :preamble (format preamble-template "%d"))
                   (pile-project :name "journal"
-                                :base-url "pile/journal"
+                                :base-url "journal"
                                 :input-dir (concat user-project-dir "pile/journal")
                                 :output-dir (concat user-project-dir "pile/docs/journal")
                                 :type 'blog
