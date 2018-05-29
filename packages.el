@@ -371,7 +371,7 @@
                   (pile-project :name "blog"
                                 :base-url "pile/blog"
                                 :input-dir (concat user-project-dir "pile/blog")
-                                :output-dir (concat user-project-dir "pile/docs/blog")
+                                :output-dir (concat user-project-dir "pile/docs")
                                 :type 'blog
                                 :postamble postamble
                                 :preamble (format preamble-template "%d"))
