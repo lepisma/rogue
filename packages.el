@@ -360,7 +360,8 @@
                                 <h1>%%t</h1>
                               </div>")
           (postamble "<footer id='footer'></footer>"))
-      (setq pile-projects
+      (setq pile-serve-dir (concat user-project-dir "pile/docs")
+            pile-projects
             (list (pile-project :name "wiki"
                                 :base-url "wiki"
                                 :input-dir (concat user-project-dir "pile/wiki")
