@@ -18,6 +18,7 @@
     focus
     gscholar-bibtex
     hackernews
+    hy-mode
     (kindle :location local)
     (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein"))
     (mpm :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
@@ -161,6 +162,10 @@
 (defun rogue/init-hackernews ()
   (use-package hackernews
     :bind ("C-c h" . hackernews)))
+
+(defun rogue/init-hy-mode ()
+  (use-package hy-mode
+    :mode "\\.hy\\'"))
 
 (defun rogue/init-kindle ()
   (use-package kindle
@@ -379,7 +384,7 @@
                                 :preamble (format preamble-template "%d"))
                   (pile-project :name "assets"
                                 :input-dir (concat user-project-dir "pile/assets")
-                                :output-dir (concat user-project-dir "pile/docs")
+                                :output-dir (concat user-project-dir "pile/docs/assets")
                                 :type 'static)))
       (pile-setup))))
 
