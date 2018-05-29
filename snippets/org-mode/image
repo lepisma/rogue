@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : image
+# key : im
+# --
+#+CAPTION: $1
+#+ATTR_HTML: :class zoomTarget :data-closeclick true
+[[file:$2]]
+$0
