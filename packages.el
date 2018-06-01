@@ -359,33 +359,38 @@
                                 <div class='page-meta'>%s</div>
                                 <h1>%%t</h1>
                               </div>")
-          (postamble "<footer id='footer'></footer>"))
+          (postamble "<footer id='footer'></footer>")
+          (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
       (setq pile-serve-dir (concat user-project-dir "pile/docs")
             pile-projects
             (list (pile-project :name "wiki"
                                 :base-url "wiki"
                                 :input-dir (concat user-project-dir "pile/wiki")
-                                :output-dir (concat user-project-dir "pile/docs/wiki")
+                                :output-dir (concat output-dir "wiki")
                                 :type 'wiki
                                 :postamble postamble
                                 :preamble (format preamble-template "Last modified: %d %C"))
                   (pile-project :name "blog"
                                 :base-url ""
                                 :input-dir (concat user-project-dir "pile/blog")
-                                :output-dir (concat user-project-dir "pile/docs")
+                                :output-dir output-dir
                                 :type 'blog
                                 :postamble postamble
                                 :preamble (format preamble-template "%d"))
                   (pile-project :name "journal"
                                 :base-url "journal"
                                 :input-dir (concat user-project-dir "pile/journal")
-                                :output-dir (concat user-project-dir "pile/docs/journal")
+                                :output-dir (concat output-dir "journal")
                                 :type 'blog
                                 :postamble postamble
                                 :preamble (format preamble-template "%d"))
                   (pile-project :name "assets"
                                 :input-dir (concat user-project-dir "pile/assets")
-                                :output-dir (concat user-project-dir "pile/docs/assets")
+                                :output-dir (concat output-dir "assets")
+                                :type 'static)
+                  (pile-project :name "static-pages"
+                                :input-dir (concat user-project-dir "pile/static-pages")
+                                :output-dir output-dir
                                 :type 'static)))
       (pile-setup))))
 
