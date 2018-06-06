@@ -347,9 +347,9 @@
                                   </a>
                                 </div>
                                 <div class='site-nav'>
-                                  <a href='/'> blog</a>
-                                  <a href='/journal'> journal</a>
-                                  <a href='/wiki'> wiki</a>
+                                  <a class='%s' href='/'> blog</a>
+                                  <a class='%s' href='/journal'> journal</a>
+                                  <a class='%s' href='/wiki'> wiki</a>
                                   <a href='/about'> about</a>
                                 </div>
                                 <div class='clearfix'></div>
@@ -361,7 +361,7 @@
                               </div>")
           (postamble "<footer id='footer'></footer>")
           (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
-      (setq pile-serve-dir (concat user-project-dir "pile/docs")
+      (setq pile-serve-dir output-dir
             pile-projects
             (list (pile-project :name "wiki"
                                 :base-url "wiki"
@@ -369,21 +369,21 @@
                                 :output-dir (concat output-dir "wiki")
                                 :type 'wiki
                                 :postamble postamble
-                                :preamble (format preamble-template "Last modified: %d %C"))
+                                :preamble (format preamble-template "" "" "active" "Last modified: %d %C"))
                   (pile-project :name "blog"
                                 :base-url ""
                                 :input-dir (concat user-project-dir "pile/blog")
                                 :output-dir output-dir
                                 :type 'blog
                                 :postamble postamble
-                                :preamble (format preamble-template "%d"))
+                                :preamble (format preamble-template "active" "" "" "%d"))
                   (pile-project :name "journal"
                                 :base-url "journal"
                                 :input-dir (concat user-project-dir "pile/journal")
                                 :output-dir (concat output-dir "journal")
                                 :type 'blog
                                 :postamble postamble
-                                :preamble (format preamble-template "%d"))
+                                :preamble (format preamble-template "" "active" "" "%d"))
                   (pile-project :name "assets"
                                 :input-dir (concat user-project-dir "pile/assets")
                                 :output-dir (concat output-dir "assets")
