@@ -389,9 +389,12 @@
                                 :output-dir (concat output-dir "assets")
                                 :type 'static)
                   (pile-project :name "static-pages"
+                                :base-url ""
                                 :input-dir (concat user-project-dir "pile/static-pages")
                                 :output-dir output-dir
-                                :type 'static)))
+                                :type 'blog
+                                :postamble postamble
+                                :preamble "<div class='page-header'></div>")))
       (pile-setup))))
 
 (defun rogue/init-rogue-processes ()
