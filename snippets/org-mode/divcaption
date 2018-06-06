@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : divcaption
+# key : div
+# --
+#+HTML: <figure> <div id='$1'></div> <figcaption>
+$2
+#+HTML: </figcaption></figure>
+$0
