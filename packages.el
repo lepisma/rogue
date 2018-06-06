@@ -393,8 +393,8 @@
                                 :input-dir (concat user-project-dir "pile/static-pages")
                                 :output-dir output-dir
                                 :type 'blog
-                                :postamble postamble
-                                :preamble "<div class='page-header'></div>")))
+                                :postamble ""
+                                :preamble "")))
       (pile-setup))))
 
 (defun rogue/init-rogue-processes ()
