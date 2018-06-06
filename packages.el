@@ -37,7 +37,7 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
     parinfer
-    (pile :location (recipe :fetcher github :repo "lepisma/pile-wiki"))
+    (pile :location (recipe :fetcher github :repo "lepisma/pile"))
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
     (rogue-ligatures :location local)
@@ -365,32 +365,32 @@
             pile-projects
             (list (pile-project :name "wiki"
                                 :base-url "wiki"
-                                :input-dir (concat user-project-dir "pile/wiki")
+                                :input-dir (concat user-project-dir "lepisma.github.io/wiki")
                                 :output-dir (concat output-dir "wiki")
                                 :type 'wiki
                                 :postamble postamble
                                 :preamble (format preamble-template "" "" "active" "Last modified: %d %C"))
                   (pile-project :name "blog"
                                 :base-url ""
-                                :input-dir (concat user-project-dir "pile/blog")
+                                :input-dir (concat user-project-dir "lepisma.github.io/blog")
                                 :output-dir output-dir
                                 :type 'blog
                                 :postamble postamble
                                 :preamble (format preamble-template "active" "" "" "%d"))
                   (pile-project :name "journal"
                                 :base-url "journal"
-                                :input-dir (concat user-project-dir "pile/journal")
+                                :input-dir (concat user-project-dir "lepisma.github.io/journal")
                                 :output-dir (concat output-dir "journal")
                                 :type 'blog
                                 :postamble postamble
                                 :preamble (format preamble-template "" "active" "" "%d"))
                   (pile-project :name "assets"
-                                :input-dir (concat user-project-dir "pile/assets")
+                                :input-dir (concat user-project-dir "lepisma.github.io/assets")
                                 :output-dir (concat output-dir "assets")
                                 :type 'static)
                   (pile-project :name "misc"
                                 :base-url ""
-                                :input-dir (concat user-project-dir "pile/misc")
+                                :input-dir (concat user-project-dir "lepisma.github.io/misc")
                                 :output-dir output-dir
                                 :type 'blog
                                 :postamble ""
