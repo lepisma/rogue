@@ -388,9 +388,9 @@
                                 :input-dir (concat user-project-dir "pile/assets")
                                 :output-dir (concat output-dir "assets")
                                 :type 'static)
-                  (pile-project :name "static-pages"
+                  (pile-project :name "misc"
                                 :base-url ""
-                                :input-dir (concat user-project-dir "pile/static-pages")
+                                :input-dir (concat user-project-dir "pile/misc")
                                 :output-dir output-dir
                                 :type 'blog
                                 :postamble ""
