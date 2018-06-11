@@ -69,7 +69,7 @@ With argument, do this that many times."
         doom-neotree-line-spacing 4)
   (disable-theme rogue-light-theme)
   (spacemacs/load-theme rogue-dark-theme)
-  (setq org-bullets-bullet-list '("➜"))
+  (setq org-bullets-bullet-list '("› "))
   (rogue-org-reset-buffers)
   (beacon-mode +1))
 
