@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name : project-init
+# key : initpj
+# --
+* $1
+$2
+
+** Questions / Goals
+- $3
+
+** Primary readings
+- $4
+
+** Other readings / bookmarks
+- $5
+
+** Main output
+- $6
+
+** Other outputs
+- $7
+
+** Tasks
+- $8
