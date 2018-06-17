@@ -89,7 +89,7 @@
         mu4e-headers-new-mark            '("N"  . " ")
         mu4e-headers-passed-mark         '("P"  . " ")
         mu4e-headers-replied-mark        '("R"  . " ")
-        mu4e-headers-seen-mark           '("S"  . ""  )
+        mu4e-headers-seen-mark           '("S"  . "")
         mu4e-headers-trashed-mark        '("T"  . " ")
         mu4e-headers-attach-mark         '("a"  . " ")
         mu4e-headers-encrypted-mark      '("x"  . " ")
@@ -163,89 +163,117 @@
                      :action (mu4e-error "No action for deferred mark"))))
 
   (setq mu4e-bookmarks (list (make-mu4e-bookmark
-                              :name "Unified Inbox"
+                              :name "Personal Inbox"
                               :query (concat "maildir:/Gmail/INBOX OR "
                                              "maildir:/UMassCS/INBOX OR "
                                              "maildir:/UMass/INBOX OR "
                                              "maildir:/Fastmail/INBOX")
                               :key ?i)
                              (make-mu4e-bookmark
+                              :name "Work Inbox"
+                              :query "maildir:/Work/INBOX"
+                              :key ?w)
+                             (make-mu4e-bookmark
+                              :name "Work Unread"
+                              :query "maildir:/Work/INBOX AND flag:unread"
+                              :key ?q)
+                             (make-mu4e-bookmark
                               :name "All Sent"
                               :query (concat "\"maildir:/Gmail/[Gmail].Sent Mail\" OR "
                                              "maildir:/UMassCS/Sent OR "
                                              "maildir:/UMass/INBOX.Sent OR "
-                                             "maildir:/Fastmail/Sent")
+                                             "maildir:/Fastmail/Sent OR "
+                                             "\"maildir:/Work/[Gmail].Sent Mail\"")
                               :key ?s)
                              (make-mu4e-bookmark
-                              :name "All Unread"
+                              :name "Personal Unread"
                               :query (concat "maildir:/Gmail/INBOX AND flag:unread OR "
                                              "maildir:/UMassCS/INBOX AND flag:unread OR "
                                              "maildir:/UMass/INBOX AND flag:unread OR "
                                              "maildir:/Fastmail/INBOX AND flag:unread")
                               :key ?u)
                              (make-mu4e-bookmark
-                              :name "Archived"
+                              :name "Personal Archived"
                               :query (concat "maildir:/Gmail/[Gmail].Archive OR "
                                              "maildir:/UMassCS/Archive OR "
                                              "maildir:/UMass/INBOX.Archive OR "
                                              "maildir:/Fastmail/Archive")
                               :key ?a))
-        mu4e-contexts (list (make-mu4e-context
-                             :name "Gmail"
-                             :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Gmail")))
-                             :vars `((user-mail-address . ,(authinfo-get-value "imap.gmail.com" "993" "email"))
-                                     (smtpmail-default-smtp-server . "smtp.gmail.com")
-                                     (smtpmail-smtp-server . "smtp.gmail.com")
-                                     (smtpmail-smtp-service . 465)
-                                     (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(authinfo-get-value "smtp.gmail.com" "465" "login"))
-                                     ;; Gmail handles sent mails automatically
-                                     (mu4e-sent-messages-behavior . delete)
-                                     (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
-                                     (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
-                                     (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))
-                            (make-mu4e-context
-                             :name "CSUMass"
-                             :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMassCS")))
-                             :vars `((user-mail-address . ,(authinfo-get-value "mailsrv.cs.umass.edu" "993" "email"))
-                                     (smtpmail-default-smtp-server . "mailsrv.cs.umass.edu")
-                                     (smtpmail-smtp-server . "mailsrv.cs.umass.edu")
-                                     (smtpmail-smtp-service . 465)
-                                     (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(authinfo-get-value "mailsrv.cs.umass.edu" "465" "login"))
-                                     (mu4e-sent-messages-behavior . sent)
-                                     (mu4e-sent-folder . "/UMassCS/Sent")
-                                     (mu4e-drafts-folder . "/UMassCS/Drafts")
-                                     (mu4e-trash-folder . "/UMassCS/Trash")
-                                     (mu4e-refile-folder . "/UMassCS/Archive")))
-                            (make-mu4e-context
-                             :name "UMass"
-                             :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMass")))
-                             :vars `((user-mail-address . ,(authinfo-get-value "mail-a.oit.umass.edu" "993" "email"))
-                                     (smtpmail-default-smtp-server . "mail-auth.oit.umass.edu")
-                                     (smtpmail-smtp-server . "mail-auth.oit.umass.edu")
-                                     (smtpmail-smtp-service . 465)
-                                     (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(authinfo-get-value "mail-auth.oit.umass.edu" "465" "login"))
-                                     (mu4e-sent-messages-behavior . sent)
-                                     (mu4e-sent-folder . "/UMass/INBOX.Sent")
-                                     (mu4e-drafts-folder . "/UMass/INBOX.Drafts")
-                                     (mu4e-trash-folder . "/UMass/INBOX.Trash")
-                                     (mu4e-refile-folder . "/UMass/INBOX.Archive")))
-                            (make-mu4e-context
-                             :name "Fastmail"
-                             :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Fastmail")))
-                             :vars `((user-mail-address . ,(authinfo-get-value "imap.fastmail.com" "993" "email"))
-                                     (smtpmail-default-smtp-server . "smtp.fastmail.com")
-                                     (smtpmail-smtp-server . "smtp.fastmail.com")
-                                     (smtpmail-smtp-service . 465)
-                                     (smtpmail-stream-type . ssl)
-                                     (smtpmail-smtp-user . ,(authinfo-get-value "smtp.fastmail.com" "465" "login"))
-                                     (mu4e-sent-messages-behavior . sent)
-                                     (mu4e-sent-folder . "/Fastmail/Sent")
-                                     (mu4e-drafts-folder . "/Fastmail/Drafts")
-                                     (mu4e-trash-folder . "/Fastmail/Trash")
-                                     (mu4e-refile-folder . "/Fastmail/Archive")))))
+        mu4e-contexts (list (let ((smtp-entry (authinfo-get-entry-by-name "gmail-smtp")))
+                              (make-mu4e-context
+                               :name "Gmail"
+                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Gmail")))
+                               :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get-value smtp-entry "port")))
+                                       (smtpmail-stream-type . ssl)
+                                       (smtpmail-smtp-user . ,(authinfo-get-value smtp-entry "login"))
+                                       ;; Gmail handles sent mails automatically
+                                       (mu4e-sent-messages-behavior . delete)
+                                       (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
+                                       (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
+                                       (mu4e-refile-folder . "/Gmail/[Gmail].Archive"))))
+                            (let ((smtp-entry (authinfo-get-entry-by-name "csumass-smtp")))
+                              (make-mu4e-context
+                               :name "CSUMass"
+                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMassCS")))
+                               :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get-value smtp-entry "port")))
+                                       (smtpmail-stream-type . ssl)
+                                       (smtpmail-smtp-user . ,(authinfo-get-value smtp-entry "login"))
+                                       (mu4e-sent-messages-behavior . sent)
+                                       (mu4e-sent-folder . "/UMassCS/Sent")
+                                       (mu4e-drafts-folder . "/UMassCS/Drafts")
+                                       (mu4e-trash-folder . "/UMassCS/Trash")
+                                       (mu4e-refile-folder . "/UMassCS/Archive"))))
+                            (let ((smtp-entry (authinfo-get-entry-by-name "umass-smtp")))
+                              (make-mu4e-context
+                               :name "UMass"
+                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMass")))
+                               :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get-value smtp-entry "port")))
+                                       (smtpmail-stream-type . ssl)
+                                       (smtpmail-smtp-user . ,(authinfo-get-value smtp-entry "login"))
+                                       (mu4e-sent-messages-behavior . sent)
+                                       (mu4e-sent-folder . "/UMass/INBOX.Sent")
+                                       (mu4e-drafts-folder . "/UMass/INBOX.Drafts")
+                                       (mu4e-trash-folder . "/UMass/INBOX.Trash")
+                                       (mu4e-refile-folder . "/UMass/INBOX.Archive"))))
+                            (let ((smtp-entry (authinfo-get-entry-by-name "fastmail-smtp")))
+                              (make-mu4e-context
+                               :name "Fastmail"
+                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Fastmail")))
+                               :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get-value smtp-entry "port")))
+                                       (smtpmail-stream-type . ssl)
+                                       (smtpmail-smtp-user . ,(authinfo-get-value smtp-entry "login"))
+                                       (mu4e-sent-messages-behavior . sent)
+                                       (mu4e-sent-folder . "/Fastmail/Sent")
+                                       (mu4e-drafts-folder . "/Fastmail/Drafts")
+                                       (mu4e-trash-folder . "/Fastmail/Trash")
+                                       (mu4e-refile-folder . "/Fastmail/Archive"))))
+                            (let ((smtp-entry (authinfo-get-entry-by-name "work-smtp")))
+                              (make-mu4e-context
+                               :name "Work"
+                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Work")))
+                               :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get-value smtp-entry "port")))
+                                       (smtpmail-stream-type . ssl)
+                                       (smtpmail-smtp-user . ,(authinfo-get-value smtp-entry "login"))
+                                       ;; Gmail handles sent mails automatically
+                                       (mu4e-sent-messages-behavior . delete)
+                                       (mu4e-trash-folder . "/Work/[Gmail].Trash")
+                                       (mu4e-drafts-folder . "/Work/[Gmail].Drafts")
+                                       (mu4e-refile-folder . "/Work/[Gmail].Archive"))))))
 
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))

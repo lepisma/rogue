@@ -39,13 +39,13 @@
          (lines (-remove (-cut s-starts-with-p "#" <>) (s-split "\n" cmd-out))))
     (mapcar (-cut s-split " " <>) lines)))
 
-(defun authinfo-get-match (name)
+(defun authinfo-get-entry-by-name (name)
   "Return matching entry for given name identifier"
   (let ((entries (authinfo-get-entries)))
     (-find (lambda (entry) (string-equal (lax-plist-get entry "name") name)) entries)))
 
-(defun authinfo-get-value (machine port key)
-  (lax-plist-get (authinfo-get-match machine port) key))
+(defun authinfo-get-value (entry key)
+  (lax-plist-get entry key))
 
 (provide 'authinfo)
 
