@@ -53,6 +53,7 @@ values."
      ;;         elfeed-enable-web-interface t)
      git
      github
+     (go :variables go-tab-width 4)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
      (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
