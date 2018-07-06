@@ -57,3 +57,6 @@
 
 ;; Persp grouping
 (global-set-key (kbd "C-x C-b") #'(lambda (arg) (interactive "P") (with-persp-buffer-list () (ibuffer arg))))
+
+;; Devanagari
+(global-set-key (kbd "C-c k") #'toggle-devanagari)

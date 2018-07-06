@@ -93,6 +93,12 @@ With argument, do this that many times."
   (interactive (list (magit-commit-arguments)))
   (magit-commit '("-m" "Updates")))
 
+(defun toggle-devanagari ()
+  (interactive)
+  (if (null current-input-method)
+      (set-input-method "devanagari-aiba")
+    (set-input-method nil)))
+
 (with-eval-after-load 'magit
   (magit-define-popup-action
    'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
