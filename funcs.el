@@ -96,7 +96,7 @@ With argument, do this that many times."
 (defun toggle-devanagari ()
   (interactive)
   (if (null current-input-method)
-      (set-input-method "devanagari-aiba")
+      (set-input-method "devanagari-itrans")
     (set-input-method nil)))
 
 (with-eval-after-load 'magit
