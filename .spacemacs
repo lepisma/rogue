@@ -12,6 +12,8 @@ values."
    dotspacemacs-configuration-layers
    '(bibtex
      c-c++
+     (clojure :variables
+              clojure-enable-fancify-symbols t)
      common-lisp
      csv
      erlang
