@@ -31,7 +31,7 @@ values."
           org-enable-github-support t
           org-enable-reveal-js-support t
           org-enable-org-journal-support t)
-     python
+     (python :variables python-sort-imports-on-save t)
      racket
      ruby
      (rust :variables rust-format-on-save t)
