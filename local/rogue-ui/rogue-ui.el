@@ -150,10 +150,6 @@
 
   (setq ranger-header-func (lambda () ""))
 
-  ;; nlinum
-  (setq nlinum-highlight-current-line t
-        nlinum-format " %d ")
-
   (blink-cursor-mode t)
   (setq-default cursor-in-non-selected-windows nil)
   (setq frame-title-format '("" "%b - Emacs"))
@@ -267,8 +263,7 @@
   ;; Other general hooks
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
   (add-hook 'text-mode-hook #'auto-fill-mode)
-  (add-hook 'term-mode-hook #'toggle-truncate-lines)
-  (add-hook 'prog-mode-hook #'nlinum-mode))
+  (add-hook 'term-mode-hook #'toggle-truncate-lines))
 
 (provide 'rogue-ui)
 

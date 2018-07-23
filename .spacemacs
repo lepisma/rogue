@@ -59,7 +59,6 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
      (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
-     nlinum
      pandoc
      pdf
      prodigy
@@ -131,7 +130,7 @@ values."
    dotspacemacs-inactive-transparency 90
    dotspacemacs-mode-line-unicode-symbols nil
    dotspacemacs-smooth-scrolling t
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(:relative nil :disabled-for-modes text-mode)
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server nil
@@ -196,7 +195,6 @@ you should place you code here."
   ;; Load PG if found locally
   (when (f-exists? "~/.emacs.d/PG")
     (load "~/.emacs.d/PG/generic/proof-site")
-    (add-hook 'coq-mode-hook #'nlinum-mode)
     (add-hook 'coq-mode-hook #'solaire-mode))
 
   (setf slime-lisp-implementations

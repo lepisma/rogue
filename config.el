@@ -585,7 +585,7 @@ like:
                 :background ,region-dark
                 :box (:line-width 6 :color ,region-dark))
    nil)
-  (nlinum-current-line
+  (line-number-current-line
    (:foreground ,builtin)
    (:foreground ,bg-dark))
   (org-agenda-current-time
