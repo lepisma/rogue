@@ -61,7 +61,7 @@ values."
      (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
      nlinum
      pandoc
-     pdf-tools
+     pdf
      prodigy
      (ranger :variables ranger-show-preview t)
      restclient
