@@ -181,6 +181,8 @@ you should place you code here."
         browse-url-generic-program (executable-find (getenv "BROWSER"))
         browse-url-browser-function 'browse-url-generic)
 
+  (server-start)
+
   ;; Language specific settings
   (setq-default web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
