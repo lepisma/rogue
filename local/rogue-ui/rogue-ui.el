@@ -260,6 +260,11 @@
     (rogue-ui-clear-header)
     (rogue-ui-clear-sides))
 
+  ;; Transparency
+  (spacemacs/enable-transparency)
+  (add-hook 'after-make-frame-functions
+            (lambda (frame) (spacemacs/enable-transparency frame)))
+
   ;; Other general hooks
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
   (add-hook 'text-mode-hook #'auto-fill-mode)
