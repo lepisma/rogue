@@ -148,11 +148,9 @@
     ;; Capture templates
     (setq org-directory user-notes-dir
           org-capture-templates
-          '(("l" "Logistic" entry (file "notes.org")
-             "* LOGISTICS %?\nSCHEDULED: %^T\n")
-            ("n" "Note" entry (file "notes.org")
+          `(("n" "Note" entry (file ,(concat user-notes-dir "notes.org"))
              "* %?\n")
-            ("b" "Bookmark" entry (file "notes.org")
+            ("b" "Bookmark" entry (file ,(concat user-notes-dir "notes.org"))
              "* %?\n%a")))
 
     (setq org-html-validation-link nil)
@@ -162,17 +160,34 @@
           org-refile-targets '((org-agenda-files :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
-          '(("n" "Main agenda view"
-             ((agenda "")))
-            ("l" "Logistics"
-             ((todo "LOGISTICS"
-                    ((org-agenda-overriding-header "Logistics")
-                     (org-agenda-sorting-strategy '(priority-down))))))
-            ("d" "Upcoming deadlines" agenda ""
-             ((org-agenda-entry-types '(:deadline))
-              (org-deadline-warning-days 30)
-              (org-agenda-time-grid nil)
-              (org-agenda-overriding-header "Upcoming deadlines")))))))
+          `(("n" "Personal agenda"
+             ((agenda "")
+              (alltodo))
+             ((org-super-agenda-groups
+               '((:auto-category t)))
+              (org-agenda-files (list ,user-notes-dir
+                                      ,(concat user-cloud-dir "Notes/syncthing/captures.org")))))
+            ("w" . "Work queries")
+            ("wm" "Work (main) agenda"
+             ((agenda "")
+              (alltodo))
+             ((org-super-agenda-groups
+               '((:name "Important"
+                        :priority "A")
+                 (:name "Reading"
+                        :tag "read")
+                 (:name "Minor"
+                        :tag "minor")
+                 (:name "Writing"
+                        :tag "write")))
+              (org-agenda-files (list ,(concat user-cloud-dir "Notes/work/main.org")))))
+            ("we" "Work (extra) agenda"
+             ((agenda "")
+              (alltodo))
+             ((org-super-agenda-groups
+               '((:name "Important"
+                        :priority "A")))
+              (org-agenda-files (list ,(concat user-cloud-dir "Notes/work/extra.org")))))))))
 
 (defun rogue-org-setup-general ()
   "Misc settings."
