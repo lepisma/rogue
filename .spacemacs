@@ -155,7 +155,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; Derived directories
   (defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "Notes/personal")))
-  (defconst user-journal-dir (file-name-as-directory (concat user-notes-dir "journal")))
+  (defconst user-journal-dir (file-name-as-directory (concat user-cloud-dir "Notes/journal")))
   (defconst user-pdfs-dir (file-name-as-directory (concat user-notes-dir "pdfs")))
 
   ;; Files
