@@ -153,7 +153,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
 
   ;; Derived directories
-  (defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "Notes")))
+  (defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "Notes/personal")))
   (defconst user-journal-dir (file-name-as-directory (concat user-notes-dir "journal")))
   (defconst user-pdfs-dir (file-name-as-directory (concat user-notes-dir "pdfs")))
 
@@ -162,7 +162,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-bib-notes-file (concat user-project-dir "lepisma.github.io/wiki/readings/bib-notes.org"))
   (defconst user-books-file (concat user-project-dir "lepisma.github.io/wiki/readings/books.org"))
   (defconst user-clippings-file (concat user-project-dir "lepisma.github.io/wiki/readings/clippings.org"))
-  (defconst user-bookmarks-file (concat user-notes-dir "bookmarks.org"))
 
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
