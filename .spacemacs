@@ -163,7 +163,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-books-file (concat user-project-dir "lepisma.github.io/wiki/readings/books.org"))
   (defconst user-clippings-file (concat user-project-dir "lepisma.github.io/wiki/readings/clippings.org"))
   (defconst user-bookmarks-file (concat user-notes-dir "bookmarks.org"))
-  (defconst user-gcal-file (concat user-notes-dir "gcal.org"))
 
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
