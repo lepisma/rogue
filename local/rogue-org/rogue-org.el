@@ -148,9 +148,7 @@
     ;; Capture templates
     (setq org-directory user-notes-dir
           org-capture-templates
-          '(("g" "Google calender event" entry (file user-gcal-file)
-             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-            ("l" "Logistic" entry (file "notes.org")
+          '(("l" "Logistic" entry (file "notes.org")
              "* LOGISTICS %?\nSCHEDULED: %^T\n")
             ("n" "Note" entry (file "notes.org")
              "* %?\n")

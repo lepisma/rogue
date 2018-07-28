@@ -31,7 +31,6 @@
     (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
     org-cliplink
     (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
-    org-gcal
     (org-gh :location local)
     org-journal
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
@@ -236,18 +235,6 @@
 (defun rogue/init-org-expand ()
   (use-package org-expand
     :bind (("C-c x" . helm-org-expand))))
-
-(defun rogue/init-org-gcal ()
-  (use-package org-gcal
-    :ensure t
-    :after (org calfw calfw-org)
-    :hook ((cfw:calendar-mode . org-gcal-sync))
-    :config
-    (setq org-gcal-file-alist `(("abhinav.tushar.vs@gmail.com" . ,user-gcal-file)))
-    ;; Secret file
-    ;; (setq org-gcal-client-id "<>"
-    ;;       org-gcal-client-secret "<>")
-    (load-file (concat user-secrets-dir "gcal.el"))))
 
 (defun rogue/init-org-gh ()
   (use-package org-gh
