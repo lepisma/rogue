@@ -261,8 +261,7 @@ the directions of the separator."
     ati-right-2-separator
     ((ati-vc-icon) :face other-face)
     ati-right-1-separator
-    ((ati-flycheck-status
-      ((ati-org-clock :when active)
+    ((((ati-org-clock :when active)
        (ati-org-pomodoro :when active))) :separator "  " :face highlight-face)
     ati-right-2-separator)
 
