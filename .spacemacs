@@ -50,9 +50,10 @@ values."
      better-defaults
      colors
      (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
-     ;; (elfeed :variables
-     ;;         rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
-     ;;         elfeed-enable-web-interface t)
+     (elfeed :variables
+             rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
+             elfeed-enable-web-interface t)
+     epub
      git
      github
      (go :variables go-tab-width 4)
@@ -180,6 +181,11 @@ you should place you code here."
         browse-url-browser-function 'browse-url-generic)
 
   (server-start)
+
+  ;; Transparency
+  (spacemacs/enable-transparency)
+  (add-hook 'after-make-frame-functions
+            (lambda (frame) (spacemacs/enable-transparency frame)))
 
   ;; Language specific settings
   (setq-default web-mode-markup-indent-offset 2

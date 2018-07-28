@@ -6,24 +6,19 @@
     beacon
     browse-at-remote
     cricbuzz
-    calfw
-    calfw-org
     (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
     colormaps
     conda
     dired-subtree
     doom-themes
     enlive
-    (etab :location (recipe :fetcher github :repo "lepisma/etab"))
     focus
     gscholar-bibtex
-    hackernews
     hy-mode
     (kindle :location local)
     (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein"))
     (mpm :location (recipe :fetcher url :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
     multiple-cursors
-    nov
     ob-async
     ob-sagemath
     openwith
@@ -56,7 +51,6 @@
     (viz :location local)
     vue-mode
     (w :location (recipe :fetcher github :repo "lepisma/w.el"))
-    (weather-amherst :location local)
     writegood-mode))
 
 ;; Initialize packages
@@ -81,27 +75,6 @@
 (defun rogue/init-cricbuzz ()
   (use-package cricbuzz
     :defer t))
-
-(defun rogue/init-calfw ()
-  (use-package calfw
-    :bind (("C-c q" . cfw:open-org-calendar))
-    :config
-    (setq cfw:fchar-junction ?┼
-          cfw:fchar-vertical-line ?│
-          cfw:fchar-horizontal-line ?─
-          cfw:fchar-left-junction ?├
-          cfw:fchar-right-junction ?┤
-          cfw:fchar-top-junction ?┬
-          cfw:fchar-top-left-corner ?┌
-          cfw:fchar-top-right-corner ?┐)
-    (setq cfw:render-line-breaker 'cfw:render-line-breaker-none)
-    (setq cfw:face-item-separator-color nil)))
-
-(defun rogue/init-calfw-org ()
-  (use-package calfw-org
-    :after calfw
-    :config
-    (setq cfw:org-face-agenda-item-foreground-color "#BF616A")))
 
 (defun rogue/init-calibre ()
   (use-package calibre
@@ -144,24 +117,18 @@
 (defun rogue/init-enlive ()
   (use-package enlive))
 
-(defun rogue/init-etab ()
-  (use-package etab
-    :after levenshtein
-    :config
-    (setq etab-bookmarks-file user-bookmarks-file)))
-
 (defun rogue/init-focus ()
-  (use-package focus))
+  (use-package focus
+    :config
+    (setq focus-dimness -1)
+    :hook
+    ((prog-mode . focus-mode))))
 
 (defun rogue/init-gscholar-bibtex ()
   (use-package gscholar-bibtex
     :config
     (setq gscholar-bibtex-database-file user-bib-file
           gscholar-bibtex-default-source "Google Scholar")))
-
-(defun rogue/init-hackernews ()
-  (use-package hackernews
-    :bind ("C-c h" . hackernews)))
 
 (defun rogue/init-hy-mode ()
   (use-package hy-mode
@@ -185,12 +152,6 @@
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this)
            ("C-M-<mouse-1>" . mc/add-cursor-on-click))))
-
-(defun rogue/init-nov ()
-  (use-package nov
-    :config
-    (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
-    (setq nov-text-width 80)))
 
 (defun rogue/init-ob-async ()
   (use-package ob-async))
@@ -468,10 +429,6 @@
 
 (defun rogue/init-w ()
   (use-package w))
-
-(defun rogue/init-weather-amherst ()
-  (use-package weather-amherst
-    :bind (("C-c w" . weather-amherst))))
 
 (defun rogue/init-writegood-mode ()
   (use-package writegood-mode
