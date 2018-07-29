@@ -12,7 +12,6 @@
     dired-subtree
     doom-themes
     enlive
-    focus
     gscholar-bibtex
     hy-mode
     (kindle :location local)
@@ -116,13 +115,6 @@
 
 (defun rogue/init-enlive ()
   (use-package enlive))
-
-(defun rogue/init-focus ()
-  (use-package focus
-    :config
-    (setq focus-dimness -1)
-    :hook
-    ((prog-mode . focus-mode))))
 
 (defun rogue/init-gscholar-bibtex ()
   (use-package gscholar-bibtex
