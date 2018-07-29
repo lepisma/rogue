@@ -148,9 +148,9 @@
     ;; Capture templates
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("n" "Note" entry (file ,(concat user-notes-dir "notes.org"))
+          `(("n" "Note" entry (file ,(concat user-notes-dir "personal/notes.org"))
              "* %?\n")
-            ("b" "Bookmark" entry (file ,(concat user-notes-dir "notes.org"))
+            ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
              "* %?\n%a")))
 
     (setq org-html-validation-link nil)
@@ -165,8 +165,8 @@
               (alltodo))
              ((org-super-agenda-groups
                '((:auto-category t)))
-              (org-agenda-files (list ,user-notes-dir
-                                      ,(concat user-cloud-dir "Notes/syncthing/captures.org")))))
+              (org-agenda-files (list ,(concat user-notes-dir "personal")
+                                      ,(concat user-notes-dir "syncthing/captures.org")))))
             ("w" . "Work queries")
             ("wm" "Work (main) agenda"
              ((agenda "")
@@ -180,14 +180,14 @@
                         :tag "minor")
                  (:name "Writing"
                         :tag "write")))
-              (org-agenda-files (list ,(concat user-cloud-dir "Notes/work/main.org")))))
+              (org-agenda-files (list ,(concat user-notes-dir "work/main.org")))))
             ("we" "Work (extra) agenda"
              ((agenda "")
               (alltodo))
              ((org-super-agenda-groups
                '((:name "Important"
                         :priority "A")))
-              (org-agenda-files (list ,(concat user-cloud-dir "Notes/work/extra.org")))))))))
+              (org-agenda-files (list ,(concat user-notes-dir "work/extra.org")))))))))
 
 (defun rogue-org-setup-general ()
   "Misc settings."
