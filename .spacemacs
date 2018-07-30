@@ -19,6 +19,7 @@ values."
      erlang
      emacs-lisp
      ess
+     (go :variables go-tab-width 4)
      graphviz
      haskell
      html
@@ -56,7 +57,6 @@ values."
      epub
      git
      github
-     (go :variables go-tab-width 4)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
      (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
