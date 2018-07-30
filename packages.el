@@ -4,7 +4,7 @@
   '(all-the-icons
     (authinfo :location local)
     beacon
-    (bmp :location local)
+    (bmp :location (recipe :fetcher githun :repo "lepisma/bmp"))
     browse-at-remote
     cricbuzz
     (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
