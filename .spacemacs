@@ -27,12 +27,15 @@ values."
      (latex :variables
             latex-enable-folding t
             latex-enable-auto-fill t)
+     lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t
           org-enable-org-journal-support t)
-     (python :variables python-sort-imports-on-save t)
+     (python :variables
+             python-backend 'lsp
+             python-sort-imports-on-save t)
      racket
      ruby
      (rust :variables rust-format-on-save t)

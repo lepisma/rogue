@@ -436,12 +436,30 @@ like:
   (js2-private-member
    (:foreground nil :inherit font-lock-builtin-face)
    (:foreground nil :inherit font-lock-builtin-face))
+  (line-number-current-line
+   (:foreground ,builtin)
+   (:foreground ,bg-dark))
   (link
    (:foreground ,slate)
    nil)
   (linum
    (:background nil)
    (:background ,bg-white))
+  (lsp-face-highlight-read
+   (:background nil
+                :foreground nil
+                :underline ,colors-blue)
+   nil)
+  (lsp-face-highlight-textual
+   (:background nil
+                :foreground nil
+                :underline ,colors-blue)
+   nil)
+  (lsp-face-highlight-write
+   (:background nil
+                :foreground nil
+                :underline ,colors-blue)
+   nil)
   (magit-branch-current
    (:foreground ,colors-purple)
    nil)
@@ -585,9 +603,6 @@ like:
                 :background ,region-dark
                 :box (:line-width 6 :color ,region-dark))
    nil)
-  (line-number-current-line
-   (:foreground ,builtin)
-   (:foreground ,bg-dark))
   (org-agenda-current-time
    (:foreground ,slate)
    nil)
