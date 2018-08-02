@@ -69,9 +69,11 @@ values."
      (ranger :variables ranger-show-preview t)
      restclient
      rogue
-     (spell-checking :variables spell-checking-enable-by-default nil)
+     (spell-checking :variables
+                     spell-checking-enable-auto-dictionary t
+                     enable-flyspell-auto-completion t)
      spotify
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
+     syntax-checking
      theming
      typography
      (version-control :variables
