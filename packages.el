@@ -9,6 +9,7 @@
     cricbuzz
     (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
     colormaps
+    company-box
     conda
     dired-subtree
     doom-themes
@@ -88,6 +89,12 @@
 (defun rogue/init-colormaps ()
   (use-package colormaps
     :defer t))
+
+(defun rogue/init-company-box ()
+  (use-package company-box
+    :after company
+    :config
+    (add-hook 'text-mode-hook #'company-box-mode)))
 
 (defun rogue/init-conda ()
   (use-package conda
