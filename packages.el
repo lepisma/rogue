@@ -32,6 +32,7 @@
     (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
     (org-make :location local)
     org-super-agenda
+    org-web-tools
     parinfer
     (pile :location (recipe :fetcher github :repo "lepisma/pile"))
     pretty-mode
@@ -226,6 +227,10 @@
     :after org
     :config
     (org-super-agenda-mode)))
+
+(defun rogue/init-org-web-tools ()
+  (use-package org-web-tools
+    :after org))
 
 (defun rogue/init-parinfer ()
   (use-package parinfer
