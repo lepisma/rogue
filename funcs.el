@@ -93,6 +93,10 @@ With argument, do this that many times."
   (interactive (list (magit-commit-arguments)))
   (magit-commit '("-m" "Updates")))
 
+(defun magit-deploy-site ()
+  (interactive)
+  (magit-status (concat user-project-dir "lepisma.github.io")))
+
 (defun toggle-devanagari ()
   (interactive)
   (if (null current-input-method)
