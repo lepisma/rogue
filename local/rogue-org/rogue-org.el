@@ -121,24 +121,6 @@
       (if (string-equal "org-mode" major-mode)
           (org-mode)))))
 
-;;;###autoload
-(defun rogue-org-clock-in ()
-  "Default clock in clock.org"
-  (interactive)
-  (with-current-buffer "clock.org"
-    (goto-char (point-min))
-    (org-next-visible-heading 1)
-    (org-clock-in)
-    (org-save-all-org-buffers)))
-
-;;;###autoload
-(defun rogue-org-clock-out ()
-  "Default clock in clock.org"
-  (interactive)
-  (with-current-buffer "clock.org"
-    (org-clock-out)
-    (org-save-all-org-buffers)))
-
 (defun rogue-org-setup-notes ()
   "Setup agenda/captures and other notes related things"
 
