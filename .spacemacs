@@ -95,8 +95,7 @@ values."
    dotspacemacs-elpa-https t
    dotspacemacs-elpa-timeout 5
    dotspacemacs-check-for-update t
-   dotspacemacs-editing-style '(hybrid :variables
-                                       hybrid-mode-default-state 'hybrid)
+   dotspacemacs-editing-style 'emacs
    dotspacemacs-verbose-loading nil
    dotspacemacs-startup-banner 'official
    dotspacemacs-startup-lists '(recents projects)
@@ -186,6 +185,7 @@ you should place you code here."
         browse-url-browser-function 'browse-url-generic)
 
   (server-start)
+  (setq evil-emacs-state-cursor 'bar)
 
   ;; Transparency
   (spacemacs/enable-transparency)
