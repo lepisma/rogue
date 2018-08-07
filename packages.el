@@ -42,6 +42,7 @@
     (pile :location (recipe :fetcher github :repo "lepisma/pile"))
     pretty-mode
     (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+    realgud
     (rogue-ligatures :location local)
     (rogue-mu4e :location local)
     (rogue-org :location local)
@@ -243,6 +244,7 @@
 (rpkg read-lyrics
   :after (s spotify levenshtein))
 
+(rpkg realgud)
 
 (rpkg rogue-ligatures
   :after rogue-utils
