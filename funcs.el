@@ -95,7 +95,7 @@ With argument, do this that many times."
 
 (defun magit-deploy-site ()
   (interactive)
-  (magit-status (concat user-project-dir "lepisma.github.io")))
+  (magit-status (concat user-project-dir "lepisma.github.io-deploy")))
 
 (defun toggle-devanagari ()
   (interactive)
