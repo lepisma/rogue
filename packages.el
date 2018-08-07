@@ -2,7 +2,7 @@
 
 (defmacro rpkg (name &rest body)
   (declare (indent defun))
-  `(defun ,(intern (format "rogue/init-%s" (symbol-name name))) ()
+  `(defun ,(intern (format "rogue/init-%s" name)) ()
      (use-package ,name ,@body)))
 
 (defconst rogue-packages
