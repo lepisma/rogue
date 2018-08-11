@@ -1,4 +1,4 @@
-;;; rogue-org --- Org mode settings for rogue layer
+;;; r-org --- Org mode settings for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
@@ -6,7 +6,7 @@
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
 ;; Keywords: org, rogue
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-org
+;; URL: https://github.com/lepisma/rogue/tree/master/local/r-org
 
 ;;; Commentary:
 
@@ -35,7 +35,7 @@
 (require 'org)
 (require 'org-ref)
 
-(defun rogue-org-setup-tex ()
+(defun r-org-setup-tex ()
   "Setup tex related stuff."
   (setq bib-library user-bib-file
         reftex-default-bibliography (list user-bib-file)
@@ -76,7 +76,7 @@
                                      (message (format "Pdf not found for %s" key)))))
                                helm-source-bibtex)))
 
-(defun rogue-org-setup-babel ()
+(defun r-org-setup-babel ()
   "Setup org-babel."
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
@@ -107,21 +107,21 @@
      (sqlite     . t))))
 
 ;;;###autoload
-(defun rogue-org-shuffle-save ()
+(defun r-org-shuffle-save ()
   "Shuffle and save current file"
   (interactive)
   (goto-char (point-min))
   (org-sort-entries nil ?f (lambda () (random 1000)))
   (save-buffer))
 
-(defun rogue-org-reset-buffers ()
+(defun r-org-reset-buffers ()
   "Reset org-mode in all org buffers"
   (dolist (buff (buffer-list))
     (with-current-buffer buff
       (if (string-equal "org-mode" major-mode)
           (org-mode)))))
 
-(defun rogue-org-setup-notes ()
+(defun r-org-setup-notes ()
   "Setup agenda/captures and other notes related things"
 
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -171,7 +171,7 @@
                         :priority "A")))
               (org-agenda-files (list ,(concat user-notes-dir "work/extra.org")))))))))
 
-(defun rogue-org-setup-general ()
+(defun r-org-setup-general ()
   "Misc settings."
 
   (with-eval-after-load 'org
@@ -194,6 +194,6 @@
                               org-info
                               org-w3m))))
 
-(provide 'rogue-org)
+(provide 'r-org)
 
-;;; rogue-org.el ends here
+;;; r-org.el ends here

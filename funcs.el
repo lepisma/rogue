@@ -40,37 +40,37 @@ With argument, do this that many times."
   (yank)
   (setq kill-ring (cdr kill-ring)))
 
-(defun rogue-cycle-theme ()
+(defun r-cycle-theme ()
   "Cycle between dark and light scheme"
   (interactive)
-  (if (eq rogue-current-theme rogue-dark-theme)
+  (if (eq r-current-theme r-dark-theme)
       (progn
-        (rogue-light)
-        (setq rogue-current-theme rogue-light-theme))
+        (r-light)
+        (setq r-current-theme r-light-theme))
     (progn
-      (rogue-dark)
-      (setq rogue-current-theme rogue-dark-theme))))
+      (r-dark)
+      (setq r-current-theme r-dark-theme))))
 
-(defun rogue-light ()
+(defun r-light ()
   "Switch to light theme"
   (interactive)
   (setq doom-neotree-enable-variable-pitch nil
         doom-neotree-line-spacing 1)
-  (disable-theme rogue-dark-theme)
-  (spacemacs/load-theme rogue-light-theme)
+  (disable-theme r-dark-theme)
+  (spacemacs/load-theme r-light-theme)
   (setq org-bullets-bullet-list '(" "))
-  (rogue-org-reset-buffers)
+  (r-org-reset-buffers)
   (beacon-mode -1))
 
-(defun rogue-dark ()
+(defun r-dark ()
   "Switch to dark theme"
   (interactive)
   (setq doom-neotree-enable-variable-pitch t
         doom-neotree-line-spacing 4)
-  (disable-theme rogue-light-theme)
-  (spacemacs/load-theme rogue-dark-theme)
+  (disable-theme r-light-theme)
+  (spacemacs/load-theme r-dark-theme)
   (setq org-bullets-bullet-list '("› "))
-  (rogue-org-reset-buffers)
+  (r-org-reset-buffers)
   (beacon-mode +1))
 
 (defun quack-quack (text)
@@ -82,7 +82,7 @@ With argument, do this that many times."
   (interactive)
   (let ((subjects (mapcar
                    (lambda (mail) (plist-get mail :subject))
-                   (rogue-mu4e-get-unread-mails))))
+                   (r-mu4e-get-unread-mails))))
     (quack-quack (format "You have %s. %s"
                          (cond ((= (length subjects) 0) "no unread emails")
                                ((= (length subjects) 1) "1 unread email")

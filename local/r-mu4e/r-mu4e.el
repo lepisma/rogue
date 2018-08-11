@@ -1,11 +1,11 @@
-;;; rogue-mu4e.el --- mu4e config for rogue layer
+;;; r-mu4e.el --- mu4e config for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-mu4e
+;; URL: https://github.com/lepisma/rogue/tree/master/local/r-mu4e
 
 ;;; Commentary:
 
@@ -37,7 +37,7 @@
 (require 'openwith)
 (require 's)
 
-(defun rogue-mu4e-unread-bm-query ()
+(defun r-mu4e-unread-bm-query ()
   "Return query string for unread bookmark"
   (let ((bm-item (car
                   (member-if (lambda (bm)
@@ -45,13 +45,13 @@
                                              (cl-struct-slot-value 'mu4e-bookmark 'name bm))) mu4e-bookmarks))))
     (cl-struct-slot-value 'mu4e-bookmark 'query bm-item)))
 
-(defun rogue-mu4e-get-unread-mails ()
+(defun r-mu4e-get-unread-mails ()
   "Return unread emails"
-  (let ((cmd-out (shell-command-to-string (concat "mu find --format=sexp " (rogue-mu4e-unread-bm-query)))))
+  (let ((cmd-out (shell-command-to-string (concat "mu find --format=sexp " (r-mu4e-unread-bm-query)))))
     (if (s-starts-with-p "mu: no matches for" cmd-out) nil
       (nreverse (car (read-from-string (concat "(" cmd-out ")")))))))
 
-(defun rogue-mu4e-sign-and-send ()
+(defun r-mu4e-sign-and-send ()
   "Sign and send message"
   (interactive)
   (let ((ow-state (bound-and-true-p openwith-mode)))
@@ -60,16 +60,16 @@
     (message-send-and-exit)
     (openwith-mode (if ow-state 1 -1))))
 
-(defun rogue-mu4e--message-maildir-matches (msg rx)
+(defun r-mu4e--message-maildir-matches (msg rx)
   (when rx
     (if (listp rx)
         ;; if rx is a list, try each one for a match
-        (or (rogue-mu4e--message-maildir-matches msg (car rx))
-            (rogue-mu4e--message-maildir-matches msg (cdr rx)))
+        (or (r-mu4e--message-maildir-matches msg (car rx))
+            (r-mu4e--message-maildir-matches msg (cdr rx)))
       ;; not a list, check rx
       (string-match rx (mu4e-message-field msg :maildir)))))
 
-(defun rogue-mu4e-setup ()
+(defun r-mu4e-setup ()
   "Setup everything."
 
   (setq mu4e-get-mail-command "offlineimap -o"
@@ -202,7 +202,7 @@
         mu4e-contexts (list (let ((smtp-entry (authinfo-get-entry-by-name "gmail-smtp")))
                               (make-mu4e-context
                                :name "Gmail"
-                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Gmail")))
+                               :match-func (lambda (msg) (when msg (r-mu4e--message-maildir-matches msg "^/Gmail")))
                                :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
                                        (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
                                        (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
@@ -217,7 +217,7 @@
                             (let ((smtp-entry (authinfo-get-entry-by-name "csumass-smtp")))
                               (make-mu4e-context
                                :name "CSUMass"
-                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMassCS")))
+                               :match-func (lambda (msg) (when msg (r-mu4e--message-maildir-matches msg "^/UMassCS")))
                                :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
                                        (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
                                        (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
@@ -232,7 +232,7 @@
                             (let ((smtp-entry (authinfo-get-entry-by-name "umass-smtp")))
                               (make-mu4e-context
                                :name "UMass"
-                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/UMass")))
+                               :match-func (lambda (msg) (when msg (r-mu4e--message-maildir-matches msg "^/UMass")))
                                :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
                                        (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
                                        (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
@@ -247,7 +247,7 @@
                             (let ((smtp-entry (authinfo-get-entry-by-name "fastmail-smtp")))
                               (make-mu4e-context
                                :name "Fastmail"
-                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Fastmail")))
+                               :match-func (lambda (msg) (when msg (r-mu4e--message-maildir-matches msg "^/Fastmail")))
                                :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
                                        (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
                                        (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
@@ -262,7 +262,7 @@
                             (let ((smtp-entry (authinfo-get-entry-by-name "work-smtp")))
                               (make-mu4e-context
                                :name "Work"
-                               :match-func (lambda (msg) (when msg (rogue-mu4e--message-maildir-matches msg "^/Work")))
+                               :match-func (lambda (msg) (when msg (r-mu4e--message-maildir-matches msg "^/Work")))
                                :vars `((user-mail-address . ,(authinfo-get-value smtp-entry "email"))
                                        (smtpmail-default-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
                                        (smtpmail-smtp-server . ,(authinfo-get-value smtp-entry "machine"))
@@ -280,6 +280,6 @@
 
   (add-hook 'mu4e-compose-mode-hook #'flyspell-mode))
 
-(provide 'rogue-mu4e)
+(provide 'r-mu4e)
 
-;;; rogue-mu4e.el ends here
+;;; r-mu4e.el ends here

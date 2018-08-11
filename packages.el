@@ -262,38 +262,38 @@
 
 (rpkg realgud)
 
-(rpkg (rogue-ligatures :location local)
-  :after rogue-utils
+(rpkg (r-ligatures :location local)
+  :after r-utils
   :config
-  (rogue-ligatures-setup-general)
-  (rogue-ligatures-setup-ess))
+  (r-ligatures-setup-general)
+  (r-ligatures-setup-ess))
 
-(rpkg (rogue-mu4e :location local)
+(rpkg (r-mu4e :location local)
   :after (authinfo mu4e openwith)
-  :config (rogue-mu4e-setup))
+  :config (r-mu4e-setup))
 
-(rpkg (rogue-org :location local)
+(rpkg (r-org :location local)
   :after org
   :config
-  (rogue-org-setup-general)
-  (rogue-org-setup-notes)
-  (rogue-org-setup-babel)
-  (rogue-org-setup-tex))
+  (r-org-setup-general)
+  (r-org-setup-notes)
+  (r-org-setup-babel)
+  (r-org-setup-tex))
 
-(rpkg (rogue-processes :location local)
-  :after rogue-utils
+(rpkg (r-processes :location local)
+  :after r-utils
   :config
-  (rogue-processes-define "offlineimap" "-o")
-  (rogue-processes-define "mpm-play")
-  (setq rogue-processes-git-update-dirs nil)
-  (rogue-processes-run-git-autoupdate-loop "10 min" 3600))
+  (r-processes-define "offlineimap" "-o")
+  (r-processes-define "mpm-play")
+  (setq r-processes-git-update-dirs nil)
+  (r-processes-run-git-autoupdate-loop "10 min" 3600))
 
-(rpkg (rogue-ui :location local)
-  :after rogue-utils
+(rpkg (r-ui :location local)
+  :after r-utils
   :config
-  (rogue-ui-setup))
+  (r-ui-setup))
 
-(rpkg (rogue-utils :location local))
+(rpkg (r-utils :location local))
 
 (rpkg sage-shell-mode
   :config

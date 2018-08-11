@@ -1,11 +1,11 @@
-;;; rogue-ligatures.el --- Ligature setup for rogue layer
+;;; r-ligatures.el --- Ligature setup for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-ligatures
+;; URL: https://github.com/lepisma/rogue/tree/master/local/r-ligatures
 
 ;;; Commentary:
 
@@ -29,12 +29,12 @@
 
 ;;; Code:
 
-(require 'rogue-utils)
+(require 'r-utils)
 
-(defcustom rogue-ligatures-font "Fira Code Symbol"
+(defcustom r-ligatures-font "Fira Code Symbol"
   "Font to use for ligatures. Probably won't work on fonts other than Fira Code Symbol.")
 
-(defconst rogue-ligatures-font-lock-keywords-alist
+(defconst r-ligatures-font-lock-keywords-alist
   (mapcar (lambda (regex-char-pair)
             `(,(car regex-char-pair)
               (0 (prog1 ()
@@ -123,28 +123,28 @@
             ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 
 ;;;###autoload
-(defun rogue-ligatures-setup-general ()
+(defun r-ligatures-setup-general ()
   "General ligature setup"
 
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions
-            (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) rogue-ligatures-font)))
+            (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) r-ligatures-font)))
 
   ;; This works when using emacs without server/client
-  (set-fontset-font t '(#Xe100 . #Xe16f) rogue-ligatures-font)
+  (set-fontset-font t '(#Xe100 . #Xe16f) r-ligatures-font)
 
   (add-hook 'prog-mode-hook
-            (lambda () (font-lock-add-keywords nil rogue-ligatures-font-lock-keywords-alist))))
+            (lambda () (font-lock-add-keywords nil r-ligatures-font-lock-keywords-alist))))
 
 ;;;###autoload
-(defun rogue-ligatures-setup-ess ()
+(defun r-ligatures-setup-ess ()
   "Setup ligatures for ess."
-  (rogue-utils-add-hooks '(ess-mode-hook inferior-ess-mode-hook)
-                         (lambda ()
-                           (progn
-                             (pretty-mode -1)
-                             (push '("%>%" . ?|) prettify-symbols-alist)))))
+  (r-utils-add-hooks '(ess-mode-hook inferior-ess-mode-hook)
+                     (lambda ()
+                       (progn
+                         (pretty-mode -1)
+                         (push '("%>%" . ?|) prettify-symbols-alist)))))
 
-(provide 'rogue-ligatures)
+(provide 'r-ligatures)
 
-;;; rogue-ligatures.el ends here
+;;; r-ligatures.el ends here

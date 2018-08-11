@@ -34,10 +34,10 @@
 (global-set-key (kbd "C-c z") 'spacemacs/zoom-frm-transient-state/body)
 
 ;; Cycle theme
-(global-set-key (kbd "M-m T n") 'rogue-cycle-theme)
+(global-set-key (kbd "M-m T n") 'r-cycle-theme)
 
 ;; Mail stuff
-(define-key mu4e-compose-mode-map (kbd "C-c C-c") 'rogue-mu4e-sign-and-send)
+(define-key mu4e-compose-mode-map (kbd "C-c C-c") 'r-mu4e-sign-and-send)
 (define-key mu4e-compose-mode-map (kbd "C-c e") 'mml-secure-encrypt-pgp)
 (define-key mu4e-view-mode-map (kbd "C-c d") 'epa-mail-decrypt)
 

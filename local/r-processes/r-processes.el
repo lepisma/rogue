@@ -1,11 +1,11 @@
-;;; rogue-processes.el --- Process management for rogue
+;;; r-processes.el --- Process management for rogue
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-processes
+;; URL: https://github.com/lepisma/rogue/tree/master/local/r-processes
 
 ;;; Commentary:
 
@@ -33,11 +33,11 @@
 (require 'dash)
 (require 'dash-functional)
 
-(defcustom rogue-processes-git-update-dirs '()
+(defcustom r-processes-git-update-dirs '()
   "git directories to autoupdate.")
 
 ;;;###autoload
-(defun rogue-processes-define (name &optional args)
+(defun r-processes-define (name &optional args)
   "Define a basic prodigy service."
   (prodigy-define-service
     :name name
@@ -47,14 +47,14 @@
     :kill-process-buffer-on-stop t))
 
 ;;;###autoload
-(defun rogue-processes-start-service (name)
+(defun r-processes-start-service (name)
   "Start a service by name."
   (let ((service (-first (lambda (s) (string-equal name (lax-plist-get s :name))) prodigy-services)))
     (if service
         (prodigy-start-service service)
       (message "No service found"))))
 
-(defun rogue-processes-git-autoupdate (project-dir)
+(defun r-processes-git-autoupdate (project-dir)
   "Add all, commit and push given projects."
   (let ((default-directory project-dir))
     ;; Blocking add
@@ -65,13 +65,13 @@
     (call-process-shell-command "git push" nil 0)))
 
 ;;;###autoload
-(defun rogue-processes-run-git-autoupdate-loop (itime gtime)
+(defun r-processes-run-git-autoupdate-loop (itime gtime)
   (run-at-time
    itime gtime
    (lambda ()
-     (dolist (project-dir rogue-processes-git-update-dirs)
-       (rogue-processes-git-autoupdate project-dir)))))
+     (dolist (project-dir r-processes-git-update-dirs)
+       (r-processes-git-autoupdate project-dir)))))
 
-(provide 'rogue-processes)
+(provide 'r-processes)
 
-;;; rogue-processes.el ends here
+;;; r-processes.el ends here

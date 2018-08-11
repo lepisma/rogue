@@ -1,11 +1,11 @@
-;;; rogue-ui.el --- Ui setup for rogue layer
+;;; r-ui.el --- Ui setup for rogue layer
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/rogue-ui
+;; URL: https://github.com/lepisma/rogue/tree/master/local/r-ui
 
 ;;; Commentary:
 
@@ -29,36 +29,36 @@
 
 ;;; Code:
 
-(require 'rogue-utils)
+(require 'r-utils)
 (require 'dash-functional)
 
-(defun rogue-ui-clear-sides ()
+(defun r-ui-clear-sides ()
   "Setup gaps on left and right sides."
   (setq left-margin-width 2
         right-margin-width 2)
   (set-window-buffer nil (current-buffer)))
 
-(defun rogue-ui-clear-header-sides ()
+(defun r-ui-clear-header-sides ()
   "Add left gap in header line"
   (setq header-line-format '(:eval (concat "  " (get-text-property (point-min) (quote header-line))))))
 
-(defun rogue-ui-clear-header ()
+(defun r-ui-clear-header ()
   "Clear header line."
   (setq header-line-format " "))
 
-(defun rogue-ui-line-spacing (size)
+(defun r-ui-line-spacing (size)
   "Set line spacing."
   (setq line-spacing size))
 
-(defun rogue-ui-hide-mode-line ()
+(defun r-ui-hide-mode-line ()
   "Hide mode line. Wrap around the spacemacs' function."
   (hidden-mode-line-mode +1))
 
-(defun rogue-ui-no-hl-line ()
+(defun r-ui-no-hl-line ()
   "Disable line highlight. Wrap around spacemacs' function."
   (spacemacs/disable-hl-line-mode))
 
-(defun rogue-ui-setup-fringe ()
+(defun r-ui-setup-fringe ()
   "Setup git fringe"
   (setq-default fringes-outside-margins t
                 indicate-buffer-boundaries nil
@@ -80,7 +80,7 @@
     nil nil 'center)
   (fringe-mode 3))
 
-(defun rogue-ui-setup-ibuffer ()
+(defun r-ui-setup-ibuffer ()
   "Ibuffer cleanup"
 
   (setq ibuffer-expert t
@@ -95,7 +95,7 @@
         ibuffer-use-header-line nil
         ibuffer-projectile-prefix "")
 
-  (defun rogue-ui--ibuffer-remove-title (&rest args)
+  (defun r-ui--ibuffer-remove-title (&rest args)
     (save-excursion
       (set-buffer "*Ibuffer*")
       (toggle-read-only 0)
@@ -107,9 +107,9 @@
         (shrink-window-if-larger-than-buffer))
       (toggle-read-only)))
 
-  (advice-add 'ibuffer-update-title-and-summary :after 'rogue-ui--ibuffer-remove-title))
+  (advice-add 'ibuffer-update-title-and-summary :after 'r-ui--ibuffer-remove-title))
 
-(defun rogue-ui-setup-misc ()
+(defun r-ui-setup-misc ()
   "Setup ui for misc packages/tools."
 
   (use-package em-tramp
@@ -160,111 +160,111 @@
 
   (setq alert-default-style 'libnotify))
 
-(defun rogue-ui-setup-minibuffer ()
+(defun r-ui-setup-minibuffer ()
   "Fix minibuffer and surrounding area."
   (advice-add 'helm-display-mode-line
-              :override (lambda (source &optional force) (rogue-ui-hide-mode-line))))
+              :override (lambda (source &optional force) (r-ui-hide-mode-line))))
 
-(defun rogue-ui-setup ()
+(defun r-ui-setup ()
   "Setup everything."
 
-  (rogue-ui-setup-fringe)
-  (rogue-ui-setup-ibuffer)
-  (rogue-ui-setup-misc)
-  (rogue-ui-setup-minibuffer)
+  (r-ui-setup-fringe)
+  (r-ui-setup-ibuffer)
+  (r-ui-setup-misc)
+  (r-ui-setup-minibuffer)
 
   ;; Hooks for side gaps
-  (rogue-utils-add-hooks '(cfw:calendar-mode-hook
-                           help-mode-hook
-                           text-mode-hook
-                           org-agenda-mode-hook
-                           ibuffer-mode-hook
-                           magit-status-mode-hook
-                           magit-popup-mode-hook
-                           magit-log-mode-hook
-                           magit-diff-mode-hook
-                           comint-mode-hook
-                           eshell-mode-hook
-                           slime-repl-mode-hook
-                           process-menu-mode-hook
-                           mu4e-view-mode-hook
-                           mu4e-main-mode-hook
-                           nov-mode-hook
-                           Info-mode-hook
-                           anaconda-view-mode)
-                         #'rogue-ui-clear-sides)
+  (r-utils-add-hooks '(cfw:calendar-mode-hook
+                       help-mode-hook
+                       text-mode-hook
+                       org-agenda-mode-hook
+                       ibuffer-mode-hook
+                       magit-status-mode-hook
+                       magit-popup-mode-hook
+                       magit-log-mode-hook
+                       magit-diff-mode-hook
+                       comint-mode-hook
+                       eshell-mode-hook
+                       slime-repl-mode-hook
+                       process-menu-mode-hook
+                       mu4e-view-mode-hook
+                       mu4e-main-mode-hook
+                       nov-mode-hook
+                       Info-mode-hook
+                       anaconda-view-mode)
+                     #'r-ui-clear-sides)
 
   ;; Hooks for side gap in header
-  (rogue-utils-add-hooks '(Info-mode-hook)
-                         #'rogue-ui-clear-header-sides)
+  (r-utils-add-hooks '(Info-mode-hook)
+                     #'r-ui-clear-header-sides)
 
   ;; Hooks for header gaps
-  (rogue-utils-add-hooks '(cfw:calendar-mode-hook
-                           text-mode-hook
-                           help-mode-hook
-                           org-agenda-mode-hook
-                           ibuffer-mode-hook
-                           magit-status-mode-hook
-                           magit-log-mode-hook
-                           magit-diff-mode-hook
-                           comint-mode-hook
-                           eshell-mode-hook
-                           slime-repl-mode-hook
-                           process-menu-mode-hook
-                           mu4e-view-mode-hook
-                           mu4e-main-mode-hook
-                           nov-mode-hook)
-                         #'rogue-ui-clear-header)
+  (r-utils-add-hooks '(cfw:calendar-mode-hook
+                       text-mode-hook
+                       help-mode-hook
+                       org-agenda-mode-hook
+                       ibuffer-mode-hook
+                       magit-status-mode-hook
+                       magit-log-mode-hook
+                       magit-diff-mode-hook
+                       comint-mode-hook
+                       eshell-mode-hook
+                       slime-repl-mode-hook
+                       process-menu-mode-hook
+                       mu4e-view-mode-hook
+                       mu4e-main-mode-hook
+                       nov-mode-hook)
+                     #'r-ui-clear-header)
 
   ;; Hooks for hidden modeline
-  (rogue-utils-add-hooks '(processing-compilation-mode-hook
-                           eshell-mode-hook
-                           help-mode-hook
-                           compilation-mode-hook
-                           messages-buffer-mode-hook
-                           completion-list-mode-hook
-                           org-agenda-mode-hook
-                           ranger-mode-hook
-                           ibuffer-mode-hook
-                           magit-status-mode-hook
-                           magit-popup-mode-hook
-                           magit-log-mode-hook
-                           magit-diff-mode-hook
-                           comint-mode-hook
-                           ranger-parent-dir-hook
-                           ranger-preview-dir-hook
-                           slime-repl-mode-hook
-                           process-menu-mode-hook)
-                         #'rogue-ui-hide-mode-line)
+  (r-utils-add-hooks '(processing-compilation-mode-hook
+                       eshell-mode-hook
+                       help-mode-hook
+                       compilation-mode-hook
+                       messages-buffer-mode-hook
+                       completion-list-mode-hook
+                       org-agenda-mode-hook
+                       ranger-mode-hook
+                       ibuffer-mode-hook
+                       magit-status-mode-hook
+                       magit-popup-mode-hook
+                       magit-log-mode-hook
+                       magit-diff-mode-hook
+                       comint-mode-hook
+                       ranger-parent-dir-hook
+                       ranger-preview-dir-hook
+                       slime-repl-mode-hook
+                       process-menu-mode-hook)
+                     #'r-ui-hide-mode-line)
 
   ;; Hooks for line spacing
-  (rogue-utils-add-hooks '(text-mode-hook
-                           helm-mode-hook
-                           prog-mode-hook
-                           ranger-mode-hook
-                           ibuffer-mode-hook
-                           comint-mode-hook)
-                         (lambda () (rogue-ui-line-spacing 0.1)))
+  (r-utils-add-hooks '(text-mode-hook
+                       helm-mode-hook
+                       prog-mode-hook
+                       ranger-mode-hook
+                       ibuffer-mode-hook
+                       comint-mode-hook)
+                     (lambda () (r-ui-line-spacing 0.1)))
 
-  (rogue-utils-add-hooks '(org-agenda-mode-hook)
-                         (lambda () (rogue-ui-line-spacing 0.2)))
+  (r-utils-add-hooks '(org-agenda-mode-hook)
+                     (lambda () (r-ui-line-spacing 0.2)))
 
   ;; No line highlighting
-  (rogue-utils-add-hooks '(text-mode-hook
-                           cfw:calendar-mode-hook)
-                         #'rogue-ui-no-hl-line)
+  (r-utils-add-hooks '(text-mode-hook
+                       cfw:calendar-mode-hook)
+                     #'r-ui-no-hl-line)
 
   ;; Clear message buffer
   (with-current-buffer "*Messages*"
-    (rogue-ui-hide-mode-line)
-    (rogue-ui-clear-header)
-    (rogue-ui-clear-sides))
+    (r-ui-hide-mode-line)
+    (r-ui-clear-header)
+    (r-ui-clear-sides))
 
   ;; Other general hooks
   (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
   (add-hook 'text-mode-hook #'auto-fill-mode)
   (add-hook 'term-mode-hook #'toggle-truncate-lines))
 
-(provide 'rogue-ui)
+(provide 'r-ui)
 
-;;; rogue-ui.el ends here
+;;; r-ui.el ends here

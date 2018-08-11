@@ -3,13 +3,13 @@
 
 (require 'color)
 
-(defvar rogue-dark-theme 'doom-molokai)
-(defvar rogue-light-theme 'spacemacs-light)
+(defvar r-dark-theme 'doom-molokai)
+(defvar r-light-theme 'spacemacs-light)
 
-(defvar rogue-current-theme rogue-dark-theme
+(defvar r-current-theme r-dark-theme
   "Currently active color scheme")
 
-(defmacro rogue-set-pair-faces (themes consts faces-alist)
+(defmacro r-set-pair-faces (themes consts faces-alist)
   "Macro for pair setting of custom faces.
 THEMES name the pair (theme-one theme-two). CONSTS sets the variables like
   ((sans-font \"Some Sans Font\") ...). FACES-ALIST has the actual faces
@@ -18,7 +18,7 @@ like:
    (face2 theme-one-attr nil           )
    (face3 nil            theme-two-attr)
    ...)"
-  (defmacro rogue--get-proper-faces ()
+  (defmacro r--get-proper-faces ()
     `(let* (,@consts)
        (backquote ,faces-alist)))
 
@@ -31,10 +31,10 @@ like:
                                                  (face-attrs (nth (cl-position theme themes) (cdr face))))
                                              (if face-attrs
                                                  `(,face-name ,@face-attrs)
-                                               "NA"))) (rogue--get-proper-faces)))))
+                                               "NA"))) (r--get-proper-faces)))))
                    themes)))
 
-(rogue-set-pair-faces
+(r-set-pair-faces
  ;; Themes to cycle in
  (doom-molokai spacemacs-light)
 
