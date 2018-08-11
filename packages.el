@@ -260,7 +260,9 @@
 (rpkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
   :after (s spotify levenshtein))
 
-(rpkg realgud)
+(rpkg realgud
+  :config
+  (setq realgud:pdb-command-name "python -m pdb"))
 
 (rpkg (r-ligatures :location local)
   :after r-utils
