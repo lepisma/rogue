@@ -253,6 +253,10 @@
   (pretty-activate-groups
    '(:greek :arithmetic-nary)))
 
+(rpkg (r-kv :location local)
+  :config
+  (setq r-kv-file (concat user-layer-dir "rkv.el")))
+
 (rpkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
   :after (s spotify levenshtein))
 
