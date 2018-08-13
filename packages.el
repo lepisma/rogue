@@ -22,7 +22,7 @@
         beacon-blink-when-buffer-changes t
         beacon-blink-when-point-moves-vertically nil))
 
-(rpkg (bmp :location (recipe :feature github :repo "lepisma/bmp")))
+(rpkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
 (rpkg browse-at-remote)
 
