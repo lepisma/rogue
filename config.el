@@ -575,6 +575,11 @@ like:
   (markdown-url-face
    (:inherit org-link :foreground nil)
    (:inherit org-link :foreground nil))
+  (match
+   (:foreground nil
+                :background nil
+                :underline ,colors-red)
+   nil)
   (minibuffer-prompt
    (:foreground ,keyword)
    nil)
