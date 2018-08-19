@@ -95,6 +95,8 @@
 
 (rpkg ob-sagemath)
 
+(rpkg obtt)
+
 (rpkg openwith
   :demand t
   :config
