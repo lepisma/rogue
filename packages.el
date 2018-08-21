@@ -95,7 +95,7 @@
 
 (rpkg ob-sagemath)
 
-(rpkg obtt)
+(rpkg (obtt :location local))
 
 (rpkg openwith
   :demand t
