@@ -106,3 +106,12 @@ With argument, do this that many times."
 (with-eval-after-load 'magit
   (magit-define-popup-action
    'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
+
+(defun poetry-activate ()
+  (interactive)
+  (let ((envs (directory-files "~/.cache/pypoetry/virtualenvs/" nil "^[a-z]")))
+    (helm :sources (helm-build-sync-source "virtualenvs"
+                     :candidates envs
+                     :action '(("Activate venv" . pyvenv-activate)))
+          :buffer "*helm poetry*"
+          :prompt "Activate : ")))
