@@ -109,9 +109,10 @@ With argument, do this that many times."
 
 (defun poetry-activate ()
   (interactive)
-  (let ((envs (directory-files "~/.cache/pypoetry/virtualenvs/" nil "^[a-z]")))
+  (let* ((venv-dir "~/.cache/pypoetry/virtualenvs/")
+         (envs (directory-files venv-dir nil "^[a-z]")))
     (helm :sources (helm-build-sync-source "virtualenvs"
                      :candidates envs
-                     :action '(("Activate venv" . pyvenv-activate)))
+                     :action `(("Activate venv" . (lambda (env) (pyvenv-activate (f-join (f-expand ,venv-dir) env))))))
           :buffer "*helm poetry*"
           :prompt "Activate : ")))
