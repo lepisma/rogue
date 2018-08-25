@@ -24,7 +24,7 @@ $2
 #+BEGIN_SRC toml :tangle ./pyproject.toml
 [tool.poetry]
 name = "$1"
-version = "$3"
+version = "0.1.0"
 description = "$2"
 authors = []
 
@@ -39,21 +39,13 @@ mypy = "^0.620.0"
 
 * General structure
 
-We have a ~data~ directory with external and processed sub dirs.
+We have a ~data~ directory with external and processed sub dirs. A ~src~ directory
+keeps the modules that we build and use. ~scripts~ keep snakemake scripts.
 
 #+BEGIN_SRC shell :obtt eval
 mkdir -p data/external data/processed
-#+END_SRC
-
-A ~src~ directory keeps the modules that we build and use.
-
-#+BEGIN_SRC python :tangle ./src/__init__.py
-#+END_SRC
-
-~scripts~ keep snakemake scripts.
-
-#+BEGIN_SRC shell :obtt eval
 mkdir scripts
+touch ./src/__init__.py
 #+END_SRC
 
 The snakefile rules now bind everything together.
