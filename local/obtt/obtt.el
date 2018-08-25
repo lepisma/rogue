@@ -69,6 +69,18 @@
   (if (file-exists-p obtt-templates-dir)
       (directory-files obtt-templates-dir nil "\\.obtt$")))
 
+(defun obtt-expand-includes ()
+  (org-export-expand-include-keyword nil (file-name-as-directory obtt-templates-dir)))
+
+(defun obtt-read-template (template)
+  (let* ((file (concat (file-name-as-directory obtt-templates-dir) template)))
+    (with-temp-buffer
+      (insert-file-contents-literally file)
+      (org-mode)
+      (obtt-expand-includes)
+      (text-mode)
+      (buffer-string))))
+
 ;;;###autoload
 (defun obtt-tangle ()
   (interactive)
@@ -79,23 +91,22 @@
     (org-babel-tangle)
     (obtt-eval-blocks)))
 
-(defun obtt-insert-template (candidate)
-  (let* ((file (concat (file-name-as-directory obtt-templates-dir) candidate))
-         (text (with-temp-buffer
-                 (insert-file-contents-literally file)
-                 (buffer-string))))
-    (yas-minor-mode)
-    (yas-expand-snippet text)))
+(defun obtt-insert-template (template)
+  (yas-minor-mode)
+  (yas-expand-snippet (obtt-read-template template)))
 
 ;;;###autoload
 (defun obtt-new (directory)
   (interactive "DStarting directory: ")
-  (with-current-buffer (find-file (concat directory obtt-seed-name))
-    (helm :sources (helm-build-sync-source "templates"
-                     :candidates (obtt-available-snippets)
-                     :action '(("Insert template" . obtt-insert-template)))
-          :buffer "*helm obtt*"
-          :prompt "Select template: ")))
+  (let ((seed-file (concat directory obtt-seed-name)))
+    (if (file-exists-p seed-file)
+        (message "Seed file already exists")
+      (with-current-buffer (find-file (concat directory obtt-seed-name))
+        (helm :sources (helm-build-sync-source "templates"
+                         :candidates (obtt-available-snippets)
+                         :action '(("Insert template" . obtt-insert-template)))
+              :buffer "*helm obtt*"
+              :prompt "Select template: ")))))
 
 (provide 'obtt)
 
