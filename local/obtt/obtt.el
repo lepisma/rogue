@@ -32,6 +32,7 @@
 (require 'org)
 (require 'ob-tangle)
 (require 'cl-lib)
+(require 'ox)
 (require 'yasnippet)
 (require 'helm)
 
