@@ -96,7 +96,8 @@
 (rpkg ob-sagemath)
 
 (rpkg (obtt :location local)
-  :after org)
+  :after org
+  :config (setq obtt-templates-dir (concat user-layer-dir "obtt/")))
 
 (rpkg openwith
   :demand t

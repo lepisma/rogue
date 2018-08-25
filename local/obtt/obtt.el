@@ -32,7 +32,15 @@
 (require 'org)
 (require 'ob-tangle)
 (require 'cl-lib)
+(require 'yasnippet)
+(require 'helm)
 
+
+(defcustom obtt-templates-dir nil
+  "Template directory")
+
+(defcustom obtt-seed-name ".obtt"
+  "Name for the seed file")
 
 (defun obtt-parse-args (args-string)
   (split-string (string-trim args-string)))
@@ -54,38 +62,40 @@
     (let* ((obtt-args-string (alist-get :obtt (org-babel-parse-header-arguments header-args)))
            (obtt-args (if obtt-args-string (obtt-parse-args obtt-args-string))))
       (if (member "eval" obtt-args)
-          (org-babel-execute-src-block)))))
+          (org-babel-execute-src-block nil nil '((:results . "none")))))))
 
 (defun obtt-available-snippets ()
   "Look for all available obtt snippets"
-  (cl-reduce (lambda (acc d)
-               (if (stringp d)
-                   (let ((dir (concat (file-name-as-directory d) "org-mode")))
-                     (if (file-exists-p dir)
-                         (append acc (directory-files dir nil "^obtt"))
-                       acc))
-                 acc))
-             yas-snippet-dirs :initial-value nil))
+  (if (file-exists-p obtt-templates-dir)
+      (directory-files obtt-templates-dir nil "^[a-z]")))
 
 ;;;###autoload
 (defun obtt-tangle ()
   (interactive)
+  (save-buffer)
+  (org-mode)
   (let ((files (obtt-all-files)))
     (obtt-prepare-directories files)
     (org-babel-tangle)
     (obtt-eval-blocks)))
 
+(defun obtt-insert-template (candidate)
+  (let* ((file (concat (file-name-as-directory obtt-templates-dir) candidate))
+         (text (with-temp-buffer
+                 (insert-file-contents-literally file)
+                 (buffer-string))))
+    (yas-minor-mode)
+    (yas-expand-snippet text)))
+
 ;;;###autoload
 (defun obtt-new (directory)
   (interactive "DStarting directory: ")
-  (let ((buffer (create-file-buffer (concat directory "obtt-seed"))))
-    (switch-to-buffer buffer)
-    (org-mode)
-    (insert "# -*- mode:org -*-\n")
-    (insert "# This is an obtt seed file, start with a snippet.\n# Here are the available snippets:\n")
-    (dolist (snip (obtt-available-snippets))
-      (insert (format "# - %s\n" snip)))
-    (insert "\n")))
+  (with-current-buffer (find-file (concat directory obtt-seed-name))
+    (helm :sources (helm-build-sync-source "templates"
+                     :candidates (obtt-available-snippets)
+                     :action '(("Insert template" . obtt-insert-template)))
+          :buffer "*helm obtt*"
+          :prompt "Select template: ")))
 
 (provide 'obtt)
 

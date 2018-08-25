@@ -1,0 +1,78 @@
+# -*- mode: org -*-
+#+TITLE: obtt-poetry
+
+This is a template very similar to default project template in poetry. We will
+first setup few variables.
+
+* Variables
+
+- Name :: $1
+- Description :: $2
+- Version :: ${3:0.1.0}
+
+* README
+
+#+BEGIN_SRC org :tangle ./README.org
+#+TITLE: $1
+
+$2
+#+END_SRC
+
+* toml file
+
+#+BEGIN_SRC toml :tangle ./pyproject.toml
+[tool.poetry]
+name = "$1"
+version = "$3"
+description = "$2"
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+mypy = "^0.620.0"
+#+END_SRC
+
+* General module structure
+
+#+BEGIN_SRC python :tangle ./$1/__init__.py
+__version__ = "$3"
+#+END_SRC
+
+* Testing
+
+#+BEGIN_SRC python :tangle ./tests/__init__.py
+#+END_SRC
+
+#+BEGIN_SRC python :tangle ./tests/test_$1.py
+from $1 import __version__
+
+def test_version():
+    assert __version__ == "$3"
+#+END_SRC
+
+#+BEGIN_SRC python :tangle ./mypy.ini
+[mypy]
+ignore_missing_imports=True
+#+END_SRC
+
+#+BEGIN_SRC text :tangle ./tox.ini
+[tox]
+skipsdist = True
+envlist = py36
+
+[testenv]
+whitelist_externals = poetry
+skip_install = true
+commands =
+    poetry install -v
+    poetry run pytest tests/
+#+END_SRC
+
+* License
+
+#+BEGIN_SRC shell :obtt eval
+gen license:gpl-3.0
+#+END_SRC
