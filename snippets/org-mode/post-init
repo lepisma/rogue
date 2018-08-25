@@ -4,6 +4,7 @@
 # --
 #+TITLE: $1
 #+SETUPFILE: ${2:`(f-relative (locate-dominating-file "." "assets") ".")`}assets/export.setup
+#+TAGS: $3
 
 #+BEGIN_QUOTE
 This page is a work in progress
