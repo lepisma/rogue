@@ -29,7 +29,9 @@
 
 ;;; Code:
 
-(require 'org-babel)
+(require 'org)
+(require 'ob-tangle)
+(require 'cl-lib)
 
 
 (defun obtt-parse-args (args-string)
@@ -54,6 +56,17 @@
       (if (member "eval" obtt-args)
           (org-babel-execute-src-block)))))
 
+(defun obtt-available-snippets ()
+  "Look for all available obtt snippets"
+  (cl-reduce (lambda (acc d)
+               (if (stringp d)
+                   (let ((dir (concat (file-name-as-directory d) "org-mode")))
+                     (if (file-exists-p dir)
+                         (append acc (directory-files dir nil "^obtt"))
+                       acc))
+                 acc))
+             yas-snippet-dirs :initial-value nil))
+
 ;;;###autoload
 (defun obtt-tangle ()
   (interactive)
@@ -62,7 +75,17 @@
     (org-babel-tangle)
     (obtt-eval-blocks)))
 
-;; TODO: Should use helm or something to switch the default-dir without creating a file
+;;;###autoload
+(defun obtt-new (directory)
+  (interactive "DStarting directory: ")
+  (let ((buffer (create-file-buffer (concat directory "obtt-seed"))))
+    (switch-to-buffer buffer)
+    (org-mode)
+    (insert "# -*- mode:org -*-\n")
+    (insert "# This is an obtt seed file, start with a snippet.\n# Here are the available snippets:\n")
+    (dolist (snip (obtt-available-snippets))
+      (insert (format "# - %s\n" snip)))
+    (insert "\n")))
 
 (provide 'obtt)
 
