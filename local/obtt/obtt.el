@@ -67,7 +67,7 @@
 (defun obtt-available-snippets ()
   "Look for all available obtt snippets"
   (if (file-exists-p obtt-templates-dir)
-      (directory-files obtt-templates-dir nil "^[a-z]")))
+      (directory-files obtt-templates-dir nil "\\.obtt$")))
 
 ;;;###autoload
 (defun obtt-tangle ()
