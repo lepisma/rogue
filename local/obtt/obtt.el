@@ -78,8 +78,7 @@
       (insert-file-contents-literally file)
       (org-mode)
       (obtt-expand-includes)
-      (text-mode)
-      (buffer-string))))
+      (buffer-substring-no-properties (point-min) (point-max)))))
 
 ;;;###autoload
 (defun obtt-tangle ()
