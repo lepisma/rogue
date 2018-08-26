@@ -2,8 +2,8 @@
 #+TITLE: obtt-experiment
 
 This is a snakemake + poetry based template for experimental projects. Heavily
-inspired from other /data science/ templates. Most of the experiments use a conda
-based setup but this template just use poetry for now. I will tune this when
+inspired by other /data science/ templates. Most of the experiments use a conda
+based setup but this template just uses poetry for now. I will tune this when
 needed.
 
 * Variables
