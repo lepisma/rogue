@@ -201,6 +201,9 @@ you should place you code here."
                 js2-missing-semi-one-line-override nil
                 typescript-indent-level 2)
 
+  ;; LSP
+  (setq lsp-message-project-root-warning t)
+
   ;; Load PG if found locally
   (when (f-exists? "~/.emacs.d/PG")
     (load "~/.emacs.d/PG/generic/proof-site")
