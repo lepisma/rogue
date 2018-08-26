@@ -11,7 +11,7 @@
                    :candidates (directory-files "~/.tofish")
                    :action '(("Jump to bookmark" . to-fish-find-file)))
         :buffer "*helm tofish jump*"
-        :prompt "Jump to : "))
+        :prompt "Jump to: "))
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
@@ -93,9 +93,14 @@ With argument, do this that many times."
   (interactive (list (magit-commit-arguments)))
   (magit-commit '("-m" "Updates")))
 
-(defun magit-deploy-site ()
+(defun magit-bookmarks ()
   (interactive)
-  (magit-status (concat user-project-dir "lepisma.github.io-deploy")))
+  (let ((bms `(("website" . ,(concat user-project-dir "lepisma.github.io-deploy")))))
+    (helm :sources (helm-build-sync-source "magit-bookmarks"
+                     :candidates bms
+                     :action `(("Open magit status" . magit-status)))
+          :buffer "*helm magit bookmarks*"
+          :prompt "Bookmark: ")))
 
 (defun toggle-devanagari ()
   (interactive)
