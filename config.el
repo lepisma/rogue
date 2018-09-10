@@ -97,7 +97,7 @@ like:
   (string             colors-green)
 
   ;; Fonts
-  (sans-font          "Source Sans Pro")
+  (sans-font          "Iosevka")
   (et-font            "EtBembo")
   (mono-font          "Iosevka"))
 
@@ -706,7 +706,7 @@ like:
    (:inherit (org-hide fixed-pitch)))
   (org-level-1
    (:inherit variable-pitch
-             :height 1.3
+             :height 1.1
              :weight bold
              :foreground ,keyword
              :background ,bg-dark)
@@ -719,7 +719,7 @@ like:
   (org-level-2
    (:inherit variable-pitch
              :weight bold
-             :height 1.2
+             :height 1.1
              :foreground ,accent-light
              :background ,bg-dark)
    (:inherit nil
@@ -743,7 +743,7 @@ like:
   (org-level-4
    (:inherit variable-pitch
              :weight bold
-             :height 1.1
+             :height 1.0
              :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
@@ -755,7 +755,7 @@ like:
   (org-level-5
    (:inherit variable-pitch
              :weight bold
-             :height 1.1
+             :height 1.0
              :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
@@ -767,7 +767,7 @@ like:
   (org-level-6
    (:inherit variable-pitch
              :weight bold
-             :height 1.1
+             :height 1.0
              :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
@@ -779,7 +779,7 @@ like:
   (org-level-7
    (:inherit variable-pitch
              :weight bold
-             :height 1.1
+             :height 1.0
              :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
@@ -791,7 +791,7 @@ like:
   (org-level-8
    (:inherit variable-pitch
              :weight bold
-             :height 1.1
+             :height 1.0
              :foreground ,gray
              :background ,bg-dark)
    (:inherit nil
