@@ -63,7 +63,7 @@
   (doom-themes-org-config))
 
 (rpkg (duckling :location (recipe :fetcher github :repo "lepisma/duckling.el"))
-  (setq duckling-cli-path "~/.cache/duckling-cli-arch-x86-64"))
+  :config (setq duckling-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
 (rpkg elnode)
 
