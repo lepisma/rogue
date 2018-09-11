@@ -62,6 +62,9 @@
         doom-neotree-line-spacing 4)
   (doom-themes-org-config))
 
+(rpkg (duckling :location (recipe :fetcher github :repo "lepisma/duckling.el"))
+  (setq duckling-cli-path "~/.cache/duckling-cli-arch-x86-64"))
+
 (rpkg elnode)
 
 (rpkg enlive)
