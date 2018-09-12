@@ -121,3 +121,18 @@ With argument, do this that many times."
                      :action `(("Activate venv" . (lambda (env) (pyvenv-activate (f-join (f-expand ,venv-dir) env))))))
           :buffer "*helm poetry*"
           :prompt "Activate : ")))
+
+(defun clear-entity (text entity)
+  "Remove the ranged ENTITY from TEXT."
+  (let* ((match-range (alist-get 'range entity))
+         (match (substring-no-properties text (car match-range) (cdr match-range))))
+    (s-trim (s-collapse-whitespace (s-replace match "" text)))))
+
+(defun parse-schedule-from-text (text)
+  "Parse a scheduled entry from text."
+  (let ((parsed-time (car (duck-time-parse text))))
+    (if parsed-time
+        `((body . ,(clear-entity text parsed-time))
+          (ts . ,(duck-org-timestring parsed-time)))
+      `((body . ,text)
+        (ts)))))
