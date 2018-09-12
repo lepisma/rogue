@@ -93,7 +93,8 @@
 
 (defun obtt-insert-template (template)
   (yas-minor-mode)
-  (yas-expand-snippet (obtt-read-template template)))
+  (let ((yas-indent-line nil))
+    (yas-expand-snippet (obtt-read-template template))))
 
 ;;;###autoload
 (defun obtt-new (directory)
