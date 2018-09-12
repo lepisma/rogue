@@ -98,7 +98,7 @@
 
 (rpkg ob-sagemath)
 
-(rpkg (obtt :location local)
+(rpkg (obtt :location (recipe :fetcher github :repo "lepisma/obtt"))
   :after org
   :config (setq obtt-templates-dir (concat user-layer-dir "obtt/")))
 
