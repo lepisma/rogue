@@ -25,16 +25,19 @@
 ;;; Code:
 
 (require 'all-the-icons)
+(require 'f)
 (require 's)
 (require 'spaceline)
 (require 'spaceline-config)
+(require 'pyvenv)
+(require 'conda)
 
 (spaceline-define-segment ati-persp-name
   "The current perspective name."
   (when (and active
              (bound-and-true-p persp-mode)
              ;; There are multiple implementations of
-             ;; persp-mode with different APIs
+             ;; persp-mode with different AP Is
              (fboundp 'safe-persp-name)
              (fboundp 'get-frame-persp))
     (let ((name (safe-persp-name (get-frame-persp))))
@@ -46,6 +49,22 @@
                        :background ,(face-attribute 'default :background)
                        :foreground ,(face-attribute 'font-lock-doc-face :foreground))
        'display '(raise 0.2)))))
+
+(spaceline-define-segment ati-pyvenv
+  "Current python virtual env."
+  (let* ((vname (if pyvenv-virtual-env (car (last (f-split pyvenv-virtual-env)))))
+         (fg (face-attribute (if vname 'default 'font-lock-doc-face) :foreground)))
+    (if vname
+        (propertize vname 'face `(:height 0.8 :foreground ,fg :inherit)
+                    'display '(raise 0.2)))))
+
+(spaceline-define-segment ati-conda-env
+  "Current conda environment."
+  (let ((fg (face-attribute (if conda-env-current-name 'default 'font-lock-doc-face) :foreground)))
+    (if conda-env-current-name
+        (propertize conda-env-current-name
+                    'face `(:height 0.8 :foreground ,fg :inherit)
+                    'display '(raise 0.2)))))
 
 (spaceline-define-segment
     ati-modified "An `all-the-icons' modified segment"
@@ -160,26 +179,26 @@
                   'local-map (make-mode-line-mouse-map 'mouse-1 (lambda () (interactive) (flycheck-list-errors)))))
     :when active :tight t )
 
-(spaceline-define-segment
-    ati-time "Time"
-    (let* ((hour (string-to-number (format-time-string "%I")))
-           (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.2)))
-      (concat
-       (propertize (format "%s  " icon)
-                   'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
-                   'display '(raise 0.2))
-       (propertize (format-time-string "%H:%M") 'face `(:height 0.8 :inherit) 'display '(raise 0.3))))
-    :tight t)
+(spaceline-define-segment ati-time
+  "Time"
+  (let* ((hour (string-to-number (format-time-string "%I")))
+         (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.2)))
+    (concat
+     (propertize (format "%s  " icon)
+                 'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
+                 'display '(raise 0.2))
+     (propertize (format-time-string "%H:%M") 'face `(:height 0.8 :inherit) 'display '(raise 0.2))))
+  :tight t)
 
-(spaceline-define-segment
-    ati-height-modifier "Modifies the height of inactive buffers"
-    (propertize " " 'face '(:height 1.8 :inherit))
-    :tight t :when (not active))
+(spaceline-define-segment ati-height-modifier
+  "Modifies the height of inactive buffers"
+  (propertize " " 'face '(:height 1.8 :inherit))
+  :tight t :when (not active))
 
 (spaceline-define-segment ati-buffer-position
   "The current approximate buffer position, in percent."
   (propertize (format-mode-line "%p ")
-              'face '(:height 0.8 :inherit) 'display '(raise 0.3)))
+              'face '(:height 0.8 :inherit) 'display '(raise 0.2)))
 
 (defvar spaceline-org-clock-format-function
   'org-clock-get-clock-string
@@ -265,7 +284,9 @@ the directions of the separator."
        (ati-org-pomodoro :when active))) :separator "  " :face highlight-face)
     ati-right-2-separator)
 
-  '(ati-right-1-separator
+  '(ati-pyvenv
+    ati-conda-env
+    ati-right-1-separator
     ((ati-buffer-position
       ati-time) :separator "  " :face highlight-face)))
 
