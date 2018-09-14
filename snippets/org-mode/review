@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name : review
+# key : review
+# --
+** Problems/Solutions
+- $1
+
+** Readings/Explorations
+- $2
+
+** Programming
+- $3
+
+** Writing
+- $4
+
+** Media
+- $5
