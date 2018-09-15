@@ -133,7 +133,8 @@
           `(("n" "Note" entry (file ,(concat user-notes-dir "personal/notes.org"))
              "* %?\n")
             ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %?\n%a")))
+             "* %?\n%a")
+            ("w" "Weekly log" item (file+headline ,(concat user-notes-dir "personal/notes.org") "Weekly review"))))
 
     (setq org-html-validation-link nil)
 
