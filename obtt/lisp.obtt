@@ -21,30 +21,30 @@ $2
 There is nothing for tests as of now.
 
 #+BEGIN_SRC lisp :tangle ./$1.asd
-  (defsystem #:$1
-    :description "$2"
-    :author "Abhinav Tushar <lepisma@fastmail.com>"
-    :license "GPLv3"
-    :version "$3"
-    :depends-on ()
+(defsystem #:$1
+  :description "$2"
+  :author "Abhinav Tushar <lepisma@fastmail.com>"
+  :license "GPLv3"
+  :version "$3"
+  :depends-on ()
+  :components
+  ((:file "package")
+   (:module "src"
+    :depends-on ("package")
+    :serial t
     :components
-    ((:file "package")
-     (:module "src"
-      :depends-on ("package")
-      :serial t
-      :components
-      ((:file "$1")))))
+    ((:file "$1")))))
 #+END_SRC
 
 * General module structure
 
 #+BEGIN_SRC lisp :tangle ./package.lisp
-  (defpackage #:$1
-    (:use #:cl))
+(defpackage #:$1
+  (:use #:cl))
 #+END_SRC
 
 #+BEGIN_SRC lisp :tangle ./src/$1.lisp
-  (in-package #:$1)
+(in-package #:$1)
 #+END_SRC
 
 * Misc files
