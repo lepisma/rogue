@@ -54,8 +54,8 @@
     (insert (helm-bibtex-candidate-get "title" item))
     (insert "\n")
     (org-set-property "CUSTOM_ID" (helm-bibtex-candidate-get "=key=" item))
-    (let ((pairs-to-insert (-remove (lambda (pair) (or (s-starts-with? "=" (car pair))
-                                                  (member (car pair) '("title"))))
+    (let ((pairs-to-insert (-remove (lambda (pair) (or (s-starts-with? "=" (car pair)))
+                                                  (member (car pair) '("title")))
                                     (cdr item))))
       (dolist (pair pairs-to-insert)
         (org-set-property (upcase (car pair)) (cdr pair))))))
@@ -89,6 +89,13 @@
         '(:foreground "Black" :background "Transparent" :scale 1.0
                       :html-foreground "Black" :html-background "Transparent"
                       :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+
+  ;; Remove unused bibtex actions
+  (let ((actions (list "Open PDF, URL or DOI"
+                       "Edit notes"
+                       "Add PDF to library")))
+    (dolist (action actions)
+      (helm-delete-action-from-source action helm-source-bibtex)))
 
   ;; Setup helm bibtex action for opening pdf
   (let ((actions '(("Open local pdf" . helm-bibtex-open-local-pdf)
