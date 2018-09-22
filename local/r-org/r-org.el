@@ -30,10 +30,35 @@
 
 ;;; Code:
 
+(require 'dash)
 (require 'f)
 (require 'helm-bibtex)
 (require 'org)
 (require 'org-ref)
+
+;; A few extra actions for helm-bibtex
+
+(defun helm-bibtex-open-local-pdf (key)
+  (let ((file-path (concat (f-join user-pdfs-dir key) ".pdf")))
+    (if (f-exists? file-path)
+        (find-file file-path)
+      (message (format "Pdf not found for %s" key)))))
+
+(defun helm-bibtex-candidate-get (key item)
+  (alist-get key (cdr item) nil nil #'string-equal))
+
+(defun helm-bibtex-insert-notes-template (key)
+  (let ((item (-find (lambda (it) (string-equal key (helm-bibtex-candidate-get "=key=" it)))
+                     (bibtex-completion-candidates))))
+    (org-insert-heading)
+    (insert (helm-bibtex-candidate-get "title" item))
+    (insert "\n")
+    (org-set-property "CUSTOM_ID" (helm-bibtex-candidate-get "=key=" item))
+    (let ((pairs-to-insert (-remove (lambda (pair) (or (s-starts-with? "=" (car pair))
+                                                  (member (car pair) '("title"))))
+                                    (cdr item))))
+      (dolist (pair pairs-to-insert)
+        (org-set-property (upcase (car pair)) (cdr pair))))))
 
 (defun r-org-setup-tex ()
   "Setup tex related stuff."
@@ -66,15 +91,11 @@
                       :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
 
   ;; Setup helm bibtex action for opening pdf
-  (let ((pdf-action "Open local pdf"))
-    (helm-delete-action-from-source pdf-action helm-source-bibtex)
-    (helm-add-action-to-source pdf-action
-                               (lambda (key)
-                                 (let ((file-path (concat (f-join user-pdfs-dir key) ".pdf")))
-                                   (if (f-exists? file-path)
-                                       (find-file file-path)
-                                     (message (format "Pdf not found for %s" key)))))
-                               helm-source-bibtex)))
+  (let ((actions '(("Open local pdf" . helm-bibtex-open-local-pdf)
+                   ("Insert notes template" . helm-bibtex-insert-notes-template))))
+    (dolist (action actions)
+      (helm-delete-action-from-source (car action) helm-source-bibtex)
+      (helm-add-action-to-source (car action) (cdr action) helm-source-bibtex))))
 
 (defun r-org-setup-babel ()
   "Setup org-babel."
