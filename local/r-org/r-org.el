@@ -200,6 +200,17 @@
                         :priority "A")))
               (org-agenda-files (list ,(concat user-notes-dir "work/extra.org")))))))))
 
+(defun r-org-cliplink-to-region ()
+  "Add link from clipboard to the region."
+  (interactive)
+  (if (region-active-p)
+      (let ((url (substring-no-properties (current-kill 0)))
+            (text (buffer-substring-no-properties (region-beginning) (region-end))))
+        (save-excursion
+          (delete-active-region)
+          (insert (format "[[%s][%s]]" url text))))
+    (message "No region active")))
+
 (defun r-org-setup-general ()
   "Misc settings."
 
