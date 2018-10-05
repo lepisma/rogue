@@ -35,6 +35,7 @@
 (require 'helm-bibtex)
 (require 'org)
 (require 'org-ref)
+(require 'pile)
 
 ;; A few extra actions for helm-bibtex
 
@@ -177,7 +178,9 @@
              ((org-super-agenda-groups
                '((:auto-category t)))
               (org-agenda-files (list ,(concat user-notes-dir "personal")
-                                      ,(concat user-notes-dir "syncthing/captures.org")))))
+                                      ,(concat user-notes-dir "syncthing/captures.org")
+                                      ,(pile-path-abs "wiki:readings/books")
+                                      ,(pile-path-abs "wiki:readings/bib-notes")))))
             ("w" . "Work queries")
             ("wm" "Work (main) agenda"
              ((agenda "")

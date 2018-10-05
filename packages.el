@@ -235,6 +235,8 @@
                               :type 'blog
                               :postamble ""
                               :preamble "")))
+    ;; Setup notes here to get the wiki files in agenda
+    (r-org-setup-notes)
     (pile-setup)))
 
 (rpkg pretty-mode
@@ -282,10 +284,11 @@
   :config (r-mu4e-setup))
 
 (rpkg (r-org :location local)
-  :after org
+  :after (org pile)
   :config
   (r-org-setup-general)
-  (r-org-setup-notes)
+  ;; Notes setup is done after pile
+  ;; (r-org-setup-notes)
   (r-org-setup-babel)
   (r-org-setup-tex))
 
