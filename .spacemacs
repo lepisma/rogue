@@ -179,7 +179,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
   (setq user-full-name "Abhinav Tushar"
-        browse-url-generic-program (executable-find (getenv "BROWSER"))
+        browse-url-generic-program (executable-find "www")
         browse-url-browser-function 'browse-url-generic)
 
   (server-start)
