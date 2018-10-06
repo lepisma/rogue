@@ -212,8 +212,8 @@ you should place you code here."
   (setf slime-lisp-implementations
         `((sbcl    ("sbcl"))
           (roswell ("ros" "-Q" "run"))
-          (roswell-dune ("ros" "-Q" "run" "-e" "(ql:quickload :dune)" "-e" "(in-package :dune)")))
-        slime-default-lisp 'roswell-dune)
+          (roswell-pod ("ros" "-Q" "run" "-e" "(ql:quickload :pod)" "-e" "(in-package :pod)")))
+        slime-default-lisp 'roswell-pod)
 
   (slime-setup '(slime-asdf
                  slime-company
