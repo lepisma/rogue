@@ -190,6 +190,8 @@
                         :priority "A")
                  (:name "Reading"
                         :tag "read")
+                 (:name "Check"
+                        :tag "check")
                  (:name "Minor"
                         :tag "minor")
                  (:name "Writing"
