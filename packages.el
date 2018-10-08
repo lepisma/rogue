@@ -292,14 +292,6 @@
   (r-org-setup-babel)
   (r-org-setup-tex))
 
-(rpkg (r-processes :location local)
-  :after r-utils
-  :config
-  (r-processes-define "offlineimap" "-o")
-  (r-processes-define "mpm-play")
-  (setq r-processes-git-update-dirs nil)
-  (r-processes-run-git-autoupdate-loop "10 min" 3600))
-
 (rpkg (r-ui :location local)
   :after r-utils
   :config

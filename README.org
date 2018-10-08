@@ -4,14 +4,7 @@ Personal [[https://github.com/syl20bnr/spacemacs][spacemacs]] layer. Color setti
 ~./config.el~, which are defined as overrides over themes ~spacemacs-light~ (light
 theme) and ~doom-molokai~ (dark theme). All other configuration is split across
 /packages/ (see directory ~./local/~) named ~r-*~ and corresponding init fuctions in
-~./packages.el~. A few are listed below:
-
-- r-ligatures :: Ligatures using /Fira Code Symbol/ font.
-- r-mu4e :: Email setup using mu4e.
-- r-org :: Org mode and other writing related config.
-- r-processes :: Process management stuff.
-- r-ui :: Non color (and non org) ui settings.
-- r-utils :: Common functions used across other ~r-*~ packages.
+~./packages.el~.
 
 It looks something like the screens below (might not be updated).
 
