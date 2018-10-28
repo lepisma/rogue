@@ -160,9 +160,11 @@
     (setq org-directory user-notes-dir
           org-capture-templates
           `(("n" "Note" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %?" :empty-lines 1)
+             "* %?\nSCHEDULED: %^t" :empty-lines 1)
             ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
              "* %?\n%a" :empty-lines 1)
+            ("s" "Question" entry (file ,(concat user-notes-dir "personal/notes.org"))
+             "* %? :qq:\nSCHEDULED: %^t" :empty-lines 1)
             ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
              nil :empty-lines-after 1)
 
@@ -171,7 +173,7 @@
             ("wd" "Delegate" entry (file+olp ,(concat user-notes-dir "work/main.org") "Delegated")
              "* %?\nSCHEDULED: %^t%^{People}p" :empty-lines 1 :prepend t)
             ("wm" "Minor" entry (file ,(concat user-notes-dir "work/main.org"))
-             "* %?  :minor:\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
+             "* %? :minor:\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
 
     (setq org-html-validation-link nil)
 
@@ -184,7 +186,23 @@
              ((agenda "")
               (alltodo))
              ((org-super-agenda-groups
-               '((:auto-category t)))
+               '((:name "Travel"
+                        :tag "travel")
+                 (:name "Jams"
+                        :tag "jam")
+                 (:name "TODO"
+                        :todo ("TODO" "NOW"))
+                 (:name "QQuestion"
+                        :tag "qq")
+                 (:name "Skim"
+                        :tag "skim")
+                 (:name "Readings"
+                        :todo "READING")
+                 (:name "Think and plan"
+                        :todo "THINK")
+                 (:name "Next in line"
+                        :todo ("NEXT" "TOREAD"))
+                 (:auto-category t)))
               (org-agenda-files (list ,(concat user-notes-dir "personal")
                                       ,(concat user-notes-dir "incoming/captures.org")
                                       ,(pile-path-abs "wiki:readings/books")
