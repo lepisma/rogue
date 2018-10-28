@@ -152,11 +152,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Directories
   (defconst user-layer-dir (file-name-as-directory "~/.emacs.d/private/rogue"))
   (defconst user-secrets-dir (file-name-as-directory (concat user-layer-dir "secrets")))
+
+  (defconst user-data-dir (file-name-as-directory (getenv "DATA_DIR")))
   (defconst user-cloud-dir (file-name-as-directory (getenv "CLOUD_DIR")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
 
   ;; Derived directories
-  (defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "Notes")))
+  (defconst user-notes-dir (file-name-as-directory (concat user-data-dir "Notes")))
   (defconst user-journal-dir (file-name-as-directory (concat user-notes-dir "journal")))
   (defconst user-pdfs-dir (file-name-as-directory (concat user-notes-dir "pdfs")))
 
