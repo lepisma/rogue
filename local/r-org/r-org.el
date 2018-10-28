@@ -160,10 +160,18 @@
     (setq org-directory user-notes-dir
           org-capture-templates
           `(("n" "Note" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %?\n")
+             "* %?" :empty-lines 1)
             ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %?\n%a")
-            ("w" "Weekly log" item (file+headline ,(concat user-notes-dir "personal/notes.org") "Weekly review"))))
+             "* %?\n%a" :empty-lines 1)
+            ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
+             nil :empty-lines-after 1)
+
+            ;; Work related things
+            ("w" "Work")
+            ("wd" "Delegate" entry (file+olp ,(concat user-notes-dir "work/main.org") "Delegated")
+             "* %?\nSCHEDULED: %^t%^{People}p" :empty-lines 1 :prepend t)
+            ("wm" "Minor" entry (file ,(concat user-notes-dir "work/main.org"))
+             "* %?  :minor:\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
 
     (setq org-html-validation-link nil)
 
@@ -190,12 +198,10 @@
                         :priority "A")
                  (:name "Reading"
                         :tag "read")
-                 (:name "Check"
-                        :tag "check")
+                 (:name "Delegated"
+                        :tag "delegated")
                  (:name "Minor"
-                        :tag "minor")
-                 (:name "Writing"
-                        :tag "write")))
+                        :tag "minor")))
               (org-agenda-files (list ,(concat user-notes-dir "work/main.org")))))
             ("we" "Work (extra) agenda"
              ((agenda "")
