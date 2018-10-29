@@ -220,7 +220,8 @@
                         :tag "delegated")
                  (:name "Minor"
                         :tag "minor")))
-              (org-agenda-files (list ,(concat user-notes-dir "work/main.org")))))
+              (org-agenda-files (list ,(concat user-notes-dir "work/main.org")
+                                      ,(concat user-notes-dir "incoming/captures.org")))))
             ("we" "Work (extra) agenda"
              ((agenda "")
               (alltodo))
