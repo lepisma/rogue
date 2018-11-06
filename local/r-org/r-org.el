@@ -163,10 +163,15 @@
              "* %?\nSCHEDULED: %^t" :empty-lines 1)
             ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
              "* %?\n%a" :empty-lines 1)
-            ("s" "Question" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %? :qq:\nSCHEDULED: %^t" :empty-lines 1)
-            ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
+
+            ;; Minor logs
+            ("l" "Log")
+            ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
              nil :empty-lines-after 1)
+            ("ll" "Logistics" entry (file+olp ,(concat user-notes-dir "personal/notes.org") "Logistics")
+             "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)
+            ("lq" "Question" entry (file ,(concat user-notes-dir "personal/notes.org"))
+             "* %? :qq:\nSCHEDULED: %^t" :empty-lines 1)
 
             ;; Work related things
             ("w" "Work")
@@ -188,6 +193,8 @@
              ((org-super-agenda-groups
                '((:name "Travel"
                         :tag "travel")
+                 (:name "Logistics"
+                        :tag "logistics")
                  (:name "Jams"
                         :tag "jam")
                  (:name "TODO"
