@@ -77,6 +77,9 @@
 (rpkg hy-mode
   :mode "\\.hy\\'")
 
+(rpkg (iorg :location (recipe :fetcher github :repo "lepisma/iorg"))
+  :hook ((org-mode . iorg-mode)))
+
 (rpkg (kindle :location local)
   :config
   (setq kindle-clipping-save-file user-clippings-file))
