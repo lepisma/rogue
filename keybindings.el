@@ -60,3 +60,5 @@
 
 ;; Devanagari
 (global-set-key (kbd "C-c k") #'toggle-devanagari)
+
+(define-key elfeed-search-mode-map (kbd "C-c o") 'r-play-elfeed)

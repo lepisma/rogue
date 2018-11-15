@@ -136,3 +136,9 @@ With argument, do this that many times."
           (ts . ,(duck-org-timestring parsed-time)))
       `((body . ,text)
         (ts)))))
+
+(defun r-play-elfeed ()
+  "Play the current links from elfeed in vlc"
+  (interactive)
+  (let ((entry (elfeed-search-selected :single)))
+    (start-process "vlc" nil "vlc" (elfeed-entry-link entry))))
