@@ -1,14 +1,64 @@
-* Feeds                                                              :elfeed:
-** Magazines
-*** http://www.symmetrymagazine.org/feed
-*** http://nautil.us/rss/all
-** Blogs
-*** http://blog.stephenwolfram.com/feed/
-*** http://www.offconvex.org/feed.xml
-*** https://terrytao.wordpress.com/feed/
-*** http://www.randalolson.com/feed/
-*** http://simplystatistics.org/feed/
-*** https://jeremykun.com/feed/
-*** http://fastml.com/atom.xml
-*** http://www.scottaaronson.com/blog/?feed=rss2
-*** http://nullprogram.com/feed
+* Items                                                              :elfeed:
+** Magazines                                                      :magazine:
+
+** Papers                                                            :paper:
+
+** News                                                               :news:
+
+** Podcasts                                                        :podcast:
+*** [[http://feeds.wnyc.org/radiolab][Radiolab]]
+*** [[https://feeds.megaphone.fm/stuffyoushouldknow][Stuff You Should Know]]
+*** [[https://youarenotsosmart.com/feed/][You Are Not So Smart]]
+*** [[https://commondescentpodcast.podbean.com/feed.xml][The Common Descent Podcast]]
+
+** Videos                                                            :video:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJ0-OtVpF0wOKEqT2Z1HEtA][ElectroBOOM]]
+
+** Blogs                                                              :blog:
+*** [[http://blog.stephenwolfram.com/feed/][Stephen Wolfram Blog]]
+*** [[https://terrytao.wordpress.com/feed/][What's new]]
+*** [[https://jeremykun.com/feed/][Math ∩ Programming]]
+*** [[http://www.scottaaronson.com/blog/?feed=rss2][Shtetl-Optimized]]
+*** [[https://egtheory.wordpress.com/feed/][Theory, Evolution, and Games Group]]
+*** [[https://mathbeauty.wordpress.com/feed/][mathbeauty]]
+*** [[https://johncarlosbaez.wordpress.com/feed/][Azimuth]]
+
+*** ML/Stats                                                           :ml:
+**** [[http://www.offconvex.org/feed.xml][Off the convex path]]
+**** [[http://www.randalolson.com/feed/][Dr. Randal S. Olson]]
+**** [[http://feeds.feedburner.com/StanfordNLPResearchBlog][Stanford NLP Research Blog]]
+**** [[http://ruder.io/rss/index.rss][Sebastian Ruder]]
+**** [[https://www.inference.vc/rss/][inFERENCe]]
+**** [[https://blogs.princeton.edu/imabandit/feed/][I’m a bandit]]
+**** [[http://www.minimizingregret.com/feeds/posts/default][Minimizing Regret]]
+**** [[http://blog.shakirm.com/feed/][The Spectator]]
+**** [[http://www.wildml.com/feed/][WildML]]
+**** [[http://simplystatistics.org/feed/][Simply Statistics]]
+**** [[http://feeds.feedburner.com/MachineLearningtheory?format=xml][Machine Learning (Theory)]]
+**** [[https://nlpers.blogspot.com/feeds/posts/default][natural language processing blog]]
+**** [[https://andrewgelman.com/feed/][Statistical Modeling, Causal Inference, and Social Science]]
+**** [[http://blog.shakirm.com/feed/][The Spectator]]
+**** [[https://distill.pub/rss.xml][Distill]]
+**** [[http://www.argmin.net/feed.xml][arg min blog]]
+**** [[https://bair.berkeley.edu/blog/feed.xml][The Berkeley Artificial Intelligence Research Blog]]
+
+*** Programming                                               :programming:
+**** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
+**** [[http://lambda-the-ultimate.org/rss.xml][Lambda the Ultimate - Programming Languages Weblog]]
+**** [[http://lispblog.xach.com/rss][Zach Beane Common Lisp]]
+**** [[http://feeds2.feedburner.com/stevelosh][Steve Losh]]
+**** [[https://haskellweekly.news/haskell-weekly.atom][Haskell Weekly]]
+**** [[https://danluu.com/atom.xml][Dan Luu]]
+**** [[https://tratt.net/laurie/news.rss][Laurence Tratt]]
+**** [[https://bartoszmilewski.com/feed/][Bartosz Milewski's Programming Cafe]]
+**** [[http://irreal.org/blog/?feed=rss2][Irreal]]
+**** [[https://www.joelonsoftware.com/feed/][Joel on Software]]
+**** [[https://esoteric.codes/rss][esoteric.codes]]
+**** [[https://lemire.me/blog/feed/][Daniel Lemire's blog]]
+**** [[http://simblob.blogspot.com/feeds/posts/default][Blobs in Games]]
+**** [[http://esr.ibiblio.org/?feed=rss2][Armed and Dangerous]]
+**** [[http://nullprogram.com/feed][null program]]
+**** [[https://fuco1.github.io/rss.xml][Matus Goljer (Fuco1)]]
+**** [[https://twobithistory.org/feed.xml][Two-Bit History]]
+**** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky's website]]
