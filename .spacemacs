@@ -187,6 +187,11 @@ you should place you code here."
   (server-start)
   (setq evil-emacs-state-cursor 'bar)
 
+  (setq elfeed-goodies/show-mode-padding 2
+        elfeed-goodies/powerline-default-separator 'slant
+        elfeed-goodies/feed-source-column-width 25
+        elfeed-goodies/tag-column-width 30)
+
   ;; Transparency
   (spacemacs/enable-transparency)
   (add-hook 'after-make-frame-functions
