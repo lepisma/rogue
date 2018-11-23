@@ -2,6 +2,7 @@
 ** Magazines                                                      :magazine:
 
 ** Papers                                                            :paper:
+*** [[https://blog.acolyer.org/feed/][the morning paper]]
 
 ** News                                                               :news:
 
