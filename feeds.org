@@ -24,6 +24,7 @@
 *** [[https://egtheory.wordpress.com/feed/][Theory, Evolution, and Games Group]]
 *** [[https://mathbeauty.wordpress.com/feed/][mathbeauty]]
 *** [[https://johncarlosbaez.wordpress.com/feed/][Azimuth]]
+*** [[http://matt.might.net/articles/feed.rss][Matt Might's blog]]
 
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
