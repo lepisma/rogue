@@ -192,6 +192,7 @@
                                 <div class='site-nav'>
                                   <a class='%s' href='/'> blog</a>
                                   <a class='%s' href='/journal'> journal</a>
+                                  <a class='%s' href='/log'> log</a>
                                   <a class='%s' href='/wiki'> wiki</a>
                                   <a href='/about'> about</a>
                                 </div>
@@ -212,21 +213,28 @@
                               :output-dir (concat output-dir "wiki")
                               :type 'wiki
                               :postamble postamble
-                              :preamble (format preamble-template "" "" "active" "Last modified: %d %C"))
+                              :preamble (format preamble-template "" "" "" "active" "Last modified: %d %C"))
                 (pile-project :name "blog"
                               :base-url ""
                               :input-dir (concat user-project-dir "lepisma.github.io/blog")
                               :output-dir output-dir
                               :type 'blog
                               :postamble postamble
-                              :preamble (format preamble-template "active" "" "" "%d"))
+                              :preamble (format preamble-template "active" "" "" "" "%d"))
                 (pile-project :name "journal"
                               :base-url "journal"
                               :input-dir (concat user-project-dir "lepisma.github.io/journal")
                               :output-dir (concat output-dir "journal")
                               :type 'blog
                               :postamble postamble
-                              :preamble (format preamble-template "" "active" "" "%d"))
+                              :preamble (format preamble-template "" "active" "" "" "%d"))
+                (pile-project :name "log"
+                              :base-url "log"
+                              :input-dir (concat user-project-dir "lepisma.github.io/log")
+                              :output-dir (concat output-dir "log")
+                              :type 'blog
+                              :postamble postamble
+                              :preamble (format preamble-template "" "" "active" "" "%d"))
                 (pile-project :name "assets"
                               :input-dir (concat user-project-dir "lepisma.github.io/assets")
                               :output-dir (concat output-dir "assets")
