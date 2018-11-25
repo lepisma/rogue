@@ -9,14 +9,8 @@
 ;; Neotree refresh
 (global-set-key (kbd "C-c n") 'neotree-refresh)
 
-;; Speak unread emails
-(global-set-key (kbd "C-c m") 'quack-unread-mail)
-
 ;; Avy
 (global-set-key (kbd "C-'") 'avy-goto-char)
-
-;; Insect
-(global-set-key (kbd "C-c i") 'insect-calc)
 
 ;; Don't kill my words
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
@@ -37,6 +31,7 @@
 (global-set-key (kbd "M-m T n") 'r-cycle-theme)
 
 ;; Mail stuff
+(global-set-key (kbd "C-c m") 'quack-unread-mail)
 (define-key mu4e-compose-mode-map (kbd "C-c C-c") 'r-mu4e-sign-and-send)
 (define-key mu4e-compose-mode-map (kbd "C-c e") 'mml-secure-encrypt-pgp)
 (define-key mu4e-view-mode-map (kbd "C-c d") 'epa-mail-decrypt)
@@ -57,8 +52,5 @@
 
 ;; Persp grouping
 (global-set-key (kbd "C-x C-b") #'(lambda (arg) (interactive "P") (with-persp-buffer-list () (ibuffer arg))))
-
-;; Devanagari
-(global-set-key (kbd "C-c k") #'toggle-devanagari)
 
 (define-key elfeed-search-mode-map (kbd "C-c o") 'r-play-elfeed)

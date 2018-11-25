@@ -102,12 +102,6 @@ With argument, do this that many times."
           :buffer "*helm magit bookmarks*"
           :prompt "Bookmark: ")))
 
-(defun toggle-devanagari ()
-  (interactive)
-  (if (null current-input-method)
-      (set-input-method "devanagari-itrans")
-    (set-input-method nil)))
-
 (with-eval-after-load 'magit
   (magit-define-popup-action
    'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
