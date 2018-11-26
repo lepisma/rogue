@@ -26,6 +26,7 @@
 *** [[https://johncarlosbaez.wordpress.com/feed/][Azimuth]]
 *** [[http://matt.might.net/articles/feed.rss][Matt Might's blog]]
 *** [[http://bactra.org/weblog/index.rss][Three-Toed Sloth]]
+*** [[http://bactra.org/notebooks/index.rss][Notebooks]]
 
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
