@@ -12,14 +12,11 @@ values."
    dotspacemacs-configuration-layers
    '(bibtex
      c-c++
-     (clojure :variables
-              clojure-enable-fancify-symbols t)
      common-lisp
      csv
      erlang
      emacs-lisp
      ess
-     (go :variables go-tab-width 4)
      graphviz
      haskell
      html
