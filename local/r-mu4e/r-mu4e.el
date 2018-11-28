@@ -73,7 +73,7 @@
   "Setup everything."
 
   (setq mu4e-get-mail-command "offlineimap -o"
-        mu4e-update-interval 3600
+        mu4e-update-interval nil
         message-kill-buffer-on-exit t
         mu4e-headers-fields '((:human-date . 12)
                               (:flags      . 12)
