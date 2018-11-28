@@ -92,6 +92,11 @@
   :demand t
   :after org-cliplink)
 
+(rpkg (mu4e-fold :location local)
+  :after r-mu4e
+  :bind (:map mu4e-headers-mode-map ("TAB" . mu4e-headers-toggle-thread-folding))
+  :hook ((mu4e-headers-found . mu4e-headers-fold-all)))
+
 (rpkg multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
