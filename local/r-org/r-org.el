@@ -84,7 +84,7 @@
                        :image-input-type "pdf"
                        :image-output-type "png"
                        :image-size-adjust (1.0 . 1.0)
-                       :latex-compiler ("xelatex -interaction nonstopmode -output-directory %o %f")
+                       :latex-compiler ("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f")
                        :image-converter ("convert -density %D -trim -antialias %f -quality 100 %O")))
         org-format-latex-options
         '(:foreground "Black" :background "Transparent" :scale 1.0
