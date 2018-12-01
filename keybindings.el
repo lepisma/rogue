@@ -35,6 +35,7 @@
 (define-key mu4e-compose-mode-map (kbd "C-c C-c") 'r-mu4e-sign-and-send)
 (define-key mu4e-compose-mode-map (kbd "C-c e") 'mml-secure-encrypt-pgp)
 (define-key mu4e-view-mode-map (kbd "C-c d") 'epa-mail-decrypt)
+(define-key mu4e-main-mode-map (kbd "u") 'mu4e-update-index)
 
 ;; Some resets
 (global-set-key (kbd "C-x C-l") nil)
