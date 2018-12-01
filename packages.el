@@ -356,6 +356,10 @@
 (rpkg vue-mode
   :mode ("\\.vue\\'" . vue-mode))
 
+(rpkg unicode-fonts
+  :config
+  (unicode-fonts-setup))
+
 (rpkg (w :location (recipe :fetcher github :repo "lepisma/w.el")))
 
 (rpkg writegood-mode)
