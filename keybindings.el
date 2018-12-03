@@ -54,4 +54,6 @@
 ;; Persp grouping
 (global-set-key (kbd "C-x C-b") #'(lambda (arg) (interactive "P") (with-persp-buffer-list () (ibuffer arg))))
 
+;; elfeed
+(define-key elfeed-search-mode-map (kbd "U") 'elfeed-update)
 (define-key elfeed-search-mode-map (kbd "C-c o") 'r-play-elfeed)
