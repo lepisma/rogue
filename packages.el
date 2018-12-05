@@ -209,10 +209,12 @@
                                 <h1>%%t</h1>
                               </div>")
         (postamble "<footer id='footer'></footer>")
+        (root-url "https://lepisma.github.io/")
         (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
     (setq pile-serve-dir output-dir
           pile-projects
           (list (pile-project :name "wiki"
+                              :root-url root-url
                               :base-url "wiki"
                               :input-dir (concat user-project-dir "lepisma.github.io/wiki")
                               :output-dir (concat output-dir "wiki")
@@ -220,6 +222,7 @@
                               :postamble postamble
                               :preamble (format preamble-template "" "" "" "active" "Last modified: %d %C"))
                 (pile-project :name "blog"
+                              :root-url root-url
                               :base-url ""
                               :input-dir (concat user-project-dir "lepisma.github.io/blog")
                               :output-dir output-dir
@@ -227,6 +230,7 @@
                               :postamble postamble
                               :preamble (format preamble-template "active" "" "" "" "%d"))
                 (pile-project :name "journal"
+                              :root-url root-url
                               :base-url "journal"
                               :input-dir (concat user-project-dir "lepisma.github.io/journal")
                               :output-dir (concat output-dir "journal")
@@ -234,6 +238,7 @@
                               :postamble postamble
                               :preamble (format preamble-template "" "active" "" "" "%d"))
                 (pile-project :name "log"
+                              :root-url root-url
                               :base-url "log"
                               :input-dir (concat user-project-dir "lepisma.github.io/log")
                               :output-dir (concat output-dir "log")
@@ -241,10 +246,12 @@
                               :postamble postamble
                               :preamble (format preamble-template "" "" "active" "" "%d"))
                 (pile-project :name "assets"
+                              :root-url root-url
                               :input-dir (concat user-project-dir "lepisma.github.io/assets")
                               :output-dir (concat output-dir "assets")
                               :type 'static)
                 (pile-project :name "misc"
+                              :root-url root-url
                               :base-url ""
                               :input-dir (concat user-project-dir "lepisma.github.io/misc")
                               :output-dir output-dir
