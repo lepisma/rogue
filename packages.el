@@ -65,6 +65,10 @@
 (rpkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
   :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
+(rpkg elfeed
+  :config
+  (setq-default elfeed-search-filter "@6-months-ago +unread -freq -podcast"))
+
 (rpkg elnode)
 
 (rpkg enlive)

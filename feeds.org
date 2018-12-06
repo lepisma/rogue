@@ -27,6 +27,8 @@
 *** [[http://matt.might.net/articles/feed.rss][Matt Might's blog]]
 *** [[http://bactra.org/weblog/index.rss][Three-Toed Sloth]]
 *** [[http://bactra.org/notebooks/index.rss][Notebooks]]
+*** [[http://ecoevoevoeco.blogspot.com/feeds/posts/default][Eco-Evo Evo-Eco]]
+*** [[https://dynamicecology.wordpress.com/feed/][Dynamic Ecology]]                                                  :freq:
 
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
@@ -41,7 +43,7 @@
 **** [[http://simplystatistics.org/feed/][Simply Statistics]]
 **** [[http://feeds.feedburner.com/MachineLearningtheory?format=xml][Machine Learning (Theory)]]
 **** [[https://nlpers.blogspot.com/feeds/posts/default][natural language processing blog]]
-**** [[https://andrewgelman.com/feed/][Statistical Modeling, Causal Inference, and Social Science]]
+**** [[https://andrewgelman.com/feed/][Statistical Modeling, Causal Inference, and Social Science]]     :freq:
 **** [[http://blog.shakirm.com/feed/][The Spectator]]
 **** [[https://distill.pub/rss.xml][Distill]]
 **** [[http://www.argmin.net/feed.xml][arg min blog]]
@@ -56,7 +58,7 @@
 **** [[https://danluu.com/atom.xml][Dan Luu]]
 **** [[https://tratt.net/laurie/news.rss][Laurence Tratt]]
 **** [[https://bartoszmilewski.com/feed/][Bartosz Milewski's Programming Cafe]]
-**** [[http://irreal.org/blog/?feed=rss2][Irreal]]
+**** [[http://irreal.org/blog/?feed=rss2][Irreal]]                                                         :freq:
 **** [[https://www.joelonsoftware.com/feed/][Joel on Software]]
 **** [[https://esoteric.codes/rss][esoteric.codes]]
 **** [[https://lemire.me/blog/feed/][Daniel Lemire's blog]]
