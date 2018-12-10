@@ -68,3 +68,4 @@
 **** [[https://fuco1.github.io/rss.xml][Matus Goljer (Fuco1)]]
 **** [[https://twobithistory.org/feed.xml][Two-Bit History]]
 **** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky's website]]
+**** [[http://blog.brownplt.org/feed.xml][The Brown PLT Blog]]
