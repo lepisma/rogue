@@ -9,6 +9,12 @@
 (defvar r-current-theme r-dark-theme
   "Currently active color scheme")
 
+(defun color-12-to-6 (color-str)
+  "Convert 12 char color representation to 6 char"
+  (if (= 7 (length color-str))
+      color-str
+    (apply #'color-rgb-to-hex `(,@(color-name-to-rgb color-str) 2))))
+
 (defmacro r-set-pair-faces (themes consts faces-alist)
   "Macro for pair setting of custom faces.
 THEMES name the pair (theme-one theme-two). CONSTS sets the variables like
@@ -48,7 +54,7 @@ like:
   (light-2            "#E5E9F0")
   (light-3            "#ECEFF4")
   (accent-dark        "#1C2028")
-  (accent-dark-gray   (color-darken-name accent-dark 1))
+  (accent-dark-gray   (color-12-to-6 (color-darken-name accent-dark 1)))
   (accent-light       "#8a9899")
   (accent-shade-1     "#8FBCBB")
   (accent-shade-2     "#88C0D0")
@@ -76,18 +82,18 @@ like:
   (bg-white           "#FEFFF9")
   (bg-dark            accent-dark-gray)
   (bg-darker          accent-dark)
-  (bg-dark-solaire    (color-lighten-name accent-dark 2))
+  (bg-dark-solaire    (color-12-to-6 (color-lighten-name accent-dark 2)))
   (fg-white           light-3)
-  (shade-white        (color-lighten-name light-1 10))
-  (highlight          (color-lighten-name accent-dark 4))
-  (region-dark        (color-lighten-name accent-dark 2))
+  (shade-white        (color-12-to-6 (color-lighten-name light-1 10)))
+  (highlight          (color-12-to-6 (color-lighten-name accent-dark 4)))
+  (region-dark        (color-12-to-6 (color-lighten-name accent-dark 2)))
   (region             dark-3)
   (slate              accent-shade-3)
-  (gray               (color-lighten-name dark-4 20))
+  (gray               (color-12-to-6 (color-lighten-name dark-4 20)))
 
   ;; Programming
-  (comment            (color-lighten-name dark-4 2))
-  (doc                (color-lighten-name dark-4 20))
+  (comment            (color-12-to-6 (color-lighten-name dark-4 2)))
+  (doc                (color-12-to-6 (color-lighten-name dark-4 20)))
   (keyword            colors-red)
   (builtin            colors-orange)
   (variable-name      colors-yellow)
@@ -470,11 +476,11 @@ like:
    (:foreground ,colors-green)
    nil)
   (magit-diff-added
-   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 50)
-                :foreground ,(color-darken-name colors-green 10))
+   (:background ,(color-12-to-6 (color-darken-name (color-desaturate-name colors-green 20) 50))
+                :foreground ,(color-12-to-6 (color-darken-name colors-green 10)))
    nil)
   (magit-diff-added-highlight
-   (:background ,(color-darken-name (color-desaturate-name colors-green 20) 45)
+   (:background ,(color-12-to-6 (color-darken-name (color-desaturate-name colors-green 20) 45))
                 :foreground ,colors-green)
    nil)
   (magit-diff-file-heading-selection
@@ -495,11 +501,11 @@ like:
                 :foreground ,bg-dark)
    nil)
   (magit-diff-removed
-   (:background ,(color-darken-name (color-desaturate-name colors-red 40) 40)
-                :foreground ,(color-darken-name colors-red 10))
+   (:background ,(color-12-to-6 (color-darken-name (color-desaturate-name colors-red 40) 40))
+                :foreground ,(color-12-to-6 (color-darken-name colors-red 10)))
    nil)
   (magit-diff-removed-highlight
-   (:background ,(color-darken-name (color-desaturate-name colors-red 40) 35)
+   (:background ,(color-12-to-6 (color-darken-name (color-desaturate-name colors-red 40) 35))
                 :foreground ,colors-red)
    nil)
   (magit-header-line
