@@ -264,7 +264,15 @@
                               :preamble "")))
     ;; Setup notes here to get the wiki files in agenda
     (r-org-setup-notes)
-    (pile-setup)))
+    (pile-setup)
+    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-bc)
+    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-cids)
+    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-date)
+    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-dropcap)
+    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-tags)
+    (add-hook 'pile-post-publish-hook #'pile-hooks-post-clear-cids)
+    (add-hook 'pile-post-publish-hook #'pile-hooks-post-generate-atom)
+    (add-hook 'pile-post-publish-hook #'pile-hooks-post-stringify-title)))
 
 (rpkg pretty-mode
   :config
