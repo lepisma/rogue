@@ -12,6 +12,10 @@ values."
    dotspacemacs-configuration-layers
    '(bibtex
      c-c++
+     (clojure :variables
+              clojure-enable-fancify-symbols t
+              clojure-enable-sayid t
+              clojure-enable-clj-refactor t)
      common-lisp
      csv
      erlang
@@ -164,6 +168,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-bib-notes-file (concat user-project-dir "lepisma.github.io/wiki/readings/bib-notes.org"))
   (defconst user-books-file (concat user-project-dir "lepisma.github.io/wiki/readings/books.org"))
   (defconst user-clippings-file (concat user-project-dir "lepisma.github.io/wiki/readings/clippings.org"))
+
+  (setq auth-sources '("~/.authinfo.gpg"))
 
   ;; Separate custom stuff
   (setq custom-file "~/.emacs-custom.el")
