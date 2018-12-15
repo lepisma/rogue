@@ -104,7 +104,7 @@ With argument, do this that many times."
 
 (with-eval-after-load 'magit
   (magit-define-popup-action
-   'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
+    'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
 
 (defun poetry-activate ()
   (interactive)

@@ -12,10 +12,7 @@ values."
    dotspacemacs-configuration-layers
    '(bibtex
      c-c++
-     (clojure :variables
-              clojure-enable-fancify-symbols t
-              clojure-enable-sayid t
-              clojure-enable-clj-refactor t)
+     clojure
      common-lisp
      csv
      erlang
