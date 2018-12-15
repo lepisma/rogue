@@ -168,7 +168,8 @@
 (defun r-ui-setup ()
   "Setup everything."
 
-  (r-ui-setup-fringe)
+  (with-eval-after-load 'git-gutter
+    (r-ui-setup-fringe))
   (r-ui-setup-ibuffer)
   (r-ui-setup-misc)
   (r-ui-setup-minibuffer)
