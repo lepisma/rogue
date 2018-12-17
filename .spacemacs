@@ -11,7 +11,10 @@ values."
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(bibtex
-     c-c++
+     (c-c++ :variables
+            c-c++-backend 'lsp-cquery
+            c-c++-lsp-sem-highlight-method 'font-lock
+            c-c++-lsp-sem-highlight-rainbow t)
      clojure
      common-lisp
      csv
