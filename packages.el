@@ -272,6 +272,7 @@
     (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-tags)
     (add-hook 'pile-post-publish-hook #'pile-hooks-post-clear-cids)
     (add-hook 'pile-post-publish-hook #'pile-hooks-post-generate-atom)
+    (add-hook 'pile-post-publish-hook #'pile-hooks-post-generate-archive)
     (add-hook 'pile-post-publish-hook #'pile-hooks-post-stringify-title)))
 
 (rpkg pretty-mode
