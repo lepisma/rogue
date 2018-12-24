@@ -66,6 +66,8 @@
   :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
 (rpkg elfeed
+  :after helm
+  :bind (("C-c f" . helm-elfeed))
   :config
   (setq-default elfeed-search-filter "@6-months-ago +unread -freq -podcast"))
 
