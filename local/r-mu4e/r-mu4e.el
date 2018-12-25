@@ -36,10 +36,10 @@
 
 (defun r-mu4e/unread-bm-query ()
   "Return query string for unread bookmark"
-  (let ((bm-item (car
-                  (member-if (lambda (bm)
-                               (string-equal "All Unread"
-                                             (cl-struct-slot-value 'mu4e-bookmark 'name bm))) mu4e-bookmarks))))
+  (let ((bm-item (car (member-if (lambda (bm)
+                                   (string-equal "Personal Unread"
+                                                 (cl-struct-slot-value 'mu4e-bookmark 'name bm)))
+                                 mu4e-bookmarks))))
     (cl-struct-slot-value 'mu4e-bookmark 'query bm-item)))
 
 (defun r-mu4e/get-unread-mails ()
