@@ -250,14 +250,11 @@
           org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t
-          spaceline-org-clock-p t)
-
-    (customize-set-variable 'org-modules
-                            '(org-bibtex
-                              org-docview
-                              org-habit
-                              org-info
-                              org-w3m))))
+          spaceline-org-clock-p t
+          org-modules '(org-bibtex
+                        org-docview
+                        org-habit
+                        org-info))))
 
 (provide 'r-org)
 
