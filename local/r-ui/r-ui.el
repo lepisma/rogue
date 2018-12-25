@@ -177,6 +177,7 @@
   ;; Hooks for side gaps
   (r-utils-add-hooks '(cfw:calendar-mode-hook
                        help-mode-hook
+                       helpful-mode-hook
                        text-mode-hook
                        org-agenda-mode-hook
                        ibuffer-mode-hook
@@ -203,6 +204,7 @@
   (r-utils-add-hooks '(cfw:calendar-mode-hook
                        text-mode-hook
                        help-mode-hook
+                       helpful-mode-hook
                        org-agenda-mode-hook
                        ibuffer-mode-hook
                        magit-status-mode-hook
@@ -221,6 +223,7 @@
   (r-utils-add-hooks '(processing-compilation-mode-hook
                        eshell-mode-hook
                        help-mode-hook
+                       helpful-mode-hook
                        compilation-mode-hook
                        messages-buffer-mode-hook
                        completion-list-mode-hook

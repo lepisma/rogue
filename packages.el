@@ -47,9 +47,9 @@
 
 (rpkg dired-subtree
   :after ranger
-  :config
-  (bind-key "<tab>" 'dired-subtree-toggle ranger-mode-map)
-  (bind-key "<backtab>" 'dired-subtree-cycle ranger-mode-map))
+  :bind (:map ranger-mode-map
+              (("<tab>" . dired-subtree-toggle)
+               ("<backtab>" . dired-subtree-cycle))))
 
 (rpkg doom-themes
   :config
@@ -80,6 +80,14 @@
   (setq gscholar-bibtex-database-file user-bib-file
         gscholar-bibtex-default-source "Google Scholar"))
 
+(rpkg helpful
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)
+         ("C-c C-d" . helpful-at-point)
+         ("C-h F" . helpful-function)
+         ("C-h C" . helpful-command)))
+
 (rpkg hy-mode
   :mode "\\.hy\\'")
 
@@ -100,7 +108,7 @@
 
 (rpkg (mu4e-fold :location local)
   :after r-mu4e
-  :bind (:map mu4e-headers-mode-map ("TAB" . mu4e-headers-toggle-thread-folding))
+  :bind (:map mu4e-headers-mode-map ("<tab>" . mu4e-headers-toggle-thread-folding))
   :hook ((mu4e-headers-found . mu4e-headers-fold-all)))
 
 (rpkg multiple-cursors

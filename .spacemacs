@@ -39,7 +39,9 @@ values."
              python-sort-imports-on-save t)
      racket
      ruby
-     (rust :variables rust-format-on-save t)
+     (rust :variables
+           rust-format-on-save t
+           rust-backend 'lsp)
      scheme
      shell
      shell-scripts
