@@ -197,6 +197,9 @@ you should place you code here."
         elfeed-goodies/feed-source-column-width 25
         elfeed-goodies/tag-column-width 30)
 
+  ;; TODO: Put this in the right place
+  (r-mu4e-setup)
+
   ;; Transparency
   (spacemacs/enable-transparency)
   (add-hook 'after-make-frame-functions

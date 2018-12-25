@@ -12,9 +12,6 @@
 
 (rpkg all-the-icons)
 
-(rpkg (authinfo :location local)
-  :after (s dash-functional))
-
 (rpkg beacon
   :config
   (beacon-mode)
@@ -326,8 +323,7 @@
   (r-ligatures-setup-ess))
 
 (rpkg (r-mu4e :location local)
-  :after (authinfo mu4e openwith)
-  :config (r-mu4e-setup))
+  :after (auth-source mu4e openwith message mml cl-macs s))
 
 (rpkg (r-org :location local)
   :after (org pile)

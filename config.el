@@ -23,7 +23,8 @@ like:
   ((face1 theme-one-attr theme-two-atrr)
    (face2 theme-one-attr nil           )
    (face3 nil            theme-two-attr)
-   ...)"
+   ...)
+TODO: Simplify this macro"
   (defmacro r--get-proper-faces ()
     `(let* (,@consts)
        (backquote ,faces-alist)))
