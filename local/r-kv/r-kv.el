@@ -3,8 +3,6 @@
 ;; Copyright (c) 2018 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
-;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
 
 ;;; Commentary:
 
@@ -31,45 +29,45 @@
 (defcustom r-kv-file nil
   "Path to data file")
 
-(defun r-kv--write-to (alist file)
+(defun r-kv//write-to (alist file)
   (with-temp-file file
     (pp alist (current-buffer))))
 
-(defun r-kv--write (alist)
+(defun r-kv//write (alist)
   (if r-kv-file
-      (r-kv--write-to alist r-kv-file)
+      (r-kv//write-to alist r-kv-file)
     (message "No kv file set")))
 
-(defun r-kv--read ()
+(defun r-kv//read ()
   (if r-kv-file
       (with-current-buffer (find-file-noselect r-kv-file)
         (goto-char (point-min))
         (read (current-buffer)))
     (message "No kv file set")))
 
-(defun r-kv--save-template (alist)
+(defun r-kv//save-template (alist)
   (if r-kv-file
       (let ((template-file (concat r-kv-file ".template")))
-        (r-kv--write-to alist template-file))
+        (r-kv//write-to alist template-file))
     (message "No kv file set")))
 
-(defun r-kv--update (key value alist)
-  (r-kv--save-template (cons (cons key nil) alist))
-  (r-kv--write (cons (cons key value) alist)))
+(defun r-kv//update (key value alist)
+  (r-kv//save-template (cons (cons key nil) alist))
+  (r-kv//write (cons (cons key value) alist)))
 
-(defun r-kv-get (key)
-  (let ((alist (r-kv--read)))
+(defun r-kv/get (key)
+  (let ((alist (r-kv//read)))
     (if (assoc key alist)
         (cdr (assoc key alist))
       (message "key not found, updating template")
-      (r-kv--update key nil alist))))
+      (r-kv//update key nil alist))))
 
-(defun r-kv-set (key value)
-  (let ((alist (r-kv--read)))
+(defun r-kv/set (key value)
+  (let ((alist (r-kv//read)))
     (if (assoc key alist)
-        (r-kv--write (setcdr (assoc key alist) value))
+        (r-kv//write (setcdr (assoc key alist) value))
       (message "key not found, updating files")
-      (r-kv--update key value alist))))
+      (r-kv//update key value alist))))
 
 (provide 'r-kv)
 

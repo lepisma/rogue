@@ -40,18 +40,18 @@ With argument, do this that many times."
   (yank)
   (setq kill-ring (cdr kill-ring)))
 
-(defun r-cycle-theme ()
+(defun r/cycle-theme ()
   "Cycle between dark and light scheme"
   (interactive)
   (if (eq r-current-theme r-dark-theme)
       (progn
-        (r-light)
+        (r/light)
         (setq r-current-theme r-light-theme))
     (progn
-      (r-dark)
+      (r/dark)
       (setq r-current-theme r-dark-theme))))
 
-(defun r-light ()
+(defun r/light ()
   "Switch to light theme"
   (interactive)
   (setq doom-neotree-enable-variable-pitch nil
@@ -59,10 +59,10 @@ With argument, do this that many times."
   (disable-theme r-dark-theme)
   (spacemacs/load-theme r-light-theme)
   (setq org-bullets-bullet-list '(" "))
-  (r-org-reset-buffers)
+  (r-org/reset-buffers)
   (beacon-mode -1))
 
-(defun r-dark ()
+(defun r/dark ()
   "Switch to dark theme"
   (interactive)
   (setq doom-neotree-enable-variable-pitch t
@@ -70,7 +70,7 @@ With argument, do this that many times."
   (disable-theme r-light-theme)
   (spacemacs/load-theme r-dark-theme)
   (setq org-bullets-bullet-list '("› "))
-  (r-org-reset-buffers)
+  (r-org/reset-buffers)
   (beacon-mode +1))
 
 (defun quack-quack (text)
@@ -82,7 +82,7 @@ With argument, do this that many times."
   (interactive)
   (let ((subjects (mapcar
                    (lambda (mail) (plist-get mail :subject))
-                   (r-mu4e-get-unread-mails))))
+                   (r-mu4e/get-unread-mails))))
     (quack-quack (format "You have %s. %s"
                          (cond ((= (length subjects) 0) "no unread emails")
                                ((= (length subjects) 1) "1 unread email")

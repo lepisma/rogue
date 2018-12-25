@@ -3,9 +3,6 @@
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
-;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/org-make
 
 ;;; Commentary:
 

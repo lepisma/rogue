@@ -15,7 +15,7 @@
       color-str
     (apply #'color-rgb-to-hex `(,@(color-name-to-rgb color-str) 2))))
 
-(defmacro r-set-pair-faces (themes consts faces-alist)
+(defmacro r|set-pair-faces (themes consts faces-alist)
   "Macro for pair setting of custom faces.
 THEMES name the pair (theme-one theme-two). CONSTS sets the variables like
   ((sans-font \"Some Sans Font\") ...). FACES-ALIST has the actual faces
@@ -25,7 +25,7 @@ like:
    (face3 nil            theme-two-attr)
    ...)
 TODO: Simplify this macro"
-  (defmacro r--get-proper-faces ()
+  (defmacro r||get-proper-faces ()
     `(let* (,@consts)
        (backquote ,faces-alist)))
 
@@ -38,10 +38,10 @@ TODO: Simplify this macro"
                                                  (face-attrs (nth (cl-position theme themes) (cdr face))))
                                              (if face-attrs
                                                  `(,face-name ,@face-attrs)
-                                               "NA"))) (r--get-proper-faces)))))
+                                               "NA"))) (r||get-proper-faces)))))
                    themes)))
 
-(r-set-pair-faces
+(r|set-pair-faces
  ;; Themes to cycle in
  (doom-molokai spacemacs-light)
 

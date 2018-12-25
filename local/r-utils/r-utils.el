@@ -3,9 +3,6 @@
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
-;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/r-utils
 
 ;;; Commentary:
 
@@ -32,13 +29,14 @@
 (require 'dash-functional)
 
 ;;;###autoload
-(defun r-utils-add-hooks (hooks fun)
-  "Add FUN to all the HOOKS."
+(defun r-utils/add-hooks (hooks fns)
+  "Add FUNs to all the HOOKS. Works multiway."
   (dolist (hook hooks)
-    (add-hook hook fun)))
+    (dolist (fn fns)
+      (add-hook hook fn))))
 
 ;;;###autoload
-(defun r-utils-get-project-dirs (names)
+(defun r-utils/get-project-dirs (names)
   "Return full paths to given project NAMES. Relies on a variable
 user-project-dir."
   (mapcar (-cut concat user-project-dir <>) names))

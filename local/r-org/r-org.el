@@ -3,10 +3,6 @@
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
-;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
-;; Keywords: org, rogue
-;; URL: https://github.com/lepisma/rogue/tree/master/local/r-org
 
 ;;; Commentary:
 
@@ -61,7 +57,7 @@
       (dolist (pair pairs-to-insert)
         (org-set-property (upcase (car pair)) (cdr pair))))))
 
-(defun r-org-setup-tex ()
+(defun r-org/setup-tex ()
   "Setup tex related stuff."
   (setq bib-library user-bib-file
         reftex-default-bibliography (list user-bib-file)
@@ -105,7 +101,7 @@
       (helm-delete-action-from-source (car action) helm-source-bibtex)
       (helm-add-action-to-source (car action) (cdr action) helm-source-bibtex))))
 
-(defun r-org-setup-babel ()
+(defun r-org/setup-babel ()
   "Setup org-babel."
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
@@ -135,22 +131,14 @@
      (sql        . t)
      (sqlite     . t))))
 
-;;;###autoload
-(defun r-org-shuffle-save ()
-  "Shuffle and save current file"
-  (interactive)
-  (goto-char (point-min))
-  (org-sort-entries nil ?f (lambda () (random 1000)))
-  (save-buffer))
-
-(defun r-org-reset-buffers ()
+(defun r-org/reset-buffers ()
   "Reset org-mode in all org buffers"
   (dolist (buff (buffer-list))
     (with-current-buffer buff
       (if (string-equal "org-mode" major-mode)
           (org-mode)))))
 
-(defun r-org-setup-notes ()
+(defun r-org/setup-notes ()
   "Setup agenda/captures and other notes related things"
 
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -237,7 +225,7 @@
                         :priority "A")))
               (org-agenda-files (list ,(concat user-notes-dir "work/extra.org")))))))))
 
-(defun r-org-cliplink-to-region ()
+(defun r-org/cliplink-to-region ()
   "Add link from clipboard to the region."
   (interactive)
   (if (region-active-p)
@@ -248,7 +236,7 @@
           (insert (format "[[%s][%s]]" url text))))
     (message "No region active")))
 
-(defun r-org-setup-general ()
+(defun r-org/setup-general ()
   "Misc settings."
 
   (with-eval-after-load 'org

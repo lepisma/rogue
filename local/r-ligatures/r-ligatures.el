@@ -3,9 +3,6 @@
 ;; Copyright (c) 2017 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <lepisma@fastmail.com>
-;; Version: 0.0.1
-;; Package-Requires: ((emacs "25"))
-;; URL: https://github.com/lepisma/rogue/tree/master/local/r-ligatures
 
 ;;; Commentary:
 
@@ -123,7 +120,7 @@
             ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 
 ;;;###autoload
-(defun r-ligatures-setup-general ()
+(defun r-ligatures/setup-general ()
   "General ligature setup"
 
   ;; This works when using emacs --daemon + emacsclient
@@ -137,13 +134,15 @@
             (lambda () (font-lock-add-keywords nil r-ligatures-font-lock-keywords-alist))))
 
 ;;;###autoload
-(defun r-ligatures-setup-ess ()
+(defun r-ligatures/setup-ess ()
   "Setup ligatures for ess."
-  (r-utils-add-hooks '(ess-mode-hook inferior-ess-mode-hook)
-                     (lambda ()
-                       (progn
-                         (pretty-mode -1)
-                         (push '("%>%" . ?|) prettify-symbols-alist)))))
+
+  (defun r-ligatures//ess ()
+    (pretty-mode -1)
+    (push '("%>%" . ?|) prettify-symbols-alist))
+
+  (r-utils/add-hooks '(ess-mode-hook inferior-ess-mode-hook)
+                     (list #'r-ligatures//ess)))
 
 (provide 'r-ligatures)
 

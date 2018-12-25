@@ -2,7 +2,7 @@
 
 (defvar rogue-packages nil)
 
-(defmacro rpkg (name &rest body)
+(defmacro r|pkg (name &rest body)
   (declare (indent defun))
   (let ((id (if (listp name) (car name) name)))
     `(progn
@@ -10,45 +10,43 @@
          (use-package ,id ,@body))
        (push ',name rogue-packages))))
 
-(rpkg all-the-icons)
+(r|pkg all-the-icons)
 
-(rpkg beacon
+(r|pkg beacon
   :config
   (beacon-mode)
   (setq beacon-color (face-attribute 'region :background nil t)
         beacon-blink-when-buffer-changes t
         beacon-blink-when-point-moves-vertically nil))
 
-(rpkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
+(r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
-(rpkg browse-at-remote)
+(r|pkg cricbuzz)
 
-(rpkg cricbuzz)
-
-(rpkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
+(r|pkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
   :after (s dash-functional)
   :config
   (setq calibre-root (concat user-cloud-dir "Calibre Shared")))
 
-(rpkg colormaps)
+(r|pkg colormaps)
 
-(rpkg company-box
+(r|pkg company-box
   :after company
   :config
   (add-hook 'text-mode-hook #'company-box-mode))
 
-(rpkg conda
+(r|pkg conda
   :config
   (conda-env-initialize-eshell)
   (setq conda-anaconda-home (expand-file-name "~/.miniconda")))
 
-(rpkg dired-subtree
+(r|pkg dired-subtree
   :after ranger
   :bind (:map ranger-mode-map
               (("<tab>" . dired-subtree-toggle)
                ("<backtab>" . dired-subtree-cycle))))
 
-(rpkg doom-themes
+(r|pkg doom-themes
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
@@ -59,10 +57,10 @@
         doom-neotree-line-spacing 4)
   (doom-themes-org-config))
 
-(rpkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
+(r|pkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
   :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
-(rpkg (r-feeds :location local)
+(r|pkg (r-feeds :location local)
   :after (elfeed helm)
   :bind (("C-c f" . helm-elfeed))
   :config
@@ -72,14 +70,14 @@
                           ("Media" . "@6-months-ago +unread +podcast +video")))
   (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
-(rpkg enlive)
+(r|pkg enlive)
 
-(rpkg gscholar-bibtex
+(r|pkg gscholar-bibtex
   :config
   (setq gscholar-bibtex-database-file user-bib-file
         gscholar-bibtex-default-source "Google Scholar"))
 
-(rpkg helpful
+(r|pkg helpful
   :bind (("C-h f" . helpful-callable)
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)
@@ -87,97 +85,93 @@
          ("C-h F" . helpful-function)
          ("C-h C" . helpful-command)))
 
-(rpkg hy-mode
+(r|pkg hy-mode
   :mode "\\.hy\\'")
 
-(rpkg (iorg :location (recipe :fetcher github :repo "lepisma/iorg"))
+(r|pkg (iorg :location (recipe :fetcher github :repo "lepisma/iorg"))
   :hook ((org-mode . iorg-mode)))
 
-(rpkg (kindle :location local)
+(r|pkg (kindle :location local)
   :config
   (setq kindle-clipping-save-file user-clippings-file))
 
-(rpkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
+(r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
 
-(rpkg (mpm :location
-           (recipe :fetcher url
-                   :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
-  :demand t
+(r|pkg (mpm :location
+            (recipe :fetcher url
+                    :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
+  :commands mpm-cliplink
   :after org-cliplink)
 
-(rpkg (mu4e-fold :location local)
+(r|pkg (mu4e-fold :location local)
   :after r-mu4e
   :bind (:map mu4e-headers-mode-map ("<tab>" . mu4e-headers-toggle-thread-folding))
   :hook ((mu4e-headers-found . mu4e-headers-fold-all)))
 
-(rpkg multiple-cursors
+(r|pkg multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-M-<mouse-1>" . mc/add-cursor-on-click)))
 
-(rpkg ob-async)
+(r|pkg ob-async)
 
-(rpkg ob-sagemath)
+(r|pkg ob-sagemath)
 
-(rpkg (obtt :location (recipe :fetcher github :repo "lepisma/obtt"))
+(r|pkg (obtt :location (recipe :fetcher github :repo "lepisma/obtt"))
   :after org
   :config (setq obtt-templates-dir (concat user-layer-dir "obtt/")))
 
-(rpkg openwith
-  :demand t
+(r|pkg openwith
   :config
   (setq openwith-associations
-        (list
-         (list (openwith-make-extension-regexp
-                '("mpg" "mpeg" "mp3" "mp4"
-                  "avi" "wmv" "wav" "mov" "flv"
-                  "ogm" "ogg" "mkv"))
-               "vlc"
-               '(file))
-         (list (openwith-make-extension-regexp
-                '("doc" "xls" "ppt" "odt" "ods" "odg" "odp"))
-               "libreoffice"
-               '(file))
-         (list (openwith-make-extension-regexp
-                '("pdf" "ps" "ps.gz" "dvi"))
-               "okular"
-               '(file))))
-  (openwith-mode))
+        `((,(openwith-make-extension-regexp
+             '("mpg" "mpeg" "mp3" "mp4"
+               "avi" "wmv" "wav" "mov" "flv"
+               "ogm" "ogg" "mkv"))
+           "vlc"
+           (file))
+          (,(openwith-make-extension-regexp
+             '("doc" "xls" "ppt" "odt" "ods" "odg" "odp"))
+           "libreoffice"
+           (file))
+          (,(openwith-make-extension-regexp
+             '("pdf" "ps" "ps.gz" "dvi"))
+           "okular"
+           (file)))))
 
-(rpkg (org-bbq :location
-               (recipe :fetcher url
-                       :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/org-bbq.el"))
+(r|pkg (org-bbq :location
+                (recipe :fetcher url
+                        :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/org-bbq.el"))
   :after org)
 
-(rpkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
+(r|pkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
   :config
   (setq org-books-file user-books-file))
 
-(rpkg org-cliplink
+(r|pkg org-cliplink
   :bind (("C-c y" . org-cliplink)))
 
-(rpkg org-journal
+(r|pkg org-journal
   :config
   (setq org-journal-dir user-journal-dir)
   (setq org-journal-enable-encryption t))
 
-(rpkg (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
-  :demand t
-  :init
+(r|pkg (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
+  :config
   (add-hook 'org-mode-hook #'org-pretty-table-mode))
 
-(rpkg (org-make :location local)
+(r|pkg (org-make :location local)
   :after org)
 
-(rpkg org-super-agenda
+(r|pkg org-super-agenda
   :after org
   :config
   (org-super-agenda-mode))
 
-(rpkg org-web-tools
+(r|pkg org-web-tools
   :after org)
 
-(rpkg parinfer
+(r|pkg parinfer
   :bind (("C-," . parinfer-toggle-mode))
   :hook ((clojure-mode . parinfer-mode)
          (emacs-lisp-mode . parinfer-mode)
@@ -192,8 +186,8 @@
                                smart-tab
                                smart-yank)))
 
-(rpkg (pile :location (recipe :fetcher github :repo "lepisma/pile"))
-  :after w
+(r|pkg (pile :location (recipe :fetcher github :repo "lepisma/pile"))
+  :after (r-utils w)
   :config
   (let ((preamble-template "<header>
                                 <div class='site-title'>
@@ -266,19 +260,21 @@
                               :postamble ""
                               :preamble "")))
     ;; Setup notes here to get the wiki files in agenda
-    (r-org-setup-notes)
+    (r-org/setup-notes)
     (pile-setup)
-    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-bc)
-    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-cids)
-    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-date)
-    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-dropcap)
-    (add-hook 'pile-pre-publish-hook #'pile-hooks-pre-add-tags)
-    (add-hook 'pile-post-publish-hook #'pile-hooks-post-clear-cids)
-    (add-hook 'pile-post-publish-hook #'pile-hooks-post-generate-atom)
-    (add-hook 'pile-post-publish-hook #'pile-hooks-post-generate-archive)
-    (add-hook 'pile-post-publish-hook #'pile-hooks-post-stringify-title)))
+    (r-utils/add-hooks '(pile-pre-publish-hook)
+                       (list #'pile-hooks-pre-add-bc
+                             #'pile-hooks-pre-add-cids
+                             #'pile-hooks-pre-add-date
+                             #'pile-hooks-pre-add-dropcap
+                             #'pile-hooks-pre-add-tags))
+    (r-utils/add-hooks '(pile-post-publish-hook)
+                       (list #'pile-hooks-post-clear-cids
+                             #'pile-hooks-post-generate-atom
+                             #'pile-hooks-post-generate-archive
+                             #'pile-hooks-post-stringify-title))))
 
-(rpkg pretty-mode
+(r|pkg pretty-mode
   :config
   (global-pretty-mode t)
   (global-prettify-symbols-mode 1)
@@ -301,43 +297,43 @@
   (pretty-activate-groups
    '(:greek :arithmetic-nary)))
 
-(rpkg (r-kv :location local)
+(r|pkg (r-kv :location local)
   :config
   (setq r-kv-file (concat user-layer-dir "rkv.el")))
 
-(rpkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
+(r|pkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
   :after (s spotify levenshtein))
 
-(rpkg realgud
+(r|pkg realgud
   :config
   (setq realgud:pdb-command-name "python -m pdb"))
 
-(rpkg (r-ligatures :location local)
+(r|pkg (r-ligatures :location local)
   :after r-utils
   :config
-  (r-ligatures-setup-general)
-  (r-ligatures-setup-ess))
+  (r-ligatures/setup-general)
+  (r-ligatures/setup-ess))
 
-(rpkg (r-mu4e :location local)
+(r|pkg (r-mu4e :location local)
   :after (auth-source mu4e openwith message mml cl-macs s))
 
-(rpkg (r-org :location local)
+(r|pkg (r-org :location local)
   :after (org pile)
   :config
-  (r-org-setup-general)
+  (r-org/setup-general)
   ;; Notes setup is done after pile
   ;; (r-org-setup-notes)
-  (r-org-setup-babel)
-  (r-org-setup-tex))
+  (r-org/setup-babel)
+  (r-org/setup-tex))
 
-(rpkg (r-ui :location local)
+(r|pkg (r-ui :location local)
   :after r-utils
   :config
-  (r-ui-setup))
+  (r-ui/setup))
 
-(rpkg (r-utils :location local))
+(r|pkg (r-utils :location local))
 
-(rpkg sage-shell-mode
+(r|pkg sage-shell-mode
   :config
   (sage-shell:define-alias)
   (setq sage-shell-view-default-resolution 150)
@@ -345,43 +341,43 @@
   (add-hook 'sage-shell:sage-mode-hook #'eldoc-mode)
   (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode))
 
-(rpkg shell-switcher
+(r|pkg shell-switcher
   :config (setq shell-switcher-mode t)
   :bind (("C-'" . shell-switcher-switch-buffer)
          ("C-\"" . shell-switcher-new-shell)))
 
-(rpkg snakemake-mode)
+(r|pkg snakemake-mode)
 
-(rpkg solaire-mode
+(r|pkg solaire-mode
   :hook ((prog-mode . turn-on-solaire-mode)
          (minibuffer-setup . solaire-mode-in-minibuffer)
          (ediff-prepare-buffer . solaire-mode)))
 
-(rpkg (spaceline-all-the-icons :location local)
+(r|pkg (spaceline-all-the-icons :location local)
   :after spaceline
   :config
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))
 
-(rpkg swiper
+(r|pkg swiper
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
-(rpkg switch-window
+(r|pkg switch-window
   :config
   (global-set-key (kbd "C-x o") 'switch-window)
   (setq switch-window-shortcut-style 'qwerty
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
 
-(rpkg (viz :location local))
+(r|pkg (viz :location local))
 
-(rpkg vue-mode
+(r|pkg vue-mode
   :mode ("\\.vue\\'" . vue-mode))
 
-(rpkg unicode-fonts
+(r|pkg unicode-fonts
   :config
   (unicode-fonts-setup))
 
-(rpkg (w :location (recipe :fetcher github :repo "lepisma/w.el")))
+(r|pkg (w :location (recipe :fetcher github :repo "lepisma/w.el")))
 
-(rpkg writegood-mode)
+(r|pkg writegood-mode)

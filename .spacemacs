@@ -197,8 +197,10 @@ you should place you code here."
         elfeed-goodies/feed-source-column-width 25
         elfeed-goodies/tag-column-width 30)
 
-  ;; TODO: Put this in the right place
-  (r-mu4e-setup)
+  ;; A few late setup calls
+  ;; TODO: Put these in the right place
+  (openwith-mode)
+  (r-mu4e/setup)
 
   ;; Transparency
   (spacemacs/enable-transparency)
