@@ -62,13 +62,15 @@
 (rpkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
   :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
-(rpkg elfeed
-  :after helm
+(rpkg (r-feeds :location local)
+  :after (elfeed helm)
   :bind (("C-c f" . helm-elfeed))
   :config
-  (setq-default elfeed-search-filter "@6-months-ago +unread -freq -podcast"))
-
-(rpkg elnode)
+  (setq r-feeds-filters '(("Default" . "@6-months-ago +unread -freq -podcast")
+                          ("All" . "@6-months-ago +unread")
+                          ("Frequent" . "@6-months-ago +unread +freq")
+                          ("Media" . "@6-months-ago +unread +podcast +video")))
+  (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
 (rpkg enlive)
 

@@ -130,25 +130,3 @@ With argument, do this that many times."
           (ts . ,(duck-org-timestring parsed-time)))
       `((body . ,text)
         (ts)))))
-
-(defun r-play-elfeed ()
-  "Play the current links from elfeed in vlc"
-  (interactive)
-  (let ((entry (elfeed-search-selected :single)))
-    (start-process "vlc" nil "vlc" (elfeed-entry-link entry))))
-
-(defun elfeed-with-filter (filter)
-  (elfeed)
-  (set-buffer "*elfeed-search*")
-  (elfeed-search-set-filter filter))
-
-(defun helm-elfeed ()
-  (interactive)
-  (let ((filters '(("Default" . "@6-months-ago +unread -freq -podcast")
-                   ("All" . "@6-months-ago +unread")
-                   ("Frequent" . "@6-months-ago +unread +freq")
-                   ("Podcast" . "@6-months-ago +unread +podcast"))))
-    (helm :sources (helm-build-sync-source "Elfeed filters"
-                     :candidates filters
-                     :action 'elfeed-with-filter)
-          :buffer "*helm elfeed*")))
