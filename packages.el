@@ -114,6 +114,8 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-M-<mouse-1>" . mc/add-cursor-on-click)))
 
+(r|pkg mustache)
+
 (r|pkg ob-async)
 
 (r|pkg ob-sagemath)
@@ -188,31 +190,13 @@
                                smart-yank)))
 
 (r|pkg (pile :location (recipe :fetcher github :repo "lepisma/pile"))
-  :after (r-utils w)
+  :after (f ht mustache r-utils w)
   :config
-  (let ((preamble-template "<header>
-                                <div class='site-title'>
-                                  <a href='/'>
-                                    <img src='/assets/images/avatar32.png'>
-                                  </a>
-                                </div>
-                                <div class='site-nav'>
-                                  <a class='%s' href='/'> blog</a>
-                                  <a class='%s' href='/journal'> journal</a>
-                                  <a class='%s' href='/log'> log</a>
-                                  <a class='%s' href='/wiki'> wiki</a>
-                                  <a href='/about'> about</a>
-                                </div>
-                                <div class='clearfix'></div>
-                              </header>
-
-                              <div class='page-header'>
-                                <div class='page-meta'>%s</div>
-                                <h1>%%t</h1>
-                              </div>")
-        (postamble "<footer id='footer'></footer>")
-        (root-url "https://lepisma.github.io/")
-        (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
+  (let* ((template-dir (concat user-layer-dir "misc/"))
+         (preamble-template (f-read-text (concat template-dir "pile-preamble.html.template") 'utf-8))
+         (postamble-template (f-read-text (concat template-dir "pile-postamble.html.template") 'utf-8))
+         (root-url "https://lepisma.github.io/")
+         (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
     (setq pile-serve-dir output-dir
           pile-projects
           (list (pile-project :name "wiki"
@@ -221,32 +205,36 @@
                               :input-dir (concat user-project-dir "lepisma.github.io/wiki")
                               :output-dir (concat output-dir "wiki")
                               :type 'wiki
-                              :postamble postamble
-                              :preamble (format preamble-template "" "" "" "active" "Last modified: %d %C"))
+                              :postamble postamble-template
+                              :preamble (mustache-render preamble-template
+                                                         (ht ("wiki-p" t) ("page-meta" "Last modified: %d %C"))))
                 (pile-project :name "blog"
                               :root-url root-url
                               :base-url ""
                               :input-dir (concat user-project-dir "lepisma.github.io/blog")
                               :output-dir output-dir
                               :type 'blog
-                              :postamble postamble
-                              :preamble (format preamble-template "active" "" "" "" "%d"))
+                              :postamble postamble-template
+                              :preamble (mustache-render preamble-template
+                                                         (ht ("blog-p" t) ("page-meta" "%d"))))
                 (pile-project :name "journal"
                               :root-url root-url
                               :base-url "journal"
                               :input-dir (concat user-project-dir "lepisma.github.io/journal")
                               :output-dir (concat output-dir "journal")
                               :type 'blog
-                              :postamble postamble
-                              :preamble (format preamble-template "" "active" "" "" "%d"))
+                              :postamble postamble-template
+                              :preamble (mustache-render preamble-template
+                                                         (ht ("journal-p" t) ("page-meta" "%d"))))
                 (pile-project :name "log"
                               :root-url root-url
                               :base-url "log"
                               :input-dir (concat user-project-dir "lepisma.github.io/log")
                               :output-dir (concat output-dir "log")
                               :type 'blog
-                              :postamble postamble
-                              :preamble (format preamble-template "" "" "active" "" "%d"))
+                              :postamble postamble-template
+                              :preamble (mustache-render preamble-template
+                                                         (ht ("log-p" t) ("page-meta" "%d"))))
                 (pile-project :name "assets"
                               :root-url root-url
                               :input-dir (concat user-project-dir "lepisma.github.io/assets")
@@ -300,7 +288,7 @@
 
 (r|pkg (r-kv :location local)
   :config
-  (setq r-kv-file (concat user-layer-dir "rkv.el")))
+  (setq r-kv-file (concat user-layer-dir "misc/" "rkv.el")))
 
 (r|pkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
   :after (s spotify levenshtein))
