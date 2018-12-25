@@ -154,12 +154,6 @@
 (rpkg org-cliplink
   :bind (("C-c y" . org-cliplink)))
 
-(rpkg (org-expand :location (recipe :fetcher github :repo "lepisma/org-expand"))
-  :bind (("C-c x" . helm-org-expand)))
-
-(rpkg (org-gh :location local)
-  :after org)
-
 (rpkg org-journal
   :config
   (setq org-journal-dir user-journal-dir)
