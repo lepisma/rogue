@@ -105,7 +105,7 @@ values."
    dotspacemacs-themes '(doom-molokai spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("Iosevka"
-                               :size 17
+                               :size 15
                                :weight regular
                                :width normal
                                :powerline-scale 1.0)
