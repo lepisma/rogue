@@ -6,15 +6,16 @@
 
 ** News                                                               :news:
 
-** Podcasts                                                        :podcast:
-*** [[http://feeds.wnyc.org/radiolab][Radiolab]]
-*** [[https://feeds.megaphone.fm/stuffyoushouldknow][Stuff You Should Know]]
-*** [[https://youarenotsosmart.com/feed/][You Are Not So Smart]]
-*** [[https://commondescentpodcast.podbean.com/feed.xml][The Common Descent Podcast]]
+** Media                                                             :media:
+*** Podcasts                                                      :podcast:
+**** [[http://feeds.wnyc.org/radiolab][Radiolab]]
+**** [[https://feeds.megaphone.fm/stuffyoushouldknow][Stuff You Should Know]]
+**** [[https://youarenotsosmart.com/feed/][You Are Not So Smart]]
+**** [[https://commondescentpodcast.podbean.com/feed.xml][The Common Descent Podcast]]
 
-** Videos                                                            :video:
-*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
-*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJ0-OtVpF0wOKEqT2Z1HEtA][ElectroBOOM]]
+*** Videos                                                          :video:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJ0-OtVpF0wOKEqT2Z1HEtA][ElectroBOOM]]
 
 ** Blogs                                                              :blog:
 *** [[http://blog.stephenwolfram.com/feed/][Stephen Wolfram Blog]]
