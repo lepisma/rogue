@@ -28,6 +28,7 @@
 *** [[http://bactra.org/weblog/index.rss][Three-Toed Sloth]]
 *** [[http://bactra.org/notebooks/index.rss][Notebooks]]
 *** [[http://ecoevoevoeco.blogspot.com/feeds/posts/default][Eco-Evo Evo-Eco]]
+*** [[http://www.aaronsw.com/2002/feeds/pgessays.rss][Paul Graham: Essays]]
 *** [[https://dynamicecology.wordpress.com/feed/][Dynamic Ecology]]                                                  :freq:
 
 *** ML/Stats                                                           :ml:
