@@ -20,7 +20,8 @@ values."
      csv
      erlang
      emacs-lisp
-     ess
+     (ess :variables
+          ess-enable-smart-equals t)
      graphviz
      haskell
      html
