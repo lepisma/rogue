@@ -361,7 +361,8 @@
 (r|pkg (tog :location (recipe :fetcher github :repo "lepisma/tog"))
   :bind (:map tog-mode-map
               (("C-c t" . tog-tag)
-               ("C-c u" . tog-untag))))
+               ("C-c u" . tog-untag)))
+  :hook ((tog-tag-update . tog-save-tags)))
 
 (r|pkg (viz :location local))
 
