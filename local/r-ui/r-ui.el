@@ -174,6 +174,7 @@
   (r-utils/add-hooks '(Info-mode-hook
                        anaconda-view-mode
                        comint-mode-hook
+                       elfeed-search-update-hook
                        eshell-mode-hook
                        help-mode-hook
                        helpful-mode-hook

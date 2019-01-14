@@ -266,6 +266,9 @@ TODO: Simplify this macro"
    (:height 1.0)
    (:family ,sans-font
             :height 1.0))
+  (elfeed-search-feed-face
+   (:foreground ,slate)
+   ())
   (eval-sexp-fu-flash
    (:background ,colors-blue
                 :foreground ,fg-white)

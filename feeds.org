@@ -72,3 +72,4 @@
 **** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky's website]]
 **** [[http://blog.brownplt.org/feed.xml][The Brown PLT Blog]]
 **** [[https://blog.veitheller.de/feed.rss][Veit's Blog]]
+**** [[https://fexpr.blogspot.com/feeds/posts/default][Structural insight]]
