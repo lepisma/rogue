@@ -60,17 +60,6 @@
 (r|pkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
   :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
-(r|pkg (r-feeds :location local)
-  :after (elfeed helm)
-  :bind (("C-c f" . helm-elfeed))
-  :config
-  (setq r-feeds-filters '(("Default" . "@6-months-ago +unread -freq -podcast")
-                          ("All" . "@6-months-ago +unread")
-                          ("Frequent" . "@6-months-ago +unread +freq")
-                          ("Media" . "@6-months-ago +unread +media"))
-        r-feeds-dump-file (concat user-notes-dir "personal/" "elfeed-dump.org"))
-  (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
-
 (r|pkg enlive)
 
 (r|pkg gscholar-bibtex
@@ -285,6 +274,17 @@
 
   (pretty-activate-groups
    '(:greek :arithmetic-nary)))
+
+(r|pkg (r-feeds :location local)
+  :after (elfeed helm)
+  :bind (("C-c f" . helm-elfeed))
+  :config
+  (setq r-feeds-filters '(("Default" . "@6-months-ago +unread -freq -podcast")
+                          ("All" . "@6-months-ago +unread")
+                          ("Frequent" . "@6-months-ago +unread +freq")
+                          ("Media" . "@6-months-ago +unread +media"))
+        r-feeds-dump-file (concat user-notes-dir "personal/" "elfeed-dump.org"))
+  (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
 (r|pkg (r-kv :location local)
   :config
