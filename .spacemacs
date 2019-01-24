@@ -102,7 +102,7 @@ values."
    dotspacemacs-startup-banner 'official
    dotspacemacs-startup-lists '(recents projects)
    dotspacemacs-startup-recent-list-size 5
-   dotspacemacs-scratch-mode 'org-mode
+   dotspacemacs-scratch-mode 'emacs-lisp-mode
    dotspacemacs-themes '(doom-molokai spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("Iosevka"
