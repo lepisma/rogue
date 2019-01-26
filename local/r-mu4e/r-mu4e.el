@@ -27,12 +27,34 @@
 ;;; Code:
 
 (require 'cl-macs)
+(require 'dash)
+(require 'dash-functional)
 (require 'mml)
 (require 'message)
 (require 'mu4e)
-(require 'auth-source)
 (require 'openwith)
 (require 's)
+
+(defun authinfo-get-entries ()
+  "Return entries from authinfo"
+  (let* ((auth-file "~/.authinfo.gpg")
+         (buffer (find-file-noselect auth-file))
+         (buffer-str (with-current-buffer buffer (buffer-substring-no-properties (point-min) (point-max))))
+         (entries (->> buffer-str
+                     (s-split "\n")
+                     (-remove (-cut s-starts-with-p "#" <>))
+                     (-remove (-cut string= "" <>))
+                     (-map (-cut s-split " " <>)))))
+    (kill-buffer buffer)
+    entries))
+
+(defun authinfo-entry-by-name (entry-name)
+  "Return matching entry for given name identifier"
+  (let ((entries (authinfo-get-entries)))
+    (-find (lambda (entry) (string-equal (lax-plist-get entry "name") entry-name)) entries)))
+
+(defun authinfo-get (entry key)
+  (lax-plist-get entry key))
 
 (defun r-mu4e/unread-bm-query ()
   "Return query string for unread bookmark"
@@ -188,46 +210,46 @@
                               :query (concat "maildir:/Gmail/[Gmail].Archive OR "
                                              "maildir:/Fastmail/Archive")
                               :key ?a))
-        mu4e-contexts (list (let ((smtp-entry (car (auth-source-search :name "gmail-smtp"))))
+        mu4e-contexts (list (let ((smtp-entry (authinfo-entry-by-name "gmail-smtp")))
                               (make-mu4e-context
                                :name "Gmail"
                                :match-func (lambda (msg) (when msg (r-mu4e//message-maildir-matches msg "^/Gmail")))
-                               :vars `((user-mail-address . ,(plist-get smtp-entry :email))
-                                       (smtpmail-default-smtp-server . ,(plist-get smtp-entry :host))
-                                       (smtpmail-smtp-server . ,(plist-get smtp-entry :host))
-                                       (smtpmail-smtp-service . ,(string-to-number (plist-get smtp-entry :port)))
+                               :vars `((user-mail-address . ,(authinfo-get smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get smtp-entry "port")))
                                        (smtpmail-stream-type . ssl)
-                                       (smtpmail-smtp-user . ,(plist-get smtp-entry :user))
+                                       (smtpmail-smtp-user . ,(authinfo-get smtp-entry "login"))
                                        ;; Gmail handles sent mails automatically
                                        (mu4e-sent-messages-behavior . delete)
                                        (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
                                        (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
                                        (mu4e-refile-folder . "/Gmail/[Gmail].Archive"))))
-                            (let ((smtp-entry (car (auth-source-search :name "fastmail-smtp"))))
+                            (let ((smtp-entry (authinfo-entry-by-name "fastmail-smtp")))
                               (make-mu4e-context
                                :name "Fastmail"
                                :match-func (lambda (msg) (when msg (r-mu4e//message-maildir-matches msg "^/Fastmail")))
-                               :vars `((user-mail-address . ,(plist-get smtp-entry :email))
-                                       (smtpmail-default-smtp-server . ,(plist-get smtp-entry :host))
-                                       (smtpmail-smtp-server . ,(plist-get smtp-entry :host))
-                                       (smtpmail-smtp-service . ,(string-to-number (plist-get smtp-entry :port)))
+                               :vars `((user-mail-address . ,(authinfo-get smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get smtp-entry "port")))
                                        (smtpmail-stream-type . ssl)
-                                       (smtpmail-smtp-user . ,(plist-get smtp-entry :user))
+                                       (smtpmail-smtp-user . ,(authinfo-get smtp-entry "login"))
                                        (mu4e-sent-messages-behavior . sent)
                                        (mu4e-sent-folder . "/Fastmail/Sent")
                                        (mu4e-drafts-folder . "/Fastmail/Drafts")
                                        (mu4e-trash-folder . "/Fastmail/Trash")
                                        (mu4e-refile-folder . "/Fastmail/Archive"))))
-                            (let ((smtp-entry (car (auth-source-search :name "work-smtp"))))
+                            (let ((smtp-entry (authinfo-entry-by-name "work-smtp")))
                               (make-mu4e-context
                                :name "Work"
                                :match-func (lambda (msg) (when msg (r-mu4e//message-maildir-matches msg "^/Work")))
-                               :vars `((user-mail-address . ,(plist-get smtp-entry :email))
-                                       (smtpmail-default-smtp-server . ,(plist-get smtp-entry :host))
-                                       (smtpmail-smtp-server . ,(plist-get smtp-entry :host))
-                                       (smtpmail-smtp-service . ,(string-to-number (plist-get smtp-entry :port)))
+                               :vars `((user-mail-address . ,(authinfo-get smtp-entry "email"))
+                                       (smtpmail-default-smtp-server . ,(authinfo-get smtp-entry "machine"))
+                                       (smtpmail-smtp-server . ,(authinfo-get smtp-entry "machine"))
+                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get smtp-entry "port")))
                                        (smtpmail-stream-type . ssl)
-                                       (smtpmail-smtp-user . ,(plist-get smtp-entry :user))
+                                       (smtpmail-smtp-user . ,(authinfo-get smtp-entry "login"))
                                        ;; Gmail handles sent mails automatically
                                        (mu4e-sent-messages-behavior . delete)
                                        (mu4e-trash-folder . "/Work/[Gmail].Trash")
