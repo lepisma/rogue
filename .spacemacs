@@ -22,6 +22,10 @@ values."
      emacs-lisp
      (ess :variables
           ess-enable-smart-equals t)
+     (go :variables
+         go-backend 'lsp
+         go-format-before-save t
+         go-tab-width 4)
      graphviz
      haskell
      html
