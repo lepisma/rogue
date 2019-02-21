@@ -50,6 +50,7 @@
 **** [[https://distill.pub/rss.xml][Distill]]
 **** [[http://www.argmin.net/feed.xml][arg min blog]]
 **** [[https://bair.berkeley.edu/blog/feed.xml][The Berkeley Artificial Intelligence Research Blog]]
+**** [[https://blog.rasa.com/rss/][Rasa Blog]]
 
 *** Programming                                               :programming:
 **** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
