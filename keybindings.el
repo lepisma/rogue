@@ -37,7 +37,7 @@
 (define-key mu4e-view-mode-map (kbd "C-c d") 'epa-mail-decrypt)
 (define-key mu4e-main-mode-map (kbd "u") 'mu4e-update-index)
 
-;; Some resets
+;; Few resets
 (global-set-key (kbd "C-x C-l") nil)
 (global-set-key (kbd "<insert>") nil)
 (define-key org-mode-map (kbd "C-c C-x C-s") nil)
@@ -57,3 +57,6 @@
 ;; elfeed
 (define-key elfeed-search-mode-map (kbd "U") 'elfeed-update)
 (define-key elfeed-search-mode-map (kbd "C-c o") 'r-feeds/play-elfeed)
+
+;; org
+(define-key org-mode-map (kbd "C-c .") 'org-time-stamp-inactive)
