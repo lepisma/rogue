@@ -284,6 +284,7 @@
                           ("Frequent" . "@6-months-ago +unread +freq")
                           ("Media" . "@6-months-ago +unread +media"))
         r-feeds-dump-file (concat user-notes-dir "personal/" "elfeed-dump.org"))
+  (add-hook 'elfeed-db-update-hook (lambda () (r-feeds/elfeed-to-org r-feeds-dump-file)))
   (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
 (r|pkg (r-kv :location local)
