@@ -62,6 +62,9 @@
 
 (r|pkg enlive)
 
+(r|pkg goto-line-preview
+  :bind ("M-g g" . goto-line-preview-goto-line))
+
 (r|pkg gscholar-bibtex
   :config
   (setq gscholar-bibtex-database-file user-bib-file
