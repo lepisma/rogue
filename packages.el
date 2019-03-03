@@ -147,9 +147,9 @@
   :bind (("C-c y" . org-cliplink)))
 
 (r|pkg org-journal
-  :config
-  (setq org-journal-dir user-journal-dir)
-  (setq org-journal-enable-encryption t))
+  :custom
+  (org-journal-dir user-journal-dir)
+  (org-journal-enable-encryption t))
 
 (r|pkg (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table"))
   :config
