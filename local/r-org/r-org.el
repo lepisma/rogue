@@ -202,8 +202,7 @@
                                       ,(concat user-notes-dir "incoming/captures.org")
                                       ,(pile-path-abs "wiki:readings/books")
                                       ,(pile-path-abs "wiki:readings/bib-notes")))))
-            ("w" . "Work queries")
-            ("wm" "Work (main) agenda"
+            ("w" "Work agenda"
              ((agenda "")
               (alltodo))
              ((org-super-agenda-groups
@@ -216,14 +215,7 @@
                  (:name "Minor"
                         :tag "minor")))
               (org-agenda-files (list ,(concat user-notes-dir "work/main.org")
-                                      ,(concat user-notes-dir "incoming/captures.org")))))
-            ("we" "Work (extra) agenda"
-             ((agenda "")
-              (alltodo))
-             ((org-super-agenda-groups
-               '((:name "Important"
-                        :priority "A")))
-              (org-agenda-files (list ,(concat user-notes-dir "work/extra.org")))))))))
+                                      ,(concat user-notes-dir "incoming/captures.org")))))))))
 
 (defun r-org/cliplink-to-region ()
   "Add link from clipboard to the region."
