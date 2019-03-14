@@ -1,17 +1,47 @@
 ;;; funcs.el --- rogue Layer utility functions -*- lexical-binding: t -*-
 
+(defvar ev-root "~/.config/env/env")
+
 (defun to-fish-find-file (candidate)
   "Run find file for given bookmark"
   (helm-find-files-1 (file-name-as-directory (f-canonical (f-join "~/.tofish" candidate)))))
+
+(defun dir-items (dir)
+  (set-difference (directory-files dir) '("." "..") :test 'equal))
 
 (defun to-fish-jump ()
   "Jump to to-fish bookmarks"
   (interactive)
   (helm :sources (helm-build-sync-source "bookmarks"
-                   :candidates (directory-files "~/.tofish")
+                   :candidates (dir-items "~/.tofish")
                    :action '(("Jump to bookmark" . to-fish-find-file)))
         :buffer "*helm tofish jump*"
         :prompt "Jump to: "))
+
+(defun ev-set-group (group-name)
+  (let ((dir (f-join ev-root group-name)))
+    (dolist (file (dir-items dir))
+      (setenv file (s-trim (f-read-text (f-join dir file)))))))
+
+(defun ev-reset-group (group-name)
+  (let ((dir (f-join ev-root group-name)))
+    (dolist (file (dir-items dir))
+      (setenv file nil))))
+
+(defun ev-workon ()
+  "Set ev environment variables"
+  (interactive)
+  (helm :sources (helm-build-sync-source "groups"
+                   :candidates (dir-items ev-root)
+                   :action '(("Set vars" . ev-set-group)))
+        :buffer "*helm ev workon*"
+        :prompt "ev workon: "))
+
+(defun ev-reset ()
+  "Clear whatever ev environment vars are set"
+  (interactive)
+  (dolist (group-name (dir-items ev-root))
+    (ev-reset-group group-name)))
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
