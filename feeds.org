@@ -51,6 +51,7 @@
 **** [[http://www.argmin.net/feed.xml][arg min blog]]
 **** [[https://bair.berkeley.edu/blog/feed.xml][The Berkeley Artificial Intelligence Research Blog]]
 **** [[https://blog.rasa.com/rss/][Rasa Blog]]
+**** [[https://petewarden.com/feed/][Pete Warden's blog]]
 
 *** Programming                                               :programming:
 **** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
