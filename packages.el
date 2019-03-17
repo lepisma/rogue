@@ -12,12 +12,6 @@
 
 (r|pkg all-the-icons)
 
-(r|pkg (bbq :location
-            (recipe :fetcher url
-                    :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/bbq.el"))
-  :commands bbq-cliplink
-  :after org-cliplink)
-
 (r|pkg beacon
   :config
   (beacon-mode)
