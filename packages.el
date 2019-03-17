@@ -12,6 +12,12 @@
 
 (r|pkg all-the-icons)
 
+(r|pkg (bbq :location
+            (recipe :fetcher url
+                    :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/bbq.el"))
+  :commands bbq-cliplink
+  :after org-cliplink)
+
 (r|pkg beacon
   :config
   (beacon-mode)
@@ -89,12 +95,6 @@
   (setq kindle-clipping-save-file user-clippings-file))
 
 (r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
-
-(r|pkg (mpm :location
-            (recipe :fetcher url
-                    :url "https://raw.githubusercontent.com/lepisma/mpm/master/emacs/mpm.el"))
-  :commands mpm-cliplink
-  :after org-cliplink)
 
 (r|pkg (mu4e-fold :location local)
   :after r-mu4e
