@@ -172,7 +172,8 @@
 
     (setq org-refile-use-outline-path 'file
           org-outline-path-complete-in-steps nil
-          org-refile-targets '((org-agenda-files :maxlevel . 1)))
+          org-refile-targets `((org-agenda-files :maxlevel . 1)
+                               (,(concat user-notes-dir "work/main.org") :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
           `(("n" "Personal agenda"
