@@ -70,6 +70,7 @@
     (if (s-starts-with-p "mu: no matches for" cmd-out) nil
       (nreverse (car (read-from-string (concat "(" cmd-out ")")))))))
 
+;;;###autoload
 (defun r-mu4e/sign-and-send ()
   "Sign and send message"
   (interactive)
@@ -88,6 +89,7 @@
       ;; not a list, check rx
       (string-match rx (mu4e-message-field msg :maildir)))))
 
+;;;###autoload
 (defun r-mu4e/setup ()
   "Setup everything."
 

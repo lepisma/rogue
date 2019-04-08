@@ -205,6 +205,9 @@ you should place you code here."
   ;; A few late setup calls
   ;; TODO: Put these in the right place
   (openwith-mode)
+
+  ;; TODO: Why do I need to do this? There is some bug somewhere.
+  (require 'r-mu4e)
   (r-mu4e/setup)
 
   ;; Transparency
