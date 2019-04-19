@@ -41,7 +41,8 @@ values."
           org-enable-org-journal-support t)
      (python :variables
              python-backend 'lsp
-             python-sort-imports-on-save t)
+             python-sort-imports-on-save t
+             python-fill-docstring-style 'django)
      racket
      ruby
      (rust :variables
