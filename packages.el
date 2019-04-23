@@ -363,10 +363,6 @@
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
 
-(r|pkg (tog :location (recipe :fetcher github :repo "lepisma/tog"))
-  :bind (:map tog-mode-map (("DEL" . tog-untag)))
-  :hook ((tog-tag-update . tog-save-tags)))
-
 (r|pkg (viz :location local))
 
 (r|pkg vue-mode
