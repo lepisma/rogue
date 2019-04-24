@@ -119,10 +119,6 @@ With argument, do this that many times."
                                (t (format "%s unread emails" (length subjects))))
                          (s-join ". " subjects)))))
 
-(defun magit-commit-generic-update (&optional args)
-  (interactive (list (magit-commit-arguments)))
-  (magit-commit '("-m" "Updates")))
-
 (defun magit-bookmarks ()
   (interactive)
   (let ((bms `(("website" . ,(concat user-project-dir "lepisma.github.io-deploy")))))
@@ -132,9 +128,13 @@ With argument, do this that many times."
           :buffer "*helm magit bookmarks*"
           :prompt "Bookmark: ")))
 
-(with-eval-after-load 'magit
-  (magit-define-popup-action
-    'magit-commit-popup ?g "Commit with generic message" 'magit-commit-generic-update))
+(defun magit-commit-generic-update ()
+  (interactive)
+  (magit-commit-create '("-m" "Updates")))
+
+(with-eval-after-load 'transient
+  (transient-append-suffix 'magit-commit "c"
+    '("g" "Commit with generic message" magit-commit-generic-update)))
 
 (defun poetry-activate ()
   (interactive)
