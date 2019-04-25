@@ -133,8 +133,9 @@ With argument, do this that many times."
   (magit-commit-create '("-m" "Updates")))
 
 (with-eval-after-load 'transient
-  (transient-append-suffix 'magit-commit "c"
-    '("g" "Commit with generic message" magit-commit-generic-update)))
+  (with-eval-after-load 'magit
+      (transient-append-suffix 'magit-commit "c"
+        '("g" "Commit with generic message" magit-commit-generic-update))))
 
 (defun poetry-activate ()
   (interactive)
