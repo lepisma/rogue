@@ -21,6 +21,8 @@
 
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
+(r|pkg buttercup)
+
 (r|pkg cricbuzz)
 
 (r|pkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
@@ -159,6 +161,8 @@
 
 (r|pkg org-web-tools
   :after org)
+
+(r|pkg ov)
 
 (r|pkg parinfer
   :bind (("C-," . parinfer-toggle-mode))
