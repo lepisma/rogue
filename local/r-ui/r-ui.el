@@ -172,7 +172,7 @@
   (r-ui/setup-minibuffer)
 
   (r-utils/add-hooks '(Info-mode-hook
-                       anaconda-view-mode
+                       cider-repl-mode-hook
                        comint-mode-hook
                        elfeed-search-update-hook
                        eshell-mode-hook
