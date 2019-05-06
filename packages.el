@@ -64,6 +64,9 @@
 
 (r|pkg enlive)
 
+(r|pkg eros
+  :config (eros-mode 1))
+
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
 
