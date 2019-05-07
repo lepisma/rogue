@@ -15,7 +15,8 @@ values."
             c-c++-backend 'lsp-cquery
             c-c++-lsp-sem-highlight-method 'font-lock
             c-c++-lsp-sem-highlight-rainbow t)
-     clojure
+     (clojure :variables
+              cider-eval-result-prefix "▶ ")
      common-lisp
      csv
      erlang
