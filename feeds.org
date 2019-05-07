@@ -75,3 +75,4 @@
 **** [[http://blog.brownplt.org/feed.xml][The Brown PLT Blog]]
 **** [[https://blog.veitheller.de/feed.rss][Veit's Blog]]
 **** [[https://fexpr.blogspot.com/feeds/posts/default][Structural insight]]
+**** [[http://250bpm.com/feed/pages/pagename/start/category/blog/t/250bpm-blogs/h/http%3A%2F%2Fwww.250bpm.com%2Fblog][250bpm-blogs]]
