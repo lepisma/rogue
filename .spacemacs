@@ -63,6 +63,7 @@ values."
                       auto-completion-private-snippets-directory "~/.emacs.d/private/rogue/snippets")
      better-defaults
      colors
+     dap
      (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
