@@ -42,6 +42,9 @@
   (conda-env-initialize-eshell)
   (setq conda-anaconda-home (expand-file-name "~/.miniconda")))
 
+(r|pkg (dg :location local)
+  :after web-server)
+
 (r|pkg dired-subtree
   :after ranger
   :bind (:map ranger-mode-map
