@@ -383,4 +383,6 @@
 
 (r|pkg (w :location (recipe :fetcher github :repo "lepisma/w.el")))
 
+(r|pkg web-server)
+
 (r|pkg writegood-mode)
