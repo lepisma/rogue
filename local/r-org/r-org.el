@@ -243,6 +243,8 @@
           org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t
+          org-catch-invisible-edits 'show-and-error
+          org-cycle-separator-lines 0
           spaceline-org-clock-p t
           org-modules '(org-bibtex
                         org-docview
