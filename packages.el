@@ -261,7 +261,8 @@
                        (list #'pile-hooks-post-clear-cids
                              #'pile-hooks-post-generate-atom
                              #'pile-hooks-post-generate-archive
-                             #'pile-hooks-post-stringify-title))))
+                             #'pile-hooks-post-stringify-title
+                             #'pile-hooks-post-generate-sitemap))))
 
 (r|pkg pretty-mode
   :config
