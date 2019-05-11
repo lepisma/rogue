@@ -43,7 +43,7 @@
   (setq conda-anaconda-home (expand-file-name "~/.miniconda")))
 
 (r|pkg (dg :location local)
-  :after web-server)
+  :after (elml web-server))
 
 (r|pkg dired-subtree
   :after ranger
@@ -64,6 +64,8 @@
 
 (r|pkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
   :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
+
+(r|pkg (elml :location (recipe :fetcher github :repo "lepisma/elml")))
 
 (r|pkg enlive)
 
