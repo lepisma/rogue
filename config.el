@@ -62,9 +62,9 @@ TODO: Simplify this macro"
   (accent-shade-3     "#81A1C1")
   (accent-shade-4     "#5E81AC")
   (colors-blue        accent-shade-4)
-  (colors-red         "#BF616A")
-  (colors-orange      "#D08770")
-  (colors-yellow      "#EBCB8B")
+  (colors-red         "#81A1C1")
+  (colors-orange      "#8FBCBB")
+  (colors-yellow      "#8a9899")
   (colors-green       "#A3BE8C")
   (colors-purple      "#B48EAD")
 
