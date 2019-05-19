@@ -327,7 +327,9 @@
               :map mu4e-view-mode-map
               (("C-c d" . epa-mail-decrypt))
               :map mu4e-main-mode-map
-              (("u" . mu4e-update-index))))
+              (("u" . mu4e-update-index)))
+  :config
+  (r-mu4e/setup))
 
 (r|pkg (r-org :location local)
   :after (org pile)
