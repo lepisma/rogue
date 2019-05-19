@@ -52,7 +52,7 @@
                ("<backtab>" . dired-subtree-cycle))))
 
 (r|pkg doom-themes
-  :after treemacs
+  :after (r-ui treemacs)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
@@ -171,6 +171,12 @@
 
 (r|pkg org-web-tools
   :after org)
+
+(r|pkg org-variable-pitch
+  :config
+  (setq org-variable-pitch-fixed-font "Iosevka")
+  :hook
+  ((org-mode . org-variable-pitch-minor-mode)))
 
 (r|pkg ov)
 
@@ -336,7 +342,7 @@
   (r-org/setup-tex))
 
 (r|pkg (r-ui :location local)
-  :after r-utils
+  :after (treemacs r-utils)
   :config
   (r-ui/setup))
 

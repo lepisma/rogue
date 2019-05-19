@@ -28,6 +28,7 @@
 
 (require 'r-utils)
 (require 'dash-functional)
+(require 'treemacs)
 
 (defun r-ui/clear-sides ()
   "Setup gaps on left and right sides."
@@ -106,6 +107,41 @@
 
   (advice-add 'ibuffer-update-title-and-summary :after 'r-ui//ibuffer-remove-title))
 
+(defun r-ui/setup-treemacs ()
+  "Treemacs stuff. Most of these are modified version of code
+from doom-themes."
+  (setq treemacs-icon-root-png
+        (concat " " (all-the-icons-octicon "repo" :v-adjust -0.1 :height 1.2
+                                           :face '(:inherit font-lock-comment-face :foreground "#666666"))
+                " ")
+
+        treemacs-indentation-string "  "
+        treemacs-indentation 1
+
+        treemacs-icon-open-png
+        (concat (all-the-icons-octicon "file-directory" :face '(:inherit font-lock-comment-face))
+                " ")
+        treemacs-icon-closed-png
+        (concat (all-the-icons-octicon "file-directory" :face '(:inherit font-lock-doc-face :slant normal))
+                " ")
+
+        treemacs-icon-tag-node-open-png
+        (concat (all-the-icons-octicon "chevron-down"  :height 0.75 :v-adjust 0.1 :face 'font-lock-keyword-face)
+                "\t")
+
+        treemacs-icon-tag-node-closed-png
+        (concat (all-the-icons-octicon "chevron-right" :height 0.75 :v-adjust 0.1 :face 'font-lock-keyword-face)
+                "\t")
+
+        treemacs-icon-tag-leaf-png "· ")
+
+  ;; https://github.com/hlissner/emacs-doom-themes/pull/285
+  (dolist (face '(treemacs-tags-face))
+    (let ((faces (face-attribute face :inherit nil)))
+      (set-face-attribute
+       face nil :inherit
+       `(variable-pitch ,@(delq 'unspecified (if (listp faces) faces (list faces))))))))
+
 (defun r-ui/setup-misc ()
   "Setup ui for misc packages/tools."
 
@@ -170,6 +206,7 @@
   (r-ui/setup-ibuffer)
   (r-ui/setup-misc)
   (r-ui/setup-minibuffer)
+  (r-ui/setup-treemacs)
 
   (r-utils/add-hooks '(Info-mode-hook
                        cider-repl-mode-hook
@@ -189,7 +226,8 @@
                        org-agenda-mode-hook
                        process-menu-mode-hook
                        slime-repl-mode-hook
-                       text-mode-hook)
+                       text-mode-hook
+                       treemacs-mode-hook)
                      (list #'r-ui/clear-sides #'r-ui/clear-header))
 
   ;; Hooks for side gap in header
