@@ -62,7 +62,8 @@ TODO: Simplify this macro"
   (accent-shade-3     "#81A1C1")
   (accent-shade-4     "#5E81AC")
   (colors-blue        accent-shade-4)
-  (colors-red         "#81A1C1")
+  (colors-blue-2      accent-shade-3)
+  (colors-red         "#BF616A")
   (colors-orange      "#8FBCBB")
   (colors-yellow      "#8a9899")
   (colors-green       "#A3BE8C")
@@ -70,7 +71,7 @@ TODO: Simplify this macro"
 
   ;; For use in levelified faces set
   (level-1            colors-blue)
-  (level-2            colors-red)
+  (level-2            colors-blue-2)
   (level-3            colors-purple)
   (level-4            colors-orange)
   (level-5            accent-shade-3)
@@ -95,7 +96,7 @@ TODO: Simplify this macro"
   ;; Programming
   (comment            (color-12-to-6 (color-lighten-name dark-4 2)))
   (doc                (color-12-to-6 (color-lighten-name dark-4 20)))
-  (keyword            colors-red)
+  (keyword            colors-blue-2)
   (builtin            colors-orange)
   (variable-name      colors-yellow)
   (function-name      accent-shade-2)
@@ -526,7 +527,7 @@ TODO: Simplify this macro"
    (:foreground ,colors-blue)
    nil)
   (magit-section-heading
-   (:foreground ,colors-red)
+   (:foreground ,colors-blue-2)
    nil)
   (magit-section-heading-selection
    (:foreground ,colors-yellow)
