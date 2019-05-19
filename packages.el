@@ -52,14 +52,14 @@
                ("<backtab>" . dired-subtree-cycle))))
 
 (r|pkg doom-themes
+  :after treemacs
   :config
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
+        doom-themes-enable-italic t
+        doom-treemacs-line-spacing 4
+        doom-treemacs-enable-variable-pitch t)
 
-  (doom-themes-neotree-config)
-  (setq doom-neotree-enable-variable-pitch t
-        doom-neotree-file-icons 'simple
-        doom-neotree-line-spacing 4)
+  (doom-themes-treemacs-config)
   (doom-themes-org-config))
 
 (r|pkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))

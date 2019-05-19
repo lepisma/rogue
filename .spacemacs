@@ -84,6 +84,9 @@ values."
      spotify
      syntax-checking
      theming
+     (treemacs :variables
+               treemacs-follow-after-init nil
+               treemacs-use-follow-mode nil)
      typography
      (version-control :variables
                       version-control-diff-tool 'git-gutter

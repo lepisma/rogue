@@ -84,8 +84,6 @@ With argument, do this that many times."
 (defun r/light ()
   "Switch to light theme"
   (interactive)
-  (setq doom-neotree-enable-variable-pitch nil
-        doom-neotree-line-spacing 1)
   (disable-theme r-dark-theme)
   (spacemacs/load-theme r-light-theme)
   (setq org-bullets-bullet-list '(" "))
@@ -95,8 +93,6 @@ With argument, do this that many times."
 (defun r/dark ()
   "Switch to dark theme"
   (interactive)
-  (setq doom-neotree-enable-variable-pitch t
-        doom-neotree-line-spacing 4)
   (disable-theme r-light-theme)
   (spacemacs/load-theme r-dark-theme)
   (setq org-bullets-bullet-list '("› "))

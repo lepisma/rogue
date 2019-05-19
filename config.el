@@ -105,7 +105,7 @@ TODO: Simplify this macro"
   (string             colors-green)
 
   ;; Fonts
-  (sans-font          "Iosevka")
+  (sans-font          "Source Sans Pro")
   (et-font            "EtBembo")
   (mono-font          "Iosevka"))
 
@@ -213,7 +213,7 @@ TODO: Simplify this macro"
    (:inherit font-lock-builtin-face)
    (:inherit font-lock-builtin-face))
   (cursor
-   (:background ,colors-red)
+   (:background ,colors-purple)
    nil)
   (default
     (:background ,bg-dark)
@@ -236,40 +236,26 @@ TODO: Simplify this macro"
   (dired-subtree-depth-6-face
    (:background nil)
    nil)
-  (doom-neotree-data-file-face
-   (:height 1.0
-            :foreground ,doc)
-   (:family ,sans-font
-            :height 1.0
-            :foreground ,doc))
-  (doom-neotree-dir-face
+  (treemacs-git-conflict-face
+   (:foreground ,colors-red)
+   nil)
+  (treemacs-git-modified-face
+   (:foreground ,colors-purple)
+   nil)
+  (treemacs-git-added-face
+   (:foreground ,colors-green)
+   nil)
+  (treemacs-root-face
+   (:foreground ,slate
+                :height 1.1)
+   nil)
+  (treemacs-tags-face
    (:foreground ,keyword
-                :height 1.0)
-   (:family ,sans-font
-            :height 1.0))
-  (doom-neotree-file-face
-   (:height 1.0)
-   (:family ,sans-font
-            :height 1.0))
-  (doom-neotree-hidden-file-face
-   (:height 1.0
-            :foreground ,comment)
-   (:family ,sans-font
-            :height 1.0
-            :foreground ,comment))
-  (doom-neotree-media-file-face
-   (:height 1.0
-            :foreground ,type)
-   (:family ,sans-font
-            :height 1.0
-            :foreground ,type))
-  (doom-neotree-text-file-face
-   (:height 1.0)
-   (:family ,sans-font
-            :height 1.0))
+                :height 0.9)
+   nil)
   (elfeed-search-feed-face
    (:foreground ,slate)
-   ())
+   nil)
   (eval-sexp-fu-flash
    (:background ,colors-blue
                 :foreground ,fg-white)
