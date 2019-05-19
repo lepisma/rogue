@@ -198,6 +198,7 @@ from doom-themes."
   (advice-add 'helm-display-mode-line
               :override (lambda (source &optional force) (r-ui/hide-mode-line))))
 
+;;;###autoload
 (defun r-ui/setup ()
   "Setup everything."
 

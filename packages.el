@@ -52,7 +52,7 @@
                ("<backtab>" . dired-subtree-cycle))))
 
 (r|pkg doom-themes
-  :after (r-ui treemacs)
+  :after (treemacs r-ui)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
@@ -61,9 +61,6 @@
 
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
-
-(r|pkg (duck :location (recipe :fetcher github :repo "lepisma/duck.el"))
-  :config (setq duck-cli-path "~/.cache/duckling-cli-arch-x86-64"))
 
 (r|pkg (elml :location (recipe :fetcher github :repo "lepisma/elml")))
 

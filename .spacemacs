@@ -209,12 +209,10 @@ you should place you code here."
         elfeed-goodies/tag-column-width 30)
 
   ;; A few late setup calls
-  ;; TODO: Put these in the right place
+  ;; TODO: There is some load order issue. Put these in the right place
   (openwith-mode)
-
-  ;; TODO: Why do I need to do this? There is some bug somewhere.
   (require 'r-mu4e)
-  (r-mu4e/setup)
+  (require 'r-ui)
 
   ;; Transparency
   (spacemacs/enable-transparency)
