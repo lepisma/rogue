@@ -991,7 +991,8 @@ TODO: Simplify this macro"
                 :background ,bg-darker)
    nil)
   (variable-pitch
-   (:family ,sans-font)
+   (:family ,sans-font
+            :height 160)
    (:family ,et-font
             :background nil
             :foreground ,bg-dark

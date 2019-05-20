@@ -275,7 +275,8 @@ from doom-themes."
 
   ;; Other general hooks
   (add-hook 'css-mode-hook #'rainbow-mode)
-  (add-hook 'text-mode-hook #'auto-fill-mode)
+
+  (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode))
   (add-hook 'term-mode-hook #'toggle-truncate-lines)
 
   ;; Clear message buffer
