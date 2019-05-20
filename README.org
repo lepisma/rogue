@@ -10,9 +10,9 @@ It looks something like the screens below (might not be updated).
 
 /Light colors/
 
-[[file:./light.png]]
+[[file:./screens/light.png]]
 
 
 /Dark colors/
 
-[[file:./dark.png]]
+[[file:./screens/dark.png]]
