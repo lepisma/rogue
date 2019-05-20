@@ -171,7 +171,22 @@
 
 (r|pkg org-variable-pitch
   :config
-  (setq org-variable-pitch-fixed-font "Iosevka")
+  (setq org-variable-pitch-fixed-font "Iosevka"
+        org-variable-pitch-fixed-faces '(org-block
+                                         org-block-begin-line
+                                         org-block-end-line
+                                         org-code
+                                         org-document-info-keyword
+                                         org-done
+                                         org-formula
+                                         org-indent
+                                         org-meta-line
+                                         org-property-value
+                                         org-special-keyword
+                                         org-table
+                                         org-todo
+                                         org-verbatim
+                                         org-date))
   :hook
   ((org-mode . org-variable-pitch-minor-mode)))
 
