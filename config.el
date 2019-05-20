@@ -110,69 +110,7 @@ TODO: Simplify this macro"
   (mono-font          "Iosevka"))
 
  ;; Settings
- ((cfw:face-annotation
-   (:foreground ,doc)
-   nil)
-  (cfw:face-day-title
-   (:foreground ,doc)
-   nil)
-  (cfw:face-default-content
-   (:foreground ,colors-blue)
-   nil)
-  (cfw:face-default-day
-   (:foreground ,fg-white)
-   nil)
-  (cfw:face-disable
-   (:foreground ,doc)
-   nil)
-  (cfw:face-grid
-   (:foreground ,comment)
-   nil)
-  (cfw:face-header
-   (:foreground ,keyword
-                :weight bold)
-   nil)
-  (cfw:face-holiday
-   (:foreground ,builtin)
-   nil)
-  (cfw:face-periods
-   (:foreground ,colors-blue)
-   nil)
-  (cfw:face-saturday
-   (:foreground ,doc
-                :weight bold)
-   nil)
-  (cfw:face-select
-   (:background ,region)
-   nil)
-  (cfw:face-sunday
-   (:foreground ,doc)
-   nil)
-  (cfw:face-title
-   (:height 2.0
-            :inherit variable-pitch
-            :weight bold
-            :foreground ,doc)
-   nil)
-  (cfw:face-today
-   (:background ,region
-                :weight bold)
-   nil)
-  (cfw:face-today-title
-   (:background ,keyword
-                :foreground ,fg-white)
-   nil)
-  (cfw:face-toolbar
-   (:inherit default)
-   nil)
-  (cfw:face-toolbar-button-off
-   (:foreground ,doc)
-   nil)
-  (cfw:face-toolbar-button-on
-   (:foreground ,type
-                :weight bold)
-   nil)
-  (company-scrollbar-bg
+ ((company-scrollbar-bg
    (:background ,bg-darker)
    nil)
   (company-scrollbar-fg
@@ -236,14 +174,20 @@ TODO: Simplify this macro"
   (dired-subtree-depth-6-face
    (:background nil)
    nil)
+  (treemacs-directory-collapsed-face
+   (:foreground ,fg-white)
+   nil)
+  (treemacs-git-added-face
+   (:foreground ,colors-green)
+   nil)
   (treemacs-git-conflict-face
    (:foreground ,colors-red)
    nil)
   (treemacs-git-modified-face
    (:foreground ,colors-purple)
    nil)
-  (treemacs-git-added-face
-   (:foreground ,colors-green)
+  (treemacs-git-unmodified-face
+   (:foreground ,fg-white)
    nil)
   (treemacs-root-face
    (:foreground ,slate
@@ -651,7 +595,8 @@ TODO: Simplify this macro"
                 :height 0.8
                 :foreground ,slate))
   (org-code
-   (:foreground ,builtin)
+   (:foreground ,builtin
+                :height 1.0)
    (:inherit nil
              :foreground ,comment))
   (org-date
@@ -847,6 +792,10 @@ TODO: Simplify this macro"
   (org-upcoming-deadline
    (:foreground ,keyword)
    nil)
+  ;; NOTE: Name is confusing, this is fixed pitch from org-variable-pitch package
+  (org-variable-pitch-face
+   (:height 0.9)
+   nil)
   (org-verbatim
    (:foreground ,type)
    nil)
@@ -992,7 +941,7 @@ TODO: Simplify this macro"
    nil)
   (variable-pitch
    (:family ,sans-font
-            :height 160)
+            :height 1.1)
    (:family ,et-font
             :background nil
             :foreground ,bg-dark
