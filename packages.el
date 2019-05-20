@@ -322,7 +322,19 @@
   (setq r-kv-file (concat user-layer-dir "misc/" "rkv.el")))
 
 (r|pkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
-  :after (s spotify levenshtein))
+  :after (s levenshtein)
+  :config
+  (defun read-lyrics-get-bbq ()
+    "Return artist, track pair from bbq."
+    (let ((res (->> (shell-command-to-string "bbq :state")
+                  (json-read-from-string)
+                  (assoc 'item)
+                  (cdr))))
+      (when (consp res)
+        (cons (alist-get 'artist res)
+              (alist-get 'title res)))))
+
+  (add-to-list 'read-lyrics-getters #'read-lyrics-get-bbq))
 
 (r|pkg realgud
   :config

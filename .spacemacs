@@ -81,7 +81,6 @@ values."
      restclient
      rogue
      (spell-checking :variables spell-checking-enable-auto-dictionary t)
-     spotify
      syntax-checking
      theming
      (treemacs :variables
