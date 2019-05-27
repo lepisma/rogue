@@ -73,7 +73,9 @@ values."
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
-     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e")
+     (mu4e :variables
+           mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
+           mu4e-enable-async-operations t)
      pandoc
      pdf
      prodigy
