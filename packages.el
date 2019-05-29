@@ -213,7 +213,7 @@
   (let* ((template-dir (concat user-layer-dir "misc/"))
          (preamble-template (f-read-text (concat template-dir "pile-preamble.html.template") 'utf-8))
          (postamble-template (f-read-text (concat template-dir "pile-postamble.html.template") 'utf-8))
-         (root-url "https://lepisma.github.io/")
+         (root-url "https://lepisma.xyz/")
          (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
     (setq pile-serve-dir output-dir
           pile-projects
