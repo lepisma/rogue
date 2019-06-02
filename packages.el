@@ -135,6 +135,12 @@
 
 (r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
 
+(r|pkg minimap
+  :demand t
+  :config
+  (setq minimap-highlight-line nil
+        minimap-window-location 'right))
+
 (r|pkg (mu4e-fold :location local)
   :after r-mu4e
   :bind (:map mu4e-headers-mode-map ("<tab>" . mu4e-headers-toggle-thread-folding))
@@ -434,6 +440,14 @@
   :after spaceline
   :config
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))
+
+(r|pkg sublimity
+  :demand t
+  :config
+  (require 'sublimity-scroll)
+  (setq sublimity-scroll-weight 5
+        sublimity-scroll-drift-length 1)
+  (sublimity-mode 1))
 
 (r|pkg swiper
   :bind (("C-s" . swiper)

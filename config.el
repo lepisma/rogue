@@ -536,6 +536,9 @@ TODO: Simplify this macro"
   (minibuffer-prompt
    (:foreground ,keyword)
    nil)
+  (minimap-active-region-background
+   (:background ,region)
+   nil)
   (mmm-default-submode-face
    (:background ,bg-dark-solaire)
    nil)
