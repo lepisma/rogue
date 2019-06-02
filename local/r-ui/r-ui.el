@@ -210,6 +210,7 @@ from doom-themes."
   (r-ui/setup-treemacs)
 
   (r-utils/add-hooks '(Info-mode-hook
+                       chronos-mode-hook
                        cider-repl-mode-hook
                        comint-mode-hook
                        elfeed-search-update-hook
@@ -231,15 +232,13 @@ from doom-themes."
                        treemacs-mode-hook)
                      (list #'r-ui/clear-sides #'r-ui/clear-header))
 
-  (r-utils/add-hooks '(chronos-mode-hook)
-                     (list #'r-ui/clear-sides))
-
   ;; Hooks for side gap in header
   (r-utils/add-hooks '(Info-mode-hook)
                      (list #'r-ui/clear-header-sides))
 
   ;; Hooks for hidden modeline
-  (r-utils/add-hooks '(comint-mode-hook
+  (r-utils/add-hooks '(chronos-mode-hook
+                       comint-mode-hook
                        compilation-mode-hook
                        completion-list-mode-hook
                        eshell-mode-hook

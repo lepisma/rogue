@@ -39,8 +39,8 @@
     (concat "▶ " (cadr n)))
 
   (defun chronos--display-clock ()
-    (insert "⌛ " (propertize (chronos--time-string-rounded-to-minute (current-time))
-                              'face 'chronos-notification-clock)))
+    (insert (propertize (format "⌛ %s" (chronos--time-string-rounded-to-minute (current-time)))
+                        'face 'chronos-notification-clock)))
 
   (setq chronos-shell-notify-program "mplayer"
         chronos-shell-notify-parameters '("/usr/share/sounds/freedesktop/stereo/complete.oga")
