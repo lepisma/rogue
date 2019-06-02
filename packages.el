@@ -23,12 +23,16 @@
 
 (r|pkg buttercup)
 
-(r|pkg cricbuzz)
-
 (r|pkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
   :after (s dash-functional)
   :config
   (setq calibre-root (concat user-cloud-dir "Calibre Shared")))
+
+(r|pkg chronos
+  :config
+  (setq chronos-shell-notify-program "mplayer"
+        chronos-shell-notify-parameters '("/usr/share/sounds/freedesktop/stereo/complete.oga")
+        chronos-expiry-functions '(chronos-dunstify chronos-shell-notify)))
 
 (r|pkg colormaps)
 
@@ -41,6 +45,8 @@
   :config
   (conda-env-initialize-eshell)
   (setq conda-anaconda-home (expand-file-name "~/.miniconda")))
+
+(r|pkg cricbuzz)
 
 (r|pkg (dg :location local)
   :after (elml web-server))
@@ -78,6 +84,24 @@
   :config
   (setq gscholar-bibtex-database-file user-bib-file
         gscholar-bibtex-default-source "Google Scholar"))
+
+(r|pkg helm-chronos
+  :after chronos
+  :bind (("C-c t" . helm-chronos-add-timer))
+  :config
+  ;; Fix from https://github.com/dxknight/helm-chronos/pull/2
+  (setq helm-chronos--fallback-source
+    (helm-build-dummy-source "Enter <expiry time spec>/<message>"
+      :filtered-candidate-transformer
+      (lambda (_candidates _source)
+        (list (or (and (not (string= helm-pattern ""))
+                       helm-pattern)
+                  "Enter a timer to start")))
+      :action '(("Add timer" . (lambda (candidate)
+                                 (if (string= helm-pattern "")
+                                     (message "No timer")
+                                   (helm-chronos--parse-string-and-add-timer helm-pattern)))))))
+  (setq helm-chronos-standard-timers '()))
 
 (r|pkg helpful
   :bind (("C-h f" . helpful-callable)
