@@ -110,7 +110,19 @@ TODO: Simplify this macro"
   (mono-font          "Iosevka"))
 
  ;; Settings
- ((company-scrollbar-bg
+ ((chronos-notification
+   (:foreground ,variable-name
+                :inherit variable-pitch
+                :height 8.0
+                :slant italic)
+   nil)
+  (chronos-notification-clock
+   (:foreground ,comment
+                :height 5.0
+                :weight bold
+                :inherit variable-pitch)
+   nil)
+  (company-scrollbar-bg
    (:background ,bg-darker)
    nil)
   (company-scrollbar-fg
