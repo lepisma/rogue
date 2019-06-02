@@ -36,10 +36,14 @@
     (switch-to-buffer chronos-buffer-name))
 
   (defun chronos--format-notification (n)
-    (concat "▶ " (cadr n)))
+    (concat "" (cadr n)))
+
+  (set-face-attribute 'chronos-notification-clock nil
+                      :foreground (face-attribute 'font-lock-comment-face :foreground)
+                      :height 5.0)
 
   (defun chronos--display-clock ()
-    (insert (propertize (format "⌛ %s" (chronos--time-string-rounded-to-minute (current-time)))
+    (insert (propertize (format "⌛%s" (chronos--time-string-rounded-to-minute (current-time)))
                         'face 'chronos-notification-clock)))
 
   (setq chronos-shell-notify-program "mplayer"
