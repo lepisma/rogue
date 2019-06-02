@@ -30,9 +30,12 @@
 
 (r|pkg chronos
   :config
+  (defun chronos-buffer-switch (_)
+    (switch-to-buffer chronos-buffer-name))
+
   (setq chronos-shell-notify-program "mplayer"
         chronos-shell-notify-parameters '("/usr/share/sounds/freedesktop/stereo/complete.oga")
-        chronos-expiry-functions '(chronos-dunstify chronos-shell-notify)))
+        chronos-expiry-functions '(chronos-dunstify chronos-shell-notify chronos-buffer-notify chronos-buffer-switch)))
 
 (r|pkg colormaps)
 
