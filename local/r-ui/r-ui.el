@@ -231,6 +231,9 @@ from doom-themes."
                        treemacs-mode-hook)
                      (list #'r-ui/clear-sides #'r-ui/clear-header))
 
+  (r-utils/add-hooks '(chronos-mode-hook)
+                     (list #'r-ui/clear-sides))
+
   ;; Hooks for side gap in header
   (r-utils/add-hooks '(Info-mode-hook)
                      (list #'r-ui/clear-header-sides))

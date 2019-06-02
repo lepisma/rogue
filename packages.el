@@ -30,8 +30,17 @@
 
 (r|pkg chronos
   :config
+  ;; Chronos looks like abandoned so I am putting all the changes/fixes here
+  ;; instead of possibly doing a PR.
   (defun chronos-buffer-switch (_)
     (switch-to-buffer chronos-buffer-name))
+
+  (defun chronos--format-notification (n)
+    (concat "▶ " (cadr n)))
+
+  (defun chronos--display-clock ()
+    (insert "⌛ " (propertize (chronos--time-string-rounded-to-minute (current-time))
+                              'face 'chronos-notification-clock)))
 
   (setq chronos-shell-notify-program "mplayer"
         chronos-shell-notify-parameters '("/usr/share/sounds/freedesktop/stereo/complete.oga")
