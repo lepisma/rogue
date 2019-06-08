@@ -12,9 +12,9 @@ values."
    dotspacemacs-configuration-layers
    '(bibtex
      (c-c++ :variables
-            c-c++-backend 'lsp-cquery
-            c-c++-lsp-sem-highlight-method 'font-lock
-            c-c++-lsp-sem-highlight-rainbow t)
+            c-c++-adopt-subprojects t
+            c-c++-backend 'lsp-ccls
+            c-c++-lsp-sem-highlight-method 'font-lock)
      (clojure :variables
               cider-eval-result-prefix "▶ ")
      common-lisp
