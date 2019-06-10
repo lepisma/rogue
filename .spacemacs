@@ -234,6 +234,10 @@ you should place you code here."
   ;; LSP
   (setq lsp-message-project-root-warning t)
 
+  ;; Smartparens issue in c++
+  ;; From https://github.com/Fuco1/smartparens/issues/840#issuecomment-396797118
+  (dolist (key '("(" ")" "{" "}")) (define-key c-mode-base-map (kbd key) nil))
+
   ;; Load PG if found locally
   (when (f-exists? "~/.emacs.d/PG")
     (load "~/.emacs.d/PG/generic/proof-site")
