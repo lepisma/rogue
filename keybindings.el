@@ -53,5 +53,5 @@
 (define-key elfeed-search-mode-map (kbd "U") 'elfeed-update)
 (define-key elfeed-search-mode-map (kbd "C-c o") 'r-feeds/play-elfeed)
 
-;; org
 (define-key org-mode-map (kbd "C-c .") 'org-time-stamp-inactive)
+(global-set-key (kbd "C-c b") 'helm-bibtex)
