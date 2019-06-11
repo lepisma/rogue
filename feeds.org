@@ -1,6 +1,9 @@
 * Items                                                              :elfeed:
 ** Magazines                                                      :magazine:
 
+** Comics                                                           :comics:
+*** [[http://www.existentialcomics.com/rss.xml][Existential Comics]]
+
 ** Papers                                                            :paper:
 *** [[https://blog.acolyer.org/feed/][the morning paper]]
 
