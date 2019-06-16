@@ -322,7 +322,7 @@
                              #'pile-hooks-post-generate-atom
                              #'pile-hooks-post-generate-archive
                              #'pile-hooks-post-stringify-title
-                             #'pile-hooks-post-generate-sitemap))))
+                             #'pile-hooks-post-generate-index))))
 
 (r|pkg pretty-mode
   :config
