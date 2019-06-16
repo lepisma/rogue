@@ -201,8 +201,8 @@
                  (:auto-category t)))
               (org-agenda-files (list ,(concat user-notes-dir "personal")
                                       ,(concat user-notes-dir "incoming/captures.org")
-                                      ,(pile-path-abs "wiki:readings/books")
-                                      ,(pile-path-abs "wiki:readings/bib-notes")))))
+                                      ,(pile-path-abs "wiki:readings/reading-list")
+                                      ,(pile-path-abs "wiki:readings/notes/documents")))))
             ("w" "Work agenda"
              ((agenda "")
               (alltodo))
