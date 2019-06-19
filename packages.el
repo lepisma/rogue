@@ -347,6 +347,9 @@
   (pretty-activate-groups
    '(:greek :arithmetic-nary)))
 
+(r|pkg protobuf-mode
+  :mode "\\.proto\\'")
+
 (r|pkg (r-feeds :location local)
   :after (elfeed helm)
   :bind (("C-c f" . helm-elfeed))
