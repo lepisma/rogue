@@ -33,7 +33,7 @@
   "Add FUNs to all the HOOKS. Works multiway."
   (dolist (hook hooks)
     (dolist (fn fns)
-      (add-hook hook fn))))
+      (add-hook hook fn t))))
 
 ;;;###autoload
 (defun r-utils/get-project-dirs (names)
