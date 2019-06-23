@@ -232,6 +232,12 @@ you should place you code here."
                 js2-missing-semi-one-line-override nil
                 typescript-indent-level 2)
 
+  ;; TODO: I should move ui config out from r-ui
+  (r-utils/add-hooks '(ledger-mode-hook)
+                     (list (lambda () (variable-pitch-mode -1))
+                           #'r-ui/hide-mode-line
+                           #'r-ui/clear-header))
+
   ;; LSP
   (setq lsp-message-project-root-warning t)
 
