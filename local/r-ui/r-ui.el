@@ -217,6 +217,7 @@ from doom-themes."
                        eshell-mode-hook
                        help-mode-hook
                        helpful-mode-hook
+                       hledger-mode-hook
                        ibuffer-mode-hook
                        magit-diff-mode-hook
                        magit-log-mode-hook

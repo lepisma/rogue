@@ -123,6 +123,9 @@
          ("C-h F" . helpful-function)
          ("C-h C" . helpful-command)))
 
+(r|pkg hledger-mode
+  :mode "\\.hledger\\.journal'")
+
 (r|pkg hy-mode
   :mode "\\.hy\\'")
 

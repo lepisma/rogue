@@ -69,7 +69,6 @@ values."
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
              elfeed-enable-web-interface t)
      epub
-     finance
      git
      github
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
