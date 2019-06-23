@@ -57,6 +57,7 @@ values."
      yaml
      ;; Assists
      (auto-completion :variables
+                      company-quickhelp-delay 0.8
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
