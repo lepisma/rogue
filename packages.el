@@ -259,55 +259,45 @@
          (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
     (setq pile-serve-dir output-dir
           pile-projects
-          (list (pile-project :name "wiki"
-                              :root-url root-url
-                              :base-url "wiki"
-                              :input-dir (concat user-project-dir "lepisma.github.io/wiki")
-                              :output-dir (concat output-dir "wiki")
-                              :type 'wiki
-                              :postamble postamble-template
-                              :preamble (mustache-render preamble-template
-                                                         (ht ("wiki-p" t) ("page-meta" "Last modified: %d %C"))))
-                (pile-project :name "blog"
-                              :root-url root-url
-                              :base-url ""
-                              :input-dir (concat user-project-dir "lepisma.github.io/blog")
-                              :output-dir output-dir
-                              :type 'blog
-                              :postamble postamble-template
-                              :preamble (mustache-render preamble-template
-                                                         (ht ("blog-p" t) ("page-meta" "%d"))))
-                (pile-project :name "journal"
-                              :root-url root-url
-                              :base-url "journal"
-                              :input-dir (concat user-project-dir "lepisma.github.io/journal")
-                              :output-dir (concat output-dir "journal")
-                              :type 'blog
-                              :postamble postamble-template
-                              :preamble (mustache-render preamble-template
-                                                         (ht ("journal-p" t) ("page-meta" "%d"))))
-                (pile-project :name "log"
-                              :root-url root-url
-                              :base-url "log"
-                              :input-dir (concat user-project-dir "lepisma.github.io/log")
-                              :output-dir (concat output-dir "log")
-                              :type 'blog
-                              :postamble postamble-template
-                              :preamble (mustache-render preamble-template
-                                                         (ht ("log-p" t) ("page-meta" "%d"))))
-                (pile-project :name "assets"
-                              :root-url root-url
-                              :input-dir (concat user-project-dir "lepisma.github.io/assets")
-                              :output-dir (concat output-dir "assets")
-                              :type 'static)
-                (pile-project :name "misc"
-                              :root-url root-url
-                              :base-url ""
-                              :input-dir (concat user-project-dir "lepisma.github.io/misc")
-                              :output-dir output-dir
-                              :type 'blog
-                              :postamble ""
-                              :preamble "")))
+          (list (pile-project-wiki :name "wiki"
+                                   :root-url root-url
+                                   :base-url "wiki"
+                                   :input-dir (concat user-project-dir "lepisma.github.io/wiki")
+                                   :output-dir (concat output-dir "wiki")
+                                   :postamble postamble-template
+                                   :preamble (mustache-render preamble-template (ht ("wiki-p" t) ("page-meta" "Last modified: %d %C"))))
+                (pile-project-blog :name "blog"
+                                   :root-url root-url
+                                   :base-url ""
+                                   :input-dir (concat user-project-dir "lepisma.github.io/blog")
+                                   :output-dir output-dir
+                                   :postamble postamble-template
+                                   :preamble (mustache-render preamble-template (ht ("blog-p" t) ("page-meta" "%d"))))
+                (pile-project-blog :name "journal"
+                                   :root-url root-url
+                                   :base-url "journal"
+                                   :input-dir (concat user-project-dir "lepisma.github.io/journal")
+                                   :output-dir (concat output-dir "journal")
+                                   :postamble postamble-template
+                                   :preamble (mustache-render preamble-template (ht ("journal-p" t) ("page-meta" "%d"))))
+                (pile-project-blog :name "log"
+                                   :root-url root-url
+                                   :base-url "log"
+                                   :input-dir (concat user-project-dir "lepisma.github.io/log")
+                                   :output-dir (concat output-dir "log")
+                                   :postamble postamble-template
+                                   :preamble (mustache-render preamble-template (ht ("log-p" t) ("page-meta" "%d"))))
+                (pile-project-static :name "assets"
+                                     :root-url root-url
+                                     :input-dir (concat user-project-dir "lepisma.github.io/assets")
+                                     :output-dir (concat output-dir "assets"))
+                (pile-project-plain :name "misc"
+                                    :root-url root-url
+                                    :base-url ""
+                                    :input-dir (concat user-project-dir "lepisma.github.io/misc")
+                                    :output-dir output-dir
+                                    :postamble ""
+                                    :preamble "")))
     ;; Setup notes here to get the wiki files in agenda
     (r-org/setup-notes)
     (pile-setup)
