@@ -154,17 +154,13 @@
 
             ;; Minor logs
             ("l" "Log")
-            ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
+            ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/targets.org") "Weekly review" "Done")
              nil :empty-lines-after 1)
             ("ll" "Logistics" entry (file+olp ,(concat user-notes-dir "personal/notes.org") "Logistics")
              "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)
-            ("lq" "Question" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %? :qq:\nSCHEDULED: %^t" :empty-lines 1)
 
             ;; Work related things
             ("w" "Work")
-            ("wd" "Delegate" entry (file+olp ,(concat user-notes-dir "work/main.org") "Delegated")
-             "* %?\nSCHEDULED: %^t%^{People}p" :empty-lines 1 :prepend t)
             ("wm" "Minor" entry (file ,(concat user-notes-dir "work/main.org"))
              "* %? :minor:\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
 
@@ -188,10 +184,6 @@
                         :tag "jam")
                  (:name "TODO"
                         :todo ("TODO" "NOW"))
-                 (:name "QQuestion"
-                        :tag "qq")
-                 (:name "Skim"
-                        :tag "skim")
                  (:name "Readings"
                         :todo "READING")
                  (:name "Think and plan"
@@ -211,8 +203,6 @@
                         :priority "A")
                  (:name "Reading"
                         :tag "read")
-                 (:name "Delegated"
-                        :tag "delegated")
                  (:name "Minor"
                         :tag "minor")))
               (org-agenda-files (list ,(concat user-notes-dir "work/main.org")
