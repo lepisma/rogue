@@ -69,6 +69,10 @@
               (("<tab>" . dired-subtree-toggle)
                ("<backtab>" . dired-subtree-cycle))))
 
+(r|pkg direnv
+  :config
+  (direnv-mode))
+
 (r|pkg doom-themes
   :after (treemacs r-ui)
   :config
