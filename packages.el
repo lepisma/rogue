@@ -321,6 +321,8 @@
                              #'pile-hooks-post-stringify-title
                              #'pile-hooks-post-generate-index))))
 
+(r|pkg powerthesaurus)
+
 (r|pkg pretty-mode
   :config
   (global-pretty-mode t)
