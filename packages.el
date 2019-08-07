@@ -73,6 +73,8 @@
   :config
   (direnv-mode))
 
+(r|pkg dockerfile-mode)
+
 (r|pkg doom-themes
   :after (treemacs r-ui)
   :config
