@@ -31,6 +31,7 @@
 (require 'helm-bibtex)
 (require 'org)
 (require 'org-ref)
+(require 'org-tempo)
 (require 'pile)
 
 ;; A few extra actions for helm-bibtex
