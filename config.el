@@ -614,6 +614,14 @@ TODO: Simplify this macro"
                 :height 1.0)
    (:inherit nil
              :foreground ,comment))
+  (org-column
+   (:background nil
+                :weight bold)
+   nil)
+  (org-column-title
+   (:background nil
+                :underline t)
+   nil)
   (org-date
    (:foreground ,doc)
    (:height 0.8))
@@ -767,7 +775,8 @@ TODO: Simplify this macro"
    nil)
   (org-quote
    (:background ,bg-dark)
-   nil)
+   (:slant italic
+           :family ,et-font))
   (org-ref-cite-face
    (:foreground ,builtin)
    (:foreground ,builtin))
