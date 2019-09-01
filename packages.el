@@ -464,6 +464,9 @@
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
 
+(r|pkg tj3-mode
+  :mode ("\\.tjp\\'" . tj3-mode))
+
 (r|pkg (viz :location local))
 
 (r|pkg vue-mode
