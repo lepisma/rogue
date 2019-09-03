@@ -148,3 +148,16 @@ With argument, do this that many times."
   (let* ((match-range (alist-get 'range entity))
          (match (substring-no-properties text (car match-range) (cdr match-range))))
     (s-trim (s-collapse-whitespace (s-replace match "" text)))))
+
+(defun serve-current-buffer (&optional port)
+  "Serve current buffer."
+  (interactive)
+  (ws-start
+   (lambda (request)
+     (with-slots (process headers) request
+       (ws-response-header process 200 '("Content-type" . "text/html; charset=utf-8"))
+       (process-send-string process
+                            (let ((html-buffer (htmlize-buffer)))
+                              (prog1 (with-current-buffer html-buffer (buffer-string))
+                                (kill-buffer html-buffer))))))
+   (or port 9010)))

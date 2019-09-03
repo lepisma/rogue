@@ -129,6 +129,8 @@
          ("C-h F" . helpful-function)
          ("C-h C" . helpful-command)))
 
+(r|pkg htmlize)
+
 (r|pkg hy-mode
   :mode "\\.hy\\'")
 
@@ -478,6 +480,7 @@
 
 (r|pkg (w :location (recipe :fetcher github :repo "lepisma/w.el")))
 
-(r|pkg web-server)
+(r|pkg web-server
+  :after htmlize)
 
 (r|pkg writegood-mode)
