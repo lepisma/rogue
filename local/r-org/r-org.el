@@ -32,6 +32,7 @@
 (require 'org)
 (require 'org-ref)
 (require 'org-tempo)
+(require 'org-pomodoro)
 (require 'pile)
 
 ;; A few extra actions for helm-bibtex
@@ -220,27 +221,27 @@
           (insert (format "[[%s][%s]]" url text))))
     (message "No region active")))
 
+;;;###autoload
 (defun r-org/setup-general ()
   "Misc settings."
-
-  (with-eval-after-load 'org
-    (setq org-startup-indented t
-          org-clock-idle-time 5
-          org-bullets-bullet-list '("› ")
-          org-ellipsis "  "
-          org-pretty-entities t
-          org-hide-emphasis-markers t
-          org-agenda-block-separator ""
-          org-fontify-whole-heading-line t
-          org-fontify-done-headline t
-          org-fontify-quote-and-verse-blocks t
-          org-catch-invisible-edits 'show-and-error
-          org-cycle-separator-lines 0
-          spaceline-org-clock-p t
-          org-modules '(org-bibtex
-                        org-docview
-                        org-habit
-                        org-info))))
+  (setq org-startup-indented t
+        org-clock-idle-time 5
+        org-bullets-bullet-list '("› ")
+        org-ellipsis "  "
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+        org-agenda-block-separator ""
+        org-fontify-whole-heading-line t
+        org-fontify-done-headline t
+        org-fontify-quote-and-verse-blocks t
+        org-catch-invisible-edits 'show-and-error
+        org-cycle-separator-lines 0
+        spaceline-org-clock-p t
+        org-modules '(org-bibtex
+                      org-docview
+                      org-habit
+                      org-info)
+        org-pomodoro-keep-killed-pomodoro-time t))
 
 (provide 'r-org)
 
