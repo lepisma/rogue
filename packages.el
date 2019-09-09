@@ -242,6 +242,8 @@
   :hook
   ((org-mode . org-variable-pitch-minor-mode)))
 
+(r|pkg (outline-wiki :location (recipe :fetcher github :repo "lepisma/outline-wiki.el")))
+
 (r|pkg ov)
 
 (r|pkg parinfer
