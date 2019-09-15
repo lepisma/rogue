@@ -62,7 +62,7 @@
 (defun helm-bibtex-insert-review-line (key)
   (let ((item (-find (lambda (it) (string-equal key (helm-bibtex-candidate-get "=key=" it)))
                      (bibtex-completion-candidates))))
-    (insert (helm-bibtex-candidate-get "title" item) " (" key ")")))
+    (insert (helm-bibtex-candidate-get "title" item) " (cite:" key ")")))
 
 (defun r-org/setup-tex ()
   "Setup tex related stuff."
