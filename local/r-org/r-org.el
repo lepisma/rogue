@@ -59,6 +59,11 @@
       (dolist (pair pairs-to-insert)
         (org-set-property (upcase (car pair)) (cdr pair))))))
 
+(defun helm-bibtex-insert-review-line (key)
+  (let ((item (-find (lambda (it) (string-equal key (helm-bibtex-candidate-get "=key=" it)))
+                     (bibtex-completion-candidates))))
+    (insert (helm-bibtex-candidate-get "title" item) " (" key ")")))
+
 (defun r-org/setup-tex ()
   "Setup tex related stuff."
   (setq bib-library user-bib-file
@@ -98,7 +103,8 @@
 
   ;; Setup helm bibtex action for opening pdf
   (let ((actions '(("Open local pdf" . helm-bibtex-open-local-pdf)
-                   ("Insert notes template" . helm-bibtex-insert-notes-template))))
+                   ("Insert notes template" . helm-bibtex-insert-notes-template)
+                   ("Insert review line" . helm-bibtex-insert-review-line))))
     (dolist (action actions)
       (helm-delete-action-from-source (car action) helm-source-bibtex)
       (helm-add-action-to-source (car action) (cdr action) helm-source-bibtex))))
