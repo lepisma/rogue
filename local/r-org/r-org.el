@@ -33,6 +33,7 @@
 (require 'org-ref)
 (require 'org-tempo)
 (require 'org-pomodoro)
+(require 'org-edna)
 (require 'pile)
 
 ;; A few extra actions for helm-bibtex
@@ -230,6 +231,7 @@
 ;;;###autoload
 (defun r-org/setup-general ()
   "Misc settings."
+  (org-edna-load)
   (setq org-startup-indented t
         org-clock-idle-time 5
         org-bullets-bullet-list '("› ")

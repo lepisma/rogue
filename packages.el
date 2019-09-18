@@ -199,6 +199,8 @@
 (r|pkg org-cliplink
   :bind (("C-c y" . org-cliplink)))
 
+(r|pkg org-edna)
+
 (r|pkg org-journal
   :custom
   (org-journal-dir user-journal-dir)
@@ -409,7 +411,7 @@
   (r-mu4e/setup))
 
 (r|pkg (r-org :location local)
-  :after (org pile)
+  :after (org pile org-edna)
   :config
   (r-org/setup-general)
   ;; Notes setup is done after pile
