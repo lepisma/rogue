@@ -200,7 +200,7 @@
                  (:name "Next in line"
                         :todo ("NEXT" "TOREAD"))
                  (:auto-category t)))
-              (org-agenda-files (list ,(concat user-notes-dir "personal")
+              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "incoming/captures.org")
                                       ,(pile-path-abs "wiki:readings/reading-list")
                                       ,(pile-path-abs "wiki:readings/notes/documents")))))
