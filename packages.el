@@ -143,6 +143,9 @@
   :config
   (setq kindle-clipping-save-file user-clippings-file))
 
+(r|pkg kubernetes
+  :command (kubernetes-overview))
+
 (r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
 
 (r|pkg minimap
