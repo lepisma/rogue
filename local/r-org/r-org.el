@@ -232,7 +232,7 @@
 (defun r-org/clock-in ()
   "Clock in starting with the list view."
   (interactive)
-  (if (null org-clock-history)
+  (if (null (-filter #'marker-buffer org-clock-history))
       (org-pomodoro)
     (let ((current-prefix-arg '(4)))
       (call-interactively #'org-pomodoro))))
