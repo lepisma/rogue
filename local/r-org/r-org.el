@@ -266,7 +266,8 @@
   (r-utils/add-hooks
    '(org-pomodoro-started-hook
      org-pomodoro-finished-hook
-     org-pomodoro-killed-hook)
+     org-pomodoro-killed-hook
+     org-archive-hook)
    (list #'org-save-all-org-buffers))
   (setq org-pomodoro-keep-killed-pomodoro-time t)
 
