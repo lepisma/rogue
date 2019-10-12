@@ -56,6 +56,7 @@
 **** [[https://blog.rasa.com/rss/][Rasa Blog]]
 **** [[https://petewarden.com/feed/][Pete Warden's blog]]
 **** [[https://feeds.feedburner.com/ProfessorRobJHyndman][Rob J Hyndman]]
+**** [[https://blog.ml.cmu.edu/feed/][Blog | Machine Learning | Carnegie Mellon University]]
 
 *** Programming                                               :programming:
 **** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
