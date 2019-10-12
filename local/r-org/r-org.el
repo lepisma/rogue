@@ -29,6 +29,7 @@
 (require 'dash)
 (require 'f)
 (require 'helm-bibtex)
+(require 'hydra)
 (require 'org)
 (require 'org-ref)
 (require 'org-tempo)
@@ -228,6 +229,18 @@
           (insert (format "[[%s][%s]]" url text))))
     (message "No region active")))
 
+(defun r-org/clock-in ()
+  "Clock in starting with the list view."
+  (interactive)
+  (if (null org-clock-history)
+      (org-pomodoro)
+    (let ((current-prefix-arg '(4)))
+      (call-interactively #'org-pomodoro))))
+
+(defun r-org/clock-out ()
+  (interactive)
+  (org-pomodoro-kill))
+
 ;;;###autoload
 (defun r-org/setup-general ()
   "Misc settings."
@@ -248,8 +261,18 @@
         org-modules '(org-bibtex
                       org-docview
                       org-habit
-                      org-info)
-        org-pomodoro-keep-killed-pomodoro-time t))
+                      org-info))
+
+  (r-utils/add-hooks
+   '(org-pomodoro-started-hook
+     org-pomodoro-finished-hook
+     org-pomodoro-killed-hook)
+   (list #'org-save-all-org-buffers))
+  (setq org-pomodoro-keep-killed-pomodoro-time t)
+
+  (defhydra hydra-clock (global-map "C-c w" :exit t)
+    ("i" r-org/clock-in "clock in")
+    ("o" r-org/clock-out "clock out")))
 
 (provide 'r-org)
 
