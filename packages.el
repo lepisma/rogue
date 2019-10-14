@@ -95,7 +95,7 @@
   (setq eros-eval-result-prefix "▶ ")
   (eros-mode 1))
 
-(r|pkg (esi :location (recipe :fetcher github :repo "lepisma/emacs-speech-input")))
+;; (r|pkg (esi :location (recipe :fetcher github :repo "lepisma/emacs-speech-input")))
 
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
@@ -144,7 +144,7 @@
   (setq kindle-clipping-save-file user-clippings-file))
 
 (r|pkg kubernetes
-  :command (kubernetes-overview))
+  :commands (kubernetes-overview))
 
 (r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
 
