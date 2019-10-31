@@ -107,12 +107,12 @@ With argument, do this that many times."
   "Read unread emails"
   (interactive)
   (let ((subjects (mapcar
-                   (lambda (mail) (plist-get mail :subject))
+                   (lambda (mail) (concat (plist-get mail :subject) ", from " (caar (plist-get mail :from))))
                    (r-mu4e/get-unread-mails))))
     (quack-quack (format "You have %s. %s"
                          (cond ((= (length subjects) 0) "no unread emails")
                                ((= (length subjects) 1) "1 unread email")
-                               (t (format "%s unread emails" (length subjects))))
+                               (t (format "%s unread e mails" (length subjects))))
                          (s-join ". " subjects)))))
 
 (defun magit-bookmarks ()
