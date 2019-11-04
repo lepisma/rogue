@@ -37,6 +37,11 @@
 (define-key org-mode-map (kbd "C-c C-x C-s") nil)
 (define-key elfeed-search-mode-map (kbd "s") nil)
 
+;; Helm
+(define-key helm-map (kbd "<left>") 'helm-previous-source)
+(define-key helm-map (kbd "<right>") 'helm-next-source)
+(customize-set-variable 'helm-ff-lynx-style-map t)
+
 ;; Smartparens
 (global-set-key (kbd "M-<right>") 'sp-forward-slurp-sexp)
 (global-set-key (kbd "M-<left>") 'sp-forward-barf-sexp)
