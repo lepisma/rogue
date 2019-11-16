@@ -192,6 +192,8 @@
            "okular"
            (file)))))
 
+(r|pkg org-analyzer)
+
 (r|pkg (org-bbq :location
                 (recipe :fetcher url
                         :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/org-bbq.el"))
