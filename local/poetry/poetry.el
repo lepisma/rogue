@@ -32,15 +32,17 @@
 (require 'f)
 (require 'helm)
 
+(defcustom poetry-venv-dir "~/.cache/pypoetry/virtualenvs/"
+  "Path to the virtual environment directory for poetry.")
+
 ;;;###autoload
 (defun poetry-activate ()
   "Activate a poetry virtual environment."
   (interactive)
-  (let* ((venv-dir "~/.cache/pypoetry/virtualenvs/")
-         (envs (directory-files venv-dir nil "^[a-z]")))
+  (let* ((envs (directory-files poetry-venv-dir nil "^[a-z]")))
     (helm :sources (helm-build-sync-source "virtualenvs"
                      :candidates envs
-                     :action `(("Activate venv" . (lambda (env) (pyvenv-activate (f-join (f-expand ,venv-dir) env))))))
+                     :action `(("Activate venv" . (lambda (env) (pyvenv-activate (f-join (f-expand ,poetry-venv-dir) env))))))
           :buffer "*helm poetry*"
           :prompt "Activate : ")))
 
