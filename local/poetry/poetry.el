@@ -89,8 +89,7 @@ virtualenv."
   (interactive)
   (poetry-ensure-activation)
   (let* ((items (poetry-list-packages poetry-global-site-packages-dir))
-         (picked (helm :sources (helm-build-sync-source "Global items"
-                                  :candidates items)))
+         (picked (helm :sources (helm-build-sync-source "Global items" :candidates items)))
          (link-path (f-join (poetry-venv-site-packages-dir pyvenv-virtual-env) (f-filename picked))))
     (if (f-exists? link-path)
         (error "Link path %s already exists" link-path)
@@ -101,7 +100,13 @@ virtualenv."
 (defun poetry-unlink-global ()
   "Unlink a previously pulled package from global environment."
   (interactive)
-  (poetry-ensure-activation))
+  (poetry-ensure-activation)
+  (let ((items (poetry-list-symlink-packages (poetry-venv-site-packages-dir pyvenv-virtual-env))))
+    (if (null items)
+        (message "No packages linked in current venv")
+      (let ((picked (helm :sources (helm-build-sync-source "Symlinked items" :candidates items))))
+        (delete-file picked)
+        (message "Unlinked %s" picked)))))
 
 (provide 'poetry)
 
