@@ -133,16 +133,6 @@ With argument, do this that many times."
       (transient-append-suffix 'magit-commit "c"
         '("g" "Commit with generic message" magit-commit-generic-update))))
 
-(defun poetry-activate ()
-  (interactive)
-  (let* ((venv-dir "~/.cache/pypoetry/virtualenvs/")
-         (envs (directory-files venv-dir nil "^[a-z]")))
-    (helm :sources (helm-build-sync-source "virtualenvs"
-                     :candidates envs
-                     :action `(("Activate venv" . (lambda (env) (pyvenv-activate (f-join (f-expand ,venv-dir) env))))))
-          :buffer "*helm poetry*"
-          :prompt "Activate : ")))
-
 (defun clear-entity (text entity)
   "Remove the ranged ENTITY from TEXT."
   (let* ((match-range (alist-get 'range entity))
