@@ -35,6 +35,9 @@
 (defcustom poetry-venv-dir "~/.cache/pypoetry/virtualenvs/"
   "Path to the virtual environment directory for poetry.")
 
+(defcustom poetry-global-site-packages-dir "~/.pyenv/versions/3.6.8/lib/python3.6/site-packages/"
+  "Path to global site packages directory.")
+
 ;;;###autoload
 (defun poetry-activate ()
   "Activate a poetry virtual environment."
