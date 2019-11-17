@@ -31,6 +31,7 @@
 (require 'pyvenv)
 (require 'f)
 (require 'helm)
+(require 'cl-lib)
 
 (defcustom poetry-venv-root "~/.cache/pypoetry/virtualenvs/"
   "Path to the virtual environment directory for poetry.")
@@ -76,6 +77,10 @@ SITE-PACKAGES-DIR."
   ;;       directory entries, putting the burden of identifying packages on the
   ;;       user.
   (mapcar (lambda (entry) (cons (f-filename entry) entry)) (directory-files site-packages-dir t "^[a-zA-Z_-]")))
+
+(defun poetry-list-symlink-packages (site-packages-dir)
+  "List packages symlinked in SITE-PACKAGES-DIR."
+  (cl-remove-if-not (lambda (it) (f-symlink? (cdr it))) (poetry-list-packages site-packages-dir)))
 
 ;;;###autoload
 (defun poetry-link-global ()
