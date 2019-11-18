@@ -336,7 +336,7 @@
                              #'pile-hooks-post-stringify-title
                              #'pile-hooks-post-generate-index))))
 
-(r|pkg (poetry :location local))
+(r|pkg (poetry :location (recipe :fetcher github :repo "lepisma/poetry.el")))
 
 (r|pkg powerthesaurus)
 
