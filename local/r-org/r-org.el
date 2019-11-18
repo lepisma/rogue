@@ -165,7 +165,7 @@
             ;; Minor logs
             ("l" "Log")
             ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
-             nil :empty-lines-after 1)
+             "- %U %?" :empty-lines-after 1)
             ("ll" "Logistics" entry (file+olp ,(concat user-notes-dir "personal/notes.org") "Logistics")
              "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)
 
