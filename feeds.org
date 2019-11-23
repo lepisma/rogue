@@ -15,6 +15,10 @@
 **** [[https://feeds.megaphone.fm/stuffyoushouldknow][Stuff You Should Know]]
 **** [[https://youarenotsosmart.com/feed/][You Are Not So Smart]]
 **** [[https://commondescentpodcast.podbean.com/feed.xml][The Common Descent Podcast]]
+**** [[https://wakingup.libsyn.com/rss][Making Sense with Sam Harris]]
+**** [[http://feed.thisamericanlife.org/talpodcast][This American Life]]
+**** [[https://changelog.com/podcast/feed][The Changelog]]
+**** [[https://feeds.feedburner.com/BackStoryRadio][BackStory]]
 
 *** Videos                                                          :video:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
