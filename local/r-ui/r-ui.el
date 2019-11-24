@@ -279,6 +279,7 @@ from doom-themes."
   (add-hook 'css-mode-hook #'rainbow-mode)
 
   (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode))
+  (r-utils/add-hooks '(yaml-mode-hook toml-mode-hook) (list (lambda () (variable-pitch-mode 0))))
   (add-hook 'term-mode-hook #'toggle-truncate-lines)
 
   ;; Clear message buffer
