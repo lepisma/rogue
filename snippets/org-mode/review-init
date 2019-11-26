@@ -27,10 +27,10 @@
 * Experiments
 -
 
+* Readings
+-
+
 * Programming
 #+HTML: <figure> <div id="commit-plot"></div> <figcaption>
 Commits for week $1-20$2 and 4 previous weeks.
 #+HTML: </figcaption></figure>
-
-* Readings
--
