@@ -88,6 +88,8 @@
 
 (r|pkg (elml :location (recipe :fetcher github :repo "lepisma/elml")))
 
+(r|pkg emojify)
+
 (r|pkg enlive)
 
 (r|pkg eros
