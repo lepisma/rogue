@@ -87,3 +87,4 @@
 **** [[http://250bpm.com/feed/pages/pagename/start/category/blog/t/250bpm-blogs/h/http%3A%2F%2Fwww.250bpm.com%2Fblog][250bpm-blogs]]
 **** [[https://captnemo.in/atom.xml][Abhay Rana]]
 **** [[https://two-wrongs.com/feed.xml][Two-Wrongs]]
+**** [[https://feeds.feedblitz.com/plperspectives&x=1][PL Perspectives]]
