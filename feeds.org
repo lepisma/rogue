@@ -19,6 +19,7 @@
 **** [[http://feed.thisamericanlife.org/talpodcast][This American Life]]
 **** [[https://changelog.com/podcast/feed][The Changelog]]
 **** [[https://feeds.feedburner.com/BackStoryRadio][BackStory]]
+**** [[https://lexfridman.com/category/ai/feed/][Artificial Intelligence (AI Podcast) with Lex Fridman]]
 
 *** Videos                                                          :video:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
