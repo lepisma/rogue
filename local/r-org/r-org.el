@@ -167,12 +167,7 @@
             ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
              "- %U %?" :empty-lines-after 1)
             ("ll" "Logistics" entry (file+olp ,(concat user-notes-dir "personal/notes.org") "Logistics")
-             "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)
-
-            ;; Work related things
-            ("w" "Work")
-            ("wm" "Minor" entry (file ,(concat user-notes-dir "work/main.org"))
-             "* %? :minor:\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
+             "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
 
     (setq org-html-validation-link nil)
 
@@ -196,10 +191,6 @@
                         :todo ("TODO" "NOW"))
                  (:name "Readings"
                         :todo "READING")
-                 (:name "Think and plan"
-                        :todo "THINK")
-                 (:name "Next in line"
-                        :todo ("NEXT" "TOREAD"))
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "incoming/captures.org")
@@ -210,12 +201,8 @@
               (alltodo))
              ((org-super-agenda-groups
                '((:name "Important"
-                        :priority "A")
-                 (:name "Reading"
-                        :tag "read")
-                 (:name "Minor"
-                        :tag "minor")))
-              (org-agenda-files (list ,(concat user-notes-dir "work/main.org")
+                        :priority "A")))
+              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "incoming/captures.org")))))))))
 
 (defun r-org/cliplink-to-region ()
