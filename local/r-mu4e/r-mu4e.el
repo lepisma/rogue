@@ -99,7 +99,8 @@
                               (:maildir    . 15)
                               (:subject))
         mu4e-attachment-dir "~/Downloads/"
-        mu4e-view-show-images t)
+        mu4e-view-show-images t
+        mu4e-compose-signature "Abhinav Tushar\nhttps://lepisma.xyz\nSent with my mu4e")
 
   (setq mu4e-use-fancy-chars t
         mu4e-headers-draft-mark          '("D"  . " ")
