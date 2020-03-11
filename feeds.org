@@ -1,5 +1,6 @@
 * Items                                                              :elfeed:
 ** Magazines                                                      :magazine:
+*** [[https://api.quantamagazine.org/feed/][Quanta Magazine]]
 
 ** Comics                                                           :comics:
 *** [[http://www.existentialcomics.com/rss.xml][Existential Comics]]
@@ -20,6 +21,7 @@
 **** [[https://changelog.com/podcast/feed][The Changelog]]
 **** [[https://feeds.feedburner.com/BackStoryRadio][BackStory]]
 **** [[https://lexfridman.com/category/ai/feed/][Artificial Intelligence (AI Podcast) with Lex Fridman]]
+**** [[https://twimlai.com/feed][The TWIML AI Podcast (formerly This Week in Machine Learning & Artificial Int...]]
 
 *** Videos                                                          :video:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
