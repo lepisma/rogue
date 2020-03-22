@@ -212,6 +212,9 @@
 
 (r|pkg org-edna)
 
+(r|pkg org-fragtog
+  :hook ((org-mode . org-fragtog-mode)))
+
 (r|pkg org-journal
   :custom
   (org-journal-dir user-journal-dir)
