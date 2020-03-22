@@ -34,7 +34,6 @@
 (require 'org-ref)
 (require 'org-tempo)
 (require 'org-pomodoro)
-(require 'org-edna)
 (require 'pile)
 
 ;; A few extra actions for helm-bibtex
@@ -135,7 +134,6 @@
      (R          . t)
      (restclient . t)
      (ruby       . t)
-     (sagemath   . t)
      (scheme     . t)
      (shell      . t)
      (sql        . t)
@@ -236,7 +234,6 @@
 ;;;###autoload
 (defun r-org/setup-general ()
   "Misc settings."
-  (org-edna-load)
   (setq org-startup-indented t
         org-clock-idle-time 5
         org-bullets-bullet-list '("› ")
