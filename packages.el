@@ -92,6 +92,8 @@
 
 (r|pkg enlive)
 
+(r|pkg eredis)
+
 (r|pkg eros
   :config
   (setq eros-eval-result-prefix "▶ ")
