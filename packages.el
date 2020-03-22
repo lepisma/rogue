@@ -21,8 +21,6 @@
 
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
-(r|pkg buttercup)
-
 (r|pkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
   :after (s dash-functional)
   :config
@@ -52,11 +50,6 @@
   :after company
   :config
   (add-hook 'text-mode-hook #'company-box-mode))
-
-(r|pkg conda
-  :config
-  (conda-env-initialize-eshell)
-  (setq conda-anaconda-home (expand-file-name "~/.miniconda")))
 
 (r|pkg cricbuzz)
 
@@ -137,9 +130,6 @@
 
 (r|pkg htmlize)
 
-(r|pkg hy-mode
-  :mode "\\.hy\\'")
-
 (r|pkg (iorg :location (recipe :fetcher github :repo "lepisma/iorg"))
   :hook ((org-mode . iorg-mode)))
 
@@ -171,8 +161,6 @@
 (r|pkg mustache)
 
 (r|pkg ob-async)
-
-(r|pkg ob-sagemath)
 
 (r|pkg (obtt :location (recipe :fetcher github :repo "lepisma/obtt"))
   :after org
@@ -210,8 +198,6 @@
 (r|pkg org-cliplink
   :bind (("C-c y" . org-cliplink)))
 
-(r|pkg org-edna)
-
 (r|pkg org-fragtog
   :hook ((org-mode . org-fragtog-mode)))
 
@@ -219,12 +205,6 @@
   :custom
   (org-journal-dir user-journal-dir)
   (org-journal-enable-encryption t))
-
-(r|pkg org-kanban)
-
-(r|pkg (org-pretty-table :location (recipe :fetcher github :repo "Fuco1/org-pretty-table")))
-  ;; :config
-  ;; (add-hook 'org-mode-hook #'org-pretty-table-mode))
 
 (r|pkg (org-make :location local)
   :after org)
@@ -404,10 +384,6 @@
 
   (add-to-list 'read-lyrics-getters #'read-lyrics-get-bbq))
 
-(r|pkg realgud
-  :config
-  (setq realgud:pdb-command-name "python -m pdb"))
-
 (r|pkg (r-ligatures :location local)
   :after r-utils
   :config
@@ -442,20 +418,10 @@
 
 (r|pkg (r-utils :location local))
 
-(r|pkg sage-shell-mode
-  :config
-  (sage-shell:define-alias)
-  (setq sage-shell-view-default-resolution 150)
-  (add-hook 'sage-shell-mode-hook #'eldoc-mode)
-  (add-hook 'sage-shell:sage-mode-hook #'eldoc-mode)
-  (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode))
-
 (r|pkg shell-switcher
   :config (setq shell-switcher-mode t)
   :bind (("C-'" . shell-switcher-switch-buffer)
          ("C-\"" . shell-switcher-new-shell)))
-
-(r|pkg snakemake-mode)
 
 (r|pkg solaire-mode
   :hook ((prog-mode . turn-on-solaire-mode)
@@ -486,13 +452,7 @@
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
 
-(r|pkg tj3-mode
-  :mode ("\\.tjp\\'" . tj3-mode))
-
 (r|pkg (viz :location local))
-
-(r|pkg vue-mode
-  :mode ("\\.vue\\'" . vue-mode))
 
 (r|pkg unicode-fonts
   :config
