@@ -30,7 +30,6 @@
 (require 'spaceline)
 (require 'spaceline-config)
 (require 'pyvenv)
-(require 'conda)
 
 (spaceline-define-segment ati-persp-name
   "The current perspective name."
@@ -56,14 +55,6 @@
          (fg (face-attribute (if vname 'default 'font-lock-doc-face) :foreground)))
     (if vname
         (propertize vname 'face `(:height 0.8 :foreground ,fg :inherit)
-                    'display '(raise 0.2)))))
-
-(spaceline-define-segment ati-conda-env
-  "Current conda environment."
-  (let ((fg (face-attribute (if conda-env-current-name 'default 'font-lock-doc-face) :foreground)))
-    (if conda-env-current-name
-        (propertize conda-env-current-name
-                    'face `(:height 0.8 :foreground ,fg :inherit)
                     'display '(raise 0.2)))))
 
 (spaceline-define-segment
@@ -285,7 +276,6 @@ the directions of the separator."
     ati-right-2-separator)
 
   '(ati-pyvenv
-    ati-conda-env
     ati-right-1-separator
     ((ati-buffer-position
       ati-time) :separator "  " :face highlight-face)))

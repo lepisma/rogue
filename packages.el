@@ -403,7 +403,7 @@
   (r-mu4e/setup))
 
 (r|pkg (r-org :location local)
-  :after (org pile org-edna hydra)
+  :after (org pile hydra)
   :config
   (r-org/setup-general)
   ;; Notes setup is done after pile
