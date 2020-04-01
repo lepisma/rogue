@@ -155,7 +155,7 @@ from doom-themes."
         (lambda ()
           (concat (propertize
                    (abbreviate-file-name (eshell/pwd)) 'face '(:foreground "#727280"))
-                  " λ ")))
+                  "\nλ ")))
 
   (setq tramp-default-method "ssh"
         eshell-scroll-show-maximum-output nil
