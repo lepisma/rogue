@@ -452,6 +452,8 @@
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
 
+(r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog")))
+
 (r|pkg (viz :location local))
 
 (r|pkg unicode-fonts
