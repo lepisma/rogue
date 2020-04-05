@@ -98,7 +98,7 @@ values."
      xkcd)
    dotspacemacs-additional-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe ess-R-object-popup)
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages nil))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -202,6 +202,8 @@ you should place you code here."
   (setq user-full-name "Abhinav Tushar"
         browse-url-generic-program (executable-find "www")
         browse-url-browser-function 'browse-url-generic)
+
+  (delete-selection-mode t)
 
   (server-start)
   (setq evil-emacs-state-cursor 'bar)
