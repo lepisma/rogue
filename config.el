@@ -666,6 +666,10 @@ TODO: Simplify this macro"
              :background ,bg-dark)
    (:strike-through t
                     :family ,et-font))
+  (org-drawer
+   (:height 0.9
+            :foreground ,comment)
+   (:height 0.8))
   (org-ellipsis
    (:underline nil
                :background ,accent-dark-gray
