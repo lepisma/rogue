@@ -29,6 +29,7 @@
 (require 'r-utils)
 (require 'dash-functional)
 (require 'treemacs)
+(require 'all-the-icons)
 
 (defun r-ui/clear-sides ()
   "Setup gaps on left and right sides."

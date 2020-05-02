@@ -248,18 +248,6 @@ you should place you code here."
   ;; From https://github.com/Fuco1/smartparens/issues/840#issuecomment-396797118
   (dolist (key '("(" ")" "{" "}")) (define-key c-mode-base-map (kbd key) nil))
 
-  ;; Few services
-  (prodigy-define-service
-    :name "Bye bot"
-    :command "fish"
-    :args '("-c" "cd ~/.tofish/v/bye; direnv allow; direnv exec ./ poetry run bye --db=data.sqlite")
-    :tags '(work)
-    :stop-signal 'sigkill
-    :kill-process-buffer-on-stop t)
-
-  (cl-loop for service in prodigy-services
-           do (prodigy-start-service service))
-
   ;; Load PG if found locally
   (when (f-exists? "~/.emacs.d/PG")
     (load "~/.emacs.d/PG/generic/proof-site")

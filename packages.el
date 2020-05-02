@@ -10,8 +10,6 @@
          (use-package ,id ,@body))
        (push ',name rogue-packages))))
 
-(r|pkg all-the-icons)
-
 (r|pkg beacon
   :config
   (beacon-mode)
@@ -46,15 +44,7 @@
 
 (r|pkg colormaps)
 
-(r|pkg company-box
-  :after company
-  :config
-  (add-hook 'text-mode-hook #'company-box-mode))
-
 (r|pkg cricbuzz)
-
-(r|pkg (dg :location local)
-  :after (elml web-server))
 
 (r|pkg dired-subtree
   :after ranger
@@ -69,7 +59,7 @@
 (r|pkg dockerfile-mode)
 
 (r|pkg doom-themes
-  :after (treemacs r-ui)
+  :after (all-the-icons treemacs r-ui)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
@@ -129,9 +119,6 @@
          ("C-h C" . helpful-command)))
 
 (r|pkg htmlize)
-
-(r|pkg (iorg :location (recipe :fetcher github :repo "lepisma/iorg"))
-  :hook ((org-mode . iorg-mode)))
 
 (r|pkg (kindle :location local)
   :config
@@ -365,10 +352,6 @@
   (add-hook 'elfeed-db-update-hook (lambda () (r-feeds/elfeed-to-org r-feeds-dump-file)))
   (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
-(r|pkg (r-kv :location local)
-  :config
-  (setq r-kv-file (concat user-layer-dir "misc/" "rkv.el")))
-
 (r|pkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
   :after (s levenshtein)
   :config
@@ -412,7 +395,7 @@
   (r-org/setup-tex))
 
 (r|pkg (r-ui :location local)
-  :after (treemacs r-utils)
+  :after (all-the-icons treemacs r-utils)
   :config
   (r-ui/setup))
 
@@ -428,18 +411,12 @@
          (minibuffer-setup . solaire-mode-in-minibuffer)
          (ediff-prepare-buffer . solaire-mode)))
 
-(r|pkg (spaceline-all-the-icons :location local)
-  :after spaceline
-  :config
-  (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati)))))
-
 (r|pkg sublimity
   :demand t
   :config
   (require 'sublimity-scroll)
   (setq sublimity-scroll-weight 5
-        sublimity-scroll-drift-length 1)
-  (sublimity-mode 1))
+        sublimity-scroll-drift-length 1))
 
 (r|pkg swiper
   :bind (("C-s" . swiper)
