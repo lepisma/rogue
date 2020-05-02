@@ -155,6 +155,7 @@ from doom-themes."
         doom-modeline-modal-icon t
         doom-modeline-mu4e t
         doom-modeline-buffer-modification-icon nil
+        doom-modeline-buffer-state-icon nil
         doom-modeline-major-mode-color-icon nil)
 
   (setq eshell-prompt-function
