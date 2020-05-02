@@ -26,6 +26,7 @@
 
 ;;; Code:
 
+(require 'company)
 (require 'r-utils)
 (require 'dash-functional)
 (require 'treemacs)
@@ -280,7 +281,9 @@ from doom-themes."
   ;; Other general hooks
   (add-hook 'css-mode-hook #'rainbow-mode)
 
-  (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode))
+  (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode
+                                             (lambda () (setq-local company-frontends '(company-preview-frontend)))))
+
   (r-utils/add-hooks '(yaml-mode-hook toml-mode-hook) (list (lambda () (variable-pitch-mode 0))))
   (add-hook 'term-mode-hook #'toggle-truncate-lines)
 
@@ -289,7 +292,6 @@ from doom-themes."
     (r-ui/hide-mode-line)
     (r-ui/clear-header)
     (r-ui/clear-sides)))
-
 
 (provide 'r-ui)
 
