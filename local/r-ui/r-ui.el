@@ -30,6 +30,7 @@
 (require 'dash-functional)
 (require 'treemacs)
 (require 'all-the-icons)
+(require 'doom-modeline)
 
 (defun r-ui/clear-sides ()
   "Setup gaps on left and right sides."
@@ -146,11 +147,14 @@ from doom-themes."
 (defun r-ui/setup-misc ()
   "Setup ui for misc packages/tools."
 
-  (use-package em-tramp
-    :config
-    (setq eshell-prefer-lisp-functions t
-          password-cache t
-          password-cache-expiry 3600))
+  (setq doom-modeline-height 20
+        doom-modeline-bar-width 4
+        doom-modeline-icon t
+        doom-modeline-buffer-encoding nil
+        doom-modeline-modal-icon t
+        doom-modeline-mu4e t
+        doom-modeline-buffer-modification-icon nil
+        doom-modeline-major-mode-color-icon nil)
 
   (setq eshell-prompt-function
         (lambda ()

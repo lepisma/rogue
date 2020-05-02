@@ -186,6 +186,23 @@ TODO: Simplify this macro"
   (dired-subtree-depth-6-face
    (:background nil)
    nil)
+  (doom-modeline-bar
+   (:background ,comment)
+   nil)
+  (doom-modeline-buffer-major-mode
+   (:foreground ,comment)
+   nil)
+  (doom-modeline-buffer-modified
+   (:forground ,builtin)
+   nil)
+  (doom-modeline-buffer-path
+   (:foreground ,string)
+   nil)
+  (doom-modeline-highlight
+   (:foreground ,builtin)
+   nil)
+  (doom-modeline-info
+   (:foreground ,variable-name))
   (treemacs-directory-collapsed-face
    (:foreground ,fg-white)
    nil)
@@ -543,12 +560,11 @@ TODO: Simplify this macro"
    (:background ,bg-dark-solaire)
    nil)
   (mode-line
-   (:background ,bg-darker)
-   (:background ,bg-white
-                :box nil))
+   (:background ,bg-darker :height 0.9)
+   (:background ,bg-white :box nil :height 0.9))
   (mode-line-inactive
-   (:background ,bg-dark)
-   (:box nil))
+   (:background ,bg-dark :height 0.9)
+   (:box nil :height 0.9))
   (mu4e-header-highlight-face
    (:underline nil
                :background ,highlight)

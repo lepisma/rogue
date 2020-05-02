@@ -61,3 +61,5 @@
 
 (define-key org-mode-map (kbd "C-c .") 'org-time-stamp-inactive)
 (global-set-key (kbd "C-c b") 'helm-bibtex)
+
+(define-key org-mode-map (kbd "C-c y") 'org-cliplink)

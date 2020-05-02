@@ -96,6 +96,7 @@ values."
                       version-control-global-margin t
                       version-control-diff-side 'left)
      xkcd)
+   dotspacemacs-mode-line-theme 'doom
    dotspacemacs-additional-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe ess-R-object-popup)
    dotspacemacs-delete-orphan-packages nil))
@@ -218,11 +219,6 @@ you should place you code here."
   (openwith-mode)
   (require 'r-mu4e)
   (require 'r-ui)
-
-  ;; Transparency
-  (spacemacs/enable-transparency)
-  (add-hook 'after-make-frame-functions
-            (lambda (frame) (spacemacs/enable-transparency frame)))
 
   ;; Language specific settings
   (setq-default web-mode-markup-indent-offset 2

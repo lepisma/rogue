@@ -118,8 +118,6 @@
          ("C-h F" . helpful-function)
          ("C-h C" . helpful-command)))
 
-(r|pkg htmlize)
-
 (r|pkg (kindle :location local)
   :config
   (setq kindle-clipping-save-file user-clippings-file))
@@ -181,9 +179,6 @@
 (r|pkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
   :config
   (setq org-books-file user-books-file))
-
-(r|pkg org-cliplink
-  :bind (("C-c y" . org-cliplink)))
 
 (r|pkg org-fragtog
   :hook ((org-mode . org-fragtog-mode)))
@@ -395,7 +390,7 @@
   (r-org/setup-tex))
 
 (r|pkg (r-ui :location local)
-  :after (all-the-icons treemacs r-utils)
+  :after (all-the-icons treemacs r-utils doom-modeline)
   :config
   (r-ui/setup))
 
