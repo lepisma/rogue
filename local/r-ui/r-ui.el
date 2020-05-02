@@ -253,6 +253,7 @@ from doom-themes."
                        magit-popup-mode-hook
                        magit-status-mode-hook
                        messages-buffer-mode-hook
+                       mu4e-compose-mode-hook
                        org-agenda-mode-hook
                        process-menu-mode-hook
                        ranger-mode-hook
