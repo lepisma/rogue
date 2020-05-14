@@ -160,8 +160,8 @@
              "* %?\nSCHEDULED: %^t" :empty-lines 1)
             ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
              "* %?\n%a" :empty-lines 1)
-
-            ;; Minor logs
+            ("w" "Work task" entry (file+olp ,(concat user-notes-dir "work/main.org") "Captures")
+             "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)
             ("l" "Log")
             ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
              "- %U %?" :empty-lines-after 1)
