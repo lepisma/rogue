@@ -195,7 +195,8 @@
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
                                       ,(pile-path-abs "wiki:readings/reading-list")
-                                      ,(pile-path-abs "wiki:readings/notes/documents")))))
+                                      ,(pile-path-abs "wiki:readings/notes/documents")))
+              (org-agenda-tag-filter-preset '("-parked"))))
             ("c" "Humans"
              ((agenda "")
               (alltodo))
@@ -207,7 +208,8 @@
                '((:name "Important"
                         :priority "A")))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work") org-agenda-file-regexp)
-                                      ,(concat user-notes-dir "incoming/captures.org")))))))))
+                                      ,(concat user-notes-dir "incoming/captures.org")))
+              (org-agenda-tag-filter-preset '("-parked"))))))))
 
 (defun r-org/cliplink-to-region ()
   "Add link from clipboard to the region."
