@@ -918,6 +918,10 @@ TODO: Simplify this macro"
   (region
    (:background ,region)
    nil)
+  (secondary-selection
+   (:background ,highlight
+                :foreground ,fg-white)
+   (:background ,shade-white))
   (show-paren-match
    (:background ,keyword
                 :foreground ,bg-dark)
