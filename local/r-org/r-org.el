@@ -156,58 +156,42 @@
     ;; Capture templates
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("n" "Note" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %?\nSCHEDULED: %^t" :empty-lines 1)
-            ("b" "Bookmark" entry (file ,(concat user-notes-dir "personal/notes.org"))
-             "* %?\n%a" :empty-lines 1)
-            ("w" "Work task" entry (file+olp ,(concat user-notes-dir "work/main.org") "Captures")
-             "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)
-            ("l" "Log")
-            ("lw" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Weekly review" "Done")
-             "- %U %?" :empty-lines-after 1)
-            ("ll" "Logistics" entry (file+olp ,(concat user-notes-dir "personal/notes.org") "Logistics")
-             "* %?\nSCHEDULED: %^t" :empty-lines 1 :prepend t)))
+          `(("n" "Personal task" entry (file ,(concat user-notes-dir "personal/tasks/misc.org"))
+             "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
+            ("w" "Work task" entry (file ,(concat user-notes-dir "work/tasks/planning.org"))
+             "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
+            ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/tasks/misc.org") "Weekly review" "Done")
+             "- %U %?" :empty-lines-after 1)))
 
     (setq org-html-validation-link nil)
 
-    (setq org-refile-use-outline-path 'file
+    (setq org-refile-use-outline-path 'full-file-path
           org-outline-path-complete-in-steps nil
-          org-refile-targets `((org-agenda-files :maxlevel . 1)
-                               (,(concat user-notes-dir "work/main.org") :maxlevel . 1)))
+          org-refile-targets `((,(append (directory-files-recursively (concat user-notes-dir "personal/tasks") org-agenda-file-regexp)
+                                         (directory-files-recursively (concat user-notes-dir "work/tasks") org-agenda-file-regexp))
+                                :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
           `(("n" "Personal agenda"
              ((agenda "")
               (alltodo))
              ((org-super-agenda-groups
-               '((:name "Travel"
-                        :tag "travel")
-                 (:name "Logistics"
-                        :tag "logistics")
-                 (:name "Jams"
-                        :tag "jam")
-                 (:name "TODO"
-                        :todo ("TODO" "NOW"))
-                 (:name "Readings"
-                        :todo "READING")
+               '((:name "Important"
+                        :priority "A")
                  (:auto-category t)))
-              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal") org-agenda-file-regexp)
+              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal/tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
-                                      ,(pile-path-abs "wiki:readings/reading-list")
-                                      ,(pile-path-abs "wiki:readings/notes/documents")))
+                                      ,(concat user-notes-dir "personal/humans.org.gpg")))
               (org-agenda-tag-filter-preset '("-parked"))))
-            ("c" "Humans"
-             ((agenda "")
-              (alltodo))
-             ((org-agenda-files (list ,(concat user-notes-dir "personal/humans.org.gpg")))))
             ("w" "Work agenda"
              ((agenda "")
               (alltodo))
              ((org-super-agenda-groups
                '((:name "Important"
-                        :priority "A")))
-              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work") org-agenda-file-regexp)
+                        :priority "A")
+                 (:auto-category t)))
+              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work/tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "incoming/captures.org")))
               (org-agenda-tag-filter-preset '("-parked"))))))))
 
