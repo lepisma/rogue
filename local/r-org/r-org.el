@@ -248,7 +248,8 @@
   (defhydra hydra-clock (global-map "C-c w" :exit t)
     ("i" r-org/clock-in "clock in")
     ("c" org-pomodoro "clock in current")
-    ("o" r-org/clock-out "clock out")))
+    ("o" r-org/clock-out "clock out")
+    ("j" org-clock-goto "clock jump")))
 
 (provide 'r-org)
 
