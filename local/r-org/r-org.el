@@ -173,8 +173,7 @@
 
     (setq org-agenda-custom-commands
           `(("n" "Personal agenda"
-             ((agenda "")
-              (alltodo))
+             ((agenda ""))
              ((org-super-agenda-groups
                '((:name "Important"
                         :priority "A")
@@ -185,8 +184,7 @@
                                       ,(concat user-notes-dir "personal/humans.org.gpg")))
               (org-agenda-tag-filter-preset '("-parked"))))
             ("w" "Work agenda"
-             ((agenda "")
-              (alltodo))
+             ((agenda ""))
              ((org-super-agenda-groups
                '((:name "Important"
                         :priority "A")
