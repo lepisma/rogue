@@ -32,6 +32,7 @@
 (require 'treemacs)
 (require 'all-the-icons)
 (require 'doom-modeline)
+(require 'pyvenv)
 
 (defun r-ui/clear-sides ()
   "Setup gaps on left and right sides."
@@ -157,6 +158,10 @@ from doom-themes."
         doom-modeline-buffer-modification-icon nil
         doom-modeline-buffer-state-icon nil
         doom-modeline-major-mode-color-icon nil)
+
+  (add-to-list 'global-mode-string
+               '(:eval (when pyvenv-virtual-env
+                         (car (last (f-split pyvenv-virtual-env))))))
 
   (setq eshell-prompt-function
         (lambda ()
