@@ -42,7 +42,6 @@ values."
           org-enable-org-journal-support t)
      (python :variables
              python-backend 'lsp
-             python-lsp-server 'mspyls
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
      racket
