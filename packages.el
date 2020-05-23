@@ -406,6 +406,10 @@
 
 (r|pkg (r-utils :location local))
 
+(r|pkg (sarso :location (recipe :fetcher github :repo "lepisma/sarso"))
+  :config
+  (setq sarso-jira-root "https://vernacular-ai.atlassian.net"))
+
 (r|pkg shell-switcher
   :config (setq shell-switcher-mode t)
   :bind (("C-'" . shell-switcher-switch-buffer)
