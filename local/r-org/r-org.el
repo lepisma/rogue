@@ -156,7 +156,7 @@
     ;; Capture templates
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("n" "Personal task" entry (file ,(concat user-notes-dir "personal/tasks/misc.org"))
+          `(("p" "Personal task" entry (file ,(concat user-notes-dir "personal/tasks/misc.org"))
              "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
             ("w" "Work task" entry (file ,(concat user-notes-dir "work/tasks/planning.org"))
              "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
@@ -172,7 +172,7 @@
                                 :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
-          `(("n" "Personal agenda"
+          `(("p" "Personal agenda"
              ((agenda ""))
              ((org-super-agenda-groups
                '((:name "Important"
