@@ -445,7 +445,9 @@
 (r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog")))
 
 ;; Symlinked
-(r|pkg (vimh :location local))
+(r|pkg (vimh :location local)
+  :config
+  (vimh-mode))
 
 (r|pkg (viz :location local))
 
