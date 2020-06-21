@@ -444,6 +444,9 @@
 
 (r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog")))
 
+;; Symlinked
+(r|pkg (vimh :location local))
+
 (r|pkg (viz :location local))
 
 (r|pkg unicode-fonts
