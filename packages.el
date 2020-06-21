@@ -82,7 +82,8 @@
   (setq eros-eval-result-prefix "▶ ")
   (eros-mode 1))
 
-;; (r|pkg (esi :location (recipe :fetcher github :repo "lepisma/emacs-speech-input")))
+;; Symlinked
+(r|pkg (esi :location local))
 
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
@@ -408,7 +409,8 @@
 
 (r|pkg (r-utils :location local))
 
-(r|pkg (sarso :location (recipe :fetcher github :repo "lepisma/sarso"))
+;; Symlinked
+(r|pkg (sarso :location local)
   :config
   (setq sarso-jira-root "https://vernacular-ai.atlassian.net"))
 
