@@ -243,7 +243,11 @@
      org-pomodoro-killed-hook
      org-archive-hook)
    (list #'org-save-all-org-buffers))
-  (setq org-pomodoro-keep-killed-pomodoro-time t)
+
+  (setq org-pomodoro-keep-killed-pomodoro-time t
+        org-pomodoro-length 40
+        org-pomodoro-short-break-length 5
+        org-pomodoro-long-break-length 15)
 
   (defhydra hydra-clock (global-map "C-c w" :exit t)
     ("i" r-org/clock-in "clock in")
