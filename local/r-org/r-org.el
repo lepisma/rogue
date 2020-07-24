@@ -245,7 +245,7 @@
    (list #'org-save-all-org-buffers))
 
   (setq org-pomodoro-keep-killed-pomodoro-time t
-        org-pomodoro-length 40
+        org-pomodoro-length 25
         org-pomodoro-short-break-length 5
         org-pomodoro-long-break-length 15)
 
