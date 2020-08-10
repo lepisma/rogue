@@ -44,6 +44,8 @@
 
 (r|pkg colormaps)
 
+(r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal")))
+
 (r|pkg cricbuzz)
 
 (r|pkg dired-subtree
