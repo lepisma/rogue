@@ -44,7 +44,9 @@
 
 (r|pkg colormaps)
 
-(r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal")))
+(r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
+  :config
+  (conceal-mode 1))
 
 (r|pkg cricbuzz)
 
