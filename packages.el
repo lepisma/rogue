@@ -46,7 +46,10 @@
 
 (r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
   :config
-  (conceal-mode 1))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (when (conceal-buffer-gpg-p (current-buffer))
+                (conceal-mode 1)))))
 
 (r|pkg cricbuzz)
 
