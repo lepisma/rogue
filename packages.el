@@ -82,8 +82,6 @@
 
 (r|pkg enlive)
 
-(r|pkg eredis)
-
 (r|pkg eros
   :config
   (setq eros-eval-result-prefix "▶ ")
@@ -121,9 +119,6 @@
 (r|pkg (kindle :location local)
   :config
   (setq kindle-clipping-save-file user-clippings-file))
-
-(r|pkg kubernetes
-  :commands (kubernetes-overview))
 
 (r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
 
@@ -407,11 +402,6 @@
   (r-ui/setup))
 
 (r|pkg (r-utils :location local))
-
-;; Symlinked
-(r|pkg (sarso :location local)
-  :config
-  (setq sarso-jira-root "https://vernacular-ai.atlassian.net"))
 
 (r|pkg shell-switcher
   :config (setq shell-switcher-mode t)
