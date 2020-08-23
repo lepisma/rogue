@@ -34,6 +34,7 @@
 (require 'org-ref)
 (require 'org-tempo)
 (require 'org-pomodoro)
+(require 'org-superstar)
 (require 'pile)
 
 ;; A few extra actions for helm-bibtex
@@ -133,7 +134,6 @@
      (makefile   . t)
      (python     . t)
      (R          . t)
-     (restclient . t)
      (ruby       . t)
      (scheme     . t)
      (shell      . t)
@@ -221,7 +221,10 @@
   "Misc settings."
   (setq org-startup-indented t
         org-clock-idle-time 5
-        org-bullets-bullet-list '("› ")
+        org-superstar-headline-bullets-list '("› ")
+        org-superstar-item-bullet-alist '((?* . ?•)
+                                          (?+ . ?•)
+                                          (?- . ?•))
         org-ellipsis "  "
         org-pretty-entities t
         org-hide-emphasis-markers t

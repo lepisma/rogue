@@ -106,25 +106,17 @@
   :config
   ;; Fix from https://github.com/dxknight/helm-chronos/pull/2
   (setq helm-chronos--fallback-source
-    (helm-build-dummy-source "Enter <expiry time spec>/<message>"
-      :filtered-candidate-transformer
-      (lambda (_candidates _source)
-        (list (or (and (not (string= helm-pattern ""))
-                       helm-pattern)
-                  "Enter a timer to start")))
-      :action '(("Add timer" . (lambda (candidate)
-                                 (if (string= helm-pattern "")
-                                     (message "No timer")
-                                   (helm-chronos--parse-string-and-add-timer helm-pattern)))))))
+        (helm-build-dummy-source "Enter <expiry time spec>/<message>"
+          :filtered-candidate-transformer
+          (lambda (_candidates _source)
+            (list (or (and (not (string= helm-pattern ""))
+                           helm-pattern)
+                      "Enter a timer to start")))
+          :action '(("Add timer" . (lambda (candidate)
+                                     (if (string= helm-pattern "")
+                                         (message "No timer")
+                                       (helm-chronos--parse-string-and-add-timer helm-pattern)))))))
   (setq helm-chronos-standard-timers '()))
-
-(r|pkg helpful
-  :bind (("C-h f" . helpful-callable)
-         ("C-h v" . helpful-variable)
-         ("C-h k" . helpful-key)
-         ("C-c C-d" . helpful-at-point)
-         ("C-h F" . helpful-function)
-         ("C-h C" . helpful-command)))
 
 (r|pkg (kindle :location local)
   :config

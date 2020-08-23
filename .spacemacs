@@ -19,10 +19,7 @@ values."
               cider-eval-result-prefix "▶ ")
      common-lisp
      csv
-     erlang
      emacs-lisp
-     (ess :variables
-          ess-enable-smart-equals t)
      (go :variables
          go-backend 'lsp
          go-format-before-save t
@@ -37,19 +34,16 @@ values."
      lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables
-          org-enable-github-support t
           org-enable-reveal-js-support t
-          org-enable-org-journal-support t)
+          org-enable-org-journal-support t
+          org-enable-verb-support t)
      (python :variables
              python-backend 'lsp
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
-     racket
-     ruby
      (rust :variables
            rust-format-on-save t
            rust-backend 'lsp)
-     scheme
      shell
      shell-scripts
      sql
@@ -65,14 +59,13 @@ values."
      better-defaults
      colors
      dap
-     (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
              elfeed-enable-web-interface t)
      epub
-     finance
      git
      github
+     helpful
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
      (mu4e :variables
@@ -82,14 +75,14 @@ values."
      pdf
      prodigy
      (ranger :variables ranger-show-preview t)
-     restclient
      rogue
-     (spell-checking :variables spell-checking-enable-auto-dictionary t)
+     spell-checking
      syntax-checking
      theming
      (treemacs :variables
                treemacs-follow-after-init nil
-               treemacs-use-follow-mode nil)
+               treemacs-use-follow-mode t
+               treemacs-use-all-the-icons-theme t)
      typography
      (version-control :variables
                       version-control-diff-tool 'git-gutter
@@ -98,7 +91,7 @@ values."
      xkcd)
    dotspacemacs-mode-line-theme 'doom
    dotspacemacs-additional-packages '()
-   dotspacemacs-excluded-packages '(vi-tilde-fringe ess-R-object-popup)
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
    dotspacemacs-delete-orphan-packages nil))
 
 (defun dotspacemacs/init ()
