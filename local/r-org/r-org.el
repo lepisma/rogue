@@ -222,8 +222,8 @@
   (setq org-startup-indented t
         org-clock-idle-time 5
         org-superstar-headline-bullets-list '("› ")
-        org-superstar-item-bullet-alist '((?* . ?•)
-                                          (?+ . ?•)
+        org-superstar-item-bullet-alist '((?* . ?⋆)
+                                          (?+ . ?‣)
                                           (?- . ?•))
         org-ellipsis "  "
         org-pretty-entities t
