@@ -231,21 +231,6 @@
 
 (r|pkg ov)
 
-(r|pkg parinfer
-  :bind (("C-," . parinfer-toggle-mode))
-  :hook ((clojure-mode . parinfer-mode)
-         (emacs-lisp-mode . parinfer-mode)
-         (common-lisp-mode . parinfer-mode)
-         (racket-mode . parinfer-mode)
-         (lisp-mode . parinfer-mode)
-         (scheme-mode . parinfer-mode)
-         (hy-mode . parinfer-mode))
-  :init
-  (setq parinfer-extensions '(defaults
-                               pretty-parens
-                               smart-tab
-                               smart-yank)))
-
 (r|pkg (pile :location (recipe :fetcher github :repo "lepisma/pile"))
   :after (f ht mustache r-utils w)
   :config

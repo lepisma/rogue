@@ -72,6 +72,7 @@ values."
            mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
            mu4e-enable-async-operations t)
      pandoc
+     parinfer
      pdf
      prodigy
      (ranger :variables ranger-show-preview t)
