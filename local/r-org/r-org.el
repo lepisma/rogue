@@ -181,8 +181,7 @@
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal/tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
-                                      ,(concat user-notes-dir "personal/humans.org.gpg")
-                                      ,(concat user-notes-dir "personal/life.org.gpg")))
+                                      ,(concat user-notes-dir "personal/humans.org.gpg")))
               (org-agenda-tag-filter-preset '("-parked"))))
             ("w" "Work agenda"
              ((agenda ""))
