@@ -22,6 +22,7 @@
 **** [[https://feeds.feedburner.com/BackStoryRadio][BackStory]]
 **** [[https://lexfridman.com/category/ai/feed/][Artificial Intelligence (AI Podcast) with Lex Fridman]]
 **** [[https://twimlai.com/feed][The TWIML AI Podcast (formerly This Week in Machine Learning & Artificial Int...]]
+**** [[https://feeds.pacific-content.com/teamistry][Teamistry]]
 
 *** Videos                                                          :video:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
