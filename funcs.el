@@ -139,6 +139,20 @@ With argument, do this that many times."
          (match (substring-no-properties text (car match-range) (cdr match-range))))
     (s-trim (s-collapse-whitespace (s-replace match "" text)))))
 
+(defun screenshot-svg ()
+  "Save a screenshot of the current frame as an SVG image.
+Saves to a temp file and puts the filename in the kill ring."
+
+  ;; Taken from here
+  ;; https://www.reddit.com/r/emacs/comments/idz35e/emacs_27_can_take_svg_screenshots_of_itself/g2c2c6y/
+  (interactive)
+  (let* ((filename (make-temp-file "Emacs" nil ".svg"))
+         (data (x-export-frames nil 'svg)))
+    (with-temp-file filename
+      (insert data))
+    (kill-new filename)
+    (message filename)))
+
 (defun serve-current-buffer (&optional port)
   "Serve current buffer."
   (interactive)
