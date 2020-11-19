@@ -10,13 +10,6 @@
          (use-package ,id ,@body))
        (push ',name rogue-packages))))
 
-(r|pkg beacon
-  :config
-  (beacon-mode)
-  (setq beacon-color (face-attribute 'region :background nil t)
-        beacon-blink-when-buffer-changes t
-        beacon-blink-when-point-moves-vertically nil))
-
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
 (r|pkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
