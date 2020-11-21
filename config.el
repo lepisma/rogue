@@ -888,6 +888,12 @@ TODO: Simplify this macro"
   (proof-tacticals-name-face
    (:inherit font-lock-variable-face)
    (:inherit font-lock-variable-face))
+  (pulse-highlight-start-face
+   (:background ,colors-blue :foreground nil)
+   (:background ,colors-blue :foreground nil))
+  (pulse-highlight-face
+   (:background ,colors-blue :foreground nil)
+   (:background ,colors-blue :foreground nil))
   (rainbow-delimiters-depth-1-face
    (:foreground ,level-1)
    nil)
