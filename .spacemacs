@@ -207,7 +207,7 @@ you should place you code here."
         elfeed-goodies/feed-source-column-width 25
         elfeed-goodies/tag-column-width 30)
 
-  (add-hook 'read-only-mode-hook 'View-mode)
+  (add-hook 'read-only-mode-hook 'view-mode)
   ;; A few late setup calls
   ;; TODO: There is some load order issue. Put these in the right place
   (openwith-mode)
