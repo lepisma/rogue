@@ -59,7 +59,7 @@ With argument, do this that many times."
   (interactive)
   (disable-theme r-dark-theme)
   (spacemacs/load-theme r-light-theme)
-  (setq org-bullets-bullet-list '(" "))
+  (setq org-superstar-headline-bullets-list '(" "))
   (r-org/reset-buffers))
 
 (defun r/dark ()
@@ -67,7 +67,7 @@ With argument, do this that many times."
   (interactive)
   (disable-theme r-light-theme)
   (spacemacs/load-theme r-dark-theme)
-  (setq org-bullets-bullet-list '("› "))
+  (setq org-superstar-headline-bullets-list '("› "))
   (r-org/reset-buffers))
 
 (defun magit-bookmarks ()

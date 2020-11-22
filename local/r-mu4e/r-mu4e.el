@@ -62,30 +62,32 @@ emails."
 (defun authinfo-get (entry key)
   (lax-plist-get entry key))
 
-(defun r-mu4e/unread-bm-query ()
+(defun r-mu4e/get-bm-query (bm-name)
   "Return query string for unread bookmark"
-  (let ((bm-items (cl-remove-if-not (lambda (bm) (string-match "Unread" (plist-get bm :name))) mu4e-bookmarks)))
-    (concat "(" (mapconcat (lambda (bm-item) (plist-get bm-item :query)) bm-items ") OR (") ")")))
+  (-if-let (bm (-find (lambda (bm) (string-equal bm-name (plist-get bm :name))) mu4e-bookmarks))
+      (plist-get bm :query)))
 
-(defun r-mu4e/get-unread-mails ()
-  "Return unread emails"
-  (let ((cmd-out (shell-command-to-string (format "mu find --format=sexp \"%s\"" (r-mu4e/unread-bm-query)))))
+(defun r-mu4e/get-mails (query)
+  "Get emails by query."
+  (let ((cmd-out (shell-command-to-string (format "mu find --format=sexp \"%s\"" query))))
     (if (s-starts-with-p "mu: no matches for" cmd-out) nil
       (nreverse (car (read-from-string (concat "(" cmd-out ")")))))))
 
-(defun r-mu4e/insert-unread-as-org-todos (buffer-days max-limit)
+(defun r-mu4e/insert-unread-as-org-todos (bm-name buffer-days max-limit)
   "Insert unread emails as org mode style todos in current buffer."
   (erase-buffer)
-  (dolist (email (reverse (r-mu4e/get-unread-mails)))
+  (dolist (email (reverse (r-mu4e/get-mails (r-mu4e/get-bm-query bm-name))))
     (let* ((date (plist-get email :date))
            (delta-days (floor (/ (float-time (time-subtract (current-time) date)) 60 60 24)))
            (schedule-at (time-add date (* 24 60 60 buffer-days))))
       (org-insert-heading)
-      (insert (plist-get email :subject) "\n")
+      (org-insert-link nil (concat "mu4e:msgid:" (plist-get email :message-id)) (plist-get email :subject))
+      (insert "\n")
       (org-schedule nil (format-time-string "%Y-%m-%d" schedule-at))
       (when (> delta-days max-limit)
-        (org-priority-up))
-      (insert "\n"))))
+        (org-priority org-priority-highest))
+      (insert "\n")))
+  (save-buffer))
 
 ;;;###autoload
 (defun r-mu4e/sign-and-send ()
@@ -289,7 +291,13 @@ is at To:"
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
-  (add-hook 'mu4e-compose-mode-hook #'flyspell-mode))
+  (add-hook 'mu4e-compose-mode-hook #'flyspell-mode)
+  (add-hook 'mu4e-index-updated-hook
+            (lambda ()
+              (with-current-buffer (find-file-noselect (concat user-notes-dir "personal/emails.org"))
+                (r-mu4e/insert-unread-as-org-todos "Personal Unread" 2 15))
+              (with-current-buffer (find-file-noselect (concat user-notes-dir "work/emails.org"))
+                (r-mu4e/insert-unread-as-org-todos "Work Unread" 2 10)))))
 
 (provide 'r-mu4e)
 

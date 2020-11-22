@@ -177,10 +177,14 @@
              ((org-super-agenda-groups
                '((:name "Important"
                         :priority "A")
+                 (:name "Emails"
+                        :priority "A"
+                        :file-path "emails.org")
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal/tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
+                                      ,(concat user-notes-dir "personal/emails.org")
                                       ,(concat user-notes-dir "personal/humans.org.gpg")))
               (org-agenda-tag-filter-preset '("-parked"))))
             ("w" "Work agenda"
@@ -188,9 +192,13 @@
              ((org-super-agenda-groups
                '((:name "Important"
                         :priority "A")
+                 (:name "Emails"
+                        :priority "A"
+                        :file-path "emails.org")
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work/tasks") org-agenda-file-regexp)
-                                      ,(concat user-notes-dir "incoming/captures.org")))
+                                      ,(concat user-notes-dir "incoming/captures.org")
+                                      ,(concat user-notes-dir "work/emails.org")))
               (org-agenda-tag-filter-preset '("-parked"))))))))
 
 (defun r-org/cliplink-to-region ()
