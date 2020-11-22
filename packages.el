@@ -44,8 +44,6 @@
               (when (conceal-buffer-gpg-p (current-buffer))
                 (conceal-mode 1)))))
 
-(r|pkg cricbuzz)
-
 (r|pkg dired-subtree
   :after ranger
   :bind (:map ranger-mode-map
@@ -86,11 +84,6 @@
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
 
-(r|pkg gscholar-bibtex
-  :config
-  (setq gscholar-bibtex-database-file user-bib-file
-        gscholar-bibtex-default-source "Google Scholar"))
-
 (r|pkg helm-chronos
   :after chronos
   :bind (("C-c t" . helm-chronos-add-timer))
@@ -114,12 +107,6 @@
   (setq kindle-clipping-save-file user-clippings-file))
 
 (r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
-
-(r|pkg minimap
-  :demand t
-  :config
-  (setq minimap-highlight-line nil
-        minimap-window-location 'right))
 
 (r|pkg (mu4e-fold :location local)
   :after r-mu4e
@@ -397,13 +384,6 @@
          (minibuffer-setup . solaire-mode-in-minibuffer)
          (ediff-prepare-buffer . solaire-mode)))
 
-(r|pkg sublimity
-  :demand t
-  :config
-  (require 'sublimity-scroll)
-  (setq sublimity-scroll-weight 5
-        sublimity-scroll-drift-length 1))
-
 (r|pkg swiper
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
@@ -416,13 +396,6 @@
         switch-window-minibuffer-shortcut ?z))
 
 (r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog")))
-
-;; Symlinked
-(r|pkg (vimh :location local)
-  :config
-  (vimh-mode))
-
-(r|pkg (viz :location local))
 
 (r|pkg unicode-fonts
   :config
