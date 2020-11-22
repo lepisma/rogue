@@ -245,6 +245,7 @@ from doom-themes."
                        mu4e-view-mode-hook
                        nov-mode-hook
                        org-agenda-mode-hook
+                       polymode-init-inner-hook
                        process-menu-mode-hook
                        slime-repl-mode-hook
                        text-mode-hook
@@ -297,11 +298,9 @@ from doom-themes."
 
   ;; Other general hooks
   (add-hook 'css-mode-hook #'rainbow-mode)
+  (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode (lambda () (setq-local company-frontends '(company-preview-frontend)))))
+  (r-utils/add-hooks '(yaml-mode-hook toml-mode-hook markdown-mode-hook) (list (lambda () (variable-pitch-mode 0))))
 
-  (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode
-                                             (lambda () (setq-local company-frontends '(company-preview-frontend)))))
-
-  (r-utils/add-hooks '(yaml-mode-hook toml-mode-hook) (list (lambda () (variable-pitch-mode 0))))
   (add-hook 'term-mode-hook #'toggle-truncate-lines)
 
   ;; Clear message buffer

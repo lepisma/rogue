@@ -292,6 +292,12 @@
 
 (r|pkg (poetry :location (recipe :fetcher github :repo "lepisma/poetry.el")))
 
+(r|pkg polymode)
+
+(r|pkg poly-markdown)
+
+(r|pkg poly-R)
+
 (r|pkg powerthesaurus)
 
 (r|pkg pretty-mode
