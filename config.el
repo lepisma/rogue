@@ -406,6 +406,12 @@ TODO: Simplify this macro"
   (js2-private-member
    (:foreground nil :inherit font-lock-builtin-face)
    (:foreground nil :inherit font-lock-builtin-face))
+  (langtool-errline
+   (:background nil :inherit flycheck-error)
+   (:background nil :inherit flycheck-error))
+  (langtool-correction-face
+   (:background nil :inherit flycheck-info)
+   (:background nil :inherit flycheck-info))
   (line-number-current-line
    (:foreground ,builtin)
    (:foreground ,bg-dark))

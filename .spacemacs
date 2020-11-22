@@ -72,6 +72,10 @@ values."
      helpful
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
+     (languagetool :variables
+                   langtool-default-language "en-US"
+                   langtool-show-error-on-jump t
+                   langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
            mu4e-enable-async-operations t)
