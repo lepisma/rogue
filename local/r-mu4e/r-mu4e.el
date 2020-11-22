@@ -73,6 +73,20 @@ emails."
     (if (s-starts-with-p "mu: no matches for" cmd-out) nil
       (nreverse (car (read-from-string (concat "(" cmd-out ")")))))))
 
+(defun r-mu4e/insert-unread-as-org-todos (buffer-days max-limit)
+  "Insert unread emails as org mode style todos in current buffer."
+  (erase-buffer)
+  (dolist (email (reverse (r-mu4e/get-unread-mails)))
+    (let* ((date (plist-get email :date))
+           (delta-days (floor (/ (float-time (time-subtract (current-time) date)) 60 60 24)))
+           (schedule-at (time-add date (* 24 60 60 buffer-days))))
+      (org-insert-heading)
+      (insert (plist-get email :subject) "\n")
+      (org-schedule nil (format-time-string "%Y-%m-%d" schedule-at))
+      (when (> delta-days max-limit)
+        (org-priority-up))
+      (insert "\n"))))
+
 ;;;###autoload
 (defun r-mu4e/sign-and-send ()
   "Sign and send message"
