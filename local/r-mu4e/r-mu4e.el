@@ -64,8 +64,8 @@ emails."
 
 (defun r-mu4e/unread-bm-query ()
   "Return query string for unread bookmark"
-  (let ((bm-items (cl-remove-if-not (lambda (bm) (string-match "Unread" (mu4e-bookmark-name bm))) mu4e-bookmarks)))
-    (concat "(" (mapconcat (lambda (bm-item) (mu4e-bookmark-query bm-item)) bm-items ") OR (") ")")))
+  (let ((bm-items (cl-remove-if-not (lambda (bm) (string-match "Unread" (plist-get bm :name))) mu4e-bookmarks)))
+    (concat "(" (mapconcat (lambda (bm-item) (plist-get bm-item :query)) bm-items ") OR (") ")")))
 
 (defun r-mu4e/get-unread-mails ()
   "Return unread emails"
