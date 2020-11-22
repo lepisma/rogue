@@ -41,6 +41,8 @@ values."
           org-enable-verb-support t)
      (python :variables
              python-backend 'lsp
+             python-lsp-server 'pyls
+             python-test-runner 'pytest
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
      (rust :variables
