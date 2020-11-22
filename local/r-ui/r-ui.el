@@ -301,6 +301,7 @@ from doom-themes."
   (r-utils/add-hooks '(text-mode-hook) (list #'variable-pitch-mode (lambda () (setq-local company-frontends '(company-preview-frontend)))))
   (r-utils/add-hooks '(yaml-mode-hook
                        toml-mode-hook
+                       conf-mode-hook
                        markdown-mode-hook
                        git-commit-setup-hook)
                      (list (lambda () (variable-pitch-mode 0))))
