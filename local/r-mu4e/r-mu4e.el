@@ -36,9 +36,8 @@
 (require 'openwith)
 (require 's)
 
-(defcustom r-mu4e/trello-emails nil
-  "Pairs of trello board names and email ids for forwarding
-emails."
+(defcustom r-mu4e/named-email-ids nil
+  "Pairs of aliases and private email ids."
   :type '(alist :key-type string :value-type string))
 
 (defun authinfo-get-entries ()
@@ -99,14 +98,13 @@ emails."
     (message-send-and-exit)
     (openwith-mode (if ow-state 1 -1))))
 
-(defun r-mu4e/send-to-trello ()
-  "Add send-to-trello email id in compose buffer. Assume cursor
-is at To:"
+(defun r-mu4e/send-to-named-id ()
+  "Add named email id in compose buffer. Assume cursor is at To:"
   (interactive)
-  (let ((trello-detail (helm :sources (helm-build-sync-source "Trello boards"
-                                        :candidates r-mu4e/trello-emails)
-                             :buffer "*helm mu4e-trello*")))
-    (insert trello-detail)))
+  (let ((email-id (helm :sources (helm-build-sync-source "Targets"
+                                       :candidates r-mu4e/named-email-ids)
+                            :buffer "*helm mu4e-named-email-ids*")))
+    (insert email-id)))
 
 (defun r-mu4e//message-maildir-matches (msg rx)
   (when rx
