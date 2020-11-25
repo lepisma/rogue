@@ -89,14 +89,17 @@
   (save-buffer))
 
 ;;;###autoload
-(defun r-mu4e/sign-and-send ()
+(defun r-mu4e/send ()
   "Sign and send message"
   (interactive)
   (let ((ow-state (bound-and-true-p openwith-mode)))
-    (openwith-mode -1)
-    (mml-secure-sign)
-    (message-send-and-exit)
-    (openwith-mode (if ow-state 1 -1))))
+    (unwind-protect
+        (progn
+          (openwith-mode -1)
+          (when (string= (mu4e-context-name (mu4e-context-current)) "Fastmail")
+            (mml-secure-sign))
+          (message-send-and-exit))
+      (openwith-mode (if ow-state 1 -1)))))
 
 (defun r-mu4e/send-to-named-id ()
   "Add named email id in compose buffer. Assume cursor is at To:"
@@ -130,7 +133,8 @@
         mu4e-attachment-dir "~/Downloads/"
         mu4e-view-show-images t
         mu4e-compose-signature "Abhinav Tushar\nhttps://lepisma.xyz\nSent with my mu4e"
-        mu4e-compose-dont-reply-to-self t)
+        mu4e-compose-dont-reply-to-self t
+        mml-secure-openpgp-sign-with-sender t)
 
   (setq mu4e-use-fancy-chars t
         mu4e-headers-draft-mark          '("D"  . " ")

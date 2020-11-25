@@ -28,9 +28,6 @@
 ;; Cycle theme
 (global-set-key (kbd "M-m T n") 'r/cycle-theme)
 
-;; Mail stuff
-(global-set-key (kbd "C-c m") 'quack-unread-mail)
-
 ;; Few resets
 (global-set-key (kbd "C-x C-l") nil)
 (global-set-key (kbd "<insert>") nil)

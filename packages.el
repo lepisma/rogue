@@ -349,8 +349,7 @@
 (r|pkg (r-mu4e :location local)
   :after (mu4e openwith message mml cl-macs s)
   :bind (:map mu4e-compose-mode-map
-              (("C-c C-c" . r-mu4e/sign-and-send)
-               ("C-c e" . mml-secure-encrypt-pgp))
+              (("C-c C-c" . r-mu4e/send))
               :map mu4e-view-mode-map
               (("C-c d" . epa-mail-decrypt))
               :map mu4e-main-mode-map
