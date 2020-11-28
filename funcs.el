@@ -132,6 +132,7 @@ Saves to a temp file and puts the filename in the kill ring."
 (defun shuffle-org-list ()
   "Shuffle list at point."
   (interactive)
-  (let ((org-list (org-list-to-lisp t)))
-    (insert (org-list-to-org (cons (car org-list) (shuffle-list (cdr org-list)))))
-    (org-list-repair)))
+  (save-excursion
+    (let ((org-list (org-list-to-lisp t)))
+      (insert (org-list-to-org (cons (car org-list) (shuffle-list (cdr org-list)))))
+      (org-list-repair))))
