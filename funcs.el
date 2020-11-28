@@ -136,3 +136,6 @@ Saves to a temp file and puts the filename in the kill ring."
     (let ((org-list (org-list-to-lisp t)))
       (insert (org-list-to-org (cons (car org-list) (shuffle-list (cdr org-list)))))
       (org-list-repair))))
+
+(defun reading-time (&optional wpm)
+  (/ (count-words (point-min) (point-max)) (or wpm 200)))
