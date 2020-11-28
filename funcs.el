@@ -114,3 +114,24 @@ Saves to a temp file and puts the filename in the kill ring."
                               (prog1 (with-current-buffer html-buffer (buffer-string))
                                 (kill-buffer html-buffer))))))
    (or port 9010)))
+
+(defun range (n)
+  "Python like range function returning list."
+  (cl-loop for i from 0 to (- n 1)
+           collect i))
+
+(defun shuffle-list (its)
+  "Destructive but inefficient list shuffling."
+  (cl-loop for i downfrom (- (length its) 1) to 1
+           do (let ((i-val (nth i its))
+                    (j (random (+ i 1))))
+                (setf (nth i its) (nth j its))
+                (setf (nth j its) i-val)))
+  its)
+
+(defun shuffle-org-list ()
+  "Shuffle list at point."
+  (interactive)
+  (let ((org-list (org-list-to-lisp t)))
+    (insert (org-list-to-org (cons (car org-list) (shuffle-list (cdr org-list)))))
+    (org-list-repair)))
