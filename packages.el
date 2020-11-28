@@ -394,7 +394,17 @@
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
 
-(r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog")))
+(r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog"))
+  :bind (:map tog-mode-map
+              ("RET" . tog-tag)
+              ("n" . tog-next)
+              ("N" . tog-next-untagged)
+              ("p" . tog-prev)
+              ("P" . tog-prev-untagged)
+              ("DEL" . tog-clear)
+              ("C-x C-s" . tog-save-tags)
+              ("q" . tog-quit)
+              ("t" . (lambda () (interactive) (tog-progress-report tog-loader)))))
 
 (r|pkg unicode-fonts
   :config
