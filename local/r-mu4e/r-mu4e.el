@@ -134,6 +134,7 @@
         mu4e-view-show-images t
         mu4e-compose-signature "Abhinav Tushar\nhttps://lepisma.xyz\nSent with my mu4e"
         mu4e-compose-dont-reply-to-self t
+        mail-user-agent 'mu4e-user-agent
         mml-secure-openpgp-sign-with-sender t)
 
   (setq mu4e-use-fancy-chars t
