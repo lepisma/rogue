@@ -48,7 +48,9 @@ values."
      (rust :variables
            rust-format-on-save t
            rust-backend 'lsp)
-     shell
+     (shell :variables
+            shell-default-shell 'vterm
+            terminal-here-terminal-command '("konsole" "--notransparency" "--stylesheet" "/home/lepisma/cfg/konsole/konsole.css"))
      shell-scripts
      sql
      typescript

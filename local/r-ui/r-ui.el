@@ -249,7 +249,8 @@ from doom-themes."
                        process-menu-mode-hook
                        slime-repl-mode-hook
                        text-mode-hook
-                       treemacs-mode-hook)
+                       treemacs-mode-hook
+                       vterm-mode-hook)
                      (list #'r-ui/clear-sides #'r-ui/clear-header))
 
   ;; Hooks for side gap in header
@@ -286,7 +287,8 @@ from doom-themes."
                        ibuffer-mode-hook
                        prog-mode-hook
                        ranger-mode-hook
-                       text-mode-hook)
+                       text-mode-hook
+                       vterm-mode-hook)
                      (list (lambda () (r-ui/line-spacing 0.1))))
 
   (r-utils/add-hooks '(org-agenda-mode-hook)
