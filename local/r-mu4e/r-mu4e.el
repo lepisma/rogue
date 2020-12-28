@@ -135,7 +135,7 @@
         mu4e-compose-signature "Abhinav Tushar\nhttps://lepisma.xyz\nSent with my mu4e"
         mu4e-compose-dont-reply-to-self t
         mail-user-agent 'mu4e-user-agent
-        message-citation-line-format "On %a, %d %b %Y at %R, %f wrote:\n"
+        message-citation-line-format "On %a, %d %b %Y at %R (%Z), %f wrote:\n"
         message-citation-line-function #'message-insert-formatted-citation-line
         mml-secure-openpgp-sign-with-sender t)
 
