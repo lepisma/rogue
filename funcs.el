@@ -171,7 +171,7 @@ In the BODY forms, `it' provides the path for the copy."
   "Process for keeping youtube player.")
 
 (defun youtube-play-url (url)
-  (when youtube-process
+  (when (and youtube-process (process-live-p youtube-process))
     (kill-process youtube-process))
   (setq youtube-process (start-process "youtube-play" nil "mpv" "--no-video" url)))
 
