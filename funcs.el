@@ -139,3 +139,46 @@ Saves to a temp file and puts the filename in the kill ring."
 
 (defun reading-time (&optional wpm)
   (/ (count-words (point-min) (point-max)) (or wpm 200)))
+
+(defun firefox-profile-directory ()
+  "Return profile directory for firefox."
+  (-find (lambda (d) (string-match "default$" d)) (f-directories "~/.mozilla/firefox")))
+
+(defmacro --with-temp-copy (file-path &rest body)
+  "Run BODY after making a temporary copy of given FILE-PATH.
+
+In the BODY forms, `it' provides the path for the copy."
+  (declare (indent defun))
+  `(let ((it (make-temp-file (f-base ,file-path))))
+     (unwind-protect
+         (progn
+           (copy-file ,file-path it t)
+           ,@body)
+       (f-delete it))))
+
+(defun youtube-history ()
+  "Return youtube history."
+  (--with-temp-copy (f-join (firefox-profile-directory) "places.sqlite")
+    (json-parse-string
+     (shell-command-to-string
+      (format "sqlite3 -json %s %s"
+              (shell-quote-argument it)
+              (shell-quote-argument "SELECT url, title FROM moz_places WHERE title IS NOT NULL AND rev_host LIKE '%utuoy%' AND url LIKE '%watch%' ORDER BY last_visit_date DESC")))
+     :array-type 'list
+     :object-type 'alist)))
+
+(defvar youtube-process nil
+  "Process for keeping youtube player.")
+
+(defun youtube-play-url (url)
+  (when youtube-process
+    (kill-process youtube-process))
+  (setq youtube-process (start-process "youtube-play" nil "mpv" "--no-video" url)))
+
+(defun youtube-history-play ()
+  (interactive)
+  (helm :sources (helm-build-sync-source "youtube-history"
+                   :candidates (mapcar (lambda (it) (cons (alist-get 'title it) (alist-get 'url it))) (youtube-history))
+                   :action `(("Play audio" . youtube-play-url)))
+        :buffer "*helm youtube history*"
+        :prompt "Title: "))
