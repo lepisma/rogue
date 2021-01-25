@@ -183,6 +183,9 @@
   :config
   (org-super-agenda-mode))
 
+;; Symlinked
+(r|pkg (org-team :location local))
+
 (r|pkg org-web-tools
   :after org)
 
