@@ -68,6 +68,7 @@
 **** [[https://petewarden.com/feed/][Pete Warden's blog]]
 **** [[https://feeds.feedburner.com/ProfessorRobJHyndman][Rob J Hyndman]]
 **** [[https://blog.ml.cmu.edu/feed/][Blog | Machine Learning | Carnegie Mellon University]]
+**** [[https://lilianweng.github.io/lil-log/feed.xml][Lil’Log]]
 
 *** Programming                                               :programming:
 **** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
