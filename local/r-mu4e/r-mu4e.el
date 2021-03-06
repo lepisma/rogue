@@ -83,6 +83,8 @@
       (org-insert-link nil (concat "mu4e:msgid:" (plist-get email :message-id)) (plist-get email :subject))
       (insert "\n")
       (org-schedule nil (format-time-string "%Y-%m-%d" schedule-at))
+      ;; Emails are always low effort since they just need a 'will get back'
+      (org-set-effort nil "0:15")
       (when (> delta-days max-limit)
         (org-priority org-priority-highest))
       (insert "\n")))
