@@ -158,8 +158,8 @@
           org-capture-templates
           `(("p" "Personal task" entry (file ,(concat user-notes-dir "personal/tasks/misc.org"))
              "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
-            ("w" "Work task" entry (file ,(concat user-notes-dir "work/tasks/planning.org"))
-             "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
+            ("w" "Work task" entry (file ,(concat user-notes-dir "work/tasks/general.org"))
+             "* %?\nSCHEDULED: %^t%^{effort}p\n%a" :empty-lines 1 :prepend t)
             ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/tasks/misc.org") "Weekly review" "Done")
              "- %U %?" :empty-lines-after 1)))
 
@@ -190,11 +190,14 @@
             ("w" "Work agenda"
              ((agenda ""))
              ((org-super-agenda-groups
-               '((:name "Important"
-                        :priority "A")
-                 (:name "Emails"
-                        :priority "A"
+               '((:name "Important and low effort"
+                        :and (:priority "A" :effort< "0:30"))
+                 (:name "Important and needing thought"
+                        :and (:priority "A" :tag "think"))
+                 (:name "Emails to file"
                         :file-path "emails.org")
+                 (:name "Low effort"
+                        :effort< "0:30")
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work/tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "incoming/captures.org")
