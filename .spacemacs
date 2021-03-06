@@ -45,6 +45,7 @@ values."
              python-test-runner 'pytest
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
+     ruby
      (rust :variables
            rust-format-on-save t
            rust-backend 'lsp)
