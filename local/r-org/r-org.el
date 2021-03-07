@@ -161,7 +161,9 @@
             ("w" "Work task" entry (file ,(concat user-notes-dir "work/tasks/general.org"))
              "* %?\nSCHEDULED: %^t%^{effort}p\n%a" :empty-lines 1 :prepend t)
             ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/tasks/misc.org") "Weekly review" "Done")
-             "- %U %?" :empty-lines-after 1)))
+             "- %U %?" :empty-lines-after 1)
+            ("t" "Team log" item (function org-team-visit-person-log)
+             "- %U %?" :prepend t)))
 
     (setq org-html-validation-link nil)
 
