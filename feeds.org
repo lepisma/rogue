@@ -69,6 +69,7 @@
 **** [[https://feeds.feedburner.com/ProfessorRobJHyndman][Rob J Hyndman]]
 **** [[https://blog.ml.cmu.edu/feed/][Blog | Machine Learning | Carnegie Mellon University]]
 **** [[https://lilianweng.github.io/lil-log/feed.xml][Lil’Log]]
+**** [[https://research.atspotify.com/feed/][Spotify Research]]
 
 *** Programming                                               :programming:
 **** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
