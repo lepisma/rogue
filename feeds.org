@@ -70,6 +70,7 @@
 **** [[https://blog.ml.cmu.edu/feed/][Blog | Machine Learning | Carnegie Mellon University]]
 **** [[https://lilianweng.github.io/lil-log/feed.xml][Lil’Log]]
 **** [[https://research.atspotify.com/feed/][Spotify Research]]
+**** [[https://feeds.feedburner.com/blogspot/gJZg][Google AI Blog]]
 
 *** Programming                                               :programming:
 **** [[https://fare.livejournal.com/data/rss/][Cybernethics / Cybernéthique]]
