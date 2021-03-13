@@ -163,7 +163,7 @@
   (org-journal-dir user-journal-dir)
   (org-journal-enable-encryption t))
 
-(r|pkg (org-make :location local)
+(r|pkg (orgo :location (recipe :fetcher github :repo "lepisma/orgo"))
   :after org)
 
 (r|pkg org-roam
