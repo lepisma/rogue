@@ -26,10 +26,9 @@
 
 ;;; Code:
 
+(require 'cl-lib)
 (require 'org)
 (require 'ob)
-(require 'dash)
-(require 'dash-functional)
 (require 'helm)
 (require 'projectile)
 
@@ -57,7 +56,9 @@
 (defun org-make-tasks ()
   "Return a list of tasks"
   (org-make-run-in-context
-   (-filter (-cut string-prefix-p org-make-task-prefix <>) (org-babel-src-block-names))))
+   (remove-if-not
+    (lambda (name) (string-prefix-p org-make-task-prefix name))
+    (org-babel-src-block-names))))
 
 (defun org-make-run-task (task-name)
   "Run TASK-NAME."
