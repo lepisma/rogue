@@ -70,11 +70,14 @@
 (defun org-make ()
   "Run tasks from the project's file"
   (interactive)
-  (helm :sources (helm-build-sync-source "org-make tasks in current project"
-                   :candidates (lambda () (org-make-tasks))
-                   :action 'org-make-run-task)
-        :buffer "*helm org-make*"
-        :prompt "task: "))
+  (let ((tasks (org-make-tasks)))
+    (if tasks
+        (helm :sources (helm-build-sync-source "org-make tasks in current project"
+                         :candidates tasks
+                         :action 'org-make-run-task)
+              :buffer "*helm org-make*"
+              :prompt "task: ")
+      (error "No org-make tasks found for the current project."))))
 
 (provide 'org-make)
 
