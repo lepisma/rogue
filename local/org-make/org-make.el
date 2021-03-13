@@ -50,8 +50,9 @@
 
 (defmacro org-make-run-in-context (&rest body)
   `(let ((default-directory (org-make-get-dir)))
-     (with-current-buffer (find-file-noselect org-make-file-name)
-       ,@body)))
+     (save-window-excursion
+       (with-current-buffer (find-file-noselect org-make-file-name)
+         ,@body))))
 
 (defun org-make-tasks ()
   "Return a list of tasks"
