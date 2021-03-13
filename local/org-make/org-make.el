@@ -1,4 +1,4 @@
-;;; org-make.el --- Make like task runner based on README.org
+;;; orgo.el --- Task runner based on Org-Mode documents
 
 ;; Copyright (c) 2017 Abhinav Tushar
 
@@ -6,7 +6,7 @@
 
 ;;; Commentary:
 
-;; Make like task runner based on README.org
+;; Task runner based on Org-Mode documents
 ;; This file is not a part of GNU Emacs.
 
 ;;; License:
@@ -32,54 +32,54 @@
 (require 'helm)
 (require 'projectile)
 
-(defcustom org-make-file-name "README.org"
+(defcustom orgo-file-name "README.org"
   "The main file to look tasks in.")
 
-(defcustom org-make-task-prefix "om-"
+(defcustom orgo-task-prefix "om-"
   "Prefix to filter each task specified in org file with.")
 
-(defcustom org-make-use-projectile nil
+(defcustom orgo-use-projectile nil
   "Flag specifying whether to use projectile for finding root dir.")
 
-(defun org-make-get-dir ()
+(defun orgo-get-dir ()
   "Get the main README.org file in the project"
-  (if org-make-use-projectile
+  (if orgo-use-projectile
       (projectile-project-root)
-    (locate-dominating-file "." org-make-file-name)))
+    (locate-dominating-file "." orgo-file-name)))
 
-(defmacro org-make-run-in-context (&rest body)
-  `(let ((default-directory (org-make-get-dir)))
+(defmacro orgo-run-in-context (&rest body)
+  `(let ((default-directory (orgo-get-dir)))
      (save-window-excursion
-       (with-current-buffer (find-file-noselect org-make-file-name)
+       (with-current-buffer (find-file-noselect orgo-file-name)
          ,@body))))
 
-(defun org-make-tasks ()
+(defun orgo-tasks ()
   "Return a list of tasks"
-  (org-make-run-in-context
+  (orgo-run-in-context
    (remove-if-not
-    (lambda (name) (string-prefix-p org-make-task-prefix name))
+    (lambda (name) (string-prefix-p orgo-task-prefix name))
     (org-babel-src-block-names))))
 
-(defun org-make-run-task (task-name)
+(defun orgo-run-task (task-name)
   "Run TASK-NAME."
-  (org-make-run-in-context
+  (orgo-run-in-context
    (org-babel-goto-named-src-block task-name)
    (org-babel-execute-src-block t)
    (save-buffer)))
 
 ;;;###autoload
-(defun org-make ()
+(defun orgo ()
   "Run tasks from the project's file"
   (interactive)
-  (let ((tasks (org-make-tasks)))
+  (let ((tasks (orgo-tasks)))
     (if tasks
-        (helm :sources (helm-build-sync-source "org-make tasks in current project"
+        (helm :sources (helm-build-sync-source "orgo tasks in current project"
                          :candidates tasks
-                         :action 'org-make-run-task)
-              :buffer "*helm org-make*"
+                         :action 'orgo-run-task)
+              :buffer "*helm orgo*"
               :prompt "task: ")
-      (error "No org-make tasks found for the current project."))))
+      (error "No orgo tasks found for the current project."))))
 
-(provide 'org-make)
+(provide 'orgo)
 
-;;; org-make.el ends here
+;;; orgo.el ends here
