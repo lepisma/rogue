@@ -261,6 +261,7 @@
                              #'pile-hooks-post-generate-atom
                              #'pile-hooks-post-generate-archive
                              #'pile-hooks-post-stringify-title
+                             #'pile-hooks-post-sync-static-files
                              #'pile-hooks-post-generate-index))))
 
 (r|pkg (poetry :location (recipe :fetcher github :repo "lepisma/poetry.el")))
