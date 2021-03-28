@@ -161,7 +161,8 @@
 (r|pkg org-journal
   :custom
   (org-journal-dir user-journal-dir)
-  (org-journal-enable-encryption t))
+  (org-journal-enable-encryption t)
+  (org-journal-date-format "%A, %x"))
 
 (r|pkg (orgo :location (recipe :fetcher github :repo "lepisma/orgo"))
   :after org)
