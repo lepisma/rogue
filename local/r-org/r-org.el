@@ -163,6 +163,8 @@
             ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/tasks/misc.org") "Weekly review" "Done")
              "- %U %?" :empty-lines-after 1)
             ("t" "Team log" item (function org-team-visit-person-log)
+             "- %U %?" :prepend t)
+            ("b" "Book log" item (function org-books-visit-book-log)
              "- %U %?" :prepend t)))
 
     (setq org-html-validation-link nil)
