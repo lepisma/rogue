@@ -155,6 +155,8 @@
   :config
   (setq org-books-file user-books-file))
 
+(r|pkg (oca :location local))
+
 (r|pkg org-fragtog
   :hook ((org-mode . org-fragtog-mode)))
 
