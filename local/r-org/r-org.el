@@ -153,14 +153,11 @@
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   (with-eval-after-load 'org
-    ;; Capture templates
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("p" "Personal task" entry (file ,(concat user-notes-dir "personal/tasks/misc.org"))
-             "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
-            ("w" "Work task" entry (file ,(concat user-notes-dir "work/tasks/general.org"))
+          `(("p" "Task" entry (file ,(concat user-notes-dir "tasks/chores.org"))
              "* %?\nSCHEDULED: %^t%^{effort}p\n%a" :empty-lines 1 :prepend t)
-            ("l" "Weekly log" item (file+olp ,(concat user-notes-dir "personal/tasks/misc.org") "Weekly review" "Done")
+            ("l" "Log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Log")
              "- %U %?" :empty-lines-after 1)
             ("t" "Team log" item (function org-team-visit-person-log)
              "- %U %?" :prepend t)
@@ -171,41 +168,28 @@
 
     (setq org-refile-use-outline-path 'full-file-path
           org-outline-path-complete-in-steps nil
-          org-refile-targets `((,(append (directory-files-recursively (concat user-notes-dir "personal/tasks") org-agenda-file-regexp)
-                                         (directory-files-recursively (concat user-notes-dir "work/tasks") org-agenda-file-regexp))
+          org-refile-targets `((,(directory-files-recursively (concat user-notes-dir "tasks") org-agenda-file-regexp)
                                 :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
-          `(("p" "Personal agenda"
-             ((agenda ""))
-             ((org-super-agenda-groups
-               '((:name "Important"
-                        :priority "A")
-                 (:name "Emails"
-                        :priority "A"
-                        :file-path "emails.org")
-                 (:auto-category t)))
-              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "personal/tasks") org-agenda-file-regexp)
-                                      ,(concat user-notes-dir "personal/medical.org.gpg")
-                                      ,(concat user-notes-dir "incoming/captures.org")
-                                      ,(concat user-notes-dir "personal/emails.org")
-                                      ,(concat user-notes-dir "personal/humans.org.gpg")))
-              (org-agenda-tag-filter-preset '("-parked"))))
-            ("w" "Work agenda"
+          `(("a" "Agenda"
              ((agenda ""))
              ((org-super-agenda-groups
                '((:name "Important and low effort"
                         :and (:priority "A" :effort< "0:30"))
-                 (:name "Important and needing thought"
-                        :and (:priority "A" :tag "think"))
+                 (:name "Important"
+                        :priority "A")
                  (:name "Emails to file"
                         :file-path "emails.org")
                  (:name "Low effort"
                         :effort< "0:30")
                  (:auto-category t)))
-              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "work/tasks") org-agenda-file-regexp)
+              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "tasks") org-agenda-file-regexp)
+                                      ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
-                                      ,(concat user-notes-dir "work/emails.org")))
+                                      ,(concat user-notes-dir "personal/emails.org")
+                                      ,(concat user-notes-dir "work/emails.org")
+                                      ,(concat user-notes-dir "personal/humans.org.gpg")))
               (org-agenda-tag-filter-preset '("-parked"))))))))
 
 (defun r-org/cliplink-to-region ()
