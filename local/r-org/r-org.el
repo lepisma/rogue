@@ -175,9 +175,7 @@
           `(("a" "Agenda"
              ((agenda ""))
              ((org-super-agenda-groups
-               '((:name "Important and low effort"
-                        :and (:priority "A" :effort< "0:30"))
-                 (:name "Important"
+               '((:name "Important"
                         :priority "A")
                  (:name "Emails to file"
                         :file-path "emails.org")
