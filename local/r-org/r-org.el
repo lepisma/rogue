@@ -155,8 +155,8 @@
   (with-eval-after-load 'org
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("p" "Task" entry (file ,(concat user-notes-dir "tasks/chores.org"))
-             "* %?\nSCHEDULED: %^t%^{effort}p\n%a" :empty-lines 1 :prepend t)
+          `(("w" "Task" entry (file ,(concat user-notes-dir "tasks/chores.org"))
+             "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
             ("l" "Log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Log")
              "- %U %?" :empty-lines-after 1)
             ("t" "Team log" item (function org-team-visit-person-log)
