@@ -73,11 +73,13 @@ With argument, do this that many times."
 (defun magit-bookmarks ()
   (interactive)
   (let ((bms `(("website" . ,(concat user-project-dir "lepisma.github.io-deploy")))))
-    (helm :sources (helm-build-sync-source "magit-bookmarks"
-                     :candidates bms
-                     :action `(("Open magit status" . magit-status)))
-          :buffer "*helm magit bookmarks*"
-          :prompt "Bookmark: ")))
+    (case (length bms)
+      (1 (magit-status (cdar bms)))
+      (t (helm :sources (helm-build-sync-source "magit-bookmarks"
+                          :candidates bms
+                          :action `(("Open magit status" . magit-status)))
+               :buffer "*helm magit bookmarks*"
+               :prompt "Bookmark: ")))))
 
 (defun magit-commit-generic-update ()
   (interactive)
