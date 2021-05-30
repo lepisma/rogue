@@ -368,7 +368,10 @@
   (setq sarso-jira-root "https://vernacular-ai.atlassian.net"
         sarso-jira-user "abhinav@vernacular.ai"
         sarso-self-email "abhinav@vernacular.ai"
-        sarso-org-sink-file (concat user-notes-dir "tasks/sarso.org")))
+        sarso-org-sink-file (concat user-notes-dir "tasks/sarso.org")
+        sarso-sync-projects '("RES" "CORE"))
+  (add-hook 'sarso-post-sync-hook #'sarso-self-issues-to-org)
+  (run-with-timer 60 (* 60 30) #'sarso-sync))
 
 (r|pkg shell-switcher
   :config (setq shell-switcher-mode t)
