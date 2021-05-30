@@ -363,7 +363,7 @@
 
 (r|pkg (r-utils :location local))
 
-(r|pkg (sarso :local local)
+(r|pkg (sarso :location local)
   :config
   (setq sarso-jira-root "https://vernacular-ai.atlassian.net"
         sarso-jira-user "abhinav@vernacular.ai"
