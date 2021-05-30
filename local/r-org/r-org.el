@@ -175,12 +175,12 @@
           `(("a" "Agenda"
              ((agenda ""))
              ((org-super-agenda-groups
-               '((:name "Important"
+               '((:name "Deadlined"
+                        :deadline t)
+                 (:name "Important"
                         :priority "A")
                  (:name "Emails to file"
                         :file-path "emails.org")
-                 (:name "Low effort"
-                        :effort< "0:30")
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
