@@ -363,6 +363,13 @@
 
 (r|pkg (r-utils :location local))
 
+(r|pkg (sarso :local local)
+  :config
+  (setq sarso-jira-root "https://vernacular-ai.atlassian.net"
+        sarso-jira-user "abhinav@vernacular.ai"
+        sarso-self-email "abhinav@vernacular.ai"
+        sarso-org-sink-file (concat user-notes-dir "tasks/sarso.org")))
+
 (r|pkg shell-switcher
   :config (setq shell-switcher-mode t)
   :bind (("C-'" . shell-switcher-switch-buffer)
