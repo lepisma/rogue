@@ -369,7 +369,7 @@
         sarso-jira-user "abhinav@vernacular.ai"
         sarso-self-email "abhinav@vernacular.ai"
         sarso-org-sink-file (concat user-notes-dir "tasks/sarso.org")
-        sarso-sync-projects '("RES" "CORE"))
+        sarso-sync-projects '("RES" "CORE" "MT" "AAYUS" "BHNV" "AB" "AA" "HA" "JA" "KAUS" "KA" "LA" "MA" "PA" "PRAB" "SAC" "SA" "SWAR"))
   (add-hook 'sarso-post-sync-hook #'sarso-self-issues-to-org)
   (run-with-timer 60 (* 60 30) #'sarso-sync))
 
