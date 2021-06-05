@@ -36,10 +36,6 @@
   :type '(alist :key-type string
                 :value-type string))
 
-(defcustom r-feeds-dump-file nil
-  "File to dump elfeed entries in."
-  :type 'file)
-
 ;;;###autoload
 (defun helm-elfeed ()
   (interactive)
@@ -62,23 +58,6 @@
       (if (elfeed-search-filter filter entry feed)
           (push entry items)))
     (sort items (lambda (a b) (> (elfeed-entry-date a) (elfeed-entry-date b))))))
-
-(defun r-feeds/elfeed-to-org (output-file)
-  "Dump elfeed entries for current view in OUTPUT-FILE."
-  (interactive
-   (list (or r-feeds-dump-file (read-file-name "Output file: " nil nil nil "elfeed-dump.org"))))
-  (with-current-buffer (find-file-noselect output-file)
-    (delete-region (point-min) (point-max))
-    (insert "#+TITLE: Elfeed dump [" elfeed-search-filter "]\n")
-    (insert (format-time-string "Last updated [%Y-%m-%d %a %H:%M]\n\n"))
-    (dolist (entry (r-feeds/elfeed-entries elfeed-search-filter))
-      (insert "* [[" (elfeed-entry-link entry) "][" (elfeed-entry-title entry) "]]")
-      (org-set-tags-to (mapcar #'symbol-name (elfeed-entry-tags entry)))
-      (goto-char (line-end-position))
-      (insert "\n")
-      (org-set-property "FEED" (elfeed-feed-title (elfeed-entry-feed entry)))
-      (insert "\n"))
-    (save-buffer)))
 
 ;;;###autoload
 (defun r-feeds/play-elfeed ()
