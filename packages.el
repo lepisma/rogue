@@ -67,6 +67,11 @@
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
 
+(r|pkg elcord
+  :config
+  (setq elcord-display-buffer-details nil
+        elcord-editor-icon "emacs_material_icon"))
+
 (r|pkg (elml :location (recipe :fetcher github :repo "lepisma/elml")))
 
 (r|pkg emojify)
