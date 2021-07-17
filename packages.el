@@ -273,8 +273,6 @@
                              #'pile-hooks-post-sync-static-files
                              #'pile-hooks-post-generate-index))))
 
-(r|pkg (poetry :location (recipe :fetcher github :repo "lepisma/poetry.el")))
-
 (r|pkg polymode)
 
 (r|pkg poly-markdown)
