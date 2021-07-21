@@ -373,8 +373,9 @@
         sarso-org-sink-files `((,(concat user-notes-dir "tasks/research.org") . ("RES"))
                                (,(concat user-notes-dir "tasks/team.org") . ("AAYUS" "AA" "HA" "JA" "KA" "LA" "MA" "PA" "PRAB" "SAC" "SA" "SWAR" "SHAN" "TT"))
                                (,(concat user-notes-dir "tasks/ml-product.org") . ("PROD" "PM" "CORE" "RUN"))
+                               (,(concat user-notes-dir "tasks/company.org") . ("REB"))
                                (,(concat user-notes-dir "tasks/solutions.org") . ("DEL")))
-        sarso-sync-projects '("RES" "CORE" "PM" "TT" "AAYUS" "AA" "HA" "JA" "KA" "LA" "MA" "PA" "PRAB" "SAC" "SA" "SWAR" "SHAN" "PROD" "DEL" "RUN"))
+        sarso-sync-projects '("RES" "CORE" "PM" "TT" "AAYUS" "AA" "HA" "JA" "KA" "LA" "MA" "PA" "PRAB" "SAC" "SA" "SWAR" "SHAN" "PROD" "DEL" "RUN" "REB"))
   (add-hook 'sarso-post-sync-hook #'sarso-self-issues-to-org)
   (run-with-timer 60 (* 60 30) #'sarso-sync))
 
