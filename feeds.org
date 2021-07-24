@@ -45,6 +45,7 @@
 *** [[http://www.aaronsw.com/2002/feeds/pgessays.rss][Paul Graham: Essays]]
 *** [[https://dynamicecology.wordpress.com/feed/][Dynamic Ecology]]                                                  :freq:
 *** [[https://www.lesswrong.com/feed.xml?view=curated-rss][LessWrong: Curated]]
+*** [[https://lethain.com/feeds.xml][Irrational Exuberance]]
 
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
