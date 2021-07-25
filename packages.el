@@ -368,8 +368,7 @@
          ("C-\"" . shell-switcher-new-shell)))
 
 (r|pkg solaire-mode
-  :hook ((prog-mode . turn-on-solaire-mode)
-         (minibuffer-setup . solaire-mode-in-minibuffer)
+  :hook ((prog-mode . solaire-mode)
          (ediff-prepare-buffer . solaire-mode)))
 
 (r|pkg swiper
