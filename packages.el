@@ -152,11 +152,6 @@
 
 (r|pkg org-analyzer)
 
-(r|pkg (org-bbq :location
-                (recipe :fetcher url
-                        :url "https://raw.githubusercontent.com/lepisma/bbq/master/emacs/org-bbq.el"))
-  :after org)
-
 (r|pkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
   :config
   (setq org-books-file user-books-file))
@@ -318,19 +313,7 @@
   (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
 (r|pkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
-  :after (s levenshtein)
-  :config
-  (defun read-lyrics-get-bbq ()
-    "Return artist, track pair from bbq."
-    (let ((res (->> (shell-command-to-string "bbq :state")
-                  (json-read-from-string)
-                  (assoc 'item)
-                  (cdr))))
-      (when (consp res)
-        (cons (alist-get 'artist res)
-              (alist-get 'title res)))))
-
-  (add-to-list 'read-lyrics-getters #'read-lyrics-get-bbq))
+  :after (s levenshtein))
 
 (r|pkg (r-ligatures :location local)
   :after r-utils
