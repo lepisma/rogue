@@ -41,7 +41,7 @@ values."
           org-enable-verb-support t)
      (python :variables
              python-backend 'lsp
-             python-lsp-server 'pyls
+             python-lsp-server 'pylsp
              python-test-runner 'pytest
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
@@ -118,7 +118,7 @@ values."
    dotspacemacs-editing-style 'emacs
    dotspacemacs-verbose-loading nil
    dotspacemacs-startup-banner 'official
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists nil
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    dotspacemacs-themes '(doom-molokai spacemacs-light)
