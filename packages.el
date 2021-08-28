@@ -355,9 +355,11 @@
         sarso-self-email "abhinav@vernacular.ai"
         sarso-org-sink-files `((,(concat user-notes-dir "tasks/research.org") . ("RES"))
                                (,(concat user-notes-dir "tasks/team.org") . ("AAYUS" "AA" "HA" "JA" "KA" "LA" "MA" "PRAB" "SAC" "SA" "SWAR" "SHAN" "TT" "BHNVKSH" "ON"))
-                               (,(concat user-notes-dir "tasks/ml-product.org") . ("PROD" "PM" "CM" "RUN"))
+                               (,(concat user-notes-dir "tasks/product.org") . ("PROD" "RUN" "ENGP"))
+                               (,(concat user-notes-dir "tasks/ml-platform.org") . ("PM"))
+                               (,(concat user-notes-dir "tasks/core-ml.org") . ("CM"))
                                (,(concat user-notes-dir "tasks/company.org") . ("REB"))
-                               (,(concat user-notes-dir "tasks/solutions.org") . ("DEL")))
+                               (,(concat user-notes-dir "tasks/delivery.org") . ("DEL")))
         sarso-sync-projects '("RES" "CM" "PM" "TT" "AAYUS" "AA" "HA" "JA" "KA" "LA" "MA" "PRAB" "SAC" "SA" "SWAR" "SHAN" "PROD" "DEL" "RUN" "REB" "BHNVKSH" "ON"))
   (add-hook 'sarso-post-sync-hook #'sarso-self-issues-to-org)
   (run-with-timer 60 (* 60 30) #'sarso-sync))
