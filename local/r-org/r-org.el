@@ -175,12 +175,18 @@
           `(("a" "Agenda"
              ((agenda ""))
              ((org-super-agenda-groups
-               '((:name "Deadlined"
+               '((:name "Time Grid"
+                        :time-grid t)
+                 (:name "Deadlined"
                         :deadline t)
                  (:name "Important"
-                        :priority "A")
+                        :and (:priority "A" :not (:file-path "emails.org")))
                  (:name "Emails to file"
-                        :file-path "emails.org")
+                        :file-path "emails.org"
+                        :order 8)
+                 (:name "Backlog from Sarso"
+                        :and (:tag "sarso" :not (:todo "TODO"))
+                        :order 9)
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "tasks") org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
