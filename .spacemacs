@@ -38,6 +38,7 @@ values."
      (org :variables
           org-enable-reveal-js-support t
           org-enable-org-journal-support t
+          org-enable-roam-support t
           org-enable-verb-support t)
      (python :variables
              python-backend 'lsp
@@ -89,6 +90,7 @@ values."
      rogue
      spell-checking
      syntax-checking
+     systemd
      theming
      (treemacs :variables
                treemacs-follow-after-init nil
