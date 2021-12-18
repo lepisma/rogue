@@ -230,7 +230,7 @@
                                           (?- . ?•))
         org-ellipsis "  "
         org-pretty-entities t
-        org-hide-emphasis-markers t
+        org-hide-emphasis-markers nil
         org-agenda-block-separator ""
         org-agenda-start-on-weekday 0
         org-agenda-span 'day
