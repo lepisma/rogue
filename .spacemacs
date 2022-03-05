@@ -36,6 +36,7 @@ values."
      lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables
+          org-enable-appear-support t
           org-enable-reveal-js-support t
           org-enable-org-journal-support t
           org-enable-roam-support t
