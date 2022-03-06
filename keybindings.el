@@ -8,6 +8,7 @@
 
 ;; Avy
 (global-set-key (kbd "C-'") 'avy-goto-char)
+(define-key org-mode-map (kbd "C-'") 'avy-goto-char)
 
 ;; Don't kill my words
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
