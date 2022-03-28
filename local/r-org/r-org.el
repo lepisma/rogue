@@ -184,9 +184,6 @@
                  (:name "Emails to file"
                         :file-path "emails.org"
                         :order 8)
-                 (:name "Backlog from Sarso"
-                        :and (:tag "sarso" :not (:todo "TODO"))
-                        :order 9)
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
