@@ -188,7 +188,7 @@
                         :and (:tag "sarso" :not (:todo "TODO"))
                         :order 9)
                  (:auto-category t)))
-              (org-agenda-files (list ,@(directory-files-recursively (concat user-notes-dir "tasks") org-agenda-file-regexp)
+              (org-agenda-files (list ,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
                                       ,(concat user-notes-dir "personal/emails.org")
