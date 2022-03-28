@@ -182,6 +182,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defconst user-cloud-dir (file-name-as-directory (getenv "CLOUD_DIR")))
   (defconst user-project-dir (file-name-as-directory (getenv "PROJECTS_DIR")))
 
+  ;; Task manager directory
+  (defconst user-tasks-dir (file-name-as-directory (expand-file-name "~/Dropbox/tasks")))
+
   ;; Derived directories
   (defconst user-notes-dir (file-name-as-directory (concat user-data-dir "Notes")))
   (defconst user-journal-dir (file-name-as-directory (concat user-notes-dir "journal")))
