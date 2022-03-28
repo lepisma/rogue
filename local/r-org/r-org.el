@@ -155,7 +155,7 @@
   (with-eval-after-load 'org
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("w" "Task" entry (file ,(concat user-notes-dir "tasks/chores.org"))
+          `(("w" "Task" entry (file ,(concat user-tasks-dir "/chores.org"))
              "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
             ("l" "Log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Log")
              "- %U %?" :empty-lines-after 1)
@@ -168,7 +168,7 @@
 
     (setq org-refile-use-outline-path 'full-file-path
           org-outline-path-complete-in-steps nil
-          org-refile-targets `((,(directory-files-recursively (concat user-notes-dir "tasks") org-agenda-file-regexp)
+          org-refile-targets `((,(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                                 :maxlevel . 1)))
 
     (setq org-agenda-custom-commands
