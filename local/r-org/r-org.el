@@ -180,7 +180,6 @@
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
-                                      ,(concat user-notes-dir "incoming/captures.org")
                                       ,(concat user-notes-dir "personal/humans.org.gpg")))))))))
 
 (defun r-org/cliplink-to-region ()
