@@ -298,13 +298,7 @@
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
-  (add-hook 'mu4e-compose-mode-hook #'flyspell-mode)
-  (add-hook 'mu4e-index-updated-hook
-            (lambda ()
-              (with-current-buffer (find-file-noselect (concat user-notes-dir "personal/emails.org"))
-                (r-mu4e/insert-unread-as-org-todos "Personal Unread" 2 7))
-              (with-current-buffer (find-file-noselect (concat user-notes-dir "work/emails.org"))
-                (r-mu4e/insert-unread-as-org-todos "Work Unread" 2 4)))))
+  (add-hook 'mu4e-compose-mode-hook #'flyspell-mode))
 
 (provide 'r-mu4e)
 
