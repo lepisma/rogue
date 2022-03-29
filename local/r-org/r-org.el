@@ -156,7 +156,7 @@
     (setq org-directory user-notes-dir
           org-capture-templates
           `(("w" "Task" entry (file ,(concat user-tasks-dir "/chores.org"))
-             "* %?\nSCHEDULED: %^t\n%a" :empty-lines 1 :prepend t)
+             "* %?\n" :empty-lines 1 :prepend t)
             ("l" "Log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Log")
              "- %U %?" :empty-lines-after 1)
             ("t" "Team log" item (function org-team-visit-person-log)
