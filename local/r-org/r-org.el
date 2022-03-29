@@ -177,21 +177,11 @@
              ((org-super-agenda-groups
                '((:name "Time Grid"
                         :time-grid t)
-                 (:name "Deadlined"
-                        :deadline t)
-                 (:name "Important"
-                        :and (:priority "A" :not (:file-path "emails.org")))
-                 (:name "Emails to file"
-                        :file-path "emails.org"
-                        :order 8)
                  (:auto-category t)))
               (org-agenda-files (list ,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                                       ,(concat user-notes-dir "personal/medical.org.gpg")
                                       ,(concat user-notes-dir "incoming/captures.org")
-                                      ,(concat user-notes-dir "personal/emails.org")
-                                      ,(concat user-notes-dir "work/emails.org")
-                                      ,(concat user-notes-dir "personal/humans.org.gpg")))
-              (org-agenda-tag-filter-preset '("-parked"))))))))
+                                      ,(concat user-notes-dir "personal/humans.org.gpg")))))))))
 
 (defun r-org/cliplink-to-region ()
   "Add link from clipboard to the region."
