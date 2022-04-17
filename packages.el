@@ -173,7 +173,7 @@
 (r|pkg org-roam
   :hook (after-init . org-roam-mode)
   :custom
-  (org-roam-directory (concat user-notes-dir "slum/"))
+  (org-roam-directory (concat user-notes-dir "/personal/slum/"))
   (org-roam-graph-viewer "www")
   :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
