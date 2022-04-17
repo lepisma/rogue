@@ -72,7 +72,6 @@ values."
              elfeed-enable-web-interface t)
      epub
      git
-     github
      helpful
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
