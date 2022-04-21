@@ -190,7 +190,7 @@
 ;; Symlinked
 (r|pkg (org-team :location local)
   :config
-  (setq org-team-dir (file-name-as-directory (expand-file-name "~/Dropbox/team-logs"))))
+  (setq org-team-dir (file-name-as-directory (concat user-cloud-dir "team-logs"))))
 
 (r|pkg org-web-tools
   :after org)
