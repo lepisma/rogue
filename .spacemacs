@@ -89,6 +89,7 @@ values."
      (ranger :variables ranger-show-preview t)
      rogue
      spell-checking
+     spotify
      syntax-checking
      systemd
      theming
