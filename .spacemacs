@@ -87,6 +87,7 @@ values."
      pdf
      prodigy
      (ranger :variables ranger-show-preview t)
+     restclient
      rogue
      spell-checking
      spotify
