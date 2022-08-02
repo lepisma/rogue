@@ -219,7 +219,7 @@
         org-hide-emphasis-markers t
         org-agenda-block-separator ""
         org-agenda-start-on-weekday 0
-        org-agenda-span 'week
+        org-agenda-span 'day
         org-fontify-whole-heading-line t
         org-fontify-done-headline t
         org-fontify-quote-and-verse-blocks t
