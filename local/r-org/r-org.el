@@ -36,6 +36,7 @@
 (require 'org-pomodoro)
 (require 'org-superstar)
 (require 'pile)
+(require 's)
 
 ;; A few extra actions for helm-bibtex
 
@@ -171,16 +172,23 @@
           org-refile-targets `((,(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                                 :maxlevel . 1)))
 
-    (setq org-agenda-custom-commands
-          `(("a" "Agenda"
-             ((agenda ""))
-             ((org-super-agenda-groups
-               '((:name "Time Grid"
-                        :time-grid t)
-                 (:auto-category t)))
-              (org-agenda-files (list ,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
-                                      ,(concat user-notes-dir "personal/medical.org.gpg")
-                                      ,(concat user-notes-dir "personal/humans.org.gpg")))))))))
+    (let ((agenda-files `(,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
+                          ,(concat user-notes-dir "personal/medical.org.gpg")
+                          ,(concat user-notes-dir "personal/humans.org.gpg")))
+          (work-filenames '("delivery.org" "ml.org" "org.org" "product.org" "research.org")))
+      (setq org-agenda-custom-commands
+            `(("a" "Agenda"
+               ((agenda ""))
+               ((org-super-agenda-groups
+                 '((:name "Time Grid" :time-grid t)
+                   (:auto-category t)))
+                (org-agenda-files ',agenda-files)))
+              ("p" "Non-work agenda"
+               ((agenda ""))
+               ((org-super-agenda-groups
+                 '((:name "Time Grid" :time-grid t)
+                   (:auto-category t)))
+                (org-agenda-files ',(remove-if (lambda (it) (member (f-filename it) work-filenames)) agenda-files)))))))))
 
 (defun r-org/cliplink-to-region ()
   "Add link from clipboard to the region."
