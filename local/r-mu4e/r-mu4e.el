@@ -220,36 +220,28 @@
                      :prompt "*something"
                      :action (mu4e-error "No action for deferred mark"))))
 
-  (setq mu4e-bookmarks (list (make-mu4e-bookmark
-                              :name "Personal Inbox"
-                              :query (concat "maildir:/Gmail/INBOX OR "
-                                             "maildir:/Fastmail/INBOX")
-                              :key ?i)
-                             (make-mu4e-bookmark
-                              :name "Work Inbox"
-                              :query "maildir:/Work/INBOX"
-                              :key ?w)
-                             (make-mu4e-bookmark
-                              :name "Work Unread"
-                              :query "maildir:/Work/INBOX AND flag:unread"
-                              :key ?q)
-                             (make-mu4e-bookmark
-                              :name "All Sent"
-                              :query (concat "\"maildir:/Gmail/[Gmail].Sent Mail\" OR "
-                                             "maildir:/Fastmail/Sent OR "
-                                             "\"maildir:/Work/[Gmail].Sent Mail\"")
-                              :key ?s)
-                             (make-mu4e-bookmark
-                              :name "Personal Unread"
-                              :query (concat "maildir:/Gmail/INBOX AND flag:unread OR "
-                                             "maildir:/Fastmail/INBOX AND flag:unread")
-                              :key ?u)
-                             (make-mu4e-bookmark
-                              :name "Personal Archived"
-                              :query (concat "maildir:/Gmail/[Gmail].Archive OR "
-                                             "maildir:/Fastmail/Archive")
-                              :key ?a))
-        mu4e-contexts (list (let ((smtp-entry (authinfo-entry-by-name "gmail-smtp")))
+  (setq mu4e-bookmarks
+        `((:name "Personal Inbox"
+                 :query ,(concat "maildir:/Gmail/INBOX OR "
+                                 "maildir:/Fastmail/INBOX")
+                 :key ?i)
+          (:name "Personal Unread"
+                 :query ,(concat "maildir:/Gmail/INBOX AND flag:unread OR "
+                                 "maildir:/Fastmail/INBOX AND flag:unread")
+                 :key ?u)
+          (:name "Work Inbox"
+                 :query "maildir:/Work/INBOX"
+                 :key ?w)
+          (:name "Work Unread"
+                 :query "maildir:/Work/INBOX AND flag:unread"
+                 :key ?q)
+          (:name "All Sent"
+                 :query ,(concat "\"maildir:/Gmail/[Gmail].Sent Mail\" OR "
+                                 "maildir:/Fastmail/Sent OR "
+                                 "\"maildir:/Work/[Gmail].Sent Mail\"")
+                 :key ?s)))
+
+  (setq mu4e-contexts (list (let ((smtp-entry (authinfo-entry-by-name "gmail-smtp")))
                               (make-mu4e-context
                                :name "Gmail"
                                :match-func (lambda (msg) (when msg (r-mu4e//message-maildir-matches msg "^/Gmail")))
