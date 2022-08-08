@@ -183,6 +183,12 @@
                  '((:name "Time Grid" :time-grid t)
                    (:auto-category t)))
                 (org-agenda-files ',agenda-files)))
+              ("w" "Work agenda"
+               ((agenda ""))
+               ((org-super-agenda-groups
+                 '((:name "Time Grid" :time-grid t)
+                   (:auto-category t)))
+                (org-agenda-files ',(remove-if-not (lambda (it) (member (f-filename it) work-filenames)) agenda-files))))
               ("p" "Non-work agenda"
                ((agenda ""))
                ((org-super-agenda-groups
