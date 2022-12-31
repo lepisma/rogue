@@ -230,6 +230,10 @@ you should place you code here."
   (require 'r-mu4e)
   (require 'r-ui)
 
+
+  ;; Mac specific settings
+  (setq mac-command-modifier 'control)
+
   ;; Language specific settings
   (setq-default web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
