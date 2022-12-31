@@ -317,9 +317,6 @@
                           ("Media" . "@6-months-ago +unread +media")))
   (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
-(r|pkg (read-lyrics :location (recipe :fetcher github :repo "lepisma/read-lyrics.el"))
-  :after (s levenshtein))
-
 (r|pkg (r-ligatures :location local)
   :after r-utils
   :config
