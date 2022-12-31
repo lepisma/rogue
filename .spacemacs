@@ -215,6 +215,9 @@ you should place you code here."
         browse-url-generic-program (executable-find "www")
         browse-url-browser-function 'browse-url-generic)
 
+  ;; Mac specific settings
+  (setq mac-command-modifier 'control)
+
   (delete-selection-mode t)
   (server-start)
   (setq evil-emacs-state-cursor 'bar)
@@ -229,10 +232,6 @@ you should place you code here."
   (openwith-mode)
   (require 'r-mu4e)
   (require 'r-ui)
-
-
-  ;; Mac specific settings
-  (setq mac-command-modifier 'control)
 
   ;; Language specific settings
   (setq-default web-mode-markup-indent-offset 2
