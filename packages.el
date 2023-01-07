@@ -210,49 +210,42 @@
          (preamble-template (f-read-text (concat template-dir "pile-preamble.html.template") 'utf-8))
          (postamble-template (f-read-text (concat template-dir "pile-postamble.html.template") 'utf-8))
          (root-url "https://lepisma.xyz/")
+         (input-dir (concat user-cloud-dir "lepisma.github.io/"))
          (output-dir (concat user-project-dir "lepisma.github.io-deploy/")))
     (setq pile-serve-dir output-dir
           pile-projects
           (list (pile-project-wiki :name "wiki"
                                    :root-url root-url
                                    :base-url "wiki"
-                                   :input-dir (concat user-project-dir "lepisma.github.io/wiki")
+                                   :input-dir (concat input-dir "wiki")
                                    :output-dir (concat output-dir "wiki")
                                    :postamble postamble-template
                                    :preamble (mustache-render preamble-template (ht ("wiki-p" t) ("page-meta" "Last modified: %d %C")))
-                                   :setupfile (concat user-project-dir "lepisma.github.io/assets/export.setup"))
+                                   :setupfile (concat input-dir "assets/export.setup"))
                 (pile-project-blog :name "blog"
                                    :root-url root-url
                                    :base-url ""
-                                   :input-dir (concat user-project-dir "lepisma.github.io/blog")
+                                   :input-dir (concat input-dir "blog")
                                    :output-dir output-dir
                                    :postamble postamble-template
                                    :preamble (mustache-render preamble-template (ht ("blog-p" t) ("page-meta" "%d")))
-                                   :setupfile (concat user-project-dir "lepisma.github.io/assets/export.setup"))
+                                   :setupfile (concat input-dir "assets/export.setup"))
                 (pile-project-blog :name "journal"
                                    :root-url root-url
                                    :base-url "journal"
-                                   :input-dir (concat user-project-dir "lepisma.github.io/journal")
+                                   :input-dir (concat input-dir "journal")
                                    :output-dir (concat output-dir "journal")
                                    :postamble postamble-template
                                    :preamble (mustache-render preamble-template (ht ("journal-p" t) ("page-meta" "%d")))
-                                   :setupfile (concat user-project-dir "lepisma.github.io/assets/export.setup"))
-                (pile-project-blog :name "log"
-                                   :root-url root-url
-                                   :base-url "log"
-                                   :input-dir (concat user-project-dir "lepisma.github.io/log")
-                                   :output-dir (concat output-dir "log")
-                                   :postamble postamble-template
-                                   :preamble (mustache-render preamble-template (ht ("log-p" t) ("page-meta" "%d")))
-                                   :setupfile (concat user-project-dir "lepisma.github.io/assets/export.setup"))
+                                   :setupfile (concat input-dir "assets/export.setup"))
                 (pile-project-static :name "assets"
                                      :root-url root-url
-                                     :input-dir (concat user-project-dir "lepisma.github.io/assets")
+                                     :input-dir (concat input-dir "assets")
                                      :output-dir (concat output-dir "assets"))
                 (pile-project-plain :name "misc"
                                     :root-url root-url
                                     :base-url ""
-                                    :input-dir (concat user-project-dir "lepisma.github.io/misc")
+                                    :input-dir (concat input-dir "misc")
                                     :output-dir output-dir)))
     ;; Setup notes here to get the wiki files in agenda
     (r-org/setup-notes)
