@@ -11,17 +11,9 @@ values."
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(bibtex
-     (c-c++ :variables
-            c-c++-adopt-subprojects t
-            c-c++-backend 'lsp-ccls
-            c-c++-lsp-sem-highlight-method 'font-lock)
-     (clojure :variables
-              cider-eval-result-prefix "▶ ")
      common-lisp
      csv
      emacs-lisp
-     (ess :variables
-          ess-r-backend 'lsp)
      (go :variables
          go-backend 'lsp
          go-format-before-save t
@@ -47,7 +39,6 @@ values."
              python-test-runner 'pytest
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
-     ruby
      (rust :variables
            rust-format-on-save t
            rust-backend 'lsp)
@@ -55,7 +46,6 @@ values."
             shell-default-shell 'vterm)
      shell-scripts
      sql
-     typescript
      yaml
      ;; Assists
      (auto-completion :variables

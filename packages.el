@@ -12,11 +12,6 @@
 
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
-(r|pkg (calibre :location (recipe :fetcher github :repo "lepisma/calibre.el"))
-  :after (s dash-functional)
-  :config
-  (setq calibre-root (concat user-cloud-dir "Calibre Shared")))
-
 (r|pkg chronos
   :config
   ;; Chronos looks like abandoned so I am putting all the changes/fixes here
@@ -67,12 +62,6 @@
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
 
-(r|pkg elcord
-  :config
-  (setq elcord-display-buffer-details nil
-        elcord-editor-icon "emacs_material_icon")
-  (elcord-mode))
-
 (r|pkg (elml :location (recipe :fetcher github :repo "lepisma/elml")))
 
 (r|pkg emojify)
@@ -83,9 +72,6 @@
   :config
   (setq eros-eval-result-prefix "▶ ")
   (eros-mode 1))
-
-;; Symlinked
-(r|pkg (esi :location local))
 
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
@@ -128,10 +114,6 @@
 
 (r|pkg ob-async)
 
-(r|pkg (obtt :location (recipe :fetcher github :repo "lepisma/obtt"))
-  :after org
-  :config (setq obtt-templates-dir (concat user-layer-dir "obtt/")))
-
 (r|pkg openwith
   :config
   (setq openwith-associations
@@ -150,13 +132,9 @@
            "okular"
            (file)))))
 
-(r|pkg org-analyzer)
-
 (r|pkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
   :config
   (setq org-books-file user-books-file))
-
-(r|pkg (oca :location local))
 
 (r|pkg org-fragtog
   :hook ((org-mode . org-fragtog-mode)))
@@ -166,9 +144,6 @@
   (org-journal-dir user-journal-dir)
   (org-journal-enable-encryption t)
   (org-journal-date-format "%A, %x"))
-
-(r|pkg (orgo :location (recipe :fetcher github :repo "lepisma/orgo"))
-  :after org)
 
 (r|pkg org-roam
   :hook (after-init . org-roam-mode)
@@ -198,8 +173,6 @@
 (r|pkg org-variable-pitch
   :hook
   ((after-init . org-variable-pitch-setup)))
-
-(r|pkg (outline-wiki :location (recipe :fetcher github :repo "lepisma/outline-wiki.el")))
 
 (r|pkg ov)
 
@@ -265,12 +238,6 @@
                              #'pile-hooks-post-stringify-title
                              #'pile-hooks-post-sync-static-files
                              #'pile-hooks-post-generate-index))))
-
-(r|pkg polymode)
-
-(r|pkg poly-markdown)
-
-(r|pkg poly-R)
 
 (r|pkg powerthesaurus)
 
@@ -362,18 +329,6 @@
   (setq switch-window-shortcut-style 'qwerty
         switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o")
         switch-window-minibuffer-shortcut ?z))
-
-(r|pkg (tog :location (recipe :fetcher github :repo "Vernacular-ai/tog"))
-  :bind (:map tog-mode-map
-              ("RET" . tog-tag)
-              ("n" . tog-next)
-              ("N" . tog-next-untagged)
-              ("p" . tog-prev)
-              ("P" . tog-prev-untagged)
-              ("DEL" . tog-clear)
-              ("C-x C-s" . tog-save-tags)
-              ("q" . tog-quit)
-              ("t" . (lambda () (interactive) (tog-progress-report tog-loader)))))
 
 (r|pkg unicode-fonts
   :config
