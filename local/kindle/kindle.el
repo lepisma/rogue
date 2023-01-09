@@ -27,7 +27,6 @@
 ;;; Code:
 
 (require 'dash)
-(require 'dash-functional)
 (require 'f)
 (require 's)
 

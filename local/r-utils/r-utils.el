@@ -26,7 +26,7 @@
 
 ;;; Code:
 
-(require 'dash-functional)
+(require 'dash)
 
 ;;;###autoload
 (defun r-utils/add-hooks (hooks fns)
