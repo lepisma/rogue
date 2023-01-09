@@ -28,7 +28,7 @@
 
 (require 'company)
 (require 'r-utils)
-(require 'dash-functional)
+(require 'dash)
 (require 'treemacs)
 (require 'all-the-icons)
 (require 'doom-modeline)

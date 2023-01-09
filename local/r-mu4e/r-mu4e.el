@@ -28,7 +28,6 @@
 
 (require 'cl-macs)
 (require 'dash)
-(require 'dash-functional)
 (require 'helm)
 (require 'mml)
 (require 'message)
