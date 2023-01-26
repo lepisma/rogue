@@ -176,7 +176,7 @@
   (org-super-agenda-mode))
 
 ;; Symlinked
-(r|pkg (org-team :location (recipe :feature github :repo "lepisma/org-team"))
+(r|pkg (org-team :location (recipe :fetcher github :repo "lepisma/org-team"))
   :config
   (setq org-team-dir (file-name-as-directory (concat user-cloud-dir "team-logs"))))
 
