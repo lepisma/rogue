@@ -136,6 +136,19 @@
   :config
   (setq org-books-file user-books-file))
 
+(r|pkg (org-fancy-priorities)
+  :hook
+  (org-mode . org-fancy-priorities-mode)
+  :config
+  (setq org-priority-highest 0
+        org-priority-default 2
+        org-priority-lowest 4)
+  (setq org-fancy-priorities-list '((?0 . "P0")
+                                    (?1 . "P1")
+                                    (?2 . "P2")
+                                    (?3 . "P3")
+                                    (?4 . "P4"))))
+
 (r|pkg org-fragtog
   :hook ((org-mode . org-fragtog-mode)))
 
