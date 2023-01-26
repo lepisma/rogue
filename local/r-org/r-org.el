@@ -181,7 +181,7 @@
                ((agenda ""))
                ((org-super-agenda-groups
                  '((:name "Important"
-                          :priority "A")
+                          :priority "0")
                    (:name "Time Grid" :time-grid t)
                    (:auto-category t)))
                 (org-agenda-files ',agenda-files)))
@@ -189,7 +189,7 @@
                ((agenda ""))
                ((org-super-agenda-groups
                  '((:name "Important"
-                          :priority "A")
+                          :priority "0")
                    (:name "Time Grid" :time-grid t)
                    (:auto-category t)))
                 (org-agenda-files ',(remove-if-not (lambda (it) (member (f-filename it) work-filenames)) agenda-files))))
@@ -197,7 +197,7 @@
                ((agenda ""))
                ((org-super-agenda-groups
                  '((:name "Important"
-                          :priority "A")
+                          :priority "0")
                    (:name "Time Grid" :time-grid t)
                    (:auto-category t)))
                 (org-agenda-files ',(remove-if (lambda (it) (member (f-filename it) work-filenames)) agenda-files)))))))))
