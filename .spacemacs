@@ -11,7 +11,10 @@ values."
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(bibtex
-     common-lisp
+     (common-lisp :variables
+                  slime-lisp-implementations `((sbcl    ("sbcl"))
+                                               (roswell ("ros" "-Q" "run")))
+                  slime-default-lisp 'roswell)
      csv
      emacs-lisp
      (go :variables
@@ -20,12 +23,22 @@ values."
          go-tab-width 4)
      graphviz
      haskell
-     html
-     javascript
+     (html :variables
+           web-mode-markup-indent-offset 2
+           web-mode-css-indent-offset 2
+           web-mode-code-indent-offset 2
+           css-indent-offset 2)
+     (javascript :variables
+                 js2-basic-offset 2
+                 js-indent-level 2
+                 js2-strict-missing-semi-warning nil
+                 js2-missing-semi-one-line-override nil
+                 typescript-indent-level 2)
      (latex :variables
             latex-enable-folding t
             latex-enable-auto-fill t)
-     lsp
+     (lsp :variables
+          lsp-message-project-root-warning t)
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables
           org-enable-appear-support t
@@ -59,7 +72,11 @@ values."
      dap
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
-             elfeed-enable-web-interface t)
+             elfeed-enable-web-interface t
+             elfeed-goodies/show-mode-padding 2
+             elfeed-goodies/powerline-default-separator 'slant
+             elfeed-goodies/feed-source-column-width 25
+             elfeed-goodies/tag-column-width 30)
      epub
      git
      helpful
@@ -212,40 +229,11 @@ you should place you code here."
   (server-start)
   (setq evil-emacs-state-cursor 'bar)
 
-  (setq elfeed-goodies/show-mode-padding 2
-        elfeed-goodies/powerline-default-separator 'slant
-        elfeed-goodies/feed-source-column-width 25
-        elfeed-goodies/tag-column-width 30)
-
   ;; A few late setup calls
   ;; TODO: There is some load order issue. Put these in the right place
   (openwith-mode)
   (require 'r-mu4e)
   (require 'r-ui)
-
-  ;; Language specific settings
-  (setq-default web-mode-markup-indent-offset 2
-                web-mode-css-indent-offset 2
-                web-mode-code-indent-offset 2
-                css-indent-offset 2
-                js2-basic-offset 2
-                js-indent-level 2
-                js2-strict-missing-semi-warning nil
-                js2-missing-semi-one-line-override nil
-                typescript-indent-level 2)
-
-  ;; LSP
-  (setq lsp-message-project-root-warning t)
-
-  ;; Smartparens issue in c++
-  ;; From https://github.com/Fuco1/smartparens/issues/840#issuecomment-396797118
-  (dolist (key '("(" ")" "{" "}")) (define-key c-mode-base-map (kbd key) nil))
-
-  (setf slime-lisp-implementations
-        `((sbcl    ("sbcl"))
-          (roswell ("ros" "-Q" "run"))
-          (roswell-pod ("ros" "-Q" "run" "-e" "(ql:quickload :pod)" "-e" "(in-package :pod)")))
-        slime-default-lisp 'roswell-pod)
 
   (slime-setup '(slime-asdf
                  slime-company

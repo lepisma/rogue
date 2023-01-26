@@ -12,26 +12,6 @@
 
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
-(r|pkg chronos
-  :config
-  ;; Chronos looks like abandoned so I am putting all the changes/fixes here
-  ;; instead of possibly doing a PR.
-  (defun chronos-buffer-switch (_)
-    (switch-to-buffer chronos-buffer-name))
-
-  (defun chronos--format-notification (n)
-    (concat "" (cadr n)))
-
-  (defun chronos--display-clock ()
-    (insert (propertize (format "⌛%s" (chronos--time-string-rounded-to-minute (current-time)))
-                        'face 'chronos-notification-clock)))
-
-  (setq chronos-shell-notify-program "mplayer"
-        chronos-shell-notify-parameters '("/usr/share/sounds/freedesktop/stereo/complete.oga")
-        chronos-expiry-functions '(chronos-dunstify chronos-shell-notify chronos-buffer-notify chronos-buffer-switch)))
-
-(r|pkg colormaps)
-
 (r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
   :config
   (add-hook 'org-mode-hook
@@ -76,29 +56,9 @@
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
 
-(r|pkg helm-chronos
-  :after chronos
-  :bind (("C-c t" . helm-chronos-add-timer))
-  :config
-  ;; Fix from https://github.com/dxknight/helm-chronos/pull/2
-  (setq helm-chronos--fallback-source
-        (helm-build-dummy-source "Enter <expiry time spec>/<message>"
-          :filtered-candidate-transformer
-          (lambda (_candidates _source)
-            (list (or (and (not (string= helm-pattern ""))
-                           helm-pattern)
-                      "Enter a timer to start")))
-          :action '(("Add timer" . (lambda (candidate)
-                                     (if (string= helm-pattern "")
-                                         (message "No timer")
-                                       (helm-chronos--parse-string-and-add-timer helm-pattern)))))))
-  (setq helm-chronos-standard-timers '()))
-
 (r|pkg (kindle :location local)
   :config
   (setq kindle-clipping-save-file user-clippings-file))
-
-(r|pkg (levenshtein :location (recipe :fetcher github :repo "emacsorphanage/levenshtein")))
 
 (r|pkg (mu4e-fold :location local)
   :after r-mu4e
@@ -175,7 +135,6 @@
   :config
   (org-super-agenda-mode))
 
-;; Symlinked
 (r|pkg (org-team :location (recipe :fetcher github :repo "lepisma/org-team"))
   :config
   (setq org-team-dir (file-name-as-directory (concat user-cloud-dir "team-logs"))))
@@ -368,5 +327,3 @@
 
 (r|pkg web-server
   :after htmlize)
-
-(r|pkg writegood-mode)
