@@ -224,6 +224,13 @@
                                    :postamble postamble-template
                                    :preamble (mustache-render preamble-template (ht ("journal-p" t) ("page-meta" "%d")))
                                    :setupfile (concat input-dir "assets/export.setup"))
+                (pile-project-blog :name "log"
+                                   :root-url root-url
+                                   :base-url "log"
+                                   :input-dir (concat input-dir "log")
+                                   :output-dir (concat output-dir "log")
+                                   :postamble postamble-template
+                                   :preamble (mustache-render preamble-template (ht ("log-p" t) ("page-meta" "%d"))))
                 (pile-project-static :name "assets"
                                      :root-url root-url
                                      :input-dir (concat input-dir "assets")
