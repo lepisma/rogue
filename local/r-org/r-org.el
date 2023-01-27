@@ -175,7 +175,7 @@
     (let ((agenda-files `(,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                           ,(concat user-notes-dir "personal/medical.org.gpg")
                           ,(concat user-notes-dir "personal/humans.org.gpg")))
-          (work-filenames '("delivery.org" "ml.org" "org.org" "product.org" "research.org")))
+          (work-filenames '("work.org")))
       (setq org-agenda-custom-commands
             `(("a" "Agenda"
                ((agenda ""))
