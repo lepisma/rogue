@@ -19,6 +19,22 @@
               (when (conceal-buffer-gpg-p (current-buffer))
                 (conceal-mode 1)))))
 
+(r|pkg (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el"
+                                  :files ("*.el" "dist")))
+  :config
+  (with-eval-after-load 'company
+    (delq 'company-preview-if-just-one-frontend company-frontends))
+
+  (with-eval-after-load 'copilot
+    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+  :bind (("C-<tab>" . copilot-complete)))
+
 (r|pkg dired-subtree
   :after ranger
   :bind (:map ranger-mode-map
