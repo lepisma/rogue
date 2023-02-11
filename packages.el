@@ -343,3 +343,9 @@
 
 (r|pkg web-server
   :after htmlize)
+
+(r|pkg (whisper :location (recipe :fetcher github :repo "natrys/whisper.el"))
+  :config
+  (setq whisper-model "base"
+        whisper-language "en"
+        whisper-translate nil))
