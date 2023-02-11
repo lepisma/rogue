@@ -69,6 +69,10 @@
   (setq eros-eval-result-prefix "▶ ")
   (eros-mode 1))
 
+(r|pkg (esi :location (recipe :fetcher github :repo "lepisma/emacs-speech-input"))
+  :after (whisper)
+  :bind (("C-c t" . esi-transcribe)))
+
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
 
