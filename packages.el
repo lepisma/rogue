@@ -76,6 +76,8 @@
 (r|pkg goto-line-preview
   :bind ("M-g g" . goto-line-preview-goto-line))
 
+(r|pkg keepass-mode)
+
 (r|pkg (kindle :location local)
   :config
   (setq kindle-clipping-save-file user-clippings-file))
