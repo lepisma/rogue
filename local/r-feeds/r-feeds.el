@@ -29,6 +29,12 @@
 (require 'elfeed)
 (require 'helm)
 (require 'org)
+(require 'request)
+
+(defcustom r-feeds-raindrop-token nil
+  "Authorization token for Raindrop.io API. This is used for saving
+bookmarks to raindrop."
+  :type 'string)
 
 (defcustom r-feeds-filters
   '(("Default" . "@6-months-ago +unread"))
@@ -50,6 +56,25 @@
   (set-buffer "*elfeed-search*")
   (elfeed-search-set-filter filter))
 
+(defun r-feeds/save-to-raindrop ()
+  "Save current elfeed-search view entry to raindrop with a few
+default options."
+  (interactive)
+  (let ((entry (elfeed-search-selected :single)))
+    (request "https://api.raindrop.io/rest/v1/raindrop"
+      :type "POST"
+      :headers `(("Authorization" . ,(concat "Bearer " r-feeds-raindrop-token))
+                 ("Content-Type" . "application/json"))
+      :data (json-encode `(("pleaseParse" . #s(hash-table))
+                           ("tags" . ("elfeed"))
+                           ("link" . ,(elfeed-entry-link entry))))
+      :success
+      (cl-function (lambda (&key data &allow-other-keys)
+                     (message "Saved item to Raindrop.io")))
+      :error
+      (cl-function (lambda (&rest args &key error-thrown &allow-other-keys)
+                     (message "Got error: %S" error-thrown))))))
+
 (defun r-feeds/elfeed-entries (filter)
   "Return a list of entries for given FILTER"
   (let ((items)
@@ -58,14 +83,6 @@
       (if (elfeed-search-filter filter entry feed)
           (push entry items)))
     (sort items (lambda (a b) (> (elfeed-entry-date a) (elfeed-entry-date b))))))
-
-;;;###autoload
-(defun r-feeds/play-elfeed ()
-  "Play the current link from elfeed in vlc, assuming the url
-is something like youtube's."
-  (interactive)
-  (let ((entry (elfeed-search-selected :single)))
-    (start-process "vlc" nil "vlc" (elfeed-entry-link entry))))
 
 (provide 'r-feeds)
 

@@ -256,8 +256,10 @@
   :mode "\\.proto\\'")
 
 (r|pkg (r-feeds :location local)
-  :after (elfeed helm)
-  :bind (("C-c f" . helm-elfeed))
+  :after (elfeed helm request)
+  :bind (("C-c f" . helm-elfeed)
+         :map elfeed-search-mode-map
+         ("s" . r-feeds/save-to-raindrop))
   :config
   (setq r-feeds-filters '(("Default" . "@6-months-ago +unread -freq -podcast")
                           ("All" . "@6-months-ago +unread")

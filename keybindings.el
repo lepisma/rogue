@@ -32,7 +32,6 @@
 (global-set-key (kbd "C-x C-l") nil)
 (global-set-key (kbd "<insert>") nil)
 (define-key org-mode-map (kbd "C-c C-x C-s") nil)
-(define-key elfeed-search-mode-map (kbd "s") nil)
 
 ;; Helm
 (define-key helm-map (kbd "<left>") 'helm-previous-source)
