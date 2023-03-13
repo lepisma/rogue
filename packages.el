@@ -10,6 +10,11 @@
          (use-package ,id ,@body))
        (push ',name rogue-packages))))
 
+(r|pkg activity-watch-mode
+  :after request
+  :config
+  (global-activity-watch-mode))
+
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
 (r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
