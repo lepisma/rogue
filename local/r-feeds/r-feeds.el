@@ -70,7 +70,9 @@ default options."
                            ("link" . ,(elfeed-entry-link entry))))
       :success
       (cl-function (lambda (&key data &allow-other-keys)
-                     (message "Saved item to Raindrop.io")))
+                     (message "Saved item to Raindrop.io")
+                     (elfeed-untag entry 'unread)
+                     (elfeed-search-update-entry entry)))
       :error
       (cl-function (lambda (&rest args &key error-thrown &allow-other-keys)
                      (message "Got error: %S" error-thrown))))))
