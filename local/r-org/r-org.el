@@ -156,11 +156,7 @@
   (with-eval-after-load 'org
     (setq org-directory user-notes-dir
           org-capture-templates
-          `(("w" "Task" entry (file ,(concat user-tasks-dir "/chores.org"))
-             "* %?\n" :empty-lines 1 :prepend t)
-            ("l" "Log" item (file+olp ,(concat user-notes-dir "personal/notes.org") "Log")
-             "- %U %?" :empty-lines-after 1)
-            ("t" "Team log" item (function org-team-visit-person-log)
+          `(("t" "Team log" item (function org-team-visit-person-log)
              "- %U %?" :prepend t)
             ("b" "Book log" item (function org-books-visit-book-log)
              "- %U %?" :prepend t)))
@@ -174,33 +170,8 @@
 
     (let ((agenda-files `(,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                           ,(concat user-notes-dir "personal/medical.org.gpg")
-                          ,(concat user-notes-dir "personal/humans.org.gpg")))
-          (work-filenames '("work.org")))
-      (setq org-agenda-custom-commands
-            `(("a" "Agenda"
-               ((agenda ""))
-               ((org-super-agenda-groups
-                 '((:name "Important"
-                          :priority "A")
-                   (:name "Time Grid" :time-grid t)
-                   (:auto-category t)))
-                (org-agenda-files ',agenda-files)))
-              ("w" "Work agenda"
-               ((agenda ""))
-               ((org-super-agenda-groups
-                 '((:name "Important"
-                          :priority "A")
-                   (:name "Time Grid" :time-grid t)
-                   (:auto-parent t)))
-                (org-agenda-files ',(remove-if-not (lambda (it) (member (f-filename it) work-filenames)) agenda-files))))
-              ("p" "Non-work agenda"
-               ((agenda ""))
-               ((org-super-agenda-groups
-                 '((:name "Important"
-                          :priority "A")
-                   (:name "Time Grid" :time-grid t)
-                   (:auto-category t)))
-                (org-agenda-files ',(remove-if (lambda (it) (member (f-filename it) work-filenames)) agenda-files)))))))))
+                          ,(concat user-notes-dir "personal/humans.org.gpg"))))
+      (setq org-agenda-custom-commands nil))))
 
 (defun r-org/cliplink-to-region ()
   "Add link from clipboard to the region."
