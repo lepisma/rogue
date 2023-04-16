@@ -324,6 +324,11 @@
   :hook ((prog-mode . solaire-mode)
          (ediff-prepare-buffer . solaire-mode)))
 
+(r|pkg svg-tag-mode
+  :config
+  (setq svg-tag-tags
+        '((":TODO:" . ((lambda (tag) (svg-tag-make tag :beg 1 :end -1)))))))
+
 (r|pkg swiper
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
