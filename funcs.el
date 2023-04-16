@@ -184,3 +184,51 @@ In the BODY forms, `it' provides the path for the copy."
                    :action `(("Play audio" . youtube-play-url)))
         :buffer "*helm youtube history*"
         :prompt "Title: "))
+
+(defun aleatory-assitance ()
+  "Give a random strategy to get unstuck."
+  (interactive)
+  (let ((strategies (s-split "\n" (s-trim "1. Take the braver decision
+2. Take a nap
+3. What's the title of this book?
+4. What's the choice between?
+5. Ask ChatGPT for the final decision
+6. What will make you proud of yourself?
+7. Choose freedom
+8. Start reading a new book
+9. Be kind to people involved
+10. Name this
+11. Start a repository
+12. Where's the money coming from?
+13. Close everything, start again
+14. Connect with an expert in the area
+15. How would you have done it?
+16. Combine two unrelated concepts
+17. Toss a coin
+18. Explain it to a business person
+19. How much time will it take? Take 3 times more
+20. Talk to the nearest human
+21. What are the ingredients? What's missing?
+22. Search old notes
+23. How will this look like in the future?
+24. Find an equivalent problem
+25. Work in a different domain
+26. Take out another card
+27. What's the most ambitious option?
+28. List risks
+29. Run an experiment
+30. Record a video on current status
+31. Ship right now!
+32. What's the strongest feeling right now?
+33. What's one bias you can remove right now?
+34. Write an email
+35. What's the weather trend these days?
+36. Use a new animal
+37. Make a plot
+38. Collect data
+39. Make it efficient
+40. Remove the most meaningless portion
+41. Make a mistake
+42. What do you need other than time? Ask for it.
+"))))
+    (print (car (shuffle-list strategies)))))
