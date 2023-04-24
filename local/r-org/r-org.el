@@ -196,6 +196,12 @@
   (interactive)
   (org-pomodoro-kill))
 
+(defun r-org/add-created-time ()
+  "Add a CREATED property to the current Org entry."
+  (interactive)
+  (let ((created (format-time-string "[%Y-%m-%d %a %H:%M]")))
+    (org-set-property "CREATED" created)))
+
 ;;;###autoload
 (defun r-org/setup-general ()
   "Misc settings."
@@ -228,6 +234,8 @@
      org-pomodoro-killed-hook
      org-archive-hook)
    (list #'org-save-all-org-buffers))
+
+  (add-hook 'org-insert-heading-hook #'r-org/add-created-time)
 
   (setq org-pomodoro-keep-killed-pomodoro-time t
         org-pomodoro-length 25
