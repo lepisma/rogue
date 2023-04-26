@@ -17,6 +17,12 @@
 
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
 
+(r|pkg chatgpt-shell
+  :config
+  (setq chatgpt-shell-openai-key
+        (lambda () (auth-source-pick-first-password :host "api.openai.com"))
+        chatgpt-shell-streaming t))
+
 (r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
   :config
   (add-hook 'org-mode-hook
