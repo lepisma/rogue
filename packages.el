@@ -21,7 +21,8 @@
   :config
   (setq chatgpt-shell-openai-key
         (lambda () (auth-source-pick-first-password :host "api.openai.com"))
-        chatgpt-shell-streaming t))
+        chatgpt-shell-streaming t
+        chatgpt-shell-model-version "gpt-4"))
 
 (r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
   :config
