@@ -280,7 +280,8 @@
   (setq r-feeds-filters '(("Default" . "@6-months-ago +unread -freq -podcast")
                           ("All" . "@6-months-ago +unread")
                           ("Frequent" . "@6-months-ago +unread +freq")
-                          ("Media" . "@6-months-ago +unread +media")))
+                          ("Media" . "@6-months-ago +unread +media"))
+        r-feeds-raindrop-token (auth-source-pick-first-password :host "api.raindrop.io"))
   (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
 (r|pkg ligature
