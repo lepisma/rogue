@@ -32,6 +32,7 @@
 (require 'mml)
 (require 'message)
 (require 'mu4e)
+(require 'mu4e-snooze)
 (require 'openwith)
 (require 's)
 
@@ -159,7 +160,11 @@
         mu4e-headers-default-prefix      '("|"  . " "))
 
   (setq mu4e-marks
-        '((refile :char ("r" . "")
+        `((snooze :char "z"
+                  :prompt "snooze"
+                  :dyn-target (lambda (target msg) (mu4e-snooze-folder msg))
+                  :action ,#'mu4e-snooze-action)
+          (refile :char ("r" . "")
                   :prompt "refile"
                   :dyn-target (lambda (target msg) (mu4e-get-refile-folder msg))
                   :action (lambda (docid msg target) (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))

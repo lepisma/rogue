@@ -100,8 +100,7 @@
   :bind (:map mu4e-headers-mode-map ("<tab>" . mu4e-headers-toggle-thread-folding))
   :hook ((mu4e-headers-found . mu4e-headers-fold-all)))
 
-(r|pkg (mu4e-snooze :location (recipe :fetcher github :repo "lepisma/mu4e-snooze"))
-  :after r-mu4e)
+(r|pkg (mu4e-snooze :location local))
 
 (r|pkg multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
