@@ -129,6 +129,16 @@
            "okular"
            (file)))))
 
+(r|pkg org-ai
+  :ensure t
+  :commands (org-ai-mode org-ai-global-mode)
+  :init
+  (add-hook 'org-mode-hook #'org-ai-mode)
+  (org-ai-global-mode)
+  :config
+  (setq org-ai-default-chat-model "gpt-4")
+  (org-ai-install-yasnippets))
+
 (r|pkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
   :config
   (setq org-books-file user-books-file))
