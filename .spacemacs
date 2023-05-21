@@ -45,6 +45,8 @@ values."
           org-enable-reveal-js-support t
           org-enable-org-journal-support t
           org-enable-roam-support t
+          org-enable-roam-protocol t
+          org-enable-roam-ui t
           org-enable-verb-support t)
      (python :variables
              python-backend 'lsp
