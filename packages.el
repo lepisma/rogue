@@ -163,7 +163,15 @@
          ("C-c n c" . org-roam-capture)
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag))
+        org-roam-capture-templates `(("n" "default" plain "%?"
+                                      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                         "#+TITLE: ${title}\n\n")
+                                      :unnarrowed)
+                                     ("l" "literature" plain "%?"
+                                      :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
+                                                         "#+TITLE: ${title}\n\n")
+                                      :unnarrowed)))
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
 
