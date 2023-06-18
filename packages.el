@@ -95,6 +95,10 @@
   :config
   (setq kindle-clipping-save-file user-clippings-file))
 
+(r|pkg move-text
+  :config
+  (move-text-default-bindings))
+
 (r|pkg (mu4e-fold :location local)
   :after r-mu4e
   :bind (:map mu4e-headers-mode-map ("<tab>" . mu4e-headers-toggle-thread-folding))

@@ -15,8 +15,6 @@
 
 ;; Line stuff
 (global-set-key (kbd "C-d") 'duplicate-line)
-(global-set-key (kbd "M-<up>") 'move-text-line-up)
-(global-set-key (kbd "M-<down>") 'move-text-line-down)
 (global-set-key (kbd "C-S-<backspace>") 'delete-line)
 
 ;; Projectile
