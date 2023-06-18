@@ -33,8 +33,8 @@
 (require 'org)
 (require 'org-ref)
 (require 'org-tempo)
+(require 'org-modern)
 (require 'org-pomodoro)
-(require 'org-superstar)
 (require 'pile)
 (require 's)
 
@@ -207,10 +207,7 @@
   "Misc settings."
   (setq org-startup-indented t
         org-clock-idle-time 5
-        org-superstar-headline-bullets-list '("› ")
-        org-superstar-item-bullet-alist '((?* . ?⋆)
-                                          (?+ . ?‣)
-                                          (?- . ?•))
+        org-modern-star '("› ")
         org-ellipsis "  "
         org-pretty-entities t
         org-hide-emphasis-markers t

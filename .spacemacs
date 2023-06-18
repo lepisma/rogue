@@ -47,7 +47,8 @@ values."
           org-enable-roam-support t
           org-enable-roam-protocol t
           org-enable-roam-ui t
-          org-enable-verb-support t)
+          org-enable-verb-support t
+          org-enable-modern-support t)
      (python :variables
              python-backend 'lsp
              python-lsp-server 'pylsp
