@@ -46,6 +46,10 @@
 *** [[https://dynamicecology.wordpress.com/feed/][Dynamic Ecology]]                                                  :freq:
 *** [[https://www.lesswrong.com/feed.xml?view=curated-rss][LessWrong: Curated]]
 *** [[https://lethain.com/feeds.xml][Irrational Exuberance]]
+*** [[https://solar.lowtechmagazine.com/posts/index.xml][LOW←TECH MAGAZINE English]]
+:PROPERTIES:
+:CREATED:  [2023-07-09 Sun 22:48]
+:END:
 
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
