@@ -216,16 +216,9 @@
                  :query ,(concat "maildir:/Gmail/INBOX AND flag:unread OR "
                                  "maildir:/Fastmail/INBOX AND flag:unread")
                  :key ?u)
-          (:name "Work Inbox"
-                 :query "maildir:/Work/INBOX"
-                 :key ?w)
-          (:name "Work Unread"
-                 :query "maildir:/Work/INBOX AND flag:unread"
-                 :key ?q)
           (:name "All Sent"
                  :query ,(concat "\"maildir:/Gmail/[Gmail].Sent Mail\" OR "
-                                 "maildir:/Fastmail/Sent OR "
-                                 "\"maildir:/Work/[Gmail].Sent Mail\"")
+                                 "maildir:/Fastmail/Sent")
                  :key ?s)))
 
   (setq mu4e-contexts (list (let ((smtp-entry (authinfo-entry-by-name "gmail-smtp")))
@@ -257,22 +250,7 @@
                                        (mu4e-sent-folder . "/Fastmail/Sent")
                                        (mu4e-drafts-folder . "/Fastmail/Drafts")
                                        (mu4e-trash-folder . "/Fastmail/Trash")
-                                       (mu4e-refile-folder . "/Fastmail/Archive"))))
-                            (let ((smtp-entry (authinfo-entry-by-name "work-smtp")))
-                              (make-mu4e-context
-                               :name "Work"
-                               :match-func (lambda (msg) (when msg (r-mu4e//message-maildir-matches msg "^/Work")))
-                               :vars `((user-mail-address . ,(authinfo-get smtp-entry "email"))
-                                       (smtpmail-default-smtp-server . ,(authinfo-get smtp-entry "machine"))
-                                       (smtpmail-smtp-server . ,(authinfo-get smtp-entry "machine"))
-                                       (smtpmail-smtp-service . ,(string-to-number (authinfo-get smtp-entry "port")))
-                                       (smtpmail-stream-type . ssl)
-                                       (smtpmail-smtp-user . ,(authinfo-get smtp-entry "login"))
-                                       ;; Gmail handles sent mails automatically
-                                       (mu4e-sent-messages-behavior . delete)
-                                       (mu4e-trash-folder . "/Work/[Gmail].Trash")
-                                       (mu4e-drafts-folder . "/Work/[Gmail].Drafts")
-                                       (mu4e-refile-folder . "/Work/[Gmail].Archive"))))))
+                                       (mu4e-refile-folder . "/Fastmail/Archive"))))))
 
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
