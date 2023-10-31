@@ -88,7 +88,7 @@ TODO: Simplify this macro"
   (fg-white           light-3)
   (shade-white        (color-12-to-6 (color-lighten-name light-1 10)))
   (highlight          (color-12-to-6 (color-lighten-name accent-dark 4)))
-  (region-dark        (color-12-to-6 (color-lighten-name accent-dark 3)))
+  (region-dark        (color-12-to-6 (color-lighten-name accent-dark 50)))
   (region             dark-3)
   (slate              accent-shade-3)
   (gray               (color-12-to-6 (color-lighten-name dark-4 20)))
