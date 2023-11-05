@@ -100,14 +100,14 @@
   (defun r-ui//ibuffer-remove-title (&rest args)
     (save-excursion
       (set-buffer "*Ibuffer*")
-      (toggle-read-only 0)
+      (read-only-mode -1)
       (goto-char 1)
       (search-forward "-\n" nil t)
       (delete-region 1 (point))
       (insert "\n")
       (let ((window-min-height 1))
         (shrink-window-if-larger-than-buffer))
-      (toggle-read-only)))
+      (read-only-mode)))
 
   (advice-add 'ibuffer-update-title-and-summary :after 'r-ui//ibuffer-remove-title))
 
