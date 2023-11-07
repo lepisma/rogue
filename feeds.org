@@ -50,7 +50,10 @@
 :PROPERTIES:
 :CREATED:  [2023-07-09 Sun 22:48]
 :END:
-
+*** [[https://pluralistic.net/feed/][Pluralistic: Daily links from Cory Doctorow]]
+:PROPERTIES:
+:CREATED:  [2023-11-07 Tue 11:35]
+:END:
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
 **** [[http://www.randalolson.com/feed/][Dr. Randal S. Olson]]
