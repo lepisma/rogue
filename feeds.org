@@ -54,6 +54,12 @@
 :PROPERTIES:
 :CREATED:  [2023-11-07 Tue 11:35]
 :END:
+
+*** [[https://staysaasy.com/feed.xml][Stay SaaSy]]
+:PROPERTIES:
+:CREATED:  [2024-01-21 Sun 12:56]
+:END:
+
 *** ML/Stats                                                           :ml:
 **** [[http://www.offconvex.org/feed.xml][Off the convex path]]
 **** [[http://www.randalolson.com/feed/][Dr. Randal S. Olson]]
