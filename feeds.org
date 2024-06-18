@@ -31,6 +31,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJ0-OtVpF0wOKEqT2Z1HEtA][ElectroBOOM]]
 
 ** Blogs                                                              :blog:
+*** [[https://blog.samaltman.com/posts.atom][Sam Altman]]
 *** [[http://blog.stephenwolfram.com/feed/][Stephen Wolfram Blog]]
 *** [[https://terrytao.wordpress.com/feed/][What's new]]
 *** [[https://jeremykun.com/feed/][Math ∩ Programming]]
