@@ -164,9 +164,7 @@
     (setq org-html-validation-link nil)
 
     (setq org-refile-use-outline-path 'full-file-path
-          org-outline-path-complete-in-steps nil
-          org-refile-targets `((,(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
-                                :maxlevel . 1)))
+          org-outline-path-complete-in-steps nil)
 
     (let ((agenda-files `(,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
                           ,(concat user-notes-dir "personal/medical.org.gpg")
