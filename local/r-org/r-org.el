@@ -166,8 +166,7 @@
     (setq org-refile-use-outline-path 'full-file-path
           org-outline-path-complete-in-steps nil)
 
-    (let ((agenda-files `(,@(directory-files-recursively user-tasks-dir org-agenda-file-regexp)
-                          ,(concat user-notes-dir "personal/medical.org.gpg")
+    (let ((agenda-files `(,(concat user-notes-dir "personal/medical.org.gpg")
                           ,(concat user-notes-dir "personal/humans.org.gpg"))))
       (setq org-agenda-custom-commands nil))))
 
