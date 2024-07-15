@@ -175,7 +175,11 @@
                                      ("l" "literature" plain "%?"
                                       :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
                                                          "#+TITLE: ${title}\n\n")
-                                      :unnarrowed)))
+                                      :unnarrowed))
+        org-roam-capture-ref-templates `(("l" "literature" plain "%?"
+                                          :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
+                                                             "#+TITLE: ${title}\n\n")
+                                          :unnarrowed t)))
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
 
