@@ -271,7 +271,8 @@
                              #'pile-hooks-pre-add-date
                              #'pile-hooks-pre-add-dropcap
                              #'pile-hooks-pre-add-tags
-                             #'pile-hooks-pre-add-crosslinks))
+                             #'pile-hooks-pre-add-crosslinks
+                             #'pile-hooks-pre-add-draft-watermark))
     (r-utils/add-hooks '(pile-post-publish-hook)
                        (list #'pile-hooks-post-clear-cids
                              #'pile-hooks-post-generate-atom
