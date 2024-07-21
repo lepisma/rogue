@@ -11,18 +11,9 @@ values."
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(bibtex
-     (common-lisp :variables
-                  slime-lisp-implementations `((sbcl    ("sbcl"))
-                                               (roswell ("ros" "-Q" "run")))
-                  slime-default-lisp 'roswell)
      csv
      emacs-lisp
-     (go :variables
-         go-backend 'lsp
-         go-format-before-save t
-         go-tab-width 4)
      graphviz
-     haskell
      (html :variables
            web-mode-markup-indent-offset 2
            web-mode-css-indent-offset 2
@@ -73,22 +64,11 @@ values."
      better-defaults
      colors
      dap
-     (elfeed :variables
-             rmh-elfeed-org-files '("~/.emacs.d/private/rogue/feeds.org")
-             elfeed-enable-web-interface t
-             elfeed-goodies/show-mode-padding 2
-             elfeed-goodies/powerline-default-separator 'slant
-             elfeed-goodies/feed-source-column-width 25
-             elfeed-goodies/tag-column-width 30)
      epub
      git
      helpful
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      imenu-list
-     (languagetool :variables
-                   langtool-default-language "en-US"
-                   langtool-show-error-on-jump t
-                   langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
            mu4e-enable-async-operations t)
@@ -100,7 +80,6 @@ values."
      restclient
      rogue
      spell-checking
-     spotify
      syntax-checking
      systemd
      theming
@@ -112,8 +91,7 @@ values."
      (version-control :variables
                       version-control-diff-tool 'git-gutter
                       version-control-global-margin t
-                      version-control-diff-side 'left)
-     xkcd)
+                      version-control-diff-side 'left))
    dotspacemacs-mode-line-theme 'doom
    dotspacemacs-additional-packages '()
    dotspacemacs-excluded-packages '(vi-tilde-fringe)
@@ -235,12 +213,4 @@ you should place you code here."
   ;; TODO: There is some load order issue. Put these in the right place
   (openwith-mode)
   (require 'r-mu4e)
-  (require 'r-ui)
-
-  (slime-setup '(slime-asdf
-                 slime-company
-                 slime-fancy
-                 slime-indentation
-                 slime-sbcl-exts
-                 slime-scratch
-                 slime-tramp)))
+  (require 'r-ui))

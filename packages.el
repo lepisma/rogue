@@ -10,20 +10,7 @@
          (use-package ,id ,@body))
        (push ',name rogue-packages))))
 
-(r|pkg activity-watch-mode
-  :after request
-  :config
-  (global-activity-watch-mode))
-
 (r|pkg (bmp :location (recipe :fetcher github :repo "lepisma/bmp")))
-
-(r|pkg chatgpt-shell
-  :config
-  (setq chatgpt-shell-openai-key
-        (lambda () (auth-source-pick-first-password :host "api.openai.com"))
-        chatgpt-shell-streaming t
-        chatgpt-shell-model-version "gpt-4"
-        chatgpt-shell-request-timeout 300000))
 
 (r|pkg (conceal :location (recipe :fetcher github :repo "lepisma/conceal"))
   :config
@@ -31,22 +18,6 @@
             (lambda ()
               (when (conceal-buffer-gpg-p (current-buffer))
                 (conceal-mode 1)))))
-
-(r|pkg (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el"
-                                  :files ("*.el" "dist")))
-  :config
-  (with-eval-after-load 'company
-    (delq 'company-preview-if-just-one-frontend company-frontends))
-
-  (with-eval-after-load 'copilot
-    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
-
-  (add-hook 'prog-mode-hook 'copilot-mode)
-
-  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
-  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
-  :bind (("C-<tab>" . copilot-complete)))
 
 (r|pkg dired-subtree
   :after ranger
@@ -104,8 +75,6 @@
   :bind (:map mu4e-headers-mode-map ("<tab>" . mu4e-headers-toggle-thread-folding))
   :hook ((mu4e-headers-found . mu4e-headers-fold-all)))
 
-(r|pkg (mu4e-snooze :location local))
-
 (r|pkg multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
@@ -126,22 +95,12 @@
            (file))
           (,(openwith-make-extension-regexp
              '("doc" "xls" "ppt" "odt" "ods" "odg" "odp"))
-           "libreoffice"
+           "onlyoffice-desktopeditors"
            (file))
           (,(openwith-make-extension-regexp
              '("pdf" "ps" "ps.gz" "dvi"))
            "okular"
            (file)))))
-
-(r|pkg org-ai
-  :ensure t
-  :commands (org-ai-mode org-ai-global-mode)
-  :init
-  (add-hook 'org-mode-hook #'org-ai-mode)
-  (org-ai-global-mode)
-  :config
-  (setq org-ai-default-chat-model "gpt-4")
-  (org-ai-install-yasnippets))
 
 (r|pkg (org-books :location (recipe :fetcher github :repo "lepisma/org-books"))
   :config
@@ -149,12 +108,6 @@
 
 (r|pkg org-fragtog
   :hook ((org-mode . org-fragtog-mode)))
-
-(r|pkg org-journal
-  :custom
-  (org-journal-dir user-journal-dir)
-  (org-journal-enable-encryption t)
-  (org-journal-date-format "%A, %x"))
 
 (r|pkg org-roam
   :ensure t
@@ -180,8 +133,8 @@
                                           :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
                                                              "#+TITLE: ${title}\n\n")
                                           :unnarrowed t)))
-  (org-roam-db-autosync-mode)
-  (require 'org-roam-protocol))
+  (require 'org-roam-protocol)
+  (org-roam-db-autosync-mode))
 
 (r|pkg org-roam-ui
   :after org-roam
@@ -196,10 +149,6 @@
   :after org
   :config
   (org-super-agenda-mode))
-
-(r|pkg (org-team :location (recipe :fetcher github :repo "lepisma/org-team"))
-  :config
-  (setq org-team-dir (file-name-as-directory (concat user-cloud-dir "team-logs"))))
 
 (r|pkg org-web-tools
   :after org)
@@ -281,8 +230,6 @@
                              #'pile-hooks-post-sync-static-files
                              #'pile-hooks-post-generate-index))))
 
-(r|pkg powerthesaurus)
-
 (r|pkg pretty-mode
   :config
   (global-pretty-mode t)
@@ -305,22 +252,6 @@
 
   (pretty-activate-groups
    '(:greek :arithmetic-nary)))
-
-(r|pkg protobuf-mode
-  :mode "\\.proto\\'")
-
-(r|pkg (r-feeds :location local)
-  :after (elfeed helm request)
-  :bind (("C-c f" . helm-elfeed)
-         :map elfeed-search-mode-map
-         ("s" . r-feeds/save-to-raindrop))
-  :config
-  (setq r-feeds-filters '(("Default" . "@6-months-ago +unread -freq -podcast")
-                          ("All" . "@6-months-ago +unread")
-                          ("Frequent" . "@6-months-ago +unread +freq")
-                          ("Media" . "@6-months-ago +unread +media"))
-        r-feeds-raindrop-token (auth-source-pick-first-password :host "api.raindrop.io"))
-  (setq-default elfeed-search-filter (alist-get "Default" r-feeds-filters nil nil #'string-equal)))
 
 (r|pkg ligature
   :config
@@ -398,9 +329,3 @@
 
 (r|pkg web-server
   :after htmlize)
-
-(r|pkg (whisper :location (recipe :fetcher github :repo "natrys/whisper.el"))
-  :config
-  (setq whisper-model "base"
-        whisper-language "en"
-        whisper-translate nil))
