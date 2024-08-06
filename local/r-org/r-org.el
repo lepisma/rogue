@@ -230,6 +230,7 @@
    (list #'org-save-all-org-buffers))
 
   (add-hook 'org-insert-heading-hook #'r-org/add-created-time)
+  (add-hook 'org-mode-hook #'auto-fill-mode)
 
   (setq org-pomodoro-keep-killed-pomodoro-time t
         org-pomodoro-length 25
