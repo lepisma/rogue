@@ -47,8 +47,8 @@ values."
              python-sort-imports-on-save t
              python-fill-docstring-style 'django)
      (rust :variables
-           rust-format-on-save t
-           rust-backend 'lsp)
+           lsp-rust-analyzer-cargo-auto-reload t
+           rustic-format-on-save nil)
      (shell :variables
             shell-default-shell 'vterm)
      shell-scripts
