@@ -208,6 +208,7 @@ you should place you code here."
   (setq evil-emacs-state-cursor 'bar)
 
   (pixel-scroll-precision-mode)
+  (add-hook 'prog-mode-hook #'hungry-delete-mode)
 
   ;; A few late setup calls
   ;; TODO: There is some load order issue. Put these in the right place
