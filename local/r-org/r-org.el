@@ -204,7 +204,8 @@
   "Misc settings."
   (setq org-startup-indented t
         org-clock-idle-time 5
-        org-modern-star '("› ")
+        org-modern-star 'replace
+        org-modern-replace-stars "››››"
         org-ellipsis "  "
         org-pretty-entities t
         org-hide-emphasis-markers t
