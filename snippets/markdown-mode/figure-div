@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name : figure-div
-# key : figd
-# --
-{% figure_div ${1:div-id} %}
-$2
-{% endfigure_div %}
-$0

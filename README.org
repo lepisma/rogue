@@ -1,18 +1,4 @@
-* Rogue
+#+TITLE: rogue
 
-Personal [[https://github.com/syl20bnr/spacemacs][spacemacs]] layer. Color settings are lying in a messy state in
-~./config.el~, which are defined as overrides over themes ~spacemacs-light~ (light
-theme) and ~doom-molokai~ (dark theme). All other configuration is split across
-/packages/ (see directory ~./local/~) named ~r-*~ and corresponding init fuctions in
-~./packages.el~.
-
-It looks something like the screens below (might not be updated).
-
-/Light colors/
-
-[[file:./screens/light.png]]
-
-
-/Dark colors/
-
-[[file:./screens/dark.png]]
+Personal Emacs configuration. This is the ~development~ branch that is based on
+vanilla Emacs. ~master~ is based on [[https://github.com/syl20bnr/spacemacs][spacemacs]] which I am moving away from.
