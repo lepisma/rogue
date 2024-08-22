@@ -55,7 +55,7 @@
 (winner-mode t)
 (desktop-save-mode t)
 
-(setq make-backup-file nil)
+(setq make-backup-files nil)
 (setq create-lockfiles nil)
 
 (set-face-attribute 'default nil :font "Iosevka" :height 100)
