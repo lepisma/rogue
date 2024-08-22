@@ -245,6 +245,8 @@
   :config
   (nano-vertico-mode t))
 
+(use-package rainbow-mode)
+
 ;; Personal navigation patterns
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.

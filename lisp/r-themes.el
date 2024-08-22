@@ -34,7 +34,7 @@
   (doom-themes-enable-italic t)
 
   :config
-  (load-theme 'doom-bluloco-light t)
+  (load-theme 'doom-rogue-light t)
   (setq doom-themes-treemacs-theme "doom-atom")
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
