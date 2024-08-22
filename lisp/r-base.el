@@ -60,6 +60,7 @@
 (delete-selection-mode t)
 (winner-mode t)
 (desktop-save-mode t)
+(global-unset-key (kbd "M-m"))
 
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
@@ -274,7 +275,6 @@ With argument, do this that many times."
 (global-set-key (kbd "C-d") #'duplicate-line)
 (global-set-key (kbd "C-S-<backspace>") 'delete-line)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
-(global-unset-key (kbd "M-m"))
 
 (provide 'r-base)
 
