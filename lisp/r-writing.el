@@ -87,6 +87,32 @@
 
   :hook (org-mode . org-margin-mode))
 
+(use-package org-roam
+  :custom
+  (org-roam-directory user-notes-dir)
+  (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-capture-templates `(("n" "default" plain "%?"
+                                 :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+TITLE: ${title}\n\n")
+                                 :unnarrowed)
+                                ("l" "literature" plain "%?"
+                                 :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+TITLE: ${title}\n\n")
+                                 :unnarrowed)))
+  (org-roam-capture-ref-templates `(("l" "literature" plain "%?"
+                                     :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
+                                                        "#+TITLE: ${title}\n\n")
+                                     :unnarrowed t)))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (require 'org-roam-protocol)
+  (org-roam-db-autosync-mode))
+
 (provide 'r-writing)
 
 ;;; r-writing.el ends here

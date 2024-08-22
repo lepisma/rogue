@@ -32,6 +32,9 @@
 (setq custom-file (locate-user-emacs-file ".emacs-custom.el"))
 (load custom-file)
 
+(defconst user-cloud-dir (file-name-as-directory (getenv "CLOUD_DIR")))
+(defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "notes")))
+
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -229,7 +232,8 @@
          ([remap delete-backward-char] . smart-hungry-delete-backward-char)
          ([remap delete-char] . smart-hungry-delete-forward-char)))
 
-(use-package treemacs)
+(use-package treemacs
+  :bind ("M-m p t" . treemacs))
 
 (use-package svg-lib)
 
