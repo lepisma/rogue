@@ -64,7 +64,7 @@
 
 (setq-default indent-tabs-mode nil)
 
-;; This is in-build in Emacs 30+
+;; This is in-built in Emacs 30+
 (unless (package-installed-p 'vc-use-package)
   (package-vc-install "https://github.com/slotThe/vc-use-package"))
 (require 'vc-use-package)
