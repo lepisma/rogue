@@ -29,6 +29,9 @@
 (require 'package)
 (require 'use-package-ensure)
 
+(setq custom-file (locate-user-emacs-file ".emacs-custom.el"))
+(load custom-file)
+
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
