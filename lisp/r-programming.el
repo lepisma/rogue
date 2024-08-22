@@ -33,7 +33,9 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package magit)
+(use-package magit
+  :pin melpa-stable
+  :bind ("M-m g s" . magit-status))
 
 (use-package direnv
   :config

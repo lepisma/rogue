@@ -1,4 +1,4 @@
-(add-to-list 'load-path "./")
+(add-to-list 'load-path (locate-user-emacs-file "lisp/"))
 
 (require 'r-base)
 (require 'r-themes)

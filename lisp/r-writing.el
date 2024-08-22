@@ -61,13 +61,13 @@
   :custom
   (org-margin-headers-set 'H-svg)
   (org-margin-headers
-   (list (cons 'stars (list (propertize "     #" 'face '(org-variable-pitch-fixed-face default))
-                            (propertize "    ##" 'face '(org-variable-pitch-fixed-face default))
-                            (propertize "   ###" 'face '(font-lock-comment-face default))
-                            (propertize "  ####" 'face '(font-lock-comment-face default))
-                            (propertize " #####" 'face '(font-lock-comment-face default))
-                            (propertize "######" 'face '(font-lock-comment-face default))))
-         (cons 'H-txt (list (propertize "H1" 'face '(org-variable-pitch-fixed-face default))
+   (list (cons 'stars (list (propertize "     #" 'face '(fixed-pitch default))
+                            (propertize "    ##" 'face '(fixed-pitch default))
+                            (propertize "   ###" 'face '(fixed-pitch default))
+                            (propertize "  ####" 'face '(fixed-pitch default))
+                            (propertize " #####" 'face '(fixed-pitch default))
+                            (propertize "######" 'face '(fixed-pitch default))))
+         (cons 'H-txt (list (propertize "H1" 'face '(font-lock-comment-face default))
                             (propertize "H2" 'face '(font-lock-comment-face default))
                             (propertize "H3" 'face '(font-lock-comment-face default))
                             (propertize "H4" 'face '(font-lock-comment-face default))
@@ -79,12 +79,13 @@
                             (svg-lib-tag "H4" '(org-level-4))
                             (svg-lib-tag "H5" '(org-level-5))
                             (svg-lib-tag "H6" '(org-level-6))))))
-  :hook (org-mode . org-margin-mode))
+  (org-margin-markers
+   (list (cons "\\(#\\+begin_src\\)"
+               (propertize " " 'face '(font-lock-comment-face bold)))
+         (cons "\\(#\\+begin_quote\\)"
+               (propertize " " 'face '(font-lock-comment-face bold)))))
 
-(use-package nano-vertico
-  :vc (:fetcher github :repo rougier/nano-vertico)
-  :config
-  (nano-vertico-mode t))
+  :hook (org-mode . org-margin-mode))
 
 (provide 'r-writing)
 

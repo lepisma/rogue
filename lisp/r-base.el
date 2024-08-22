@@ -32,6 +32,7 @@
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
@@ -52,6 +53,7 @@
 (setq-default fill-column 80)
 (delete-selection-mode t)
 (winner-mode t)
+(desktop-save-mode t)
 
 (setq make-backup-file nil)
 (setq create-lockfiles nil)
@@ -164,6 +166,10 @@
 
   (setq consult-narrow-key "<"))
 
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 (use-package embark
   :bind
   (("C-." . embark-act)
@@ -178,10 +184,6 @@
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
-
-(use-package embark-consult
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; Need to install fonts by running `nerd-icons-install-fonts'
 (use-package nerd-icons
@@ -228,6 +230,11 @@
 
 (use-package svg-lib)
 
+(use-package nano-vertico
+  :vc (:fetcher github :repo rougier/nano-vertico)
+  :config
+  (nano-vertico-mode t))
+
 ;; Personal navigation patterns
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
@@ -260,6 +267,7 @@ With argument, do this that many times."
 (global-set-key (kbd "C-d") #'duplicate-line)
 (global-set-key (kbd "C-S-<backspace>") 'delete-line)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
+(global-unset-key (kbd "M-m"))
 
 (provide 'r-base)
 
