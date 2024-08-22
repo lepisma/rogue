@@ -46,6 +46,21 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-M-<mouse-1>" . mc/add-cursor-on-click)))
 
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((python-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode)
+
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
+
+(use-package dap-mode)
+
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)
