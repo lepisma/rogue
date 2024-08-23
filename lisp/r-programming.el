@@ -53,7 +53,13 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook ((python-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :config
+  (setq lsp-completion-provider :none)
+  (defun corfu-lsp-setup ()
+    (setq-local completion-styles '(orderless)
+                completion-category-defaults nil))
+  (add-hook 'lsp-mode-hook #'corfu-lsp-setup))
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
