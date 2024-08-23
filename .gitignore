@@ -1,0 +1,10 @@
+/.cache/
+/.emacs-custom.el
+/.emacs.desktop
+/.emacs.desktop.lock
+/auto-save-list/
+/elpa/
+/history
+/org-roam.db
+/transient/
+/var/
