@@ -279,6 +279,7 @@ With argument, do this that many times."
 (global-set-key (kbd "C-d") #'duplicate-line)
 (global-set-key (kbd "C-S-<backspace>") 'delete-line)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
+(global-set-key (kbd "M-m a d") 'dired)
 
 (provide 'r-base)
 
