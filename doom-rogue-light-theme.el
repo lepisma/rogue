@@ -95,9 +95,7 @@
    (modeline-bg-alt-inactive `(,(doom-darken (car bg-alt) 0.05) ,@(cdr base1))))
 
   ;;;; Base theme face overrides
-  (((font-lock-comment-face &override)
-    :background base0)
-   ((font-lock-doc-face &override) :slant 'italic)
+  (((font-lock-doc-face &override) :slant 'italic)
    ((line-number &override) :foreground (doom-lighten base4 0.15))
    ((line-number-current-line &override) :foreground base8)
    (mode-line
@@ -110,13 +108,7 @@
     :foreground base8 highlight)
    (shadow :foreground base4)
    (tooltip :background base1 :foreground fg)
-
-   ;;;; centaur-tabs
-   (centaur-tabs-unselected :background bg-alt :foreground base4)
-   ;;;; css-mode <built-in> / scss-mode
-   (css-proprietary-property :foreground orange)
-   (css-property             :foreground green)
-   (css-selector             :foreground blue)
+   
    ;;;; doom-modeline
    (doom-modeline-bar :background modeline-bg)
    ;;;; ediff <built-in>
@@ -124,8 +116,6 @@
    (ediff-current-diff-B        :foreground green :background (doom-lighten green 0.8))
    (ediff-current-diff-C        :foreground blue  :background (doom-lighten blue 0.8))
    (ediff-current-diff-Ancestor :foreground teal  :background (doom-lighten teal 0.8))
-   ;;;; helm
-   (helm-candidate-number :background blue :foreground bg)
    ;;;; lsp-mode
    (lsp-ui-doc-background      :background base0)
    ;;;; magit
@@ -145,21 +135,20 @@
    ((org-block-begin-line &override) :foreground fg :slant 'italic)
    (org-ellipsis :underline nil :background bg     :foreground red)
    ((org-quote &override) :background base1)
-   ;;;; posframe
-   (ivy-posframe               :background base0)
-   ;;;; selectrum
-   (selectrum-current-candidate :background base2)
+   ((org-document-title &override) :family "EtBembo" :height 280 :foreground fg)
+   ((org-level-1 &override) :family "EtBembo" :height 250)
+   ((org-level-2 &override) :family "EtBembo" :height 220)
+   ((org-level-3 &override) :family "EtBembo" :height 190 :slant 'italic)
+   ((org-level-4 &override) :family "EtBembo" :height 160 :slant 'italic)
    ;;;; vertico
    (vertico-current :background base2)
-   ;;;; web-mode
-   (web-mode-current-element-highlight-face :background dark-blue :foreground bg)
    ;;;; wgrep <built-in>
    (wgrep-face :background base1)
    ;;;; whitespace
    ((whitespace-tab &override)         :background (if (not (default-value 'indent-tabs-mode)) base0 'unspecified))
    ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode) base0 'unspecified)))
 
-  ;;;; Base theme variable overrides-
+  ;;;; Base theme variable overrides
   ())
 
 (provide 'doom-rogue-light-theme)
