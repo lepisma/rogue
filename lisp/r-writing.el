@@ -36,6 +36,11 @@
   (org-hide-emphasis-markers t)
   (org-catch-invisible-edits 'show-and-error)
   (org-pretty-entities t)
+  (org-modern-checkbox '((?X . "🟩")
+                         (?- . "🔳")
+                         (?\s . "⬜")))
+  (org-modern-star nil)
+  (org-modern-table-vertical 1)
 
   :config
   (global-org-modern-mode))
