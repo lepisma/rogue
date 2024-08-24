@@ -30,6 +30,7 @@
 (electric-pair-mode)
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
 
 (use-package rainbow-delimiters
