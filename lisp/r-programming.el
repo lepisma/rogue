@@ -40,6 +40,8 @@
   :pin melpa-stable
   :bind ("M-m g s" . magit-status))
 
+(use-package rust-mode)
+
 (use-package direnv
   :config
   (direnv-mode))
@@ -53,6 +55,7 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook ((python-mode . lsp-deferred)
+         (rust-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
   :config
