@@ -9,3 +9,8 @@
 /transient/
 /var/
 /eshell/
+/.dap-breakpoints
+/.lsp-session-v1
+/.mc-lists.el
+/.org-id-locations
+/bookmarks
