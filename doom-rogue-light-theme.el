@@ -92,7 +92,7 @@
 
    (methods        cyan)
    (operators      blue)
-   (type           yellow)
+   (type           primary)
    (strings        (doom-darken doc-comments 0.15))
    (variables      (doom-darken secondary 0.36))
    (numbers        orange)
@@ -117,6 +117,7 @@
   (((font-lock-doc-face &override) :slant 'italic)
    ((font-lock-keyword-face &override) :weight 'bold)
    ((font-lock-builtin-face &override) :weight 'bold)
+   ((font-lock-type-face &override) :slant 'italic)
    ((line-number &override) :foreground (doom-lighten base4 0.15))
    ((line-number-current-line &override) :foreground base8)
    ((rainbow-delimiters-depth-1-face &override) :foreground primary-dark)
@@ -164,6 +165,7 @@
    ;;;; org <built-in>
    ((org-block &override) :background bg :extend nil)
    ((org-block-begin-line &override) :foreground fg :slant 'italic)
+   ((org-code &override) :foreground primary-dark)
    (org-ellipsis :underline nil :background bg     :foreground red)
    ((org-quote &override) :background base1)
    ((org-document-title &override) :family doom-rogue-light-variable-heading-face :height 280 :foreground fg :weight 'unspecified)
