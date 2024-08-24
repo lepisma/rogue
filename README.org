@@ -2,3 +2,9 @@
 
 Personal Emacs configuration. This is the ~development~ branch that is based on
 vanilla Emacs. ~master~ is based on [[https://github.com/syl20bnr/spacemacs][spacemacs]] which I am moving away from.
+
+Fonts to install:
+1. Iosevka
+2. Merriweather
+3. EtBembo
+4. Source Sans Pro
