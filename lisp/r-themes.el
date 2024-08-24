@@ -28,16 +28,39 @@
 
 (use-package all-the-icons)
 
+(defvar r-themes/dark-mode t
+  "Whether currently the editor is in dark-mode.")
+
+(defun r-themes/set-dark-theme ()
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'doom-city-lights t)
+  (setq r-themes/dark-mode t))
+
+(defun r-themes/set-light-theme ()
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'doom-rogue-light t)
+  (setq r-themes/dark-mode nil))
+
+(defun r-themes/cycle-theme ()
+  "Cycle between dark and light theme variant."
+  (interactive)
+  (if r-themes/dark-mode
+      (r-themes/set-light-theme)
+    (r-themes/set-dark-theme)))
+
 (use-package doom-themes
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
+  (doom-themes-treemacs-theme "doom-atom")
 
   :config
-  (load-theme 'doom-rogue-light t)
-  (setq doom-themes-treemacs-theme "doom-atom")
   (doom-themes-treemacs-config)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+
+  :bind ("M-m t t" . r-themes/cycle-theme)
+
+  :hook (after-init . r-themes/set-light-theme))
 
 (provide 'r-themes)
 

@@ -61,7 +61,16 @@
 (setq-default fill-column 80)
 (delete-selection-mode t)
 (winner-mode t)
+
+;; Save desktop without any theme settings
 (desktop-save-mode t)
+(push '(foreground-color . :never) frameset-filter-alist)
+(push '(background-color . :never) frameset-filter-alist)
+(push '(font . :never) frameset-filter-alist)
+(push '(cursor-color . :never) frameset-filter-alist)
+(push '(background-mode . :never) frameset-filter-alist)
+(push '(ns-appearance . :never) frameset-filter-alist)
+
 (global-unset-key (kbd "M-m"))
 
 (setq make-backup-files nil)
