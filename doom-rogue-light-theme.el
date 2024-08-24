@@ -14,6 +14,20 @@
   "Options for the `doom-rogue-light' theme."
   :group 'doom-themes)
 
+(defcustom doom-rogue-light-variable-heading-face "EtBembo"
+  "Variable pitch font for headings and displays."
+  :type 'string
+  :group 'doom-rogue-light-theme)
+
+(defcustom doom-rogue-light-variable-body-face "Merriweather"
+  "Variable pitch font for regular text body."
+  :type 'string
+  :group 'doom-rogue-light-theme)
+
+(defcustom doom-rogue-light-variable-label-face "Source Sans Pro"
+  "Variable pitch font for tags, labels, etc."
+  :type 'string
+  :group 'doom-rogue-light-theme)
 ;;
 ;;; Theme definition
 
@@ -131,15 +145,20 @@
    ((outline-1 &override) :foreground red)
    ((outline-2 &override) :foreground orange)
    ;;;; org <built-in>
-   ((org-block &override) :background base1)
+   ((org-block &override) :background bg :extend nil)
    ((org-block-begin-line &override) :foreground fg :slant 'italic)
    (org-ellipsis :underline nil :background bg     :foreground red)
    ((org-quote &override) :background base1)
-   ((org-document-title &override) :family "EtBembo" :height 280 :foreground fg)
-   ((org-level-1 &override) :family "EtBembo" :height 250)
-   ((org-level-2 &override) :family "EtBembo" :height 220)
-   ((org-level-3 &override) :family "EtBembo" :height 190 :slant 'italic)
-   ((org-level-4 &override) :family "EtBembo" :height 160 :slant 'italic)
+   ((org-document-title &override) :family doom-rogue-light-variable-heading-face :height 280 :foreground fg :weight 'unspecified)
+   ((org-level-1 &override) :family doom-rogue-light-variable-heading-face :height 250)
+   ((org-level-2 &override) :family doom-rogue-light-variable-heading-face :height 220)
+   ((org-level-3 &override) :family doom-rogue-light-variable-heading-face :height 190 :slant 'italic)
+   ((org-level-4 &override) :family doom-rogue-light-variable-heading-face :height 160 :slant 'italic)
+   ((org-level-5 &override) :family doom-rogue-light-variable-heading-face :height 160 :slant 'italic)
+   ((org-level-6 &override) :family doom-rogue-light-variable-heading-face :height 160 :slant 'italic)
+   ((org-level-7 &override) :family doom-rogue-light-variable-heading-face :height 160 :slant 'italic)
+   ((org-level-8 &override) :family doom-rogue-light-variable-heading-face :height 160 :slant 'italic)
+   (org-table :foreground fg)
    ;;;; vertico
    (vertico-current :background base2)
    ;;;; wgrep <built-in>
