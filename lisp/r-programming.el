@@ -67,6 +67,8 @@
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
 
+(use-package yasnippet)
+
 (use-package dap-mode)
 
 ;; Emacs Lisp
