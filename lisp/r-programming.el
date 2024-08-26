@@ -55,8 +55,7 @@
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
-  :hook ((python-mode . lsp-deferred)
-         (rust-mode . lsp-deferred)
+  :hook ((rust-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
   :config
@@ -88,6 +87,12 @@
   :init
   (eros-mode))
 
+;; Python
+(use-package lsp-pyright
+  :after lsp-mode
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp-deferred))))
 (provide 'r-programming)
 
 ;;; r-programming.el ends here
