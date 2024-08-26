@@ -210,6 +210,8 @@
   (nerd-icons-color-icons nil))
 
 (use-package doom-modeline
+  :custom
+  (doom-modeline-buffer-encoding nil)
   :init
   (doom-modeline-mode))
 
