@@ -58,8 +58,11 @@
   :hook ((rust-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
+  :custom
+  (lsp-headerline-breadcrumb-enable-diagnostics nil)
+  (lsp-headerline-breadcrumb-icons-enable nil)
+  (lsp-completion-provider :none)
   :config
-  (setq lsp-completion-provider :none)
   (defun corfu-lsp-setup ()
     (setq-local completion-styles '(orderless)
                 completion-category-defaults nil))
