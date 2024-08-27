@@ -26,7 +26,9 @@
 
 ;;; Code:
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :custom
+  (all-the-icons-color-icons nil))
 
 (defvar r-themes/dark-mode t
   "Whether currently the editor is in dark-mode.")
