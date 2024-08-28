@@ -56,7 +56,7 @@
   (org-appear-autoentities t)
   (org-appear-autosubmarkers t)
   (org-appear-autokeywords t)
-  
+
   :hook (org-mode . org-appear-mode))
 
 (use-package org-fragtog
