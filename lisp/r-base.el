@@ -262,6 +262,15 @@
   :config
   (move-text-default-bindings))
 
+(use-package switch-window
+  :custom
+  (switch-window-shortcut-style 'qwerty)
+  (switch-window-qwerty-shortcuts '("a" "r" "s" "t" "g" "m" "n" "e" "i" "o"))
+  (switch-window-minibuffer-shortcut ?z)
+
+  :config
+  (global-set-key (kbd "C-x o") 'switch-window))
+
 ;; Personal navigation patterns
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
