@@ -108,6 +108,7 @@
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp-deferred))))
+
 (provide 'r-programming)
 
 ;;; r-programming.el ends here
