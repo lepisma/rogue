@@ -119,6 +119,8 @@
   (require 'org-roam-protocol)
   (org-roam-db-autosync-mode))
 
+(use-package w
+  :vc (:fetcher github :repo lepisma/w.el))
 (provide 'r-writing)
 
 ;;; r-writing.el ends here
