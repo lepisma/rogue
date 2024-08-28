@@ -214,7 +214,12 @@
                       #'pile-hooks-post-stringify-title
                       #'pile-hooks-post-sync-static-files
                       #'pile-hooks-post-generate-index))
-      (add-hook 'pile-post-publish-hook fn t))))
+      (add-hook 'pile-post-publish-hook fn t))
+
+    (defun pile-status ()
+        "Show `magit-status' in the git tracked output directory."
+        (interactive)
+        (magit-status output-dir))))
 
 (provide 'r-writing)
 
