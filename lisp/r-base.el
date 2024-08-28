@@ -172,7 +172,7 @@
          ("M-r" . consult-history))
 
   :hook (completion-list-mode . consult-preview-at-point-mode)
-  
+
   :config
   (consult-customize
    consult-theme :preview-key '(:debounce 0.2 any)
@@ -237,7 +237,7 @@
   (spacious-padding-subtle-mode-line
    `(:mode-line-active 'default
      :mode-line-inactive vertical-border))
-  
+
   :config
   (spacious-padding-mode))
 
@@ -257,6 +257,10 @@
   (nano-vertico-mode t))
 
 (use-package rainbow-mode)
+
+(use-package move-text
+  :config
+  (move-text-default-bindings))
 
 ;; Personal navigation patterns
 (defun delete-word (arg)
