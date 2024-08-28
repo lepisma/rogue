@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name : post-init
+# key : initp
+# --
+#+TITLE: $1
+#+TAGS: $3
+
+#+BEGIN_QUOTE
+This page is a work in progress
+#+END_QUOTE
+
+$0

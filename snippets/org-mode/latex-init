@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name : latex-init
+# key : initl
+# --
+#+TITLE: $1
+#+AUTHOR: Abhinav Tushar
+#+EMAIL: $2
+
+#+OPTIONS: toc:nil
+
+#+LATEX_CLASS: article
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{float}
+
+\begin{abstract}
+\end{abstract}
+
+$0
+
+bibliographystyle:unsrt
+bibliography:./library.bib

@@ -1,0 +1,36 @@
+# -*- mode: snippet -*-
+# name : review-init
+# key : initr
+# --
+#+TITLE: Weekly Review /$1-20$2/
+#+SETUPFILE: ../../../../../assets/export.setup
+#+PILE: dropcap:nil
+
+#+BEGIN_EXPORT html
+<script>
+  let eventPlotFor = {
+    week: $1,
+    year: 20$2
+  }
+</script>
+<style>
+  #commit-plot > svg {
+    height: 600px;
+    width: 100%;
+  }
+</style>
+#+END_EXPORT
+
+#+HTML: <script src="https://d3js.org/d3.v5.min.js"></script>
+#+HTML: <script src="../../../../../assets/js/commit-plot.js"></script>
+
+* Experiments
+-
+
+* Readings
+-
+
+* Programming
+#+HTML: <figure> <div id="commit-plot"></div> <figcaption>
+Commits for week $1-20$2 and 4 previous weeks.
+#+HTML: </figcaption></figure>
