@@ -27,12 +27,24 @@
 ;;; Code:
 
 (column-number-mode)
-(electric-pair-mode)
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
 (add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace t)))
+
+(use-package smartparens
+  :hook (prog-mode . smartparens-mode)
+  :config
+  (require 'smartparens-config)
+  :bind (("M-<right>" . sp-forward-slurp-sexp)
+         ("M-<left>" . sp-forward-barf-sexp)
+         ("M-S-<right>" . sp-backward-barf-sexp)
+         ("M-S-<left>" . sp-backward-slurp-sexp)
+         ("M-u" . sp-backward-unwrap-sexp)
+         ("M-n" . sp-end-of-sexp)
+         ("M-p" . sp-beginning-of-sexp)
+         ("M-k" . sp-kill-sexp)))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
