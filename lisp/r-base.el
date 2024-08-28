@@ -305,6 +305,8 @@ With argument, do this that many times."
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "M-m a d") 'dired)
 
+(server-start)
+
 (provide 'r-base)
 
 ;;; r-base.el ends here
