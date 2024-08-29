@@ -13,7 +13,7 @@ A few fonts to install for using this:
 
 * Themes
 
-[[file:./screens/light.png][Light theme]]
+[[file:./screens/light.png]]
 
 /Dark theme is a work in progress./
 
