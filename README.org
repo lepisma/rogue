@@ -1,10 +1,22 @@
 #+TITLE: rogue
 
-Personal Emacs configuration. This is the ~development~ branch that is based on
-vanilla Emacs. ~master~ is based on [[https://github.com/syl20bnr/spacemacs][spacemacs]] which I am moving away from.
+Personal Emacs configuration using Emacs 29 defaults and modern packages. My
+older config was build around 2017-2018 using spacemacs, you can find that in
+the ~spacemacs~ branch.
 
-Fonts to install:
+* Set up
+A few fonts to install for using this:
 1. Iosevka
 2. Merriweather
 3. EtBembo
 4. Source Sans Pro
+
+* Themes
+
+[[file:./screens/light.png][Light theme]]
+
+/Dark theme is a work in progress./
+
+These themes are built on [[https://github.com/doomemacs/themes][doom-themes]] framework and can also be used
+independently as but you would need other assistive elisp in this config to
+recreate the above looks.
