@@ -139,7 +139,7 @@
    (mode-line-emphasis
     :foreground base8 highlight)
    (shadow :foreground base4)
-   (tooltip :background base1 :foreground fg)   
+   (tooltip :background base1 :foreground fg)
    ;;;; doom-modeline
    (doom-modeline-bar :background modeline-bg)
    ;;;; ediff <built-in>
@@ -177,7 +177,10 @@
    ((org-level-6 &override) :family doom-rogue-light-variable-heading-face :height 150 :slant 'italic)
    ((org-level-7 &override) :family doom-rogue-light-variable-heading-face :height 150 :slant 'italic)
    ((org-level-8 &override) :family doom-rogue-light-variable-heading-face :height 150 :slant 'italic)
+   ((org-todo &override) :foreground primary :weight 'bold)
+   (org-headline-done :strike-through t :foreground grey)
    (org-table :foreground fg)
+   (org-date :foreground secondary)
    ;;;; treemacs
    ((treemacs-async-loading-face &override) :family doom-rogue-light-variable-label-face)
    ((treemacs-directory-collapsed-face &override) :family doom-rogue-light-variable-label-face)
