@@ -29,6 +29,8 @@
 (require 'package)
 (require 'use-package-ensure)
 
+(setq auth-sources '("~/.authinfo.gpg"))
+
 (setq custom-file (locate-user-emacs-file ".emacs-custom.el"))
 (unless (file-exists-p custom-file)
   (make-empty-file custom-file))

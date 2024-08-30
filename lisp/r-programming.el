@@ -53,6 +53,9 @@
   :pin melpa-stable
   :bind ("M-m g s" . magit-status))
 
+(use-package forge
+  :after magit)
+
 (use-package rust-mode)
 
 (use-package direnv
