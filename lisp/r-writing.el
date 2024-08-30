@@ -310,6 +310,10 @@
         (interactive)
         (magit-status output-dir))))
 
+(use-package org-cliplink
+  :bind (:map org-mode-map
+              ("C-c y" . org-cliplink)))
+
 (provide 'r-writing)
 
 ;;; r-writing.el ends here
