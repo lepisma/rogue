@@ -4,18 +4,20 @@ Personal Emacs configuration using Emacs 29 defaults and modern packages. My
 older config was build around 2017-2018 using spacemacs, you can find that in
 the ~spacemacs~ branch.
 
-* Themes
+** Themes
+The light theme, ~doom-rogue-light~, is based on my website's [[https://lepisma.xyz/][theme]] and [[https://lepisma.xyz/2017/10/28/ricing-org-mode/index.html][rice]] from
+years back. It's high on use of old style serif faces and low on saturation.
 
 [[file:./screens/light.png]]
 
 /Dark theme is a work in progress./
 
 These themes are built on [[https://github.com/doomemacs/themes][doom-themes]] framework and can also be used
-independently as but you would need other assistive elisp in this config to
-recreate the above looks.
+independently. To recreate the looks above completely you would need other
+assistive elisp in this config.
 
-Also the following fonts are needed for this set up:
-1. Iosevka
+Additionally, the following fonts are needed for this set up:
+1. [[https://github.com/lepisma/iosevka-lepisma][Iosevka-lepisma]]
 2. Merriweather
 3. EtBembo
 4. Source Sans Pro
