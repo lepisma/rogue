@@ -33,14 +33,20 @@
 (defvar r-themes/dark-mode t
   "Whether currently the editor is in dark-mode.")
 
+(defcustom r-themes/dark-theme 'doom-city-lights
+  "Theme for dark mode.")
+
+(defcustom r-themes/light-theme 'doom-rogue-light
+  "Theme for light mode.")
+
 (defun r-themes/set-dark-theme ()
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'doom-city-lights t)
+  (load-theme r-themes/dark-theme t)
   (setq r-themes/dark-mode t))
 
 (defun r-themes/set-light-theme ()
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'doom-rogue-light t)
+  (load-theme r-themes/light-theme t)
   (setq r-themes/dark-mode nil))
 
 (defun r-themes/cycle-theme ()
@@ -63,6 +69,13 @@
   :bind ("M-m t t" . r-themes/cycle-theme)
 
   :hook (after-init . r-themes/set-light-theme))
+
+(use-package auto-dark
+  :custom
+  (auto-dark-dark-theme r-themes/dark-theme)
+  (auto-dark-light-theme r-themes/light-theme)
+  :config
+  (auto-dark-mode t))
 
 (provide 'r-themes)
 
