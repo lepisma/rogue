@@ -28,6 +28,7 @@
   "Variable pitch font for tags, labels, etc."
   :type 'string
   :group 'doom-rogue-light-theme)
+
 ;;
 ;;; Theme definition
 
@@ -136,8 +137,7 @@
    (mode-line-inactive
     :background modeline-bg-inactive :foreground modeline-fg-alt
     :box nil)
-   (mode-line-emphasis
-    :foreground base8 highlight)
+   (mode-line-emphasis :foreground base8)
    (shadow :foreground base4)
    (tooltip :background base1 :foreground fg)
    ;;;; doom-modeline

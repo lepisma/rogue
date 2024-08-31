@@ -33,7 +33,7 @@
 (defvar r-themes/dark-mode t
   "Whether currently the editor is in dark-mode.")
 
-(defcustom r-themes/dark-theme 'doom-city-lights
+(defcustom r-themes/dark-theme 'doom-rogue-dark
   "Theme for dark mode.")
 
 (defcustom r-themes/light-theme 'doom-rogue-light
