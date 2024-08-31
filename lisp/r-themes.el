@@ -56,6 +56,13 @@
       (r-themes/set-light-theme)
     (r-themes/set-dark-theme)))
 
+(use-package auto-dark
+  :custom
+  (auto-dark-dark-theme r-themes/dark-theme)
+  (auto-dark-light-theme r-themes/light-theme)
+  :config
+  (auto-dark-mode t))
+
 (use-package doom-themes
   :custom
   (doom-themes-enable-bold t)
@@ -66,16 +73,11 @@
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
 
-  :bind ("M-m t t" . r-themes/cycle-theme)
+  :bind ("M-m t t" . r-themes/cycle-theme))
 
-  :hook (after-init . r-themes/set-light-theme))
-
-(use-package auto-dark
-  :custom
-  (auto-dark-dark-theme r-themes/dark-theme)
-  (auto-dark-light-theme r-themes/light-theme)
-  :config
-  (auto-dark-mode t))
+(if (auto-dark--is-dark-mode)
+    (r-themes/set-dark-theme)
+  (r-themes/set-light-theme))
 
 (provide 'r-themes)
 
