@@ -314,6 +314,15 @@
   :bind (:map org-mode-map
               ("C-c y" . org-cliplink)))
 
+(use-package citar
+  :no-require
+  :custom
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  :bind (:map org-mode-map
+              ("C-c b" . org-cite-insert)))
+
 (provide 'r-writing)
 
 ;;; r-writing.el ends here
