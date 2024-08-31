@@ -320,6 +320,10 @@
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
+  (citar-templates '((main . "${author editor:30%sn}     ${date year issued:4}     ${title:48}")
+                     (suffix . "          ${=key= id:15}    ${=type=:12}    ${tags keywords keywords:*}")
+                     (preview . "${author editor} (${year issued date}) [[${url}][\"${title}\"]], in /${journal journaltitle booktitle eventtitle publisher container-title collection-title}/\n")
+                     (note . "Notes on ${author editor:%etal}, ${title}")))
   :bind (:map org-mode-map
               ("C-c b" . org-cite-insert)))
 
