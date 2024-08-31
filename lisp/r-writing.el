@@ -42,6 +42,7 @@
   (org-modern-tag nil)
   (org-modern-star nil)
   (org-modern-timestamp nil)
+  (org-modern-horizontal-rule nil)
   (org-modern-table-vertical 1)
 
   :config
