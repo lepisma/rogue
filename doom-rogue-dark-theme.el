@@ -25,26 +25,25 @@
   "A personal dark theme"
 
   ;; name        default   256       16
-  ((bg         '("#151E28" nil       nil            ))
-   (bg-alt     '("#111A24" nil       nil            ))
-   (base0      '("#091420" "black"   "black"        ))
-   (base1      '("#0F1A26" "#091420" "brightblack"  ))
-   (base2      '("#16212D" "#16212D" "brightblack"  ))
-   (base3      '("#1D2935" "#1D2935" "brightblack"  ))
-   (base4      '("#2B3B48" "#2B3B48" "brightblack"  ))
-   (base5      '("#45566A" "#45566A" "brightblack"  ))
-   (base6      '("#5D7188" "#5D7188" "brightblack"  ))
-   (base7      '("#768EA7" "#768EA7" "brightblack"  ))
-   (base8      '("#90A1B7" "#90A1B7" "white"        ))
-   (fg-alt     '("#6A85A0" "#6A85A0" "brightwhite"  ))
-   (fg         '("#8EA7C3" "#8EA7C3" "white"        ))
+  ((bg         '("#101820" nil       nil            ))
+   (bg-alt     '("#0D141A" nil       nil            ))
+   (base0      '("#0A0F14" "black"   "black"        ))
+   (base1      '("#13181F" "#0A0F14" "brightblack"  ))
+   (base2      '("#1B2028" "#1B2028" "brightblack"  ))
+   (base3      '("#232A32" "#232A32" "brightblack"  ))
+   (base4      '("#2B343C" "#2B343C" "brightblack"  ))
+   (base5      '("#3D4750" "#3D4750" "brightblack"  ))
+   (base6      '("#525D68" "#525D68" "brightblack"  ))
+   (base7      '("#6B7684" "#6B7684" "brightblack"  ))
+   (base8      '("#86909D" "#86909D" "white"        ))
+   (fg-alt     '("#A0A8B4" "#A0A8B4" "brightwhite"  ))
+   (fg         '("#BCC4CE" "#BCC4CE" "white"        ))
 
    ;; Core palette
-   (primary           '("#6A85A0" "#6A85A0" "brightcyan"   ))
-   (primary-light     '("#8EA7C3" "#8EA7C3" "cyan"         ))
-   (secondary         '("#1372A5" "#1372A5" "brightblack"  ))
-   (secondary-light   '("#53B3FF" "#53B3FF" "brightblack"  ))
-
+   (primary           '("#3A6A99" "#3A6A99" "brightblue"   ))
+   (primary-light     '("#507EAD" "#507EAD" "cyan"         ))
+   (secondary         '("#2F5A83" "#2F5A83" "brightblack"  ))
+   (secondary-light   '("#476C97" "#476C97" "brightblack"  ))
 
    (grey        '("#41505E" "#ff6655" "red"          ))
    (red         '("#D95468" "#ff6655" "red"          ))
