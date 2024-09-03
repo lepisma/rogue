@@ -90,7 +90,6 @@
    (constants      secondary-dark)
    (functions      dark-cyan)
    (keywords       base8)
-
    (methods        cyan)
    (operators      blue)
    (type           primary)
