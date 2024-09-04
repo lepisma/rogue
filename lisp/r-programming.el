@@ -53,6 +53,8 @@
   :pin melpa-stable
   :bind ("M-m g s" . magit-status))
 
+(use-package git-timemachine)
+
 (use-package forge
   :after magit)
 
