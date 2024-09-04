@@ -328,6 +328,18 @@
   :bind (:map org-mode-map
               ("C-c b" . org-cite-insert)))
 
+(use-package esi-dictate
+  :vc (:fetcher github :repo lepisma/emacs-speech-input)
+  :custom
+  (esi-dictate-dg-api-key (auth-info-password (car (auth-source-search :host "deepgram"))))
+  (esi-dictate-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "openai"))) :chat-model "gpt-4o-mini"))
+  :bind (:map esi-dictate-mode-map
+              ("C-g" . esi-dictate-stop)
+              ("C-SPC" . esi-dictate-start-command-mode)
+              ("C-<return>" . esi-dictate-fix-last))
+  :config
+  (setq llm-warn-on-nonfree nil))
+
 (provide 'r-writing)
 
 ;;; r-writing.el ends here
