@@ -164,6 +164,7 @@
    (nano-vertico-region-face :inherit 'region)
    (nano-vertico-annotation-face :foreground fg-alt)
    (nano-vertico-cursor-face :foreground bg :background fg-alt)
+   (cursor :foreground fg)
    ;;;; solaire-mode
    (solaire-mode-line-face
     :inherit 'mode-line
