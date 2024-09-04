@@ -29,6 +29,8 @@
 (require 'package)
 (require 'use-package-ensure)
 
+(prefer-coding-system 'utf-8)
+
 (setq auth-sources '("~/.authinfo.gpg"))
 
 (setq custom-file (locate-user-emacs-file ".emacs-custom.el"))
