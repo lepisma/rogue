@@ -184,6 +184,7 @@
   :hook (org-mode . org-margin-mode))
 
 (use-package org-roam
+  :demand t
   :custom
   (org-roam-directory user-notes-dir)
   (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
