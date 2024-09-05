@@ -25,7 +25,7 @@
   "A personal dark theme"
 
   ;; name        default   256       16
-  ((bg         '("#101820" nil       nil            ))
+  ((bg         '("#1B2028" nil       nil            ))
    (bg-alt     '("#0D141A" nil       nil            ))
    (base0      '("#0A0F14" "black"   "black"        ))
    (base1      '("#13181F" "#0A0F14" "brightblack"  ))
@@ -37,11 +37,11 @@
    (base7      '("#6B7684" "#6B7684" "brightblack"  ))
    (base8      '("#86909D" "#86909D" "white"        ))
    (fg-alt     '("#A0A8B4" "#A0A8B4" "brightwhite"  ))
-   (fg         '("#BCC4CE" "#BCC4CE" "white"        ))
+   (fg         '("#CCD4DE" "#BCC4CE" "white"        ))
 
    ;; Core palette
    (primary           '("#3A6A99" "#3A6A99" "brightblue"   ))
-   (primary-light     '("#507EAD" "#507EAD" "cyan"         ))
+   (primary-light     '("#90BEED" "#507EAD" "cyan"         ))
    (secondary         '("#2F5A83" "#2F5A83" "brightblack"  ))
    (secondary-light   '("#476C97" "#476C97" "brightblack"  ))
 
@@ -63,17 +63,17 @@
    (highlight      base4)
    (vertical-bar   (doom-darken base1 0.5))
    (selection      dark-blue)
-   (builtin        bright-blue)
-   (comments       fg-alt)
+   (builtin        blue)
+   (comments       base7)
    (doc-comments   (doom-lighten fg-alt 0.25))
    (constants      magenta)
    (functions      teal)
    (keywords       blue)
    (methods        cyan)
    (operators      blue)
-   (type           yellow)
-   (strings        base7)
-   (variables      dark-blue)
+   (type           primary-light)
+   (strings        fg-alt)
+   (variables      blue)
    (numbers        magenta)
    (region         base3)
    (error          red)
@@ -98,7 +98,7 @@
    ((font-lock-keyword-face &override) :weight 'bold)
    ((font-lock-builtin-face &override) :weight 'bold)
    ((font-lock-type-face &override) :slant 'italic)
-   ((line-number &override) :foreground base4)
+   ((line-number &override) :foreground base6)
    ((line-number-current-line &override) :foreground fg)
    ((rainbow-delimiters-depth-1-face &override) :foreground primary-light)
    ((rainbow-delimiters-depth-2-face &override) :foreground secondary-light)
@@ -117,6 +117,7 @@
     :background modeline-bg-inactive :foreground modeline-fg-alt
     :box nil)
    (mode-line-emphasis :foreground base8)
+   (hl-line :background highlight)
    ;;;; doom-modeline
    (doom-modeline-bar :background modeline-bg)
    ;;;; magit
@@ -142,7 +143,16 @@
    ((org-block &override) :background base2)
    ((org-block-begin-line &override) :background base2)
    (org-hide :foreground hidden)
-      ;;;; treemacs
+   ((org-document-title &override) :family doom-rogue-dark-variable-label-face :height 2.5 :foreground fg :weight 'unspecified)
+   ((org-level-1 &override) :family doom-rogue-dark-variable-label-face :height 1.9)
+   ((org-level-2 &override) :family doom-rogue-dark-variable-label-face :height 1.6)
+   ((org-level-3 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :slant 'italic)
+   ((org-level-4 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :slant 'italic)
+   ((org-level-5 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :slant 'italic)
+   ((org-level-6 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :slant 'italic)
+   ((org-level-7 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :slant 'italic)
+   ((org-level-8 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :slant 'italic)
+   ;;;; treemacs
    ((treemacs-async-loading-face &override) :family doom-rogue-dark-variable-label-face)
    ((treemacs-directory-collapsed-face &override) :family doom-rogue-dark-variable-label-face)
    ((treemacs-directory-face &override) :family doom-rogue-dark-variable-label-face)
@@ -156,7 +166,7 @@
    ((treemacs-git-renamed-face &override) :family doom-rogue-dark-variable-label-face)
    ((treemacs-git-unmodified-face &override) :family doom-rogue-dark-variable-label-face)
    ((treemacs-git-untracked-face &override) :family doom-rogue-dark-variable-label-face)
-   ((treemacs-tags-face &override) :family doom-rogue-dark-variable-label-face :height 0.8)
+   ((treemacs-tags-face &override) :family doom-rogue-dark-variable-label-face :height 0.8 :foreground fg-alt)
    (nano-vertico-header-face :foreground fg :background bg :box `(:line-width 1 :color ,fg-alt :style nil))
    (nano-vertico-mode-line-face :foreground fg-alt :overline fg-alt)
    (nano-vertico-buffer-face :foreground fg-alt :background bg)
@@ -166,6 +176,8 @@
    (nano-vertico-cursor-face :foreground bg :background fg-alt)
    (cursor :foreground fg)
    ;;;; solaire-mode
+   (solaire-default-face :background "black")
+   (solaire-fringe-face :background "black")
    (solaire-mode-line-face
     :inherit 'mode-line
     :background modeline-bg-l

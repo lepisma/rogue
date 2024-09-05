@@ -75,6 +75,10 @@
 
   :bind ("M-m t t" . r-themes/cycle-theme))
 
+(use-package solaire-mode
+  :config
+  (solaire-global-mode))
+
 (if (auto-dark--is-dark-mode)
     (r-themes/set-dark-theme)
   (r-themes/set-light-theme))
