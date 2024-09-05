@@ -42,11 +42,13 @@
 (defun r-themes/set-dark-theme ()
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme r-themes/dark-theme t)
+  (solaire-global-mode)
   (setq r-themes/dark-mode t))
 
 (defun r-themes/set-light-theme ()
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme r-themes/light-theme t)
+  (solaire-global-mode -1)
   (setq r-themes/dark-mode nil))
 
 (defun r-themes/cycle-theme ()
@@ -55,13 +57,6 @@
   (if r-themes/dark-mode
       (r-themes/set-light-theme)
     (r-themes/set-dark-theme)))
-
-(use-package auto-dark
-  :custom
-  (auto-dark-dark-theme r-themes/dark-theme)
-  (auto-dark-light-theme r-themes/light-theme)
-  :config
-  (auto-dark-mode t))
 
 (use-package doom-themes
   :custom
@@ -75,13 +70,24 @@
 
   :bind ("M-m t t" . r-themes/cycle-theme))
 
-(use-package solaire-mode
-  :config
-  (solaire-global-mode))
+(use-package solaire-mode)
 
-(if (auto-dark--is-dark-mode)
-    (r-themes/set-dark-theme)
-  (r-themes/set-light-theme))
+(use-package auto-dark
+  :demand t
+
+  :custom
+  ;; We will set themes via the hooks
+  (auto-dark-light-theme nil)
+  (auto-dark-dark-theme nil)
+
+  :config
+  (auto-dark-mode t)
+  (if (auto-dark--is-dark-mode)
+      (r-themes/set-dark-theme)
+    (r-themes/set-light-theme))
+
+  :hook ((auto-dark-dark-mode . r-themes/set-dark-theme)
+         (auto-dark-light-mode . r-themes/set-light-theme)))
 
 (provide 'r-themes)
 
