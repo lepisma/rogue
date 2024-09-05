@@ -258,7 +258,16 @@
 (use-package nano-vertico
   :vc (:fetcher github :repo rougier/nano-vertico)
   :config
-  (nano-vertico-mode t))
+  (nano-vertico-mode t)
+  ;; Overiding this function to hide the non-breaking space before each line
+  (defun nano-vertico--format-candidate (orig-fun cand prefix suffix index start)
+  "Make sure CAND, PREFIX and SUFFIX have height set because the
+default face height is set to 0.1 to hide regular prompt/contents"
+
+  (apply orig-fun (list (nano-vertico--format-string cand)
+                        (nano-vertico--format-string (concat " " prefix))
+                        (nano-vertico--format-string suffix)
+                        index start))))
 
 (use-package rainbow-mode)
 
