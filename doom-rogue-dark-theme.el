@@ -118,6 +118,7 @@
     :box nil)
    (mode-line-emphasis :foreground base8)
    (hl-line :background highlight)
+   ((link &override) :foreground fg :weight 'normal)
    ;;;; doom-modeline
    (doom-modeline-bar :background modeline-bg)
    ;;;; magit
@@ -143,6 +144,7 @@
    ((org-block &override) :background base2)
    ((org-block-begin-line &override) :background base2)
    (org-hide :foreground hidden)
+   ((org-link &override) :foreground fg)
    ((org-document-title &override) :family doom-rogue-dark-variable-label-face :height 2.5 :foreground fg :weight 'unspecified)
    ((org-level-1 &override) :family doom-rogue-dark-variable-label-face :height 1.9)
    ((org-level-2 &override) :family doom-rogue-dark-variable-label-face :height 1.6)

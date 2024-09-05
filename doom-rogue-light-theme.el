@@ -139,6 +139,7 @@
    (mode-line-emphasis :foreground base8)
    (shadow :foreground base4)
    (tooltip :background base1 :foreground fg)
+   ((link &override) :foreground fg :weight 'normal)
    ;;;; doom-modeline
    (doom-modeline-bar :background modeline-bg)
    ;;;; ediff <built-in>
