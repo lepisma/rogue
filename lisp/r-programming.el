@@ -58,6 +58,10 @@
 (use-package forge
   :after magit)
 
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode))
+
 (use-package rust-mode)
 
 (use-package direnv
