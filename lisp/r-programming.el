@@ -62,6 +62,9 @@
   :config
   (global-diff-hl-mode))
 
+(use-package devdocs
+  :hook ((python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))))
+
 (use-package rust-mode)
 
 (use-package direnv
