@@ -333,7 +333,7 @@
   :vc (:fetcher github :repo lepisma/emacs-speech-input)
   :custom
   (esi-dictate-dg-api-key (auth-info-password (car (auth-source-search :host "deepgram"))))
-  (esi-dictate-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "openai"))) :chat-model "gpt-4o-mini"))
+  (esi-dictate-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "api.openai.com"))) :chat-model "gpt-4o-mini"))
   :bind (:map esi-dictate-mode-map
               ("C-g" . esi-dictate-stop)
               ("C-SPC" . esi-dictate-start-command-mode)
