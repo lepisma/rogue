@@ -109,7 +109,7 @@
    ((rainbow-delimiters-depth-7-face &override) :foreground primary-light)
    ((rainbow-delimiters-depth-8-face &override) :foreground secondary-light)
    ((rainbow-delimiters-depth-9-face &override) :foreground primary-light)
-   (show-paren-match :inherit 'highlight)
+   (show-paren-match :background fg :foreground bg)
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box nil)
@@ -187,8 +187,11 @@
    (solaire-mode-line-inactive-face
     :inherit 'mode-line-inactive
     :background modeline-bg-inactive-l
-    :box nil))
-
+    :box nil)
+   ;;;; eros
+   (eros-result-overlay-face :background bg-alt :foreground fg :box `(:line-width -1 :color ,fg-alt))
+   ;;;; indent-guide
+   ((indent-guide-face &override) :foreground fg-alt))
   ;;;; Base theme variable overrides
   ())
 

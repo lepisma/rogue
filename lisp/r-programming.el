@@ -97,6 +97,10 @@
 
 (use-package dap-mode)
 
+(use-package indent-guide
+  :config
+  (indent-guide-global-mode))
+
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)

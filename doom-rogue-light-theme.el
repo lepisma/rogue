@@ -202,8 +202,10 @@
    (wgrep-face :background base1)
    ;;;; whitespace
    ((whitespace-tab &override)         :background (if (not (default-value 'indent-tabs-mode)) base0 'unspecified))
-   ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode) base0 'unspecified)))
-
+   ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode) base0 'unspecified))
+   ;;;; eros
+   (eros-result-overlay-face :background bg-alt :foreground fg :box `(:line-width -1 :color ,fg-alt))
+   ((indent-guide-face &override) :foreground base4))
   ;;;; Base theme variable overrides
   ())
 
