@@ -42,13 +42,11 @@
 (defun r-themes/set-dark-theme ()
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme r-themes/dark-theme t)
-  (solaire-global-mode)
   (setq r-themes/dark-mode t))
 
 (defun r-themes/set-light-theme ()
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme r-themes/light-theme t)
-  (solaire-global-mode -1)
   (setq r-themes/dark-mode nil))
 
 (defun r-themes/cycle-theme ()
