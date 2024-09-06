@@ -314,9 +314,14 @@ With argument, do this that many times."
 
 ;; A few general keybindings
 (global-set-key (kbd "C-d") #'duplicate-line)
-(global-set-key (kbd "C-S-<backspace>") 'delete-line)
-(global-set-key (kbd "C-<backspace>") 'backward-delete-word)
-(global-set-key (kbd "M-m a d") 'dired)
+(global-set-key (kbd "C-S-<backspace>") '#delete-line)
+(global-set-key (kbd "C-<backspace>") '#backward-delete-word)
+(global-set-key (kbd "M-m a d") '#dired)
+
+;; Project management
+(global-set-key (kbd "M-m p k") #'project-kill-buffers)
+(global-set-key (kbd "M-m p f") #'project-find-file)
+(global-set-key (kbd "M-m p p") #'project-switch-project)
 
 (server-start)
 
