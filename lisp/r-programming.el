@@ -108,6 +108,11 @@
   :config
   (indent-guide-global-mode))
 
+(use-package gptel
+  :custom
+  (gptel-model "gpt-4o-mini")
+  :bind ("M-m a g" . gptel-menu))
+
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)
