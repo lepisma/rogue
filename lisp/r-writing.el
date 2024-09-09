@@ -337,10 +337,10 @@
   (esi-dictate-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "api.openai.com"))) :chat-model "gpt-4o-mini"))
   :bind (:map esi-dictate-mode-map
               ("C-g" . esi-dictate-stop)
-              ("C-SPC" . esi-dictate-start-command-mode)
               ("C-<return>" . esi-dictate-fix-last))
   :config
-  (setq llm-warn-on-nonfree nil))
+  (setq llm-warn-on-nonfree nil)
+  :hook (esi-dictate-speech-final . esi-dictate-fix-last))
 
 (provide 'r-writing)
 
