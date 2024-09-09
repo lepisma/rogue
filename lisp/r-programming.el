@@ -105,8 +105,7 @@
 (use-package dap-mode)
 
 (use-package indent-guide
-  :config
-  (indent-guide-global-mode))
+  :hook (prog-mode . indent-guide-mode))
 
 (use-package gptel
   :custom
