@@ -61,7 +61,10 @@
 (use-package diff-hl
   :config
   (global-diff-hl-mode)
-  (diff-hl-flydiff-mode))
+  (diff-hl-flydiff-mode)
+  :hook
+  ((magit-pre-refresh . diff-hl-magit-pre-refresh)
+   (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package devdocs
   :hook ((python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))))
