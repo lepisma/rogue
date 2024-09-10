@@ -205,7 +205,7 @@
    ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode) base0 'unspecified))
    ;;;; eros
    (eros-result-overlay-face :background bg-alt :foreground fg :box `(:line-width -1 :color ,fg-alt))
-   ((indent-guide-face &override) :foreground base4))
+   ((indent-guide-face &override) :foreground base4 :slant 'normal))
   ;;;; Base theme variable overrides
   ())
 

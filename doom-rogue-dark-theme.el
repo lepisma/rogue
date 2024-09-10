@@ -191,7 +191,7 @@
    ;;;; eros
    (eros-result-overlay-face :background bg-alt :foreground fg :box `(:line-width -1 :color ,fg-alt))
    ;;;; indent-guide
-   ((indent-guide-face &override) :foreground fg-alt))
+   ((indent-guide-face &override) :foreground fg-alt :slant 'normal))
   ;;;; Base theme variable overrides
   ())
 
