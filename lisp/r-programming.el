@@ -60,7 +60,8 @@
 
 (use-package diff-hl
   :config
-  (global-diff-hl-mode))
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode))
 
 (use-package devdocs
   :hook ((python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))))
