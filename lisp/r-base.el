@@ -248,7 +248,11 @@
 (use-package smart-hungry-delete
   :bind (([remap backward-delete-char-untabify] . smart-hungry-delete-backward-char)
          ([remap delete-backward-char] . smart-hungry-delete-backward-char)
-         ([remap delete-char] . smart-hungry-delete-forward-char)))
+         ([remap delete-char] . smart-hungry-delete-forward-char))
+  :config
+  ;; Needed to not delete extra character because of delete-selection-mode
+  (put #'smart-hungry-delete-backward-char 'delete-selection nil)
+  (put #'smart-hungry-delete-forward-char 'delete-selection nil))
 
 (use-package treemacs
   :bind ("M-m p t" . treemacs))
