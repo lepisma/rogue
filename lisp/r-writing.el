@@ -26,8 +26,8 @@
 
 ;;; Code:
 
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook (lambda () (setq line-spacing 0.2)))
 
 (use-package markdown-mode)
