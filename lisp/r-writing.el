@@ -30,6 +30,8 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook (lambda () (setq line-spacing 0.2)))
 
+(setq org-log-done 'time)
+
 (use-package markdown-mode)
 
 (use-package org-modern
