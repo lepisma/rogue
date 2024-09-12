@@ -341,7 +341,7 @@
               ("C-g" . esi-dictate-stop))
   :config
   (setq llm-warn-on-nonfree nil)
-  :hook (esi-dictate-speech-final . esi-dictate-fix-last))
+  :hook (esi-dictate-speech-final . esi-dictate-fix-context))
 
 (provide 'r-writing)
 
