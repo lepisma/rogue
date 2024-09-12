@@ -120,6 +120,8 @@
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)
+(define-key emacs-lisp-mode-map (kbd "M-RET e f") #'eval-defun)
+(define-key emacs-lisp-mode-map (kbd "M-RET e r") #'eval-region)
 
 (use-package eros
   :custom
