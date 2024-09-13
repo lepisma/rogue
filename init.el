@@ -3,4 +3,5 @@
 (require 'r-base)
 (require 'r-writing)
 (require 'r-programming)
+(require 'r-communication)
 (require 'r-themes)
