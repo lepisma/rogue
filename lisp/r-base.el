@@ -79,6 +79,7 @@
 
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
+(global-auto-revert-mode)
 
 (set-face-attribute 'default nil :font "Iosevka" :height 100)
 (set-face-attribute 'fixed-pitch nil :font "Iosevka" :height 100)
