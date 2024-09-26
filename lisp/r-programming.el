@@ -81,6 +81,10 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-M-<mouse-1>" . mc/add-cursor-on-click)))
 
+(use-package crdt
+  :custom
+  (crdt-use-tuntox 'confirm))
+
 (use-package flycheck
   :hook ((emacs-lisp-mode . flycheck-mode)))
 
