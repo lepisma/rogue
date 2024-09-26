@@ -351,6 +351,16 @@ default face height is set to 0.1 to hide regular prompt/contents"
      (auto-mode)))
   (bufler-reverse t))
 
+(use-package dirvish
+  :init
+  (dirvish-override-dired-mode)
+  :custom
+  (dirvish-attributes
+   '(vc-state subtree-state all-the-icons collapse git-msg file-time file-size))
+  :config
+  (setq dired-mouse-drag-files t
+        mouse-drag-and-drop-region-cross-program t))
+
 ;; Personal navigation patterns
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
