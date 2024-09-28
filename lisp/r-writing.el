@@ -222,7 +222,7 @@
 
 (use-package pile
   :vc (:fetcher github :repo lepisma/pile)
-  :after (mustache w)
+  :after (mustache w transient magit)
   :config
   (let* ((template-dir (concat  "misc/"))
          (preamble-template "<header>
@@ -313,7 +313,19 @@
     (defun pile-status ()
         "Show `magit-status' in the git tracked output directory."
         (interactive)
-        (magit-status output-dir))))
+        (magit-status output-dir)))
+
+  (defun pile-commit-and-push ()
+    "Commit staged changes with a generic message and push to remote.
+
+This is supposed to be used only with pile but there is no check
+for that right now."
+    (interactive)
+    (magit-run-git "commit" "-m" "Updates")
+    (magit-run-git-async "push"))
+
+  (transient-append-suffix 'magit-commit "c"
+    '("g" "Pile commit and push" pile-commit-and-push)))
 
 (use-package org-cliplink
   :bind (:map org-mode-map
