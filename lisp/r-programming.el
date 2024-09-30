@@ -88,6 +88,8 @@
 (use-package flycheck
   :hook ((emacs-lisp-mode . flycheck-mode)))
 
+(use-package fish-mode)
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
