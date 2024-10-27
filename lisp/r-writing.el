@@ -332,8 +332,19 @@ for that right now."
     '("g" "Pile commit and push" pile-commit-and-push)))
 
 (use-package org-cliplink
+  :preface
+  (defun org-cliplink-plus ()
+    "When a region is selected, just wrap it in the link instead of
+trying to fetch title."
+    (interactive)
+    (if (region-active-p)
+        (replace-region-contents (region-beginning) (region-end)
+                                 (lambda ()
+                                   (format "[[%s][%s]]" (org-cliplink-clipboard-content) (buffer-substring-no-properties (point-min) (point-max)))))
+      (org-cliplink)))
+
   :bind (:map org-mode-map
-              ("C-c y" . org-cliplink)))
+              ("C-c y" . org-cliplink-plus)))
 
 (use-package citar
   :no-require
