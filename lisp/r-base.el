@@ -361,6 +361,13 @@ default face height is set to 0.1 to hide regular prompt/contents"
   (setq dired-mouse-drag-files t
         mouse-drag-and-drop-region-cross-program t))
 
+(use-package header-progress
+  :after org
+  :vc (:fetcher github :repo lepisma/header-progress)
+  :custom
+  (hp-bar-complete-char "▄")
+  :hook (org-mode . hp-buffer-progress-mode))
+
 ;; Personal navigation patterns
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
