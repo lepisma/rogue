@@ -198,6 +198,7 @@
    ((treemacs-tags-face &override) :family doom-rogue-light-variable-label-face :height 0.8 :foreground primary-dark)
    ;;;; vertico
    (vertico-current :background base2)
+   ((nano-vertico-mode-line-face &override) :overline nil)
    ;;;; wgrep <built-in>
    (wgrep-face :background base1)
    ;;;; whitespace

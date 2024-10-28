@@ -365,7 +365,8 @@ default face height is set to 0.1 to hide regular prompt/contents"
   :after org
   :vc (:fetcher github :repo lepisma/header-progress)
   :custom
-  (hp-bar-complete-char "▄")
+  (hp-bar-complete-char "┉")
+  (hp-bar-remaining-char " ")
   :hook (org-mode . hp-buffer-progress-mode))
 
 ;; Personal navigation patterns
