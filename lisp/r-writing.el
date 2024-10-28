@@ -296,6 +296,7 @@
                                     :input-dir (concat input-dir "misc")
                                     :output-dir output-dir)))
     (pile-setup)
+    (setq org-confirm-babel-evaluate nil)
     ;; Notice that sequence of hooks is important here
     (dolist (fn (list #'pile-hooks-pre-add-setupfile
                       #'pile-hooks-pre-add-bc
