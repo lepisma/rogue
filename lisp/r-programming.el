@@ -118,9 +118,6 @@
 
 (use-package dap-mode)
 
-(use-package indent-guide
-  :hook (prog-mode . indent-guide-mode))
-
 (use-package gptel
   :custom
   (gptel-model "gpt-4o-mini")
