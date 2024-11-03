@@ -333,6 +333,7 @@ for that right now."
     '("g" "Pile commit and push" pile-commit-and-push)))
 
 (use-package org-cliplink
+  :demand t
   :preface
   (defun org-cliplink-plus ()
     "When a region is selected, just wrap it in the link instead of
