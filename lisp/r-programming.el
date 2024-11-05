@@ -76,6 +76,11 @@
   :config
   (direnv-mode))
 
+(use-package docker
+  :bing ("C-c d" . docker))
+
+(use-package vterm)
+
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
@@ -111,6 +116,8 @@
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
+
+(use-package yaml-mode)
 
 (use-package yasnippet
   :config
