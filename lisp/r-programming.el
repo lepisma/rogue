@@ -77,7 +77,7 @@
   (direnv-mode))
 
 (use-package docker
-  :bing ("C-c d" . docker))
+  :bind ("C-c d" . docker))
 
 (use-package vterm)
 
