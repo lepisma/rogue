@@ -1,4 +1,4 @@
-;;; r-communication.el --- Communication setup -*- lexical-binding: t; -*-
+;;; r-mail.el --- Email setup -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2024 Abhinav Tushar
 
@@ -6,7 +6,7 @@
 
 ;;; Commentary:
 
-;; Communication setup
+;; Email setup
 ;; This file is not a part of GNU Emacs.
 
 ;;; License:
@@ -31,11 +31,11 @@
 ;; Then run `mu init' with --my-address flags and then `mu index'.
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
-(defun r-communication/message-maildir-matches (msg rx)
+(defun r-mail/message-maildir-matches (msg rx)
   (when rx
     (if (listp rx)
-        (or (r-communication/message-maildir-matches msg (car rx))
-            (r-communication/message-maildir-matches msg (cdr rx)))
+        (or (r-mail/message-maildir-matches msg (car rx))
+            (r-mail/message-maildir-matches msg (cdr rx)))
       (string-match rx (mu4e-message-field msg :maildir)))))
 
 (use-package mu4e
@@ -73,29 +73,29 @@
 
   ;; TODO: Add SMTP configuration
   (mu4e-contexts (list (make-mu4e-context
-                        :name "Gmail"
-                        :match-func (lambda (msg)
-                                      (when msg
-                                        (r-communication/message-maildir-matches msg "^/Gmail")))
-                        :vars `((mu4e-sent-messages-behavior . delete)
-                                (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
-                                (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
-                                (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))
-                       (make-mu4e-context
                         :name "Personal"
                         :match-func (lambda (msg)
                                       (when msg
-                                        (r-communication/message-maildir-matches msg "^/Personal")))
+                                        (r-mail/message-maildir-matches msg "^/Personal")))
                         :vars `((mu4e-sent-messages-behavior . sent)
                                 (mu4e-sent-folder . "/Personal/Sent")
                                 (mu4e-trash-folder . "/Personal/Trash")
                                 (mu4e-drafts-folder . "/Personal/Drafts")
                                 (mu4e-refile-folder . "/Personal/Archive")))
                        (make-mu4e-context
+                        :name "Gmail"
+                        :match-func (lambda (msg)
+                                      (when msg
+                                        (r-mail/message-maildir-matches msg "^/Gmail")))
+                        :vars `((mu4e-sent-messages-behavior . delete)
+                                (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
+                                (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
+                                (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))
+                       (make-mu4e-context
                         :name "Carnil"
                         :match-func (lambda (msg)
                                       (when msg
-                                        (r-communication/message-maildir-matches msg "^/Carnil")))
+                                        (r-mail/message-maildir-matches msg "^/Carnil")))
                         :vars `((mu4e-sent-messages-behavior . sent)
                                 (mu4e-sent-folder . "/Carnil/Sent Messages")
                                 (mu4e-trash-folder . "/Carnil/Deleted Messages")
@@ -109,6 +109,6 @@
         message-citation-line-function #'message-insert-formatted-citation-line
         mml-secure-openpgp-sign-with-sender t))
 
-(provide 'r-communication)
+(provide 'r-mail)
 
-;;; r-communication.el ends here
+;;; r-mail.el ends here
