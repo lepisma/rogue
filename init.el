@@ -8,4 +8,6 @@
 (when (file-exists-p "/usr/share/emacs/site-lisp/mu4e")
   (require 'r-mail))
 
+(require 'r-apps)
+
 (require 'r-themes)
