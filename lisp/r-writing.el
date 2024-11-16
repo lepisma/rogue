@@ -77,6 +77,7 @@
          (org-present-mode-quit . (lambda ()
                                     (org-present-small)
                                     (org-remove-inline-images)
+                                    (org-present-show-cursor)
                                     (org-present-read-write)))))
 
 (use-package org-fragtog
