@@ -68,6 +68,17 @@
 
   :hook (org-mode . org-appear-mode))
 
+(use-package org-present
+  :hook ((org-present-mode . (lambda ()
+                               (org-present-big)
+                               (org-display-inline-images)
+                               (org-present-hide-cursor)
+                               (org-present-read-only)))
+         (org-present-mode-quit . (lambda ()
+                                    (org-present-small)
+                                    (org-remove-inline-images)
+                                    (org-present-read-write)))))
+
 (use-package org-fragtog
   :hook (org-mode . org-fragtog-mode))
 
