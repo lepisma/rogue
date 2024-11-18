@@ -229,6 +229,24 @@
   (require 'org-roam-protocol)
   (org-roam-db-autosync-mode))
 
+(use-package org-roam-exts
+  :after org-roam
+  :vc (:fetcher github :repo lepisma/org-roam-exts)
+  :config
+
+  ;; Ensure that the side buffer is positioned in the right way
+  (add-to-list 'display-buffer-alist
+           '("\\*org-roam\\*"
+             (display-buffer-in-direction)
+             (direction . right)
+             (window-width . 0.33)
+             (window-height . fit-window-to-buffer)))
+
+  ;; Enable rich link preview and similar nodes in org-roam-buffer
+  (org-roam-exts-enable)
+  ;; Enable org-protocol for sidekick functionality
+  (org-roam-sk-enable))
+
 ;; Primarily for serving `pile' pages
 (use-package w
   :vc (:fetcher github :repo lepisma/w.el))
