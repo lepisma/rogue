@@ -251,6 +251,10 @@
 (use-package w
   :vc (:fetcher github :repo lepisma/w.el))
 
+(use-package org-books
+  :custom
+  (org-books-file (concat user-cloud-dir "lepisma.github.io/wiki/readings/reading-list.org")))
+
 ;; This is for some template rendering for `pile'
 (use-package mustache)
 
