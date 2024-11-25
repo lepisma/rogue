@@ -263,6 +263,7 @@
 (use-package pile
   :vc (:fetcher github :repo lepisma/pile)
   :after (mustache w transient magit)
+  :demand t
   :commands (pile-publish-current-file pile-serve pile-status pile-blog-new-post)
   :config
   (let ((preamble-template "<header>
@@ -350,6 +351,17 @@
                       #'pile-hooks-post-sync-static-files
                       #'pile-hooks-post-generate-index))
       (add-hook 'pile-post-publish-hook fn t))
+
+    ;; Set browser shortcut for editing
+    (require 'org-protocol)
+    (push (list "org-open-source" :protocol "open-source" :function #'org-protocol-open-source)
+          org-protocol-protocol-alist)
+    (push `("pile-blog"
+            :base-url ,root-url
+            :working-directory ,(concat input-dir "blog/")
+            :online-suffix ".html"
+            :working-suffix ".org")
+          org-protocol-project-alist)
 
     (defun pile-status ()
       "Show `magit-status' in the git tracked output directory."
