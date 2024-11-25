@@ -249,19 +249,21 @@
 
 ;; Primarily for serving `pile' pages
 (use-package w
-  :vc (:fetcher github :repo lepisma/w.el))
+  :vc (:fetcher github :repo lepisma/w.el)
+  :demand t)
 
 (use-package org-books
   :custom
   (org-books-file (concat user-cloud-dir "lepisma.github.io/wiki/readings/reading-list.org")))
 
 ;; This is for some template rendering for `pile'
-(use-package mustache)
+(use-package mustache
+  :demand t)
 
 (use-package pile
   :vc (:fetcher github :repo lepisma/pile)
   :after (mustache w transient magit)
-  :demand t
+  :commands (pile-publish-current-file pile-serve pile-status pile-blog-new-post)
   :config
   (let ((preamble-template "<header>
   <div class='site-title'>
@@ -350,9 +352,9 @@
       (add-hook 'pile-post-publish-hook fn t))
 
     (defun pile-status ()
-        "Show `magit-status' in the git tracked output directory."
-        (interactive)
-        (magit-status output-dir)))
+      "Show `magit-status' in the git tracked output directory."
+      (interactive)
+      (magit-status output-dir)))
 
   (defun pile-commit-and-push ()
     "Commit staged changes with a generic message and push to remote.

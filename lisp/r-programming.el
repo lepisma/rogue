@@ -52,7 +52,8 @@
 
 (use-package magit
   :pin melpa-stable
-  :bind ("M-m g s" . magit-status))
+  :bind ("M-m g s" . magit-status)
+  :demand t)
 
 (use-package git-timemachine)
 

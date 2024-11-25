@@ -100,6 +100,9 @@
   :init
   (savehist-mode))
 
+(use-package transient
+  :demand t)
+
 (use-package emacs
   :custom
   (tab-always-indent 'complete)
