@@ -261,9 +261,9 @@
 (use-package pile
   :vc (:fetcher github :repo lepisma/pile)
   :after (mustache w transient magit)
+  :demand t
   :config
-  (let* ((template-dir (concat  "misc/"))
-         (preamble-template "<header>
+  (let ((preamble-template "<header>
   <div class='site-title'>
     <a href='/'>
       <img src='/assets/images/avatar32.png'>
@@ -283,10 +283,10 @@
   <div class='page-meta'>{{page-meta}}</div>
   <h1>%t</h1>
 </div>")
-         (postamble-template "<footer id='footer'></footer>")
-         (root-url "https://lepisma.xyz/")
-         (input-dir (concat user-cloud-dir "lepisma.github.io/"))
-         (output-dir (concat user-cloud-dir "projects/lepisma.github.io-deploy/")))
+        (postamble-template "<footer id='footer'></footer>")
+        (root-url "https://lepisma.xyz/")
+        (input-dir (concat user-cloud-dir "lepisma.github.io/"))
+        (output-dir (concat user-cloud-dir "projects/lepisma.github.io-deploy/")))
     (setq pile-serve-dir output-dir
           pile-projects
           (list (pile-project-wiki :name "wiki"
