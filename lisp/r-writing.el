@@ -217,7 +217,7 @@
                                  :unnarrowed)))
   (org-roam-capture-ref-templates `(("l" "literature" plain "%?"
                                      :target (file+head "literature/%<%Y%m%d%H%M%S>-${slug}.org"
-                                                        "#+TITLE: ${title}\n\n")
+                                                        "#+TAGS: unsorted\n#+TITLE: ${title}\n\n")
                                      :unnarrowed t)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
