@@ -59,7 +59,6 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(pixel-scroll-precision-mode t)
 (setq-default cursor-type 'bar)
 (setq mode-line-right-align-edge 'right-fringe)
 (setq-default fill-column 80)
@@ -91,6 +90,14 @@
 (unless (package-installed-p 'vc-use-package)
   (package-vc-install "https://github.com/slotThe/vc-use-package"))
 (require 'vc-use-package)
+
+(use-package ultra-scroll
+  :vc (:fetcher github :repo jdtsmith/ultra-scroll)
+  :init
+  (setq scroll-conservatively 101
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
 
 (use-package vertico
   :init
