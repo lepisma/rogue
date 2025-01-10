@@ -76,7 +76,7 @@
    (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package devdocs
-  :hook ((python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))))
+  :hook ((python-ts-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))))
 
 (use-package rust-mode)
 
