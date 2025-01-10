@@ -55,6 +55,13 @@
   :bind ("M-m g s" . magit-status)
   :demand t)
 
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 (use-package git-timemachine)
 
 (use-package forge
@@ -99,7 +106,7 @@
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
-  :hook ((rust-mode . lsp-deferred)
+  :hook ((rust-ts-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
   :custom
@@ -146,9 +153,9 @@
 ;; Python
 (use-package lsp-pyright
   :after lsp-mode
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp-deferred))))
+  :hook (python-ts-mode . (lambda ()
+                            (require 'lsp-pyright)
+                            (lsp-deferred))))
 
 (provide 'r-programming)
 
