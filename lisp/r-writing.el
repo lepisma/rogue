@@ -301,6 +301,7 @@
                                    :preamble (mustache-render preamble-template '(("wiki-p" . t) ("page-meta" . "Last modified: %d %C")))
                                    :setupfile (concat input-dir "assets/export.setup"))
                 (pile-project-blog :name "blog"
+                                   :site-title "(car nil)"
                                    :root-url root-url
                                    :base-url ""
                                    :input-dir (concat input-dir "blog")
@@ -309,6 +310,7 @@
                                    :preamble (mustache-render preamble-template '(("blog-p" . t) ("page-meta" . "%d")))
                                    :setupfile (concat input-dir "assets/export.setup"))
                 (pile-project-blog :name "journal"
+                                   :site-title "journal | lepisma"
                                    :root-url root-url
                                    :base-url "journal"
                                    :input-dir (concat input-dir "journal")
@@ -317,6 +319,7 @@
                                    :preamble (mustache-render preamble-template '(("journal-p" . t) ("page-meta" . "%d")))
                                    :setupfile (concat input-dir "assets/export.setup"))
                 (pile-project-blog :name "log"
+                                   :site-title "log | lepisma"
                                    :root-url root-url
                                    :base-url "log"
                                    :input-dir (concat input-dir "log")
