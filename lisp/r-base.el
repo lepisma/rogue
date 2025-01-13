@@ -379,6 +379,19 @@ default face height is set to 0.1 to hide regular prompt/contents"
   (hp-bar-remaining-char " ")
   :hook (org-mode . hp-buffer-progress-mode))
 
+(use-package enlight
+  :demand t
+  :custom
+  (enlight-content
+   (enlight-menu
+    `(("Documents"
+       ("Plans" (find-file ,(concat user-notes-dir "20231105142902-plans.org")) "p")
+       ("Supernote / Daily" (find-file ,(concat user-cloud-dir "supernote/Note/20240729_125839-weekly-planning.pdf")) "d"))
+      ("Other"
+       ("Projects" project-switch-project "w")))))
+  :config
+  (setopt initial-buffer-choice #'enlight))
+
 ;; Personal navigation patterns
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
