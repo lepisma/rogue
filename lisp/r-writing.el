@@ -229,6 +229,28 @@
   (require 'org-roam-protocol)
   (org-roam-db-autosync-mode))
 
+(use-package tokenizers
+  :vc (:fetcher github :repo lepisma/tokenizers.el)
+  :demand t)
+
+(use-package onnx
+  :vc (:fetcher github :repo lepisma/onnx.el)
+  :demand t)
+
+(use-package sem
+  :vc (:fetcher github :repo lepisma/sem.el)
+  :demand t
+  :config
+  ;; Create database directory
+  (setq sem-database-dir (expand-file-name (concat user-emacs-directory "sem/")))
+  (make-directory sem-database-dir t)
+
+  ;; Setup default model
+  (setq sem-embed-model-path (concat sem-database-dir "model_O2.onnx"))
+  (unless (file-exists-p sem-embed-model-path)
+    (message "Model missing for sem-embed, downloading...")
+    (url-copy-file "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/onnx/model_O2.onnx?download=true" sem-embed-model-path)))
+
 (use-package org-roam-exts
   :after org-roam
   :vc (:fetcher github :repo lepisma/org-roam-exts)
