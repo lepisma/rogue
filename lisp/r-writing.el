@@ -266,6 +266,8 @@
 
   ;; Enable rich link preview and similar nodes in org-roam-buffer
   (org-roam-exts-enable)
+  ;; Setup database for storing vectors
+  (org-roam-sem-setup)
   ;; Enable org-protocol for sidekick functionality
   (org-roam-sk-enable))
 
