@@ -265,7 +265,7 @@
              (window-height . fit-window-to-buffer)))
 
   ;; Enable rich link preview and similar nodes in org-roam-buffer
-  (org-roam-exts-enable)
+  (org-roam-buffer-exts-enable)
   ;; Enable org-protocol for sidekick functionality
   (org-roam-sk-enable))
 
