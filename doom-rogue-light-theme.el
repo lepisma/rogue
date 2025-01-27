@@ -206,9 +206,25 @@
    ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode) base0 'unspecified))
    ;;;; eros
    (eros-result-overlay-face :background bg-alt :foreground fg :box `(:line-width -1 :color ,fg-alt))
-   ((indent-guide-face &override) :foreground base4 :slant 'normal))
+   ((indent-guide-face &override) :foreground base4 :slant 'normal)
+   ;;;; flycheck-overlay
+   (flycheck-overlay-error :background (doom-lighten error 0.6)
+                           :foreground fg
+                           :height 0.9
+                           :weight 'normal)
+   (flycheck-overlay-warning :background (doom-lighten warning 0.6)
+                             :foreground fg
+                             :height 0.9
+                             :weight 'normal)
+   (flycheck-overlay-info :background (doom-lighten success 0.6)
+                          :foreground fg
+                          :height 0.9
+                          :weight 'normal))
   ;;;; Base theme variable overrides
-  ())
+  ((flycheck-overlay-info-icon "")
+   (flycheck-overlay-warning-icon "")
+   (flycheck-overlay-error-icon "")
+   (flycheck-overlay-icon-left-padding 0.4)))
 
 (provide 'doom-rogue-light-theme)
 
