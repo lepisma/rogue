@@ -76,6 +76,13 @@
   ((magit-pre-refresh . diff-hl-magit-pre-refresh)
    (magit-post-refresh . diff-hl-magit-post-refresh)))
 
+(use-package flycheck-overlay
+  :vc (:fetcher github :repo konrad1977/flycheck-overlay)
+  :after flycheck
+  :hook (flycheck-mode . flycheck-overlay-mode)
+  :custom
+  (flycheck-overlay-show-at-eol t))
+
 (use-package devdocs
   :hook ((python-ts-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))))
 
