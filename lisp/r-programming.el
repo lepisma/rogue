@@ -68,6 +68,7 @@
   :after magit)
 
 (use-package diff-hl
+  :demand t
   :config
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode)
