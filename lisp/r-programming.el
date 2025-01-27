@@ -73,8 +73,7 @@
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode)
   :hook
-  ((magit-pre-refresh . diff-hl-magit-pre-refresh)
-   (magit-post-refresh . diff-hl-magit-post-refresh)))
+  ((magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package flycheck-overlay
   :vc (:fetcher github :repo konrad1977/flycheck-overlay)
