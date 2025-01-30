@@ -300,6 +300,7 @@
     <a {{#log-p}}class='active'{{/log-p}} href='/log'> <s>log</s></a>
     <a {{#wiki-p}}class='active'{{/wiki-p}} href='/wiki'> wiki</a>
     <a href='/about'> about</a>
+    <a href='/wiki/support' class='btn small primary'>$ support </a>
   </div>
   <div class='clearfix'></div>
 </header>
