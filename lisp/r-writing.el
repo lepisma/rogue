@@ -297,7 +297,7 @@
   <div class='site-nav'>
     <a {{#blog-p}}class='active'{{/blog-p}} href='/'> blog</a>
     <a {{#journal-p}}class='active'{{/journal-p}} href='/journal'> journal</a>
-    <a {{#log-p}}class='active'{{/log-p}} href='/log'> log</a>
+    <a {{#log-p}}class='active'{{/log-p}} href='/log'> <s>log</s></a>
     <a {{#wiki-p}}class='active'{{/wiki-p}} href='/wiki'> wiki</a>
     <a href='/about'> about</a>
   </div>
