@@ -64,6 +64,7 @@
 (setq-default fill-column 80)
 (delete-selection-mode t)
 (winner-mode t)
+(put 'upcase-region 'disabled nil)
 
 ;; Save desktop without any theme settings
 (desktop-save-mode t)
