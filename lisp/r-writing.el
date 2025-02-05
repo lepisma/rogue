@@ -34,7 +34,16 @@
   :custom
   (org-log-done 'time)
   :config
-  (require 'org-tempo))
+  (require 'org-tempo)
+
+  (defun org-checklist-date-fn ()
+    (save-excursion
+      (goto-char (line-beginning-position))
+      (when (re-search-forward " \\[X\\] " (line-end-position) t)
+        (org-insert-timestamp (current-time) t t)
+        (insert " "))))
+
+  (add-hook 'org-checkbox-statistics-hook #'org-checklist-date-fn))
 
 (use-package markdown-mode)
 
