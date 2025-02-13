@@ -264,7 +264,6 @@
   :after org-roam
   :vc (:fetcher github :repo lepisma/org-roam-exts)
   :config
-
   ;; Ensure that the side buffer is positioned in the right way
   (add-to-list 'display-buffer-alist
            '("\\*org-roam\\*"
@@ -276,7 +275,8 @@
   ;; Enable rich link preview and similar nodes in org-roam-buffer
   (org-roam-buffer-exts-enable)
   ;; Enable org-protocol for sidekick functionality
-  (org-roam-sk-enable))
+  (org-roam-sk-enable)
+  :bind (("C-c n s" . org-roam-sem-search)))
 
 ;; Primarily for serving `pile' pages
 (use-package w
