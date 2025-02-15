@@ -145,6 +145,19 @@
   (gptel-model "gpt-4o-mini")
   :bind ("M-m a g" . gptel-menu))
 
+(use-package llm)
+
+(use-package magit-gptcommit
+  :demand t
+  :after (magit llm)
+  :bind (:map git-commit-mode-map
+              ("C-c C-g" . magit-gptcommit-commit-accept))
+  :config
+  (require 'llm-ollama)
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen2.5-coder:3b"))
+  (magit-gptcommit-mode t)
+  (magit-gptcommit-status-buffer-setup))
+
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)
