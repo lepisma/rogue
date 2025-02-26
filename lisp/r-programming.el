@@ -147,20 +147,6 @@
 
 (use-package llm)
 
-(use-package magit-gptcommit
-  :demand t
-  :after (magit llm)
-  :bind (:map git-commit-mode-map
-              ("C-c C-g" . magit-gptcommit-commit-accept))
-  :init
-  (require 'llm-ollama)
-  :custom
-  (magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen2.5-coder:3b"))
-  (magit-gptcommit-prompt "You are an expert programmer writing a commit message.\nYou went over every file diff that was changed in it.\n\nWrite your response using the imperative tense following the kernel git commit style guide.\nRemember to write in only one line, no more than 50 characters.\n\nTHE FILE DIFFS:\n```\n%s\n```\nNow write Commit message in follow template: [one line of summary] :\n")
-  :config
-  (magit-gptcommit-mode t)
-  (magit-gptcommit-status-buffer-setup))
-
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)
