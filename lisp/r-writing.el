@@ -453,13 +453,6 @@ trying to fetch title."
   (setq llm-warn-on-nonfree nil)
   :hook (esi-dictate-speech-final . esi-dictate-fix-context))
 
-(use-package idli
-  :vc (:fetcher github :repo lepisma/idli)
-  :custom
-  (idli-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "api.openai.com"))) :chat-model "gpt-4o"))
-  :config
-  (setq llm-warn-on-nonfree nil))
-
 (use-package org-download
   :custom
   (org-download-method 'directory)
