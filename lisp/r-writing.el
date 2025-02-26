@@ -460,6 +460,13 @@ trying to fetch title."
   :config
   (setq llm-warn-on-nonfree nil))
 
+(use-package org-download
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir ".")
+  (org-download-heading-lvl nil)
+  (org-download-timestamp "%Y-%m-%dT%H:%M:%S-"))
+
 (provide 'r-writing)
 
 ;;; r-writing.el ends here
