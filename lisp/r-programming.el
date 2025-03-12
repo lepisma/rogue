@@ -147,6 +147,14 @@
 
 (use-package llm)
 
+(use-package aidermacs
+  :bind (("C-c a" . aidermacs-transient-menu))
+  :config
+  (setenv "OPENAI_API_KEY" (auth-info-password (car (auth-source-search :host "api.openai.com"))))
+  :custom
+  (aidermacs-use-architect-mode t)
+  (aidermacs-default-model "openai/gpt-4o-mini"))
+
 ;; Emacs Lisp
 (define-key emacs-lisp-mode-map (kbd "M-RET e e") #'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-RET e b") #'eval-buffer)
