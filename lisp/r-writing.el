@@ -181,7 +181,7 @@
   :hook (org-mode . svg-tag-mode))
 
 (use-package org-margin
-  :vc (:fetcher github :repo rougier/org-margin)
+  :vc (:url "https://github.com/rougier/org-margin.git")
   :custom
   (org-margin-headers-set 'H-svg)
   (org-margin-headers
@@ -239,15 +239,15 @@
   (org-roam-db-autosync-mode))
 
 (use-package tokenizers
-  :vc (:fetcher github :repo lepisma/tokenizers.el)
+  :vc (:url "https://github.com/lepisma/tokenizers.el.git")
   :demand t)
 
 (use-package onnx
-  :vc (:fetcher github :repo lepisma/onnx.el)
+  :vc (:url "https://github.com/lepisma/onnx.el.git")
   :demand t)
 
 (use-package sem
-  :vc (:fetcher github :repo lepisma/sem.el)
+  :vc (:url "https://github.com/lepisma/sem.el.git")
   :demand t
   :config
   ;; Create database directory
@@ -262,7 +262,7 @@
 
 (use-package org-roam-exts
   :after org-roam
-  :vc (:fetcher github :repo lepisma/org-roam-exts)
+  :vc (:url "https://github.com/lepisma/org-roam-exts.git")
   :config
   ;; Ensure that the side buffer is positioned in the right way
   (add-to-list 'display-buffer-alist
@@ -280,8 +280,9 @@
 
 ;; Primarily for serving `pile' pages
 (use-package w
-  :vc (:fetcher github :repo lepisma/w.el)
-  :demand t)
+  :vc (:url "https://github.com/lepisma/w.el.git")
+  :demand t
+  :ensure-system-package (live-server . "cargo install live-server"))
 
 (use-package org-books
   :custom
@@ -292,7 +293,7 @@
   :demand t)
 
 (use-package pile
-  :vc (:fetcher github :repo lepisma/pile)
+  :vc (:url "https://github.com/lepisma/pile.git")
   :after (mustache w transient magit)
   :demand t
   :commands (pile-publish-current-file pile-serve pile-status pile-blog-new-post)
@@ -445,7 +446,7 @@ trying to fetch title."
               ("C-c b" . org-cite-insert)))
 
 (use-package esi-dictate
-  :vc (:fetcher github :repo lepisma/emacs-speech-input)
+  :vc (:url "https://github.com/lepisma/emacs-speech-input.git")
   :custom
   (esi-dictate-dg-api-key (auth-info-password (car (auth-source-search :host "deepgram"))))
   (esi-dictate-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "api.openai.com"))) :chat-model "gpt-4o-mini"))

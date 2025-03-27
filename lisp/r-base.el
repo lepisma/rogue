@@ -87,13 +87,8 @@
 
 (setq-default indent-tabs-mode nil)
 
-;; This is in-built in Emacs 30+
-(unless (package-installed-p 'vc-use-package)
-  (package-vc-install "https://github.com/slotThe/vc-use-package"))
-(require 'vc-use-package)
-
 (use-package ultra-scroll
-  :vc (:fetcher github :repo jdtsmith/ultra-scroll)
+  :vc (:url "https://github.com/jdtsmith/ultra-scroll.git")
   :init
   (setq scroll-conservatively 101
         scroll-margin 0)
@@ -360,7 +355,7 @@
 
 (use-package header-progress
   :after org
-  :vc (:fetcher github :repo lepisma/header-progress)
+  :vc (:url "https://github.com/lepisma/header-progress.git")
   :custom
   (hp-bar-complete-char "┉")
   (hp-bar-remaining-char " ")
