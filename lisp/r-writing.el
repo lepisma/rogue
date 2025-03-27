@@ -181,7 +181,7 @@
   :hook (org-mode . svg-tag-mode))
 
 (use-package org-margin
-  :vc (:url "https://github.com/rougier/org-margin.git")
+  :vc (:url "https://github.com/rougier/org-margin.git" :rev :newest)
   :custom
   (org-margin-headers-set 'H-svg)
   (org-margin-headers
@@ -239,15 +239,15 @@
   (org-roam-db-autosync-mode))
 
 (use-package tokenizers
-  :vc (:url "https://github.com/lepisma/tokenizers.el.git")
+  :vc (:url "https://github.com/lepisma/tokenizers.el.git" :rev :newest)
   :demand t)
 
 (use-package onnx
-  :vc (:url "https://github.com/lepisma/onnx.el.git")
+  :vc (:url "https://github.com/lepisma/onnx.el.git" :rev :newest)
   :demand t)
 
 (use-package sem
-  :vc (:url "https://github.com/lepisma/sem.el.git")
+  :vc (:url "https://github.com/lepisma/sem.el.git" :rev :newest)
   :demand t
   :config
   ;; Create database directory
@@ -262,7 +262,7 @@
 
 (use-package org-roam-exts
   :after org-roam
-  :vc (:url "https://github.com/lepisma/org-roam-exts.git")
+  :vc (:url "https://github.com/lepisma/org-roam-exts.git" :rev :newest)
   :config
   ;; Ensure that the side buffer is positioned in the right way
   (add-to-list 'display-buffer-alist
@@ -280,7 +280,7 @@
 
 ;; Primarily for serving `pile' pages
 (use-package w
-  :vc (:url "https://github.com/lepisma/w.el.git")
+  :vc (:url "https://github.com/lepisma/w.el.git" :rev :newest)
   :demand t
   :ensure-system-package (live-server . "cargo install live-server"))
 
@@ -293,7 +293,7 @@
   :demand t)
 
 (use-package pile
-  :vc (:url "https://github.com/lepisma/pile.git")
+  :vc (:url "https://github.com/lepisma/pile.git" :rev :newest)
   :after (mustache w transient magit)
   :demand t
   :commands (pile-publish-current-file pile-serve pile-status pile-blog-new-post)
@@ -446,7 +446,7 @@ trying to fetch title."
               ("C-c b" . org-cite-insert)))
 
 (use-package esi-dictate
-  :vc (:url "https://github.com/lepisma/emacs-speech-input.git")
+  :vc (:url "https://github.com/lepisma/emacs-speech-input.git" :rev :newest)
   :custom
   (esi-dictate-dg-api-key (auth-info-password (car (auth-source-search :host "deepgram"))))
   (esi-dictate-llm-provider (make-llm-openai :key (auth-info-password (car (auth-source-search :host "api.openai.com"))) :chat-model "gpt-4o-mini"))

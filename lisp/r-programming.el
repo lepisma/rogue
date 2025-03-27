@@ -76,7 +76,7 @@
   ((magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package flycheck-overlay
-  :vc (:url "https://github.com/konrad1977/flycheck-overlay.git")
+  :vc (:url "https://github.com/konrad1977/flycheck-overlay.git" :rev :newest)
   :after flycheck
   :hook (flycheck-mode . flycheck-overlay-mode)
   :custom

@@ -88,7 +88,7 @@
 (setq-default indent-tabs-mode nil)
 
 (use-package ultra-scroll
-  :vc (:url "https://github.com/jdtsmith/ultra-scroll.git")
+  :vc (:url "https://github.com/jdtsmith/ultra-scroll.git" :rev :newest)
   :init
   (setq scroll-conservatively 101
         scroll-margin 0)
@@ -355,7 +355,7 @@
 
 (use-package header-progress
   :after org
-  :vc (:url "https://github.com/lepisma/header-progress.git")
+  :vc (:url "https://github.com/lepisma/header-progress.git" :rev :newest)
   :custom
   (hp-bar-complete-char "┉")
   (hp-bar-remaining-char " ")
