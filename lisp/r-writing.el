@@ -293,7 +293,8 @@
   :demand t)
 
 (use-package pile
-  :vc (:url "https://github.com/lepisma/pile.git" :rev :newest)
+  ;; :vc (:url "https://github.com/lepisma/pile.git" :rev :newest)
+  :load-path (lambda () (concat user-cloud-dir "projects/pile/"))
   :after (mustache w transient magit)
   :demand t
   :commands (pile-publish-current-file pile-serve pile-status pile-blog-new-post)
@@ -380,10 +381,10 @@
                       #'pile-hooks-pre-add-crosslinks
                       #'pile-hooks-pre-add-draft-watermark))
       (add-hook 'pile-pre-publish-hook fn t))
-    (dolist (fn (list #'pile-hooks-post-clear-cids
+    (dolist (fn (list (pile-hooks-html-post-processing-factory (list #'pile-cids-clear-html
+                                                                     #'pile-stringify-title))
                       #'pile-hooks-post-generate-atom
                       #'pile-hooks-post-generate-archive
-                      #'pile-hooks-post-stringify-title
                       #'pile-hooks-post-sync-static-files
                       #'pile-hooks-post-generate-index))
       (add-hook 'pile-post-publish-hook fn t))
