@@ -41,7 +41,7 @@
 (defconst user-cloud-dir (file-name-as-directory (getenv "CLOUD_DIR")))
 (defconst user-notes-dir (file-name-as-directory (concat user-cloud-dir "notes")))
 
-(setq gc-cons-threshold (* 50 1000 1000))
+(setq gc-cons-threshold (* 100 1024 1024))
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
