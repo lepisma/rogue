@@ -87,6 +87,10 @@
 
 (use-package rust-mode)
 
+(use-package bmp
+  :vc (:url "https://github.com/lepisma/bmp" :rev :newest)
+  :after magit)
+
 (use-package direnv
   :config
   (direnv-mode))
