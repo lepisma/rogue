@@ -34,6 +34,23 @@
 (add-hook 'prog-mode-hook (lambda () (setq line-spacing 0.1)))
 (add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace t)))
 
+(use-package tramp
+  :config
+  (with-eval-after-load 'compile
+    (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))
+
+  (setq remote-file-name-inhibit-locks t
+        tramp-use-scp-direct-remote-copying t
+        remote-file-name-inhibit-auto-save-visited t)
+
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process))
+
 (use-package smartparens
   :hook (prog-mode . smartparens-mode)
   :config
@@ -53,7 +70,9 @@
 (use-package magit
   :pin melpa-stable
   :bind ("M-m g s" . magit-status)
-  :demand t)
+  :demand t
+  :config
+  (setq magit-tramp-pipe-stty-settings 'pty))
 
 (use-package treesit-auto
   :custom
