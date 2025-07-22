@@ -39,43 +39,40 @@
    (fg-alt     '("#A0A8B4" "#A0A8B4"    "brightwhite" )) ; Alternative foreground, subtle
    (fg         '("#CCD4DE" "#BCC4CE"    "white"       )) ; Main foreground, bright and readable
 
-   ;; Core palette - carefully chosen for syntax highlighting and UI elements
-   (primary          '("#3A6A99" "#3A6A99" "brightblue"  )) ; Primary accent blue
-   (primary-light    '("#90BEED" "#507EAD" "cyan"        )) ; Lighter primary blue, for types/emphasis
-   (secondary        '("#2F5A83" "#2F5A83" "brightblack" )) ; Secondary blue, slightly muted
-   (secondary-light  '("#476C97" "#476C97" "brightblack" )) ; Lighter secondary blue
+   ;; Core palette - simplified for a more minimal feel, less saturated where possible
+   (primary          '("#3A6A99" "#3A6A99" "brightblue"  )) ; Main accent blue
+   (secondary        '("#2F5A83" "#2F5A83" "brightblack" )) ; Muted blue
 
-   (grey        '("#41505E" "#ff6655" "red"           )) ; Generic grey, can be used for subtle elements
-   (red         '("#D95468" "#ff6655" "red"           )) ; Error/deletion color
-   (orange      '("#D98E48" "#dd8844" "brightred"     )) ; Warning/modified color
-   (green       '("#8BD49C" "#99bb66" "green"         )) ; Success/addition color
-   (teal        '("#33CED8" "#33CCDD" "brightgreen"   )) ; Vibrant teal, good for functions/links
-   (yellow      '("#EBBF83" "#EEBB88" "yellow"        )) ; Yellow, for warnings or specific elements
-   (blue        '("#5EC4FF" "#55CCFF" "brightblue"    )) ; Bright blue, for builtins/keywords
-   (bright-blue '("#539AFC" "#5599FF" "blue"          )) ; Even brighter blue
-   (dark-blue   '("#718CA1" "#7788AA" "blue"          )) ; Muted blue, good for selection
-   (magenta     '("#E27E8D" "#EE7788" "magenta"       )) ; Magenta, for constants
-   (violet      '("#B62D65" "#BB2266" "brightmagenta")) ; Deeper violet
-   (cyan        '("#70E1E8" "#77EEEE" "brightcyan"    )) ; Bright cyan, for methods
-   (dark-cyan   '("#008B94" "#008899" "cyan"          )) ; Muted cyan
+   (grey       base4)
+   (red              '("#D95468" "#ff6655" "red"           )) ; Error/deletion color
+   (orange           '("#D98E48" "#dd8844" "brightred"     )) ; Warning/modified color, also for numbers
+   (green            '("#8BD49C" "#99bb66" "green"         )) ; Success/addition color
+   (teal             '("#33CED8" "#33CCDD" "brightgreen"   )) ; Vibrant teal, good for links/some headings
+   (yellow           '("#EBBF83" "#EEBB88" "yellow"        )) ; Yellow, for strings
+   (blue             '("#5EC4FF" "#55CCFF" "brightblue"    )) ; Bright blue, for operators
+   (dark-blue        '("#718CA1" "#7788AA" "blue"          ))
+   (magenta          '("#E27E8D" "#EE7788" "magenta"       )) ; Magenta, for constants
+   (violet           '("#B62D65" "#BB2266" "brightmagenta" )) ; Deeper violet
+   (cyan             '("#70E1E8" "#77EEEE" "brightcyan"    )) ; Bright cyan, for methods
+   (dark-cyan        '("#008B94" "#008899" "cyan"          )) ; Muted cyan, for functions
 
    ;; face categories -- required for all themes
    (highlight     base4) ; General highlight background
    (vertical-bar  (doom-darken base1 0.5)) ; Vertical bar color
-   (selection     dark-blue) ; Selection background for clear visibility
-   (builtin       blue) ; Built-in functions/types
+   (selection     base3) ; Selection background, darker for better contrast
+   (builtin       primary) ; Use primary for built-in functions/types
    (comments      base7) ; Comments, subtle and readable
    (doc-comments  (doom-lighten fg-alt 0.25)) ; Doc comments, slightly brighter than regular comments
    (constants     magenta) ; Constants (e.g., true, false, nil)
-   (functions     teal) ; Function names
-   (keywords      blue) ; Keywords (e.g., defun, let)
-   (methods       cyan) ; Method names (often used in object-oriented contexts)
+   (functions     dark-cyan) ; Function names
+   (keywords      primary) ; Keywords (e.g., defun, let)
+   (methods       cyan) ; Method names
    (operators     blue) ; Operators (+, -, =, etc.)
-   (type          primary-light) ; Type names
-   (strings       yellow) ; Strings, vibrant for easy identification
+   (type          primary) ; Type names
+   (strings       primary) ; Strings, vibrant for easy identification
    (variables     primary) ; Variable names
    (numbers       orange) ; Numbers, distinct from constants
-   (region        dark-blue) ; Region selection, clear and visible
+   (region        base3) ; Region selection, clear and visible
    (error         red) ; Error messages/highlights
    (warning       orange) ; Warning messages/highlights
    (success       green) ; Success messages/highlights
@@ -99,18 +96,18 @@
    ((font-lock-keyword-face &override) :weight 'bold) ; Bold for keywords
    ((font-lock-builtin-face &override) :weight 'bold) ; Bold for built-in functions
    ((font-lock-type-face &override) :slant 'italic) ; Italic for type names
-   ((line-number &override) :foreground base6) ; Subtle line numbers
+   ((line-number &override) :foreground (doom-lighten base6 0.1)) ; Subtle line numbers
    ((line-number-current-line &override) :foreground fg :weight 'bold) ; Current line number, bright and bold
-   ((rainbow-delimiters-depth-1-face &override) :foreground primary-light)
-   ((rainbow-delimiters-depth-2-face &override) :foreground secondary-light)
-   ((rainbow-delimiters-depth-3-face &override) :foreground primary-light)
-   ((rainbow-delimiters-depth-4-face &override) :foreground secondary-light)
-   ((rainbow-delimiters-depth-5-face &override) :foreground primary-light)
-   ((rainbow-delimiters-depth-6-face &override) :foreground secondary-light)
-   ((rainbow-delimiters-depth-7-face &override) :foreground primary-light)
-   ((rainbow-delimiters-depth-8-face &override) :foreground secondary-light)
-   ((rainbow-delimiters-depth-9-face &override) :foreground primary-light)
-   (show-paren-match :background fg :foreground bg :weight 'bold) ; Matching parentheses, high contrast
+   ((rainbow-delimiters-depth-1-face &override) :foreground primary)
+   ((rainbow-delimiters-depth-2-face &override) :foreground secondary)
+   ((rainbow-delimiters-depth-3-face &override) :foreground primary)
+   ((rainbow-delimiters-depth-4-face &override) :foreground secondary)
+   ((rainbow-delimiters-depth-5-face &override) :foreground primary)
+   ((rainbow-delimiters-depth-6-face &override) :foreground secondary)
+   ((rainbow-delimiters-depth-7-face &override) :foreground primary)
+   ((rainbow-delimiters-depth-8-face &override) :foreground secondary)
+   ((rainbow-delimiters-depth-9-face &override) :foreground primary)
+   (show-paren-match :inherit 'highlight) ; Matching parentheses, inherits highlight for minimalism
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box nil)
@@ -130,20 +127,20 @@
    (magit-diff-context :foreground fg-alt) ; Magit diff context
    ;;;; markdown-mode
    (markdown-markup-face :foreground base5) ; Markdown markup (e.g., **, ##)
-   (markdown-header-face :inherit 'bold :foreground primary-light) ; Markdown headers, bold and distinct
+   (markdown-header-face :inherit 'bold :foreground primary) ; Markdown headers, bold and distinct
    (markdown-url-face    :foreground teal :weight 'normal :underline t) ; Markdown URLs
    (markdown-reference-face :foreground base6) ; Markdown references
    ((markdown-bold-face &override)   :foreground fg :weight 'bold) ; Bold markdown text
    ((markdown-italic-face &override) :foreground fg-alt :slant 'italic) ; Italic markdown text
-   ;;;; outline <built-in> - distinct colors for outline levels
-   ((outline-1 &override) :foreground primary-light :weight 'bold)
+   ;;;; outline <built-in> - distinct colors for outline levels, simplified
+   ((outline-1 &override) :foreground primary :weight 'bold)
    ((outline-2 &override) :foreground green :weight 'bold)
    ((outline-3 &override) :foreground teal :slant 'italic)
-   ((outline-4 &override) :foreground yellow :slant 'italic)
-   ((outline-5 &override) :foreground orange :slant 'italic)
-   ((outline-6 &override) :foreground magenta :slant 'italic)
-   ((outline-7 &override) :foreground red :slant 'italic)
-   ((outline-8 &override) :foreground violet :slant 'italic)
+   ((outline-4 &override) :foreground fg-alt :slant 'italic)
+   ((outline-5 &override) :foreground fg-alt :slant 'italic)
+   ((outline-6 &override) :foreground fg-alt :slant 'italic)
+   ((outline-7 &override) :foreground fg-alt :slant 'italic)
+   ((outline-8 &override) :foreground fg-alt :slant 'italic)
    ;;;; org <built-in> - improved visibility for Org mode elements
    ((org-block &override) :background base2 :foreground fg-alt) ; Org code blocks, clear background
    ((org-block-begin-line &override) :background base2 :foreground base7 :box `(:line-width 1 :color ,base3 :style nil)) ; Org block delimiters
@@ -151,22 +148,23 @@
    (org-hide :foreground hidden) ; Hidden org text
    ((org-link &override) :foreground teal :underline t) ; Org links, distinct and underlined
    ((org-document-title &override) :family doom-rogue-dark-variable-label-face :height 2.5 :foreground fg :weight 'bold) ; Document title
-   ((org-level-1 &override) :family doom-rogue-dark-variable-label-face :height 1.9 :foreground primary-light :weight 'bold)
+   ((org-level-1 &override) :family doom-rogue-dark-variable-label-face :height 1.9 :foreground primary :weight 'bold)
    ((org-level-2 &override) :family doom-rogue-dark-variable-label-face :height 1.6 :foreground green :weight 'bold)
    ((org-level-3 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground teal :slant 'italic)
-   ((org-level-4 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground yellow :slant 'italic)
-   ((org-level-5 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground orange :slant 'italic)
-   ((org-level-6 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground magenta :slant 'italic)
-   ((org-level-7 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground red :slant 'italic)
-   ((org-level-8 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground violet :slant 'italic)
-   (org-code :inherit 'font-lock-string-face) ; Org code snippets
-   (org-verbatim :inherit 'font-lock-string-face) ; Org verbatim text
+   ((org-level-4 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
+   ((org-level-5 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
+   ((org-level-6 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
+   ((org-level-7 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
+   ((org-level-8 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
+   (org-code :foreground yellow) ; Org code snippets, consistent with strings
+   (org-verbatim :foreground yellow) ; Org verbatim text, consistent with strings
    (org-meta-line :foreground base7 :slant 'italic) ; Org meta lines
    (org-footnote :foreground base7 :slant 'italic) ; Org footnotes
    (org-date :foreground base6) ; Org dates
    (org-tag :foreground primary :weight 'bold) ; Org tags
-   (org-todo :foreground red :weight 'bold) ; Org TODO keywords
-   (org-done :foreground green :weight 'bold) ; Org DONE keywords
+   (org-todo :foreground orange :weight 'bold) ; Org TODO keywords, less alarming
+   (org-done :strike-through t :foreground base6) ; Org DONE keywords, struck through and subtle
+   (org-ellipsis :underline nil :background bg :foreground (doom-lighten base7 0.2)) ; Org ellipsis, subtle
    ;;;; treemacs
    ((treemacs-async-loading-face &override) :family doom-rogue-dark-variable-label-face :foreground base7)
    ((treemacs-directory-collapsed-face &override) :family doom-rogue-dark-variable-label-face :foreground primary)
@@ -177,19 +175,19 @@
    ((treemacs-git-added-face &override) :family doom-rogue-dark-variable-label-face :foreground green)
    ((treemacs-git-conflict-face &override) :family doom-rogue-dark-variable-label-face :foreground red)
    ((treemacs-git-ignored-face &override) :family doom-rogue-dark-variable-label-face :foreground base6)
-   ((treemacs-git-modified-face &override) :family doom-rogue-dark-variable-label-face :foreground orange)
+   ((treemacs-git-modified-face &override) :family doom-rogue-dark-variable-label-face :foreground orange) ; Consistent with light theme
    ((treemacs-git-renamed-face &override) :family doom-rogue-dark-variable-label-face :foreground blue)
    ((treemacs-git-unmodified-face &override) :family doom-rogue-dark-variable-label-face :foreground fg-alt)
    ((treemacs-git-untracked-face &override) :family doom-rogue-dark-variable-label-face :foreground magenta)
    ((treemacs-tags-face &override) :family doom-rogue-dark-variable-label-face :height 0.8 :foreground fg-alt)
    ;;;; nano-vertico - improved contrast for completion UI
    (nano-vertico-header-face :foreground fg :background bg :box `(:line-width 1 :color ,fg-alt :style nil))
-   (nano-vertico-mode-line-face :foreground fg-alt :overline fg-alt)
+   (nano-vertico-mode-line-face :foreground fg-alt :overline nil) ; Removed overline for minimalism
    (nano-vertico-buffer-face :foreground fg-alt :background bg)
    (nano-vertico-prompt-face :foreground bg :background fg-alt :weight 'bold) ; Prompt, reversed contrast
-   (nano-vertico-region-face :background secondary :foreground fg :weight 'bold) ; Highlighted candidate, clear and bold
+   (nano-vertico-region-face :background base2 :foreground fg :weight 'bold) ; Highlighted candidate, clear and bold
    (nano-vertico-annotation-face :foreground base7 :slant 'italic) ; Annotations, subtle
-   (nano-vertico-cursor-face :foreground bg :background primary-light :weight 'bold) ; Cursor, highly visible
+   (nano-vertico-cursor-face :foreground bg :background primary :weight 'bold) ; Cursor, highly visible
    (cursor :foreground fg) ; Regular cursor
    ;;;; solaire-mode - ensuring consistent background
    (solaire-default-face :background bg) ; Default background for solaire-mode
@@ -205,9 +203,25 @@
    ;;;; eros
    (eros-result-overlay-face :background base2 :foreground fg :box `(:line-width -1 :color ,fg-alt))
    ;;;; indent-guide
-   ((indent-guide-face &override) :foreground base5 :slant 'normal)) ; Indent guides, subtle but visible
+   ((indent-guide-face &override) :foreground base4 :slant 'normal) ; Indent guides, subtle but visible
+   ;;;; flycheck-overlay - consistent with light theme's approach
+   (flycheck-overlay-error :background (doom-darken red 0.6)
+                           :foreground fg
+                           :height 0.9
+                           :weight 'normal)
+   (flycheck-overlay-warning :background (doom-darken orange 0.6)
+                             :foreground fg
+                             :height 0.9
+                             :weight 'normal)
+   (flycheck-overlay-info :background (doom-darken green 0.6)
+                          :foreground fg
+                          :height 0.9
+                          :weight 'normal))
   ;;;; Base theme variable overrides
-  ())
+  ((flycheck-overlay-info-icon "")
+   (flycheck-overlay-warning-icon "")
+   (flycheck-overlay-error-icon "")
+   (flycheck-overlay-icon-left-padding 0.4)))
 
 (provide 'doom-rogue-dark-theme)
 
