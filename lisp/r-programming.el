@@ -161,8 +161,6 @@
   :config
   (yas-global-mode 1))
 
-(use-package dap-mode)
-
 (use-package gptel
   :custom
   (gptel-model "gpt-4o-mini")
