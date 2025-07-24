@@ -116,7 +116,7 @@
     :box nil)
    (mode-line-emphasis :foreground base8) ; Emphasized text in modeline
    (hl-line :background highlight) ; Highlight current line background
-   ((link &override) :foreground teal :weight 'normal :underline t) ; Links, distinct color and underline
+   ((link &override) :foreground blue :weight 'normal :underline t) ; Links, distinct color and underline
    ;;;; doom-modeline
    (doom-modeline-bar :background modeline-bg) ; Modeline bar color
    ;;;; magit
@@ -128,7 +128,7 @@
    ;;;; markdown-mode
    (markdown-markup-face :foreground base5) ; Markdown markup (e.g., **, ##)
    (markdown-header-face :inherit 'bold :foreground primary) ; Markdown headers, bold and distinct
-   (markdown-url-face    :foreground teal :weight 'normal :underline t) ; Markdown URLs
+   (markdown-url-face    :foreground blue :weight 'normal :underline t) ; Markdown URLs
    (markdown-reference-face :foreground base6) ; Markdown references
    ((markdown-bold-face &override)   :foreground fg :weight 'bold) ; Bold markdown text
    ((markdown-italic-face &override) :foreground fg-alt :slant 'italic) ; Italic markdown text
@@ -146,10 +146,10 @@
    ((org-block-begin-line &override) :background base2 :foreground base7 :box `(:line-width 1 :color ,base3 :style nil)) ; Org block delimiters
    ((org-block-end-line &override) :background base2 :foreground base7 :box `(:line-width 1 :color ,base3 :style nil))
    (org-hide :foreground hidden) ; Hidden org text
-   ((org-link &override) :foreground teal :underline t) ; Org links, distinct and underlined
+   ((org-link &override) :foreground blue :underline t) ; Org links, distinct and underlined
    ((org-document-title &override) :family doom-rogue-dark-variable-label-face :height 2.5 :foreground fg :weight 'bold) ; Document title
-   ((org-level-1 &override) :family doom-rogue-dark-variable-label-face :height 1.9 :foreground primary :weight 'bold)
-   ((org-level-2 &override) :family doom-rogue-dark-variable-label-face :height 1.6 :foreground green :weight 'bold)
+   ((org-level-1 &override) :family doom-rogue-dark-variable-label-face :height 1.9 :foreground fg :weight 'bold)
+   ((org-level-2 &override) :family doom-rogue-dark-variable-label-face :height 1.6 :foreground blue :weight 'bold)
    ((org-level-3 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground teal :slant 'italic)
    ((org-level-4 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
    ((org-level-5 &override) :family doom-rogue-dark-variable-label-face :height 1.5 :foreground fg-alt :slant 'italic)
