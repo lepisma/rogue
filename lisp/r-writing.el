@@ -34,7 +34,51 @@
   :custom
   (org-log-done 'time)
   :config
-  (require 'org-tempo))
+  (require 'org-tempo)
+
+  ;; Both the regex based functions don't start matching from the start of the
+  ;; line. This could cause issues at some point in time.
+
+  (defun org-checkbox-state ()
+    "Return checkbox state for checkbox list item in current line."
+    (save-excursion
+      (goto-char (line-beginning-position))
+      (if (re-search-forward " \\[X\\] " (line-end-position) t)
+          'checked
+        (if (re-search-forward " \\[-\\] " (line-end-position) t)
+            'partial
+          (if (re-search-forward " \\[ \\] " (line-end-position) t)
+              'unchecked
+            'unknown)))))
+
+  (defun org-checkbox-done-timestamp-range ()
+    "Return range of done timestamp if marked in the checklist item."
+    (let ((timestamp-regex " \\[[ X-]\\] \\(\\[[[:digit:]]\\{4\\}-[[:digit:]]\\{2\\}-[[:digit:]]\\{2\\} \\(Mon\\|Tue\\|Wed\\|Thu\\|Fri\\|Sat\\|Sun\\) [[:digit:]]\\{2\\}:[[:digit:]]\\{2\\}\\] \\)"))
+      (save-excursion
+        (goto-char (line-beginning-position))
+        (when (re-search-forward timestamp-regex (line-end-position) t)
+          (cons (match-beginning 1) (match-end 1))))))
+
+  (defun org-checkbox-date-fn ()
+    "Add a timestamp when the checklist is moved to done state.
+
+Ignore if the content already has a timestamp (of a certain fixed
+format). In case the checklist is marked as not done or partially done,
+remove the present timestamp, if any."
+    (save-excursion
+      (let ((checkbox-state (org-checkbox-state))
+            (timestamp-range (org-checkbox-done-timestamp-range)))
+        (if (eq checkbox-state 'checked)
+            (unless timestamp-range
+              ;; We go just after the marked checklist
+              (goto-char (line-beginning-position))
+              (re-search-forward " \\[X\\] " (line-end-position) t)
+              (org-insert-timestamp (current-time) t t)
+              (insert " "))
+          (when timestamp-range
+            (delete-region (car timestamp-range) (cdr timestamp-range)))))))
+
+  (add-hook 'org-checkbox-statistics-hook #'org-checkbox-date-fn))
 
 (use-package markdown-mode)
 
