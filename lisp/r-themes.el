@@ -78,11 +78,14 @@
   (auto-dark-light-theme nil)
   (auto-dark-dark-theme nil)
 
+  :init
+  (auto-dark-mode)
+
   :config
   (auto-dark-mode t)
-  (if (auto-dark--is-dark-mode)
-      (r-themes/set-dark-theme)
-    (r-themes/set-light-theme))
+  (if (eq (auto-dark--current-system-mode) 'light)
+      (r-themes/set-light-theme)
+    (r-themes/set-dark-theme))
 
   :hook ((auto-dark-dark-mode . r-themes/set-dark-theme)
          (auto-dark-light-mode . r-themes/set-light-theme)))
