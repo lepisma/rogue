@@ -90,17 +90,7 @@
                         :vars `((mu4e-sent-messages-behavior . delete)
                                 (mu4e-trash-folder . "/Gmail/[Gmail].Trash")
                                 (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
-                                (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))
-                       (make-mu4e-context
-                        :name "Carnil"
-                        :match-func (lambda (msg)
-                                      (when msg
-                                        (r-mail/message-maildir-matches msg "^/Carnil")))
-                        :vars `((mu4e-sent-messages-behavior . sent)
-                                (mu4e-sent-folder . "/Carnil/Sent Messages")
-                                (mu4e-trash-folder . "/Carnil/Deleted Messages")
-                                (mu4e-drafts-folder . "/Carnil/Drafts")
-                                (mu4e-refile-folder . "/Carnil/Archive")))))
+                                (mu4e-refile-folder . "/Gmail/[Gmail].Archive")))))
 
   :config
   (setq mail-user-agent 'mu4e-user-agent
