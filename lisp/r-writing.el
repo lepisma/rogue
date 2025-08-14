@@ -33,6 +33,9 @@
 (use-package org
   :custom
   (org-log-done 'time)
+  (org-babel-load-languages '((emacs-lisp . t)
+                              (shell . t)
+                              (python . t)))
   :config
   (require 'org-tempo)
 
