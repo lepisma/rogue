@@ -361,8 +361,8 @@ remove the present timestamp, if any."
 </div>")
         (postamble-template "<footer id='footer'></footer>")
         (root-url "https://lepisma.xyz/")
-        (input-dir (concat user-cloud-dir "lepisma.github.io/"))
-        (output-dir (concat user-cloud-dir "projects/lepisma.github.io-deploy/")))
+        (input-dir (concat user-cloud-dir "projects/website/lepisma.xyz/"))
+        (output-dir (concat user-cloud-dir "projects/website/lepisma.xyz-built/")))
     (setq pile-serve-dir output-dir
           pile-projects
           (list (pile-project-wiki :name "wiki"
