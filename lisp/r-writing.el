@@ -333,7 +333,7 @@ remove the present timestamp, if any."
 
 (use-package pile
   ;; :vc (:url "https://github.com/lepisma/pile.git" :rev :newest)
-  :load-path (lambda () (concat user-cloud-dir "projects/pile/"))
+  :load-path (lambda () (concat user-cloud-dir "projects/website/pile/"))
   :after (mustache w transient magit)
   :demand t
   :commands (pile-publish-current-file pile-serve pile-status pile-blog-new-post)
