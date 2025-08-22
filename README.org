@@ -1,5 +1,9 @@
 #+TITLE: Rogue
 
+#+begin_quote
+Development for this project has moved to sourcehut [here](https://git.sr.ht/~lepisma/rogue). This repository is now in a read-only state.
+#+end_quote
+
 Personal Emacs configuration using Emacs 29 defaults and modern packages. My
 older config was build around 2017-2018 using spacemacs, you can find that in
 the ~spacemacs~ branch.
