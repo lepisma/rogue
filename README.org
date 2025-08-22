@@ -1,7 +1,7 @@
 #+TITLE: Rogue
 
 #+begin_quote
-Development for this project has moved to sourcehut [here](https://git.sr.ht/~lepisma/rogue). This repository is now in a read-only state.
+Development for this project has moved to sourcehut [[https://git.sr.ht/~lepisma/rogue][here]]. This repository is now in a read-only state.
 #+end_quote
 
 Personal Emacs configuration using Emacs 29 defaults and modern packages. My
